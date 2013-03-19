@@ -6,3 +6,4 @@ D:\Diplom\Information_analysis_of_university\Information_analysis_of_university\
 D:\Diplom\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\GenerateResource.write.1.tlog
 D:\Diplom\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.exe
 D:\Diplom\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.pdb
+D:\Diplom\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.Form1.resources
