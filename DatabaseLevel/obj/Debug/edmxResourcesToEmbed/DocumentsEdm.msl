@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UniversitySystemModelStoreContainer" CdmEntityContainer="UniversitySystemEntities">
+    <EntitySetMapping Name="Department">
+      <EntityTypeMapping TypeName="UniversitySystemModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FK_DepartmentId" ColumnName="FK_DepartmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Document">
+      <EntityTypeMapping TypeName="UniversitySystemModel.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FK_TaskId" ColumnName="FK_TaskId" />
+          <ScalarProperty Name="FK_ResponsibleId" ColumnName="FK_ResponsibleId" />
+          <ScalarProperty Name="ProgrammeName" ColumnName="ProgrammeName" />
+          <ScalarProperty Name="IsProgramme" ColumnName="IsProgramme" />
+          <ScalarProperty Name="FK_DepartmentIdDestination" ColumnName="FK_DepartmentIdDestination" />
+          <ScalarProperty Name="FK_DepartmentIdSource" ColumnName="FK_DepartmentIdSource" />
+          <ScalarProperty Name="WayToDoc" ColumnName="WayToDoc" />
+          <ScalarProperty Name="DocFunction" ColumnName="DocFunction" />
+          <ScalarProperty Name="Frequence" ColumnName="Frequence" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="IsRagulary" ColumnName="IsRagulary" />
+          <ScalarProperty Name="IsExternal" ColumnName="IsExternal" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Field">
+      <EntityTypeMapping TypeName="UniversitySystemModel.Field">
+        <MappingFragment StoreEntitySet="Field">
+          <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsRepeat" ColumnName="IsRepeat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Period">
+      <EntityTypeMapping TypeName="UniversitySystemModel.Period">
+        <MappingFragment StoreEntitySet="Period">
+          <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
+          <ScalarProperty Name="DateBegin" ColumnName="DateBegin" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+          <ScalarProperty Name="NumberOfDocuments" ColumnName="NumberOfDocuments" />
+          <ScalarProperty Name="FK_DocumentId" ColumnName="FK_DocumentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Post">
+      <EntityTypeMapping TypeName="UniversitySystemModel.Post">
+        <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FK_DepartmentId" ColumnName="FK_DepartmentId" />
+          <ScalarProperty Name="WayToDocs" ColumnName="WayToDocs" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Task">
+      <EntityTypeMapping TypeName="UniversitySystemModel.Task">
+        <MappingFragment StoreEntitySet="Task">
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="FK_PostId" ColumnName="FK_PostId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Worker">
+      <EntityTypeMapping TypeName="UniversitySystemModel.Worker">
+        <MappingFragment StoreEntitySet="Worker">
+          <ScalarProperty Name="WorkerId" ColumnName="WorkerId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FK_PostId" ColumnName="FK_PostId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Document_Fields" TypeName="UniversitySystemModel.Document_Fields" StoreEntitySet="Document_Fields">
+      <EndProperty Name="Document">
+        <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+      </EndProperty>
+      <EndProperty Name="Field">
+        <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

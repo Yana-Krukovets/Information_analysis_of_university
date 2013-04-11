@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities">
+    <EntitySetMapping Name="DB">
+      <EntityTypeMapping TypeName="DBModel.DB">
+        <MappingFragment StoreEntitySet="DB">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_workplace" ColumnName="id_workplace" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id_version" ColumnName="id_version" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DB_Version">
+      <EntityTypeMapping TypeName="DBModel.DB_Version">
+        <MappingFragment StoreEntitySet="DB_Version">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Field">
+      <EntityTypeMapping TypeName="DBModel.Field">
+        <MappingFragment StoreEntitySet="Field">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_table" ColumnName="id_table" />
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="is_null" ColumnName="is_null" />
+          <ScalarProperty Name="is_index" ColumnName="is_index" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Field_Type">
+      <EntityTypeMapping TypeName="DBModel.Field_Type">
+        <MappingFragment StoreEntitySet="Field_Type">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sample_Data">
+      <EntityTypeMapping TypeName="DBModel.Sample_Data">
+        <MappingFragment StoreEntitySet="Sample_Data">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="id_field" ColumnName="id_field" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table">
+      <EntityTypeMapping TypeName="DBModel.Table">
+        <MappingFragment StoreEntitySet="Table">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id_db" ColumnName="id_db" />
+          <ScalarProperty Name="count_record" ColumnName="count_record" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkPlace">
+      <EntityTypeMapping TypeName="DBModel.WorkPlace">
+        <MappingFragment StoreEntitySet="WorkPlace">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
