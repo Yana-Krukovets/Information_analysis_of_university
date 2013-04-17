@@ -18,3 +18,4 @@ C:\Users\1\Desktop\DIIT\5_kurs\Диплом\My_Diploma\Programm\Information_anal
 C:\Users\1\Desktop\DIIT\5_kurs\Диплом\My_Diploma\Programm\Information_analysis_of_university\Information_analysis_of_university\bin\Debug\DatabaseLevel.pdb
 C:\Users\1\Desktop\DIIT\5_kurs\Диплом\My_Diploma\Programm\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.csprojResolveAssemblyReference.cache
 C:\Users\1\Desktop\DIIT\5_kurs\Диплом\My_Diploma\Programm\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.MainForm.resources
+C:\Users\1\Desktop\DIIT\5_kurs\Диплом\My_Diploma\Programm\Information_analysis_of_university\Information_analysis_of_university\bin\Debug\Information_analysis_of_university.exe.config

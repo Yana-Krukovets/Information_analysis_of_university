@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DatabaseLevel
 {
-    public class BaseDocumentRepository<T> : BaseRepository<UniversitySystemEntities, T> where T : EntityObject  
+    public class BaseDocumentRepository<T> : BaseRepository<UniversitySystemEntities, T> where T : EntityObject
     {
 
     }

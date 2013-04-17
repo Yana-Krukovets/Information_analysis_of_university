@@ -53,9 +53,9 @@
     <Key>
       <PropertyRef Name="DepartmentId" />
     </Key>
-    <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="FK_DepartmentId" Type="Int32" />
+    <Property Type="Int32" Name="DepartmentId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="FK_DepartmentId" />
     <NavigationProperty Name="Department1" Relationship="UniversitySystemModel.FK_Department_Department" FromRole="Department" ToRole="Department1" />
     <NavigationProperty Name="Department2" Relationship="UniversitySystemModel.FK_Department_Department" FromRole="Department1" ToRole="Department" />
     <NavigationProperty Name="Document" Relationship="UniversitySystemModel.FK_Document_Department" FromRole="Department" ToRole="Document" />
@@ -66,25 +66,25 @@
     <Key>
       <PropertyRef Name="DocumentId" />
     </Key>
-    <Property Name="DocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="FK_TaskId" Type="Int32" Nullable="false" />
-    <Property Name="FK_ResponsibleId" Type="Int32" />
-    <Property Name="ProgrammeName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="IsProgramme" Type="Boolean" />
-    <Property Name="FK_DepartmentIdDestination" Type="Int32" />
-    <Property Name="FK_DepartmentIdSource" Type="Int32" />
-    <Property Name="WayToDoc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="DocFunction" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="Frequence" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Number" Type="Int32" />
-    <Property Name="IsRagulary" Type="Boolean" />
-    <Property Name="IsExternal" Type="Byte" />
-    <Property Name="Type" Type="Byte" />
-    <Property Name="StartDate" Type="DateTime" />
-    <Property Name="EndDate" Type="DateTime" />
-    <Property Name="Destination" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="Source" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Int32" Name="DocumentId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="FK_TaskId" Nullable="false" />
+    <Property Type="Int32" Name="FK_ResponsibleId" />
+    <Property Type="String" Name="ProgrammeName" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsProgramme" />
+    <Property Type="Int32" Name="FK_DepartmentIdDestination" />
+    <Property Type="Int32" Name="FK_DepartmentIdSource" />
+    <Property Type="String" Name="WayToDoc" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DocFunction" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Frequence" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Number" />
+    <Property Type="Boolean" Name="IsRagulary" />
+    <Property Type="Byte" Name="IsExternal" />
+    <Property Type="Byte" Name="Type" />
+    <Property Type="DateTime" Name="StartDate" />
+    <Property Type="DateTime" Name="EndDate" />
+    <Property Type="String" Name="Destination" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Source" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Department" Relationship="UniversitySystemModel.FK_Document_Department" FromRole="Document" ToRole="Department" />
     <NavigationProperty Name="Department1" Relationship="UniversitySystemModel.FK_Document_DepartmentSource" FromRole="Document" ToRole="Department" />
     <NavigationProperty Name="Post" Relationship="UniversitySystemModel.FK_Document_Post" FromRole="Document" ToRole="Post" />
@@ -96,32 +96,32 @@
     <Key>
       <PropertyRef Name="FieldId" />
     </Key>
-    <Property Name="FieldId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="IsRepeat" Type="Boolean" />
+    <Property Type="Int32" Name="FieldId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsRepeat" />
     <NavigationProperty Name="Document" Relationship="UniversitySystemModel.Document_Fields" FromRole="Field" ToRole="Document" />
   </EntityType>
   <EntityType Name="Period">
     <Key>
       <PropertyRef Name="PeriodId" />
     </Key>
-    <Property Name="PeriodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DateBegin" Type="DateTime" Nullable="false" />
-    <Property Name="DateEnd" Type="DateTime" Nullable="false" />
-    <Property Name="NumberOfDocuments" Type="Int32" />
-    <Property Name="FK_DocumentId" Type="Int32" Nullable="false" />
+    <Property Type="Int32" Name="PeriodId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="DateBegin" Nullable="false" />
+    <Property Type="DateTime" Name="DateEnd" Nullable="false" />
+    <Property Type="Int32" Name="NumberOfDocuments" />
+    <Property Type="Int32" Name="FK_DocumentId" Nullable="false" />
     <NavigationProperty Name="Document" Relationship="UniversitySystemModel.FK_Period_Document" FromRole="Period" ToRole="Document" />
   </EntityType>
   <EntityType Name="Post">
     <Key>
       <PropertyRef Name="PostId" />
     </Key>
-    <Property Name="PostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="FK_DepartmentId" Type="Int32" />
-    <Property Name="WayToDocs" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="Date" Type="DateTime" Nullable="false" />
-    <Property Name="Comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Int32" Name="PostId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="FK_DepartmentId" />
+    <Property Type="String" Name="WayToDocs" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Date" Nullable="false" />
+    <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Department" Relationship="UniversitySystemModel.FK_Post_Department" FromRole="Post" ToRole="Department" />
     <NavigationProperty Name="Document" Relationship="UniversitySystemModel.FK_Document_Post" FromRole="Post" ToRole="Document" />
     <NavigationProperty Name="Task" Relationship="UniversitySystemModel.FK_Task_Post" FromRole="Post" ToRole="Task" />
@@ -131,9 +131,9 @@
     <Key>
       <PropertyRef Name="TaskId" />
     </Key>
-    <Property Name="TaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FK_PostId" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Int32" Name="TaskId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="FK_PostId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Document" Relationship="UniversitySystemModel.FK_Document_Task" FromRole="Task" ToRole="Document" />
     <NavigationProperty Name="Post" Relationship="UniversitySystemModel.FK_Task_Post" FromRole="Task" ToRole="Post" />
   </EntityType>
@@ -141,14 +141,14 @@
     <Key>
       <PropertyRef Name="WorkerId" />
     </Key>
-    <Property Name="WorkerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="FK_PostId" Type="Int32" Nullable="false" />
+    <Property Type="Int32" Name="WorkerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="FK_PostId" Nullable="false" />
     <NavigationProperty Name="Post" Relationship="UniversitySystemModel.FK_Worker_Post" FromRole="Worker" ToRole="Post" />
   </EntityType>
   <Association Name="FK_Department_Department">
-    <End Role="Department" Type="UniversitySystemModel.Department" Multiplicity="0..1" />
-    <End Role="Department1" Type="UniversitySystemModel.Department" Multiplicity="*" />
+    <End Type="UniversitySystemModel.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="UniversitySystemModel.Department" Role="Department1" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Department">
         <PropertyRef Name="DepartmentId" />
@@ -159,8 +159,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Document_Department">
-    <End Role="Department" Type="UniversitySystemModel.Department" Multiplicity="0..1" />
-    <End Role="Document" Type="UniversitySystemModel.Document" Multiplicity="*" />
+    <End Type="UniversitySystemModel.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="UniversitySystemModel.Document" Role="Document" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Department">
         <PropertyRef Name="DepartmentId" />
@@ -171,8 +171,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Document_DepartmentSource">
-    <End Role="Department" Type="UniversitySystemModel.Department" Multiplicity="0..1" />
-    <End Role="Document" Type="UniversitySystemModel.Document" Multiplicity="*" />
+    <End Type="UniversitySystemModel.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="UniversitySystemModel.Document" Role="Document" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Department">
         <PropertyRef Name="DepartmentId" />
@@ -183,8 +183,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Post_Department">
-    <End Role="Department" Type="UniversitySystemModel.Department" Multiplicity="0..1" />
-    <End Role="Post" Type="UniversitySystemModel.Post" Multiplicity="*" />
+    <End Type="UniversitySystemModel.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="UniversitySystemModel.Post" Role="Post" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Department">
         <PropertyRef Name="DepartmentId" />
@@ -195,8 +195,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Document_Post">
-    <End Role="Post" Type="UniversitySystemModel.Post" Multiplicity="0..1" />
-    <End Role="Document" Type="UniversitySystemModel.Document" Multiplicity="*" />
+    <End Type="UniversitySystemModel.Post" Role="Post" Multiplicity="0..1" />
+    <End Type="UniversitySystemModel.Document" Role="Document" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Post">
         <PropertyRef Name="PostId" />
@@ -207,8 +207,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Document_Task">
-    <End Role="Task" Type="UniversitySystemModel.Task" Multiplicity="1" />
-    <End Role="Document" Type="UniversitySystemModel.Document" Multiplicity="*" />
+    <End Type="UniversitySystemModel.Task" Role="Task" Multiplicity="1" />
+    <End Type="UniversitySystemModel.Document" Role="Document" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Task">
         <PropertyRef Name="TaskId" />
@@ -219,8 +219,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Period_Document">
-    <End Role="Document" Type="UniversitySystemModel.Document" Multiplicity="1" />
-    <End Role="Period" Type="UniversitySystemModel.Period" Multiplicity="*" />
+    <End Type="UniversitySystemModel.Document" Role="Document" Multiplicity="1" />
+    <End Type="UniversitySystemModel.Period" Role="Period" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Document">
         <PropertyRef Name="DocumentId" />
@@ -231,8 +231,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Task_Post">
-    <End Role="Post" Type="UniversitySystemModel.Post" Multiplicity="1" />
-    <End Role="Task" Type="UniversitySystemModel.Task" Multiplicity="*" />
+    <End Type="UniversitySystemModel.Post" Role="Post" Multiplicity="1" />
+    <End Type="UniversitySystemModel.Task" Role="Task" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Post">
         <PropertyRef Name="PostId" />
@@ -243,8 +243,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Worker_Post">
-    <End Role="Post" Type="UniversitySystemModel.Post" Multiplicity="1" />
-    <End Role="Worker" Type="UniversitySystemModel.Worker" Multiplicity="*" />
+    <End Type="UniversitySystemModel.Post" Role="Post" Multiplicity="1" />
+    <End Type="UniversitySystemModel.Worker" Role="Worker" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Post">
         <PropertyRef Name="PostId" />
@@ -255,7 +255,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="Document_Fields">
-    <End Role="Document" Type="UniversitySystemModel.Document" Multiplicity="*" />
-    <End Role="Field" Type="UniversitySystemModel.Field" Multiplicity="*" />
+    <End Type="UniversitySystemModel.Document" Role="Document" Multiplicity="*" />
+    <End Type="UniversitySystemModel.Field" Role="Field" Multiplicity="*" />
   </Association>
 </Schema>

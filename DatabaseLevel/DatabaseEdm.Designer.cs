@@ -533,10 +533,10 @@ namespace DatabaseLevel
     
     //ПРИШЛОСЬ ЗАКОМЕНТИРОВАТЬ. ОШИБКИ
 
-    //[EdmEntityTypeAttribute(NamespaceName="DBModel", Name="Field")]
-    //[Serializable()]
-    //[DataContractAttribute(IsReference=true)]
-    public partial class Field : EntityObject
+    [EdmEntityTypeAttribute(NamespaceName = "DBModel", Name = "Field")]
+    [Serializable()]
+    [DataContractAttribute(IsReference = true)]
+    public partial class FieldDb : EntityObject
     {
         #region Factory Method
     
@@ -544,9 +544,9 @@ namespace DatabaseLevel
         /// Create a new Field object.
         /// </summary>
         /// <param name="id">Initial value of the id property.</param>
-        public static Field CreateField(global::System.Int32 id)
+        public static FieldDb CreateField(global::System.Int32 id)
         {
-            Field field = new Field();
+            FieldDb field = new FieldDb();
             field.id = id;
             return field;
         }

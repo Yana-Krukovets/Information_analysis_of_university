@@ -8,7 +8,6 @@ namespace DatabaseLevel
 {
     public class BaseDatabaseRepository<T> : BaseRepository<DBEntities, T> where T : EntityObject  
     {
-
-
+       // public BaseDatabaseRepository<T>():base(){}
     }
 }
