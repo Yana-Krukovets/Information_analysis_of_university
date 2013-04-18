@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -10,9 +11,30 @@ namespace Information_analysis_of_university.Objects
 {
     class TaskObject : BaseObject
     {
+        [ReadOnly(true)]
         public int Id { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("Наименование")]
         public string Name { get; set; }
+        
+        [ReadOnly(true)]
+        [DisplayName("Должность исполнителя")]
         public string PostName { get; set; }
+
+        [Browsable(false)]
+        public int CoordX
+        {
+            get { return X; }
+            set { X = value; }
+        }
+
+        [Browsable(false)]
+        public int CoordY
+        {
+            get { return Y; }
+            set { Y = value; }
+        }
 
         public TaskObject(Task task)
         {
@@ -20,7 +42,7 @@ namespace Information_analysis_of_university.Objects
             Name = task.Name;
             PostName = task.Post.Name;
 
-            Size = 100;
+           // Size = 100;
         }
 
         public override void DrawObject(Graphics g, int? x, int? y)
@@ -34,6 +56,15 @@ namespace Information_analysis_of_university.Objects
             DrawText(g, X, Y, Name);
         }
 
-        
+        public int GetIncreaseLength(int count)
+        {
+            return Size/(count + 1);
+        }
+
+        public bool IsCurrentObject(int x, int y)
+        {
+            return x > X && x < X + Size && y > Y && y < Y + Size;
+        }
+
     }
 }

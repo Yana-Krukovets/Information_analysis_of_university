@@ -7,16 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Information_analysis_of_university.Models;
+using Information_analysis_of_university.Objects;
 
 namespace Information_analysis_of_university
 {
     public partial class MainForm : Form
     {
+        private ModelBase model;
+
         public MainForm()
         {
             InitializeComponent();
-            
-            
+
+            model = new WorkProcessModel();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -38,7 +41,7 @@ namespace Information_analysis_of_university
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
             var graphics = Graphics.FromImage(pictureBox1.Image);
-            var model = new WorkProcessModel();
+            
 
             model.Draw(graphics);
 
@@ -47,6 +50,24 @@ namespace Information_analysis_of_university
         private void button1_Click(object sender, EventArgs e)
         {
             DrowModel();
+        }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var obj = model.GetObject(e.X, e.Y);
+            if(obj is TaskObject)
+            {
+                var taskPropertyForm = new PropertyForm<TaskObject>(obj as TaskObject);
+                taskPropertyForm.Show(this);
+            }
+            else
+            {
+                if(obj is DocumentObject)
+                {
+                    var docPropertyForm = new PropertyForm<DocumentObject>(obj as DocumentObject);
+                    docPropertyForm.Show(this);
+                }
+            }
         }
     }
 }

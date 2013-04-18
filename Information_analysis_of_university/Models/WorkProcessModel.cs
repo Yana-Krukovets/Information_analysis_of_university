@@ -30,7 +30,7 @@ namespace Information_analysis_of_university.Models
 
         public override void Draw(Graphics g)
         {
-            var x = 50;
+            var x = 100;
             var y = 50;
 
             var heignt = 100;
@@ -40,16 +40,33 @@ namespace Information_analysis_of_university.Models
             {
                 task.Task.DrawObject(g, x, y);
 
-                if (x + 4 * width < g.VisibleClipBounds.Width)
-                    x += 2 * width;
+                task.DrawDocuments(g);
+
+                //расчет координат нового квадрата
+                if (x + 5 * width < g.VisibleClipBounds.Width)
+                    x += 3 * width;
                 else
                 {
                     x = 50;
                     y = y + 3 * heignt / 2;
                 }
             }
+
+
         }
 
+        public override BaseObject GetObject(int x, int y)
+        {
+            BaseObject obj = null;
+            foreach (var task in taskList)
+            {
+                obj = task.GetObject(x, y);
+                if(obj != null)
+                    break;
+            }
+
+            return obj;
+        }
     }
 
     class TaskDocument
@@ -67,10 +84,56 @@ namespace Information_analysis_of_university.Models
 
             // IsExternal = 1 (входящие) ?
             // IsExternal = 2 (исходящие) ?
-            InernalDocuments = documents.Where(x => x.IsExternal != 1).Select(x => new DocumentObject(x)).ToList();
-            ExternalDocuments = documents.Where(x => x.IsExternal != 2).Select(x => new DocumentObject(x)).ToList();
+            InernalDocuments = documents.Where(x => x.IsExternal != 1).Select(x => new DocumentObject(x, true)).ToList();
+            ExternalDocuments = documents.Where(x => x.IsExternal != 2).Select(x => new DocumentObject(x, false)).ToList();
         }
 
-        
+        public void DrawDocuments(Graphics g)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                var docList = i == 0 ? InernalDocuments : ExternalDocuments;
+
+                //расстояние между стрелочками(документами)
+                var increaseLength = Task.GetIncreaseLength(docList.Count);
+
+                for (int j = 0; j < docList.Count; j++)
+                {
+                    docList[j].DrawObject(g, Task.CoordX, Task.CoordY + increaseLength * (j + 1));
+                }
+
+
+                ////????может это и не нужно????
+                //if (i == 0)
+                //    InernalDocuments = docList;
+                //else
+                //    ExternalDocuments = docList;
+            }
+
+        }
+
+        public BaseObject GetObject(int x, int y)
+        {
+            BaseObject curObj = null;
+            if (Task.IsCurrentObject(x, y))
+                curObj = Task;
+            else
+            {
+                var newList = new List<DocumentObject>();
+                newList.AddRange(InernalDocuments);
+                newList.AddRange(ExternalDocuments);
+                foreach (var item in newList)
+                {
+                    if(item.IsCurrentObject(x, y))
+                    {
+                        curObj = item;
+                        break;
+                    }
+                }
+            }
+
+            return curObj;
+        }
+
     }
 }

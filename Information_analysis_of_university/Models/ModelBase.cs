@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using Information_analysis_of_university.Objects;
 
 namespace Information_analysis_of_university.Models
 {
@@ -16,5 +17,7 @@ namespace Information_analysis_of_university.Models
         {
             g.DrawString(text, new Font("Calibri", 11, FontStyle.Bold), new HatchBrush(HatchStyle.Vertical, Color.Brown), x, y - 20);
         }
+
+        public abstract BaseObject GetObject(int x, int y);
     }
 }
