@@ -32,6 +32,21 @@ namespace Information_analysis_of_university
 
         }
 
+        private void DrowModelUseCase()
+        {
+            //достаем задачи
+            //достаем документы для этих задач
+            //отрисовка
+
+            pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+
+            var graphics = Graphics.FromImage(pictureBox1.Image);
+            var model = new UseCaseModel();
+
+            model.Draw(graphics);
+
+        }
+
         private void DrowModel()
         {
             //достаем задачи
@@ -68,6 +83,11 @@ namespace Information_analysis_of_university
                     docPropertyForm.Show(this);
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DrowModelUseCase();
         }
     }
 }

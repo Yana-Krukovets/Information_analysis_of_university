@@ -29,25 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("Модель потоков данных");
-            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Модель вариантов использования");
-            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("Модель нагрузки рабочих мест");
-            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Объектная модель");
-            System.Windows.Forms.TreeNode treeNode49 = new System.Windows.Forms.TreeNode("Потоки данных", new System.Windows.Forms.TreeNode[] {
-            treeNode45,
-            treeNode46,
-            treeNode47,
-            treeNode48});
-            System.Windows.Forms.TreeNode treeNode50 = new System.Windows.Forms.TreeNode("Модель жизненного цикла");
-            System.Windows.Forms.TreeNode treeNode51 = new System.Windows.Forms.TreeNode("Модель распределения обязательств");
-            System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("Модель рабочих процессов");
-            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Oбъектная модель");
-            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Документы", new System.Windows.Forms.TreeNode[] {
-            treeNode50,
-            treeNode51,
-            treeNode52,
-            treeNode53});
-            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Node2");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Модель потоков данных");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Модель вариантов использования");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Модель нагрузки рабочих мест");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Объектная модель");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Потоки данных", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Модель жизненного цикла");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Модель распределения обязательств");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Модель рабочих процессов");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Oбъектная модель");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Документы", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode7,
+            treeNode8,
+            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Node2");
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +68,7 @@
             this.tcModelsFrame = new System.Windows.Forms.TabControl();
             this.newTabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
             this.groupModel.SuspendLayout();
@@ -136,38 +137,39 @@
             this.treeMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.treeMenu.Location = new System.Drawing.Point(3, 16);
             this.treeMenu.Name = "treeMenu";
-            treeNode45.Name = "modelDataStreams";
-            treeNode45.Text = "Модель потоков данных";
-            treeNode46.Name = "use-caseModel";
-            treeNode46.Text = "Модель вариантов использования";
-            treeNode47.Name = "modelForJob";
-            treeNode47.Text = "Модель нагрузки рабочих мест";
-            treeNode48.Name = "objectModelFlows";
-            treeNode48.Text = "Объектная модель";
-            treeNode49.Name = "dataStreams";
-            treeNode49.Text = "Потоки данных";
-            treeNode50.Name = "life-cycleModel";
-            treeNode50.Text = "Модель жизненного цикла";
-            treeNode51.Name = "modelObligations";
-            treeNode51.Text = "Модель распределения обязательств";
-            treeNode52.Name = "workflowModel";
-            treeNode52.Text = "Модель рабочих процессов";
-            treeNode53.Name = "documentObjectModel";
-            treeNode53.Text = "Oбъектная модель";
-            treeNode54.Name = "Node1";
-            treeNode54.Text = "Документы";
-            treeNode55.Name = "Node2";
-            treeNode55.Text = "Node2";
+            treeNode1.Name = "modelDataStreams";
+            treeNode1.Text = "Модель потоков данных";
+            treeNode2.Name = "use-caseModel";
+            treeNode2.Text = "Модель вариантов использования";
+            treeNode3.Name = "modelForJob";
+            treeNode3.Text = "Модель нагрузки рабочих мест";
+            treeNode4.Name = "objectModelFlows";
+            treeNode4.Text = "Объектная модель";
+            treeNode5.Name = "dataStreams";
+            treeNode5.Text = "Потоки данных";
+            treeNode6.Name = "life-cycleModel";
+            treeNode6.Text = "Модель жизненного цикла";
+            treeNode7.Name = "modelObligations";
+            treeNode7.Text = "Модель распределения обязательств";
+            treeNode8.Name = "workflowModel";
+            treeNode8.Text = "Модель рабочих процессов";
+            treeNode9.Name = "documentObjectModel";
+            treeNode9.Text = "Oбъектная модель";
+            treeNode10.Name = "Node1";
+            treeNode10.Text = "Документы";
+            treeNode11.Name = "Node2";
+            treeNode11.Text = "Node2";
             this.treeMenu.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode49,
-            treeNode54,
-            treeNode55});
+            treeNode5,
+            treeNode10,
+            treeNode11});
             this.treeMenu.Size = new System.Drawing.Size(243, 359);
             this.treeMenu.TabIndex = 0;
             this.treeMenu.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // groupModel
             // 
+            this.groupModel.Controls.Add(this.button2);
             this.groupModel.Controls.Add(this.button1);
             this.groupModel.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupModel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -292,6 +294,16 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(170, 11);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -344,6 +356,7 @@
         private System.Windows.Forms.TabPage newTabPage1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

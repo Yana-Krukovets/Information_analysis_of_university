@@ -47,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\UseCaseModel.cs" />
+    <Compile Include="Objects\DocumentForWorker.cs" />
+    <Compile Include="Objects\LittleMan.cs" />
+    <Compile Include="Objects\TaskForWorker.cs" />
     <Compile Include="PropertyForm.cs">
       <SubType>Form</SubType>
     </Compile>
