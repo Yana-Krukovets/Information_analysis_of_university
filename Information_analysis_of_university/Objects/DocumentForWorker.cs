@@ -20,6 +20,9 @@ namespace Information_analysis_of_university.Objects
         public string Name { get; set; }
 
         [ReadOnly(true)]
+        public int TaskId { get; set; }
+
+        [ReadOnly(true)]
         [DisplayName("Назначение")]
         public string Function { get; set; }
 
@@ -31,19 +34,13 @@ namespace Information_analysis_of_university.Objects
         [DisplayName("Количество полей")]
         public int CountFilds { get; set; }
 
-        //направление стрелочки
-        [Browsable(false)]
-        public bool IsWayTo { get; set; }   //true - стрелка входит
-
-        public DocumentForWorker(Document document, bool isWayTo)
+        public DocumentForWorker(Document document)
         {
             Id = document.DocumentId;
             Name = document.Name;
             Function = document.DocFunction;
             Frequence = document.Frequence;
-            //CountFilds = 
-
-            IsWayTo = isWayTo;
+            TaskId = document.FK_TaskId;
         }
 
         //задаем значение координат
@@ -70,10 +67,7 @@ namespace Information_analysis_of_university.Objects
             var pen = new Pen(Color.Black);
 
             var x1 = X;
-            if (IsWayTo)
-                x1 = X - Size;
-            else
-                x1 = X + Size;
+            x1 = X + Size;
 
             g.DrawLine(pen, x1, Y, x1 + Size, Y);
             DrawText(g, x1, Y, Name);
@@ -92,10 +86,7 @@ namespace Information_analysis_of_university.Objects
         public bool IsCurrentObject(int x, int y)
         {
             var x1 = X;
-            if (IsWayTo)
-                x1 = X - Size;
-            else
-                x1 = X + Size;
+            x1 = X + Size;
             return x > x1 && x < x1 + Size && y > Y - 12 && y < Y + 28;
         }
     }

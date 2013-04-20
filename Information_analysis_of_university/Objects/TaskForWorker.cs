@@ -42,7 +42,7 @@ namespace Information_analysis_of_university.Objects
             Name = task.Name;
             PostId = task.FK_PostId;
 
-            Size = 200;
+            Size = 100;
         }
 
         public override void DrawObject(Graphics g, int? x, int? y)

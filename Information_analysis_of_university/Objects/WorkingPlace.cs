@@ -1,27 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
-using DatabaseLevel;
 using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
-    class LittleMan : BaseObject
+    class WorkingPlace : BaseObject
     {
         [ReadOnly(true)]
         public int Id { get; set; }
 
         [ReadOnly(true)]
-        [DisplayName("Имя исполнителя")]
+        [DisplayName("Название отдела")]
         public string Name { get; set; }
-
-        [ReadOnly(true)]
-        [DisplayName("Должность исполнителя")]
-        public int PostId { get; set; }
-
+        
         [Browsable(false)]
         public int CoordX
         {
@@ -36,14 +32,13 @@ namespace Information_analysis_of_university.Objects
             set { Y = value; }
         }
 
-
-        public LittleMan(Worker worker)
+        public WorkingPlace(Department department)
         {
-            Id = worker.WorkerId;
-            Name = worker.Name;
-            PostId = worker.FK_PostId;
+            //Id = department.;
+            Name = department.Name;
+           // PostName = task.Post.Name;
 
-            Size = 50;
+           // Size = 100;
         }
 
         public override void DrawObject(Graphics g, int? x, int? y)
@@ -52,17 +47,14 @@ namespace Information_analysis_of_university.Objects
             Y = y ?? Y;
 
             var pen = new Pen(Color.Black);
-            Image newImage = Image.FromFile("D:\\Diplom\\Information_analysis_of_university\\Information_analysis_of_university\\LittleMan.jpg");
-            // Create rectangle for displaying image.
-            Rectangle rect = new Rectangle(X, Y, Size, Size);
-            // Draw image to screen.
-            g.DrawImage(newImage, rect);
-            DrawText(g, X - Size, Y + Size + 20, Name);
+
+            g.DrawRectangle(pen, new Rectangle(X, Y, Size, Size));
+            DrawText(g, X, Y, Name);
         }
 
         public int GetIncreaseLength(int count)
         {
-            return Size / (count + 1);
+            return Size/(count + 1);
         }
 
         public bool IsCurrentObject(int x, int y)
@@ -70,6 +62,6 @@ namespace Information_analysis_of_university.Objects
             return x > X && x < X + Size && y > Y && y < Y + Size;
         }
 
-
     }
 }
+

@@ -14,12 +14,16 @@ namespace Information_analysis_of_university
     public partial class MainForm : Form
     {
         private ModelBase model;
+        private ModelBase model2;
+        private ModelBase model3;
 
         public MainForm()
         {
             InitializeComponent();
 
             model = new WorkProcessModel();
+            model2 = new UseCaseModel();
+            model3 = new CapacityWorkingPlaces();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -43,7 +47,7 @@ namespace Information_analysis_of_university
             var graphics = Graphics.FromImage(pictureBox1.Image);
             var model = new UseCaseModel();
 
-            model.Draw(graphics);
+            model2.Draw(graphics);
 
         }
 
@@ -61,6 +65,23 @@ namespace Information_analysis_of_university
             model.Draw(graphics);
 
         }
+
+        private void DrowModelCapacity()
+        {
+            //достаем задачи
+            //достаем документы для этих задач
+            //отрисовка
+
+            pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+
+            var graphics = Graphics.FromImage(pictureBox1.Image);
+
+
+            model3.Draw(graphics);
+
+        }
+
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -88,6 +109,11 @@ namespace Information_analysis_of_university
         private void button2_Click(object sender, EventArgs e)
         {
             DrowModelUseCase();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DrowModelCapacity();
         }
     }
 }
