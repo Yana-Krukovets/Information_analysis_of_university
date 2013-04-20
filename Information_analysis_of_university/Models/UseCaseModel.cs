@@ -112,12 +112,12 @@ namespace Information_analysis_of_university.Models
         public BaseObject GetObject(int x, int y)
         {
             BaseObject curObj = null;
-            if (Task.IsCurrentObject(x, y))
-                curObj = Task;
+            if (Worker.IsCurrentObject(x, y))
+                curObj = Worker;
             else
             {
-                var newList = new List<DocumentForWorker>();
-                newList.AddRange(Documents);
+                var newList = new List<TaskForWorker>();
+                newList.AddRange(taskList);
              
                 foreach (var item in newList)
                 {

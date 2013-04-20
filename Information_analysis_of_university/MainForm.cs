@@ -14,16 +14,13 @@ namespace Information_analysis_of_university
     public partial class MainForm : Form
     {
         private ModelBase model;
-        private ModelBase model2;
-        private ModelBase model3;
+      
 
         public MainForm()
         {
             InitializeComponent();
 
-            model = new WorkProcessModel();
-            model2 = new UseCaseModel();
-            model3 = new CapacityWorkingPlaces();
+           
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -38,16 +35,13 @@ namespace Information_analysis_of_university
 
         private void DrowModelUseCase()
         {
-            //достаем задачи
-            //достаем документы для этих задач
-            //отрисовка
-
+          
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
             var graphics = Graphics.FromImage(pictureBox1.Image);
-            var model = new UseCaseModel();
+            model = new UseCaseModel();
 
-            model2.Draw(graphics);
+            model.Draw(graphics);
 
         }
 
@@ -68,16 +62,12 @@ namespace Information_analysis_of_university
 
         private void DrowModelCapacity()
         {
-            //достаем задачи
-            //достаем документы для этих задач
-            //отрисовка
-
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
             var graphics = Graphics.FromImage(pictureBox1.Image);
 
 
-            model3.Draw(graphics);
+            model.Draw(graphics);
 
         }
 
@@ -101,6 +91,11 @@ namespace Information_analysis_of_university
                 if(obj is DocumentObject)
                 {
                     var docPropertyForm = new PropertyForm<DocumentObject>(obj as DocumentObject);
+                    docPropertyForm.Show(this);
+                }
+                if (obj is TaskForWorker)
+                {
+                    var docPropertyForm = new PropertyForm<TaskForWorker>(obj as TaskForWorker);
                     docPropertyForm.Show(this);
                 }
             }
