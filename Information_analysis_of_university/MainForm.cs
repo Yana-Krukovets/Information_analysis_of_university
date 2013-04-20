@@ -13,71 +13,33 @@ namespace Information_analysis_of_university
 {
     public partial class MainForm : Form
     {
-        private ModelBase model;
-      
+        private ModelBase model;      
 
         public MainForm()
         {
-            InitializeComponent();
-
-           
+            InitializeComponent();           
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
-        {
-            
-        }
+        {      }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
+        {}
 
-        }
-
-        private void DrowModelUseCase()
-        {
-          
-            
-            pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-
-            var graphics = Graphics.FromImage(pictureBox1.Image);
-            model = new UseCaseModel();
-
-            model.Draw(graphics);
-
-        }
-
-        private void DrowModel()
+        private void DrowModel(ModelBase model)
         {
             //достаем задачи
             //достаем документы для этих задач
             //отрисовка
-            model = new WorkProcessModel();
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-
             var graphics = Graphics.FromImage(pictureBox1.Image);
-            
-
             model.Draw(graphics);
-
-        }
-
-        private void DrowModelCapacity()
-        {
-            model = new CapacityWorkingPlaces();
-            pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-
-            var graphics = Graphics.FromImage(pictureBox1.Image);
-
-
-            model.Draw(graphics);
-
-        }
-
-        
+        }    
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DrowModel();
+            model = new WorkProcessModel();
+            DrowModel(model);
         }
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -105,12 +67,14 @@ namespace Information_analysis_of_university
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DrowModelUseCase();
+            model = new UseCaseModel();
+            DrowModel(model);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            DrowModelCapacity();
+            model = new CapacityWorkingPlaces();
+            DrowModel(model);
         }
     }
 }
