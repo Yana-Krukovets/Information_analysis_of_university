@@ -36,6 +36,7 @@ namespace Information_analysis_of_university
         private void DrowModelUseCase()
         {
           
+            
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
             var graphics = Graphics.FromImage(pictureBox1.Image);
@@ -50,7 +51,7 @@ namespace Information_analysis_of_university
             //достаем задачи
             //достаем документы для этих задач
             //отрисовка
-
+            model = new WorkProcessModel();
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
             var graphics = Graphics.FromImage(pictureBox1.Image);
@@ -62,6 +63,7 @@ namespace Information_analysis_of_university
 
         private void DrowModelCapacity()
         {
+            model = new CapacityWorkingPlaces();
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
             var graphics = Graphics.FromImage(pictureBox1.Image);
