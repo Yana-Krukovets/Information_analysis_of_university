@@ -17,7 +17,8 @@ namespace Information_analysis_of_university
 
         public MainForm()
         {
-            InitializeComponent();           
+            InitializeComponent(); 
+            model = new UseCaseModel();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -76,5 +77,49 @@ namespace Information_analysis_of_university
             model = new CapacityWorkingPlaces();
             DrowModel(model);
         }
+
+        private void pictureBox1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            var drawObj = model.GetObject(e.X, e.Y);
+            if (drawObj != null)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    this.Capture = true;
+                    drawObj.BeginDrag(new Point(e.X, e.Y));
+                }
+            }
+        }
+
+        private void pictureBox1_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            var drawObj = model.GetObject(e.X, e.Y);
+            if (drawObj != null)
+            {
+                if (drawObj.IsDragging())
+                    drawObj.Drag(new Point(e.X, e.Y), this);
+                //DrowModel(model);
+                pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                var graphics = Graphics.FromImage(pictureBox1.Image);
+                drawObj.DrawObject(graphics, e.X, e.Y);
+            }
+
+        }
+
+        private void pictureBox1_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            var drawObj = model.GetObject(e.X, e.Y);
+            if (drawObj != null)
+            {
+                if (drawObj.IsDragging())
+                    drawObj.EndDrag();
+            }
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }	
     }
 }

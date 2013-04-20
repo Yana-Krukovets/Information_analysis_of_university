@@ -24,6 +24,10 @@ namespace Information_analysis_of_university.Objects
         }
 
         public abstract void DrawObject(Graphics g, int? x, int? y);
-    }
+        public abstract void Drag(Point pt, System.Windows.Forms.Form wnd);
+        public abstract void BeginDrag(Point pt);
+        public abstract void EndDrag();
+        public abstract bool IsDragging();
+      }
 
 }

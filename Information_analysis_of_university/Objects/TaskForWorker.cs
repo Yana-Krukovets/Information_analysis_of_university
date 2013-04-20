@@ -11,6 +11,8 @@ namespace Information_analysis_of_university.Objects
 {
     class TaskForWorker : BaseObject
     {
+        private bool dragging = false;
+
         [ReadOnly(true)]
         public int Id { get; set; }
 
@@ -56,6 +58,29 @@ namespace Information_analysis_of_university.Objects
             DrawText(g, X, Y, Name);
         }
 
+        public override void Drag(Point pt, System.Windows.Forms.Form wnd)
+        {
+            wnd.Invalidate(false);
+
+            X = pt.X - X;
+            Y = pt.Y - Y;
+
+            wnd.Invalidate(false);
+          
+        }
+
+        public override void BeginDrag(Point pt)
+        {
+            X = pt.X - X;
+            Y = pt.Y - Y;
+            dragging = true;
+        }
+
+        public override void EndDrag()
+        {
+            dragging = false;
+        }
+
         public int GetIncreaseLength(int count)
         {
             return Size / (count + 1);
@@ -65,5 +90,12 @@ namespace Information_analysis_of_university.Objects
         {
             return x > X && x < X + Size && y > Y && y < Y + Size;
         }
+
+        public override bool IsDragging()
+        {
+            return dragging;
+        }
+
+       
     }
 }

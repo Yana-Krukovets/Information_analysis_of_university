@@ -51,6 +51,8 @@ namespace Information_analysis_of_university.Models
             } 
         }
 
+      
+
         public override BaseObject GetObject(int x, int y)
         {
             BaseObject obj = null;

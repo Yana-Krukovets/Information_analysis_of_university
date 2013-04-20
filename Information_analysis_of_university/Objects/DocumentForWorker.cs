@@ -11,6 +11,8 @@ namespace Information_analysis_of_university.Objects
 {
     class DocumentForWorker : BaseObject
     {
+        private bool dragging = false;
+        
         //поля из бд
         [ReadOnly(true)]
         public int Id { get; set; }
@@ -58,7 +60,6 @@ namespace Information_analysis_of_university.Objects
             set { Y = value; }
         }
 
-
         public override void DrawObject(Graphics g, int? x, int? y)
         {
             X = x ?? X;
@@ -88,6 +89,33 @@ namespace Information_analysis_of_university.Objects
             var x1 = X;
             x1 = X + Size;
             return x > x1 && x < x1 + Size && y > Y - 12 && y < Y + 28;
+        }
+
+        public override void Drag(Point pt, System.Windows.Forms.Form wnd)
+        {
+            wnd.Invalidate(false);
+
+            X = pt.X - X;
+            Y = pt.Y - Y;
+
+            wnd.Invalidate(false);
+        }
+
+        public override void BeginDrag(Point pt)
+        {
+            X = pt.X - X;
+            Y = pt.Y - Y;
+            dragging = true;
+        }
+
+        public override void EndDrag()
+        {
+            dragging = false;
+        }
+
+        public override bool IsDragging()
+        {
+            return dragging;
         }
     }
  }

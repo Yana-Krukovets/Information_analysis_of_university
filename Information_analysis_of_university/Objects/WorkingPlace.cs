@@ -11,6 +11,8 @@ namespace Information_analysis_of_university.Objects
 {
     class WorkingPlace : BaseObject
     {
+        private bool dragging = false;
+
         [ReadOnly(true)]
         public int Id { get; set; }
 
@@ -60,6 +62,32 @@ namespace Information_analysis_of_university.Objects
         public bool IsCurrentObject(int x, int y)
         {
             return x > X && x < X + Size && y > Y && y < Y + Size;
+        }
+        public override void Drag(Point pt, System.Windows.Forms.Form wnd)
+        {
+            wnd.Invalidate(false);
+
+            X = pt.X - X;
+            Y = pt.Y - Y;
+
+            wnd.Invalidate(false);
+        }
+
+        public override void BeginDrag(Point pt)
+        {
+            X = pt.X - X;
+            Y = pt.Y - Y;
+            dragging = true;
+        }
+
+        public override void EndDrag()
+        {
+            dragging = false;
+        }
+
+        public override bool IsDragging()
+        {
+            return dragging;
         }
 
     }
