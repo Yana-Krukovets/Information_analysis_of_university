@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Models\CapacityWorkingPlaces.cs" />
     <Compile Include="Models\UseCaseModel.cs" />
+    <Compile Include="Objects\CountTaks.cs" />
     <Compile Include="Objects\DocumentForWorker.cs" />
     <Compile Include="Objects\LittleMan.cs" />
     <Compile Include="Objects\TaskForWorker.cs" />

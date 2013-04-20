@@ -9,17 +9,20 @@ using System.ComponentModel;
 
 namespace Information_analysis_of_university.Objects
 {
-    class TaskForWorker : BaseObject
+    class CountTaks : BaseObject
     {
         private bool dragging = false;
 
         [ReadOnly(true)]
-        public int Id { get; set; }
+        public int Count { get; set; }
 
-        [ReadOnly(true)]
-        [DisplayName("Наименование")]
-        public string Name { get; set; }
+        public CountTaks(int count)
+        {
+            Count = count;
+            
+        }
 
+        //задаем значение координат
         [Browsable(false)]
         public int CoordX
         {
@@ -34,15 +37,6 @@ namespace Information_analysis_of_university.Objects
             set { Y = value; }
         }
 
-        public TaskForWorker(Task task)
-        {
-            Id = task.TaskId;
-            Name = task.Name;
-            
-
-            Size = 100;
-        }
-
         public override void DrawObject(Graphics g, int? x, int? y)
         {
             X = x ?? X;
@@ -50,10 +44,29 @@ namespace Information_analysis_of_university.Objects
 
             var pen = new Pen(Color.Black);
 
-            g.DrawRectangle(pen, new Rectangle(X, Y, Size, Size));
-            DrawText(g, X, Y, Name);
+            var x1 = X;
+            x1 = X + Size;
+
+           // g.DrawLine(pen, x1, Y, x1 + Size, Y);
+            DrawText(g, x1, Y, "Количество обрабатываемых документов - " + Count.ToString());
         }
 
+        public override void DrawText(Graphics g, int x, int y, string text)
+        {
+            g.DrawString(text, new Font("Times New Roman", 8), new SolidBrush(Color.Gray), new RectangleF(x, y - 12, Size, 40));
+        }
+
+        private Point GetNewPoint(int angle, int x, int y)
+        {
+            return new Point((int)Math.Round(x+ 10*Math.Cos(angle * 3.14 / 180), 0), (int)Math.Round(y + 10* Math.Sin(angle * 3.14 / 180), 0));
+        }
+
+        public bool IsCurrentObject(int x, int y)
+        {
+            var x1 = X;
+            x1 = X + Size;
+            return x > x1 && x < x1 + Size && y > Y - 12 && y < Y + 28;
+        }
         public override void Drag(Point pt, System.Windows.Forms.Form wnd)
         {
             wnd.Invalidate(false);
@@ -62,7 +75,6 @@ namespace Information_analysis_of_university.Objects
             Y = pt.Y - Y;
 
             wnd.Invalidate(false);
-          
         }
 
         public override void BeginDrag(Point pt)
@@ -76,22 +88,9 @@ namespace Information_analysis_of_university.Objects
         {
             dragging = false;
         }
-
-        public int GetIncreaseLength(int count)
-        {
-            return Size / (count + 1);
-        }
-
-        public bool IsCurrentObject(int x, int y)
-        {
-            return x > X && x < X + Size && y > Y && y < Y + Size;
-        }
-
         public override bool IsDragging()
         {
             return dragging;
         }
-
-       
     }
 }

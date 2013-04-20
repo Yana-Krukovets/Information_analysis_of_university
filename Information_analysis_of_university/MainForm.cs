@@ -63,6 +63,16 @@ namespace Information_analysis_of_university
                     var docPropertyForm = new PropertyForm<TaskForWorker>(obj as TaskForWorker);
                     docPropertyForm.Show(this);
                 }
+                if (obj is LittleMan)
+                {
+                    var docPropertyForm = new PropertyForm<LittleMan>(obj as LittleMan);
+                    docPropertyForm.Show(this);
+                }
+                if (obj is WorkingPlace)
+                {
+                    var docPropertyForm = new PropertyForm<WorkingPlace>(obj as WorkingPlace);
+                    docPropertyForm.Show(this);
+                }
             }
         }
 
@@ -78,7 +88,7 @@ namespace Information_analysis_of_university
             DrowModel(model);
         }
 
-        private void pictureBox1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+    /*    private void pictureBox1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             var drawObj = model.GetObject(e.X, e.Y);
             if (drawObj != null)
@@ -99,9 +109,10 @@ namespace Information_analysis_of_university
                 if (drawObj.IsDragging())
                     drawObj.Drag(new Point(e.X, e.Y), this);
                 //DrowModel(model);
-                pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+              /*  pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 var graphics = Graphics.FromImage(pictureBox1.Image);
                 drawObj.DrawObject(graphics, e.X, e.Y);
+               
             }
 
         }
@@ -116,7 +127,7 @@ namespace Information_analysis_of_university
             }
 
         }
-
+*/
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 

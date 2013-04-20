@@ -36,7 +36,7 @@ namespace Information_analysis_of_university.Objects
 
         public WorkingPlace(Department department)
         {
-            //Id = department.;
+            Id = department.DepartmentId;
             Name = department.Name;
            // PostName = task.Post.Name;
 
@@ -51,7 +51,7 @@ namespace Information_analysis_of_university.Objects
             var pen = new Pen(Color.Black);
 
             g.DrawRectangle(pen, new Rectangle(X, Y, Size, Size));
-            DrawText(g, X, Y, Name);
+            DrawText(g, X-20, Y, Name);
         }
 
         public int GetIncreaseLength(int count)
