@@ -14,6 +14,7 @@ namespace Information_analysis_of_university.Objects
         private bool dragging = false;
         
         [ReadOnly(true)]
+        [DisplayName("Id исполнителя")]
         public int Id { get; set; }
 
         [ReadOnly(true)]
@@ -21,8 +22,12 @@ namespace Information_analysis_of_university.Objects
         public string Name { get; set; }
 
         [ReadOnly(true)]
-        [DisplayName("Должность исполнителя")]
+        [DisplayName("Id должности исполнителя")]
         public int PostId { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("Должность исполнителя")]
+        public string Post { get; set; }
 
         [Browsable(false)]
         public int CoordX
@@ -44,7 +49,7 @@ namespace Information_analysis_of_university.Objects
             Id = worker.WorkerId;
             Name = worker.Name;
             PostId = worker.FK_PostId;
-
+            Post = worker.Post.Name;
             Size = 50;
         }
 

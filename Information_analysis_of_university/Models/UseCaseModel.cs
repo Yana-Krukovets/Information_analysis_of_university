@@ -14,15 +14,12 @@ namespace Information_analysis_of_university.Models
         private List<NameWorker> workerList;
 
         public UseCaseModel()
-        {
-           
+        {           
             workerList = new List<NameWorker>();
             var workerRepository = new BaseDocumentRepository<Worker>();
 
             var workers = workerRepository.ToList().Select(
-                x => new LittleMan(x));
-
-            
+                x => new LittleMan(x));            
        
             foreach (var item in workers)
             {
@@ -49,12 +46,10 @@ namespace Information_analysis_of_university.Models
                     y = y + 3 * heignt / 2;
                 }
             } 
-        }
-
-      
+        }      
 
         public override BaseObject GetObject(int x, int y)
-        {
+         {
             BaseObject obj = null;
             foreach (var name in workerList)
             {
@@ -77,37 +72,43 @@ namespace Information_analysis_of_university.Models
         public NameWorker(LittleMan worker)
         {
             Worker = worker;
+            taskList = new List<TaskForWorker>();        
+            Documents = new List<DocumentForWorker>();
             var taskDocumentRepository = new BaseDocumentRepository<Task>();
             var tasks = taskDocumentRepository.Query(x => x.FK_PostId == Worker.PostId).ToList();
             taskList = tasks.Select(x => new TaskForWorker(x)).ToList();
             var documentRepository = new BaseDocumentRepository<Document>();
-         /*   var documents = documentRepository.ToList().Select(
-                x => new DocumentForWorker(x));
-         //   var documents = documentRepository.Query(y => y.FK_TaskId== Task.Id).ToList();
-           //Documents = documents.
-            foreach (var task in taskList)
+            var documents = documentRepository.ToList();
+            for (int i = 0; i < tasks.Count; i++)
             {
-                foreach (var item in documents)
+                foreach (var doc in documents)
                 {
-                    if (item.TaskId == task.Id)
-                        Documents.Add(item);
+                    if (tasks[i].TaskId == doc.FK_TaskId)
+                    {
+                        Documents.Add(new DocumentForWorker(doc));
+                    }
                 }
-            }*/
+            }        
         }
 
         public void DrawDocuments(Graphics g)
         {
             var increaseLengthTask = Worker.GetIncreaseLength(taskList.Count);
+            taskList[0].CoordY = Worker.CoordY - 200;
             for (int i = 0; i < taskList.Count; i++)
             {
-                taskList[i].DrawObject(g, Worker.CoordX+200, Worker.CoordY-100 + increaseLengthTask * (i + 1));
-                Worker.CoordY = Worker.CoordY + 100;
-             /*    var increaseLength = Task.GetIncreaseLength(Documents.Count);
-
-               for (int j = 0; j < Documents.Count; j++)
+                taskList[i].CoordY = taskList[i].CoordY + 100;
+                taskList[i].DrawObject(g, Worker.CoordX + 200, taskList[i].CoordY + increaseLengthTask * (i + 1));
+                var pen = new Pen(Color.Black);
+                g.DrawLine(pen, Worker.CoordX + 50, Worker.CoordY + 20, taskList[i].CoordX-10, taskList[i].CoordY + 30);
+                for (int j = 0; j < Documents.Count; j++)
                 {
-                    Documents[j].DrawObject(g, Task.CoordX, Task.CoordY + increaseLength * (j + 1));
-                }*/
+                    if (taskList[i].Id == Documents[j].TaskId)
+                    {
+                        Documents[j].DrawObject(g, taskList[i].CoordX, taskList[i].CoordY + 10 + j * 10);
+                    }
+                }
+                
             }          
         }
 
@@ -123,14 +124,27 @@ namespace Information_analysis_of_university.Models
              
                 foreach (var item in newList)
                 {
-                    if(item.IsCurrentObject(x, y))
+                    if (item.IsCurrentObject(x, y))
                     {
                         curObj = item;
                         break;
                     }
+                    else
+                    {
+                        var newList1 = new List<DocumentForWorker>();
+                        newList1.AddRange(Documents);
+                        foreach (var item1 in newList1)
+                        {
+                            if (item.IsCurrentObject(x, y))
+                            {
+                                curObj = item1;
+                                break;
+                            }
+                        }
+                    }
+
                 }
             }
-
             return curObj;
         }        
     }

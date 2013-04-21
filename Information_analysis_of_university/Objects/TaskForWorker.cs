@@ -13,6 +13,11 @@ namespace Information_analysis_of_university.Objects
     {
         private bool dragging = false;
 
+        //поля из бд      
+        
+        [ReadOnly(true)]
+        public int TaskId { get; set; }
+
         [ReadOnly(true)]
         public int Id { get; set; }
 
@@ -38,8 +43,6 @@ namespace Information_analysis_of_university.Objects
         {
             Id = task.TaskId;
             Name = task.Name;
-            
-
             Size = 100;
         }
 
@@ -47,11 +50,11 @@ namespace Information_analysis_of_university.Objects
         {
             X = x ?? X;
             Y = y ?? Y;
-
+           
             var pen = new Pen(Color.Black);
-
             g.DrawRectangle(pen, new Rectangle(X, Y, Size, Size));
             DrawText(g, X, Y, Name);
+          
         }
 
         public override void Drag(Point pt, System.Windows.Forms.Form wnd)
