@@ -51,6 +51,8 @@
     <Compile Include="Models\ResponsibilityDistributionModel.cs" />
     <Compile Include="Models\DataStreamsModel.cs" />
     <Compile Include="Models\UseCaseModel.cs" />
+    <Compile Include="Objects\WorkplaceResponsibilityObject.cs" />
+    <Compile Include="Objects\TaskResponsibilityObject.cs" />
     <Compile Include="Objects\CountTaks.cs" />
     <Compile Include="Objects\DocumentForWorker.cs" />
     <Compile Include="Objects\LittleMan.cs" />

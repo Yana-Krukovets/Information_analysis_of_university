@@ -69,64 +69,64 @@ namespace Information_analysis_of_university.Models
         }
     }
 
-    //class TaskDocument
-    //{
-    //    public TaskObject Task { get; set; }
-    //    public List<DocumentObject> InernalDocuments { get; set; }
-    //    public List<DocumentObject> ExternalDocuments { get; set; }
+    class TaskWorkplace
+    {
+        //public TaskObject Task { get; set; }
+        //public List<DocumentObject> InernalDocuments { get; set; }
+        //public List<DocumentObject> ExternalDocuments { get; set; }
 
-    //    public TaskDocument(TaskObject task)
-    //    {
-    //        Task = task;
+        public TaskWorkplace(TaskObject task)
+        {
+            //Task = task;
 
-    //        var documentRepository = new BaseDocumentRepository<Document>();
-    //        var documents = documentRepository.Query(x => x.Task.TaskId == Task.Id).ToList();
+            //var documentRepository = new BaseDocumentRepository<Document>();
+            //var documents = documentRepository.Query(x => x.Task.TaskId == Task.Id).ToList();
 
-    //        // IsExternal = 1 (входящие) ?
-    //        // IsExternal = 2 (исходящие) ?
-    //        InernalDocuments = documents.Where(x => x.IsExternal != 1).Select(x => new DocumentObject(x, true)).ToList();
-    //        ExternalDocuments = documents.Where(x => x.IsExternal != 2).Select(x => new DocumentObject(x, false)).ToList();
-    //    }
+            //// IsExternal = 1 (входящие) ?
+            //// IsExternal = 2 (исходящие) ?
+            //InernalDocuments = documents.Where(x => x.IsExternal != 1).Select(x => new DocumentObject(x, true)).ToList();
+            //ExternalDocuments = documents.Where(x => x.IsExternal != 2).Select(x => new DocumentObject(x, false)).ToList();
+        }
 
-    //    public void DrawDocuments(Graphics g)
-    //    {
-    //        for (int i = 0; i < 2; i++)
-    //        {
-    //            var docList = i == 0 ? InernalDocuments : ExternalDocuments;
+        public void DrawDocuments(Graphics g)
+        {
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    var docList = i == 0 ? InernalDocuments : ExternalDocuments;
 
-    //            //расстояние между стрелочками(документами)
-    //            var increaseLength = Task.GetIncreaseLength(docList.Count);
+            //    //расстояние между стрелочками(документами)
+            //    var increaseLength = Task.GetIncreaseLength(docList.Count);
 
-    //            for (int j = 0; j < docList.Count; j++)
-    //            {
-    //                docList[j].DrawObject(g, Task.CoordX, Task.CoordY + increaseLength * (j + 1));
-    //            }
-    //        }
+            //    for (int j = 0; j < docList.Count; j++)
+            //    {
+            //        docList[j].DrawObject(g, Task.CoordX, Task.CoordY + increaseLength * (j + 1));
+            //    }
+            //}
 
-    //    }
+        }
 
-    //    public BaseObject GetObject(int x, int y)
-    //    {
-    //        BaseObject curObj = null;
-    //        if (Task.IsCurrentObject(x, y))
-    //            curObj = Task;
-    //        else
-    //        {
-    //            var newList = new List<DocumentObject>();
-    //            newList.AddRange(InernalDocuments);
-    //            newList.AddRange(ExternalDocuments);
-    //            foreach (var item in newList)
-    //            {
-    //                if(item.IsCurrentObject(x, y))
-    //                {
-    //                    curObj = item;
-    //                    break;
-    //                }
-    //            }
-    //        }
+        //public BaseObject GetObject(int x, int y)
+        //{
+        //    BaseObject curObj = null;
+        //    if (Task.IsCurrentObject(x, y))
+        //        curObj = Task;
+        //    else
+        //    {
+        //        var newList = new List<DocumentObject>();
+        //        newList.AddRange(InernalDocuments);
+        //        newList.AddRange(ExternalDocuments);
+        //        foreach (var item in newList)
+        //        {
+        //            if (item.IsCurrentObject(x, y))
+        //            {
+        //                curObj = item;
+        //                break;
+        //            }
+        //        }
+        //    }
 
-    //        return curObj;
-    //    }
+        //    return curObj;
+        //}
 
-    //}
+    }
 }

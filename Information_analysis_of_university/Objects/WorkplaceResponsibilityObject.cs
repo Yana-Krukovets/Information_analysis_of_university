@@ -9,7 +9,7 @@ using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
-    class TaskObject : BaseObject
+    class WorkplaceResponsibilityObject : BaseObject
     {
         private bool dragging = false;
         
@@ -38,7 +38,7 @@ namespace Information_analysis_of_university.Objects
             set { Y = value; }
         }
 
-        public TaskObject(Task task)
+        public WorkplaceResponsibilityObject(Task task)
         {
             Id = task.TaskId;
             Name = task.Name;
@@ -47,10 +47,6 @@ namespace Information_analysis_of_university.Objects
             Size = 150;
         }
 
-        protected TaskObject()
-        {
-            //throw new NotImplementedException();
-        }
 
         public override void DrawObject(Graphics g, int? x, int? y)
         {
