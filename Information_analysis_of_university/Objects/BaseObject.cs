@@ -20,7 +20,7 @@ namespace Information_analysis_of_university.Objects
 
         public virtual void DrawText(Graphics g, int x, int y, string text)
         {
-            g.DrawString(text, new Font("Calibri", 11, FontStyle.Bold), new SolidBrush(Color.Brown), x, y - 20);
+            g.DrawString(text, new Font("Calibri", 13, FontStyle.Bold), new SolidBrush(Color.Brown), x, y - 20);
         }
 
         public abstract void DrawObject(Graphics g, int? x, int? y);

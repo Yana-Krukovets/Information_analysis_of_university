@@ -56,6 +56,7 @@
             this.menuBox1 = new System.Windows.Forms.GroupBox();
             this.treeMenu = new System.Windows.Forms.TreeView();
             this.groupModel = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -70,7 +71,6 @@
             this.tcModelsFrame = new System.Windows.Forms.TabControl();
             this.newTabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
             this.groupModel.SuspendLayout();
@@ -180,10 +180,19 @@
             this.groupModel.Location = new System.Drawing.Point(252, 24);
             this.groupModel.Name = "groupModel";
             this.groupModel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupModel.Size = new System.Drawing.Size(651, 34);
+            this.groupModel.Size = new System.Drawing.Size(651, 44);
             this.groupModel.TabIndex = 4;
             this.groupModel.TabStop = false;
             this.groupModel.Text = "Модели";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(332, 11);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -207,11 +216,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(89, 11);
+            this.button1.Location = new System.Drawing.Point(48, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(92, 41);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "Модель раб процессов";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -219,9 +228,9 @@
             // 
             this.groupRequest.Controls.Add(this.panelReqest);
             this.groupRequest.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupRequest.Location = new System.Drawing.Point(252, 265);
+            this.groupRequest.Location = new System.Drawing.Point(252, 286);
             this.groupRequest.Name = "groupRequest";
-            this.groupRequest.Size = new System.Drawing.Size(651, 137);
+            this.groupRequest.Size = new System.Drawing.Size(651, 116);
             this.groupRequest.TabIndex = 5;
             this.groupRequest.TabStop = false;
             this.groupRequest.Text = "Панель запросов";
@@ -291,7 +300,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tcModelsFrame.Controls.Add(this.newTabPage1);
-            this.tcModelsFrame.Location = new System.Drawing.Point(255, 59);
+            this.tcModelsFrame.Location = new System.Drawing.Point(255, 74);
             this.tcModelsFrame.Name = "tcModelsFrame";
             this.tcModelsFrame.SelectedIndex = 0;
             this.tcModelsFrame.Size = new System.Drawing.Size(647, 206);
@@ -318,15 +327,6 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(332, 11);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

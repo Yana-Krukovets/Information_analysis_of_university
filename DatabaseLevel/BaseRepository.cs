@@ -9,7 +9,9 @@ using System.Data.Objects.DataClasses;
 
 namespace DatabaseLevel
 {
-    public class BaseRepository<T, TK> where T : ObjectContext, new() where TK : EntityObject
+    public class BaseRepository<T, TK>
+        where T : ObjectContext, new()
+        where TK : EntityObject
     {
         protected T _context;
         protected IObjectSet<TK> _objectSet;
@@ -56,7 +58,7 @@ namespace DatabaseLevel
             return _objectSet.Count(query);
         }
 
-        
+
 
         //public virtual void Delete(K entity)
         //{

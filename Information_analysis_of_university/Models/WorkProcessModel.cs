@@ -30,11 +30,11 @@ namespace Information_analysis_of_university.Models
 
         public override void Draw(Graphics g)
         {
-            var x = 100;
+            var x = 150;
             var y = 50;
 
-            var heignt = 100;
-            var width = 100;
+            var heignt = 150;
+            var width = 150;
 
             foreach (var task in taskList)
             {
@@ -47,7 +47,7 @@ namespace Information_analysis_of_university.Models
                     x += 3 * width;
                 else
                 {
-                    x = 50;
+                    x = 150;
                     y = y + 3 * heignt / 2;
                 }
             }
@@ -101,13 +101,6 @@ namespace Information_analysis_of_university.Models
                 {
                     docList[j].DrawObject(g, Task.CoordX, Task.CoordY + increaseLength * (j + 1));
                 }
-
-
-                ////????может это и не нужно????
-                //if (i == 0)
-                //    InernalDocuments = docList;
-                //else
-                //    ExternalDocuments = docList;
             }
 
         }
