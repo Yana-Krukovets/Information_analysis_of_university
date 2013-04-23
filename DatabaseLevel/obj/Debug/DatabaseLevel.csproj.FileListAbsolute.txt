@@ -4,3 +4,4 @@ C:\Users\1\Desktop\DIIT\5_kurs\Диплом\My_Diploma\Programm\Information_anal
 C:\Users\1\Desktop\DIIT\5_kurs\Диплом\My_Diploma\Programm\Information_analysis_of_university\DatabaseLevel\bin\Debug\DatabaseLevel.pdb
 C:\Users\1\Desktop\DIIT\5_kurs\Диплом\My_Diploma\Programm\Information_analysis_of_university\DatabaseLevel\obj\Debug\DatabaseLevel.dll
 C:\Users\1\Desktop\DIIT\5_kurs\Диплом\My_Diploma\Programm\Information_analysis_of_university\DatabaseLevel\obj\Debug\DatabaseLevel.pdb
+C:\Users\1\Desktop\DIIT\5_kurs\Диплом\My_Diploma\Programm\Information_analysis_of_university\DatabaseLevel\obj\Debug\DatabaseLevel.csprojResolveAssemblyReference.cache

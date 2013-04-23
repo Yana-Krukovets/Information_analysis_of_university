@@ -9,43 +9,16 @@ using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
-    class TaskResponsibilityObject : TaskObject
+    class TaskResponsibilityObject : BaseTaskObject
     {
-        //private bool dragging = false;
+        //направление стрелочки
+        [Browsable(false)]
+        public bool IsWayTo { get; set; }   //true - стрелка входит
 
-        //[ReadOnly(true)]
-        //public int Id { get; set; }
-
-        //[ReadOnly(true)]
-        //[DisplayName("Наименование")]
-        //public string Name { get; set; }
-
-        //[ReadOnly(true)]
-        //[DisplayName("Должность исполнителя")]
-        //public string PostName { get; set; }
-
-        //[Browsable(false)]
-        //public int CoordX
-        //{
-        //    get { return X; }
-        //    set { X = value; }
-        //}
-
-        //[Browsable(false)]
-        //public int CoordY
-        //{
-        //    get { return Y; }
-        //    set { Y = value; }
-        //}
-
-        //public TaskObject(Task task)
-        //{
-        //    Id = task.TaskId;
-        //    Name = task.Name;
-        //    PostName = task.Post.Name;
-
-        //    Size = 150;
-        //}
+        public TaskResponsibilityObject(Task task, bool wayTo) : base(task)
+        {
+            IsWayTo = wayTo;
+        }
 
         public override void DrawObject(Graphics g, int? x, int? y)
         {
@@ -55,10 +28,10 @@ namespace Information_analysis_of_university.Objects
             var pen = new Pen(Color.Black);
 
             var x1 = X;
-            //if (IsWayTo)
+            if (IsWayTo)
                 x1 = X - Size;
-            //else
-            //    x1 = X + Size;
+            else
+                x1 = X + Size;
 
             g.DrawLine(pen, x1, Y, x1 + Size, Y);
             g.FillPolygon(new SolidBrush(Color.Black), new Point[] { new Point(x1 + Size, Y), GetNewPoint(155, x1 + Size, Y), GetNewPoint(205, x1 + Size, Y) });
@@ -82,32 +55,7 @@ namespace Information_analysis_of_university.Objects
         //    return x > X && x < X + Size && y > Y && y < Y + Size;
         //}
 
-        public override void Drag(Point pt, System.Windows.Forms.Form wnd)
-        {
-            wnd.Invalidate(false);
-
-            X = pt.X - X;
-            Y = pt.Y - Y;
-
-            wnd.Invalidate(false);
-        }
-
-        public override void BeginDrag(Point pt)
-        {
-            X = pt.X - X;
-            Y = pt.Y - Y;
-            // dragging = true;
-        }
-
-        public override void EndDrag()
-        {
-            //dragging = false;
-        }
-
-        //public override bool IsDragging()
-        //{
-        //    return dragging;
-        //}
+        
 
 
        

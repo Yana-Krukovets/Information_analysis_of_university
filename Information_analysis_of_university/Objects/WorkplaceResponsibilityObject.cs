@@ -9,42 +9,11 @@ using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
-    class WorkplaceResponsibilityObject : BaseObject
+    class WorkplaceResponsibilityObject : BaseWorkplaceObject
     {
-        private bool dragging = false;
-        
-        [ReadOnly(true)]
-        public int Id { get; set; }
-
-        [ReadOnly(true)]
-        [DisplayName("Наименование")]
-        public string Name { get; set; }
-        
-        [ReadOnly(true)]
-        [DisplayName("Должность исполнителя")]
-        public string PostName { get; set; }
-
-        [Browsable(false)]
-        public int CoordX
+        public WorkplaceResponsibilityObject(Post post) : base(post)
         {
-            get { return X; }
-            set { X = value; }
-        }
-
-        [Browsable(false)]
-        public int CoordY
-        {
-            get { return Y; }
-            set { Y = value; }
-        }
-
-        public WorkplaceResponsibilityObject(Task task)
-        {
-            Id = task.TaskId;
-            Name = task.Name;
-            PostName = task.Post.Name;
-
-            Size = 150;
+            
         }
 
 
@@ -59,15 +28,7 @@ namespace Information_analysis_of_university.Objects
             DrawText(g, X, Y, Name);
         }
 
-        public int GetIncreaseLength(int count)
-        {
-            return Size/(count + 1);
-        }
-
-        public bool IsCurrentObject(int x, int y)
-        {
-            return x > X && x < X + Size && y > Y && y < Y + Size;
-        }
+       
 
         public override void Drag(Point pt, System.Windows.Forms.Form wnd)
         {
@@ -78,24 +39,6 @@ namespace Information_analysis_of_university.Objects
 
             wnd.Invalidate(false);
         }
-
-        public override void BeginDrag(Point pt)
-        {
-            X = pt.X - X;
-            Y = pt.Y - Y;
-            dragging = true;
-        }
-
-        public override void EndDrag()
-        {
-            dragging = false;
-        }
-
-        public override bool IsDragging()
-        {
-            return dragging;
-        }
-
 
     }
 }
