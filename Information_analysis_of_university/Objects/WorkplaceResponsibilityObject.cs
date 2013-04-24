@@ -6,29 +6,31 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using DatabaseLevel;
+using Information_analysis_of_university.Utilites;
 
 namespace Information_analysis_of_university.Objects
 {
     class WorkplaceResponsibilityObject : BaseWorkplaceObject
     {
-        public WorkplaceResponsibilityObject(Post post) : base(post)
-        {
-            
-        }
-
+        public WorkplaceResponsibilityObject(Post post) : base(post) { }
 
         public override void DrawObject(Graphics g, int? x, int? y)
         {
             X = x ?? X;
             Y = y ?? Y;
 
-            var pen = new Pen(Color.Black);
 
-            g.DrawRectangle(pen, new Rectangle(X, Y, Size, Size));
+
+            var pen = new Pen(Color.Black);
+            g.DrawRoundedRectangle(pen, X, Y, Size, (float)(Size * 2.0 / 3.0), 10);
+            //g.DrawRectangle(pen, new Rectangle(X, Y, Size, Size));
             DrawText(g, X, Y, Name);
         }
 
-       
+        public override void DrawText(Graphics g, int x, int y, string text)
+        {
+            g.DrawString(text, new Font("Calibri", 13, FontStyle.Bold), new SolidBrush(Color.Brown), new RectangleF(x, y, x + Size, y+Size+2/3));
+        }
 
         public override void Drag(Point pt, System.Windows.Forms.Form wnd)
         {

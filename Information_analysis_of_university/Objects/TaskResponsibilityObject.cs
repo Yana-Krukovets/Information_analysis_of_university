@@ -17,6 +17,7 @@ namespace Information_analysis_of_university.Objects
 
         public TaskResponsibilityObject(Task task, bool wayTo) : base(task)
         {
+            Size = 100;
             IsWayTo = wayTo;
         }
 
@@ -38,6 +39,11 @@ namespace Information_analysis_of_university.Objects
             //g.DrawLine(pen, new Point(x1 + Size, Y), GetNewPoint(150, x1 + Size, Y));
             //g.DrawLine(pen, new Point(x1 + Size, Y), GetNewPoint(150, x1 + Size, Y));
             DrawText(g, x1, Y, Name);
+        }
+
+        public override void DrawText(Graphics g, int x, int y, string text)
+        {
+            g.DrawString(text, new Font("Calibri", 10), new SolidBrush(Color.Gray), new RectangleF(x, y - 20, Size, 40));
         }
 
         private Point GetNewPoint(int angle, int x, int y)

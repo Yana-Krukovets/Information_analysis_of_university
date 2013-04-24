@@ -44,7 +44,7 @@ namespace Information_analysis_of_university.Objects
             Name = task.Name;
             PostName = task.Post.Name;
 
-            Size = 150;
+            
         }
 
         protected BaseTaskObject()

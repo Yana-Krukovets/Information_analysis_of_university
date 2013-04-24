@@ -71,6 +71,7 @@
             this.tcModelsFrame = new System.Windows.Forms.TabControl();
             this.newTabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
             this.groupModel.SuspendLayout();
@@ -171,6 +172,7 @@
             // 
             // groupModel
             // 
+            this.groupModel.Controls.Add(this.button5);
             this.groupModel.Controls.Add(this.button4);
             this.groupModel.Controls.Add(this.button3);
             this.groupModel.Controls.Add(this.button2);
@@ -187,7 +189,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(332, 11);
+            this.button4.Location = new System.Drawing.Point(481, 12);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 3;
@@ -196,7 +198,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(251, 11);
+            this.button3.Location = new System.Drawing.Point(400, 12);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
@@ -206,7 +208,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(170, 11);
+            this.button2.Location = new System.Drawing.Point(319, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -328,6 +330,16 @@
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(146, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(92, 41);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Модель распр обяз";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -383,6 +395,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
 

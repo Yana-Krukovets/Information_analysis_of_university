@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\CapacityWorkingPlaces.cs" />
+    <Compile Include="Models\DocumentObjectModel.cs" />
     <Compile Include="Models\ResponsibilityDistributionModel.cs" />
     <Compile Include="Models\DataStreamsModel.cs" />
     <Compile Include="Models\UseCaseModel.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Objects\TaskObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilites\GraphicsExtension.cs" />
     <EmbeddedResource Include="PropertyForm.resx">
       <DependentUpon>PropertyForm.cs</DependentUpon>
     </EmbeddedResource>

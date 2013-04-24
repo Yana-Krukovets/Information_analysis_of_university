@@ -13,7 +13,7 @@ namespace Information_analysis_of_university.Objects
     {
         public TaskObject(Task task) : base(task)
         {
-            
+            Size = 150;
         }
 
         protected TaskObject()

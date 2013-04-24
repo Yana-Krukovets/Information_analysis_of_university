@@ -136,6 +136,12 @@ namespace Information_analysis_of_university
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            model = new ResponsibilityDistributionModel();
+            DrowModel(model);
         }	
     }
 }
