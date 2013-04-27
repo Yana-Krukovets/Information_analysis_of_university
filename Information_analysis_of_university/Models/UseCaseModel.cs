@@ -94,10 +94,11 @@ namespace Information_analysis_of_university.Models
         public void DrawDocuments(Graphics g)
         {
             var increaseLengthTask = Worker.GetIncreaseLength(taskList.Count);
+            var y = 100;
             taskList[0].CoordY = Worker.CoordY - 200;
             for (int i = 0; i < taskList.Count; i++)
             {
-                taskList[i].CoordY = taskList[i].CoordY + 100;
+                taskList[i].CoordY = taskList[i].CoordY + y + 10;
                 taskList[i].DrawObject(g, Worker.CoordX + 200, taskList[i].CoordY + increaseLengthTask * (i + 1));
                 var pen = new Pen(Color.Black);
                 g.DrawLine(pen, Worker.CoordX + 50, Worker.CoordY + 20, taskList[i].CoordX-10, taskList[i].CoordY + 30);
@@ -105,9 +106,12 @@ namespace Information_analysis_of_university.Models
                 {
                     if (taskList[i].Id == Documents[j].TaskId)
                     {
-                        Documents[j].DrawObject(g, taskList[i].CoordX, taskList[i].CoordY + 10 + j * 10);
+                        y = taskList[i].CoordY + 20 * (j * 10) / Documents.Count;
+                        Documents[j].DrawObject(g, taskList[i].CoordX, y);
+                        g.DrawLine(pen, taskList[i].CoordX + 100, taskList[i].CoordY + 50, taskList[i].CoordX + 150, y);
                     }
                 }
+                taskList[i].CoordY = taskList[i].CoordY + y; 
                 
             }          
         }

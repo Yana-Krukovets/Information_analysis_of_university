@@ -43,7 +43,7 @@ namespace Information_analysis_of_university.Objects
             Name = document.Name;
             Function = document.DocFunction;
             Frequence = document.Frequence;
-
+           
             //var repo = new BaseDocumentRepository<Field>();
             //CountFilds = repo.ToList().Join(, x => x.Document, Id);
 
