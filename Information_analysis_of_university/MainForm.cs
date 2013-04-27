@@ -142,6 +142,11 @@ namespace Information_analysis_of_university
         {
             model = new ResponsibilityDistributionModel();
             DrowModel(model);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }	
     }
 }

@@ -29,39 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Модель потоков данных");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Модель вариантов использования");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Модель нагрузки рабочих мест");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Объектная модель");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Потоки данных", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Модель жизненного цикла");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Модель распределения обязательств");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Модель рабочих процессов");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Oбъектная модель");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Документы", new System.Windows.Forms.TreeNode[] {
-            treeNode6,
-            treeNode7,
-            treeNode8,
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Node2");
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Reference = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutProgram = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBox1 = new System.Windows.Forms.GroupBox();
-            this.treeMenu = new System.Windows.Forms.TreeView();
-            this.groupModel = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.groupRequest = new System.Windows.Forms.GroupBox();
-            this.panelReqest = new System.Windows.Forms.Panel();
             this.buttonMaster = new System.Windows.Forms.Button();
             this.buttonQBE = new System.Windows.Forms.Button();
             this.buttonSQL = new System.Windows.Forms.Button();
@@ -71,12 +49,16 @@
             this.tcModelsFrame = new System.Windows.Forms.TabControl();
             this.newTabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
-            this.groupModel.SuspendLayout();
-            this.groupRequest.SuspendLayout();
-            this.panelReqest.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tcModelsFrame.SuspendLayout();
             this.newTabPage1.SuspendLayout();
@@ -112,168 +94,115 @@
             // Reference
             // 
             this.Reference.Name = "Reference";
-            this.Reference.Size = new System.Drawing.Size(149, 22);
+            this.Reference.Size = new System.Drawing.Size(152, 22);
             this.Reference.Text = "Справка";
             // 
             // aboutProgram
             // 
             this.aboutProgram.Name = "aboutProgram";
-            this.aboutProgram.Size = new System.Drawing.Size(149, 22);
+            this.aboutProgram.Size = new System.Drawing.Size(152, 22);
             this.aboutProgram.Text = "О программе";
             // 
             // menuBox1
             // 
-            this.menuBox1.Controls.Add(this.treeMenu);
+            this.menuBox1.Controls.Add(this.buttonMaster);
+            this.menuBox1.Controls.Add(this.button8);
+            this.menuBox1.Controls.Add(this.buttonQBE);
+            this.menuBox1.Controls.Add(this.button7);
+            this.menuBox1.Controls.Add(this.buttonSQL);
+            this.menuBox1.Controls.Add(this.label4);
+            this.menuBox1.Controls.Add(this.button5);
+            this.menuBox1.Controls.Add(this.label3);
+            this.menuBox1.Controls.Add(this.button1);
+            this.menuBox1.Controls.Add(this.button6);
+            this.menuBox1.Controls.Add(this.label2);
+            this.menuBox1.Controls.Add(this.button4);
+            this.menuBox1.Controls.Add(this.label1);
+            this.menuBox1.Controls.Add(this.button3);
+            this.menuBox1.Controls.Add(this.button2);
             this.menuBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.menuBox1.Location = new System.Drawing.Point(0, 24);
             this.menuBox1.Name = "menuBox1";
-            this.menuBox1.Size = new System.Drawing.Size(252, 378);
+            this.menuBox1.Size = new System.Drawing.Size(232, 400);
             this.menuBox1.TabIndex = 3;
             this.menuBox1.TabStop = false;
             this.menuBox1.Text = "Меню";
             this.menuBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // treeMenu
+            // button5
             // 
-            this.treeMenu.BackColor = System.Drawing.SystemColors.Menu;
-            this.treeMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeMenu.Location = new System.Drawing.Point(3, 16);
-            this.treeMenu.Name = "treeMenu";
-            treeNode1.Name = "modelDataStreams";
-            treeNode1.Text = "Модель потоков данных";
-            treeNode2.Name = "use-caseModel";
-            treeNode2.Text = "Модель вариантов использования";
-            treeNode3.Name = "modelForJob";
-            treeNode3.Text = "Модель нагрузки рабочих мест";
-            treeNode4.Name = "objectModelFlows";
-            treeNode4.Text = "Объектная модель";
-            treeNode5.Name = "dataStreams";
-            treeNode5.Text = "Потоки данных";
-            treeNode6.Name = "life-cycleModel";
-            treeNode6.Text = "Модель жизненного цикла";
-            treeNode7.Name = "modelObligations";
-            treeNode7.Text = "Модель распределения обязательств";
-            treeNode8.Name = "workflowModel";
-            treeNode8.Text = "Модель рабочих процессов";
-            treeNode9.Name = "documentObjectModel";
-            treeNode9.Text = "Oбъектная модель";
-            treeNode10.Name = "Node1";
-            treeNode10.Text = "Документы";
-            treeNode11.Name = "Node2";
-            treeNode11.Text = "Node2";
-            this.treeMenu.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode10,
-            treeNode11});
-            this.treeMenu.Size = new System.Drawing.Size(243, 359);
-            this.treeMenu.TabIndex = 0;
-            this.treeMenu.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // groupModel
-            // 
-            this.groupModel.Controls.Add(this.button5);
-            this.groupModel.Controls.Add(this.button4);
-            this.groupModel.Controls.Add(this.button3);
-            this.groupModel.Controls.Add(this.button2);
-            this.groupModel.Controls.Add(this.button1);
-            this.groupModel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupModel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.groupModel.Location = new System.Drawing.Point(252, 24);
-            this.groupModel.Name = "groupModel";
-            this.groupModel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupModel.Size = new System.Drawing.Size(651, 44);
-            this.groupModel.TabIndex = 4;
-            this.groupModel.TabStop = false;
-            this.groupModel.Text = "Модели";
+            this.button5.Location = new System.Drawing.Point(6, 210);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(220, 24);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Модель распр обяз";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(481, 12);
+            this.button4.Location = new System.Drawing.Point(6, 108);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(222, 23);
             this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
+            this.button4.Text = "Модель потоков данных";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(400, 12);
+            this.button3.Location = new System.Drawing.Point(6, 79);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(222, 23);
             this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
+            this.button3.Text = "Модель нагруженности рабочих мест";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(319, 12);
+            this.button2.Location = new System.Drawing.Point(6, 50);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(222, 23);
             this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
+            this.button2.Text = "Модель вариантов использования";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(48, 3);
+            this.button1.Location = new System.Drawing.Point(6, 179);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 41);
+            this.button1.Size = new System.Drawing.Size(220, 25);
             this.button1.TabIndex = 0;
             this.button1.Text = "Модель раб процессов";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // groupRequest
-            // 
-            this.groupRequest.Controls.Add(this.panelReqest);
-            this.groupRequest.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupRequest.Location = new System.Drawing.Point(252, 286);
-            this.groupRequest.Name = "groupRequest";
-            this.groupRequest.Size = new System.Drawing.Size(651, 116);
-            this.groupRequest.TabIndex = 5;
-            this.groupRequest.TabStop = false;
-            this.groupRequest.Text = "Панель запросов";
-            // 
-            // panelReqest
-            // 
-            this.panelReqest.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelReqest.Controls.Add(this.buttonMaster);
-            this.panelReqest.Controls.Add(this.buttonQBE);
-            this.panelReqest.Controls.Add(this.buttonSQL);
-            this.panelReqest.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelReqest.Location = new System.Drawing.Point(3, 16);
-            this.panelReqest.Name = "panelReqest";
-            this.panelReqest.Size = new System.Drawing.Size(645, 45);
-            this.panelReqest.TabIndex = 0;
-            // 
             // buttonMaster
             // 
-            this.buttonMaster.Location = new System.Drawing.Point(165, 3);
+            this.buttonMaster.Location = new System.Drawing.Point(6, 372);
             this.buttonMaster.Name = "buttonMaster";
-            this.buttonMaster.Size = new System.Drawing.Size(75, 35);
+            this.buttonMaster.Size = new System.Drawing.Size(220, 22);
             this.buttonMaster.TabIndex = 2;
-            this.buttonMaster.Text = "Матер";
+            this.buttonMaster.Text = "Матер построения запросов";
             this.buttonMaster.UseVisualStyleBackColor = true;
             // 
             // buttonQBE
             // 
-            this.buttonQBE.Location = new System.Drawing.Point(84, 3);
+            this.buttonQBE.Location = new System.Drawing.Point(6, 343);
             this.buttonQBE.Name = "buttonQBE";
-            this.buttonQBE.Size = new System.Drawing.Size(75, 35);
+            this.buttonQBE.Size = new System.Drawing.Size(220, 23);
             this.buttonQBE.TabIndex = 1;
             this.buttonQBE.Text = "QBE";
             this.buttonQBE.UseVisualStyleBackColor = true;
             // 
             // buttonSQL
             // 
-            this.buttonSQL.Location = new System.Drawing.Point(3, 3);
+            this.buttonSQL.Location = new System.Drawing.Point(6, 311);
             this.buttonSQL.Name = "buttonSQL";
-            this.buttonSQL.Size = new System.Drawing.Size(75, 35);
+            this.buttonSQL.Size = new System.Drawing.Size(220, 27);
             this.buttonSQL.TabIndex = 0;
-            this.buttonSQL.Text = "SQL";
+            this.buttonSQL.Text = "SQL-модифицированые";
             this.buttonSQL.UseVisualStyleBackColor = true;
             // 
             // contextMenuStrip1
@@ -302,10 +231,10 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tcModelsFrame.Controls.Add(this.newTabPage1);
-            this.tcModelsFrame.Location = new System.Drawing.Point(255, 74);
+            this.tcModelsFrame.Location = new System.Drawing.Point(238, 40);
             this.tcModelsFrame.Name = "tcModelsFrame";
             this.tcModelsFrame.SelectedIndex = 0;
-            this.tcModelsFrame.Size = new System.Drawing.Size(647, 206);
+            this.tcModelsFrame.Size = new System.Drawing.Size(664, 378);
             this.tcModelsFrame.TabIndex = 6;
             // 
             // newTabPage1
@@ -314,7 +243,7 @@
             this.newTabPage1.Location = new System.Drawing.Point(4, 22);
             this.newTabPage1.Name = "newTabPage1";
             this.newTabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.newTabPage1.Size = new System.Drawing.Size(639, 180);
+            this.newTabPage1.Size = new System.Drawing.Size(656, 352);
             this.newTabPage1.TabIndex = 0;
             this.newTabPage1.Text = "new1";
             this.newTabPage1.UseVisualStyleBackColor = true;
@@ -330,25 +259,87 @@
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
             // 
-            // button5
+            // label1
             // 
-            this.button5.Location = new System.Drawing.Point(146, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(92, 41);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Модель распр обяз";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Потоки данных";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Построение моделей";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(6, 137);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(222, 23);
+            this.button6.TabIndex = 1;
+            this.button6.Text = "Объектная модель";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 163);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Документы";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 295);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Запросы";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(6, 240);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 1;
+            this.button7.Text = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(6, 269);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 1;
+            this.button8.Text = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(816, 30);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 7;
+            this.button9.Text = "Справка";
+            this.button9.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(903, 402);
+            this.ClientSize = new System.Drawing.Size(903, 424);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.tcModelsFrame);
-            this.Controls.Add(this.groupRequest);
-            this.Controls.Add(this.groupModel);
             this.Controls.Add(this.menuBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -357,9 +348,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.menuBox1.ResumeLayout(false);
-            this.groupModel.ResumeLayout(false);
-            this.groupRequest.ResumeLayout(false);
-            this.panelReqest.ResumeLayout(false);
+            this.menuBox1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.tcModelsFrame.ResumeLayout(false);
             this.newTabPage1.ResumeLayout(false);
@@ -378,10 +367,6 @@
         private System.Windows.Forms.ToolStripMenuItem Reference;
         private System.Windows.Forms.ToolStripMenuItem aboutProgram;
         private System.Windows.Forms.GroupBox menuBox1;
-        private System.Windows.Forms.GroupBox groupModel;
-        private System.Windows.Forms.GroupBox groupRequest;
-        private System.Windows.Forms.TreeView treeMenu;
-        private System.Windows.Forms.Panel panelReqest;
         private System.Windows.Forms.Button buttonMaster;
         private System.Windows.Forms.Button buttonQBE;
         private System.Windows.Forms.Button buttonSQL;
@@ -396,6 +381,14 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button9;
     }
 }
 
