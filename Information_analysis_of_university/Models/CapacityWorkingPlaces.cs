@@ -35,17 +35,17 @@ namespace Information_analysis_of_university.Models
         public override void Draw(Graphics g)
         {
             var x = 50;
-            var y = 100;
+            var y = 50;
 
             var heignt = 100;
-            var width = 100;
+            var width = 150;
             foreach (var worker in departmentList)
             {
                 worker.WorkPlace.DrawObject(g, x, y);
                 worker.DrawCount(g, x+10,y+10);
                 // worker.DrawDocuments(g);
-                if (x + 4 * width < g.VisibleClipBounds.Width)
-                    x += 2 * width;
+                if (x + 5 * width < g.VisibleClipBounds.Width)
+                    x += 3 * width;
                 else
                 {
                     x = 50;

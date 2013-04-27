@@ -19,6 +19,7 @@ namespace Information_analysis_of_university.Objects
         public CountTaks(int count)
         {
             Count = count;
+       //     Size = 150;
             
         }
 
@@ -53,7 +54,7 @@ namespace Information_analysis_of_university.Objects
 
         public override void DrawText(Graphics g, int x, int y, string text)
         {
-            g.DrawString(text, new Font("Times New Roman", 8), new SolidBrush(Color.Gray), new RectangleF(x, y - 12, Size, 40));
+            g.DrawString(text, new Font("Calibri", 10), new SolidBrush(Color.Black), new RectangleF(x+10, y-10, Size+10, 70));
         }
 
         private Point GetNewPoint(int angle, int x, int y)

@@ -77,7 +77,7 @@ namespace Information_analysis_of_university.Objects
 
         public override void DrawText(Graphics g, int x, int y, string text)
         {
-            g.DrawString(text, new Font("Calibri", 10), new SolidBrush(Color.Gray), new RectangleF(x, y - 15, Size, 40));
+            g.DrawString(text, new Font("Calibri", 11), new SolidBrush(Color.Black), new RectangleF(x, y - 15, Size, 40));
         }
 
         private Point GetNewPoint(int angle, int x, int y)
