@@ -9,9 +9,9 @@ using System.ComponentModel;
 
 namespace Information_analysis_of_university.Objects
 {
-    class TaskForWorker : BaseObject
+    class DocFuction : BaseObject
     {
-        private bool dragging = false;
+         private bool dragging = false;
 
         //поля из бд      
         
@@ -19,11 +19,14 @@ namespace Information_analysis_of_university.Objects
         public int TaskId { get; set; }
 
         [ReadOnly(true)]
-        public int Id { get; set; }
+        public int? DepartmentIdDestination { get; set; }
 
         [ReadOnly(true)]
-        [DisplayName("Наименование")]
-        public string Name { get; set; }
+        public int? DepartmentIdSource { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("")]
+        public string Function { get; set; }
 
         [Browsable(false)]
         public int CoordX
@@ -39,10 +42,12 @@ namespace Information_analysis_of_university.Objects
             set { Y = value; }
         }
 
-        public TaskForWorker(Task task)
+        public DocFuction(Document doc)
         {
-            Id = task.TaskId;
-            Name = task.Name;
+            TaskId = doc.FK_TaskId;
+            Function = doc.DocFunction;
+            DepartmentIdDestination = doc.FK_DepartmentIdDestination;
+            DepartmentIdSource = doc.FK_DepartmentIdSource;
             Size = 100;
         }
 
@@ -53,7 +58,7 @@ namespace Information_analysis_of_university.Objects
            
             var pen = new Pen(Color.Black);
             g.DrawEllipse(pen, new Rectangle(X, Y, Size, Size-25));
-            DrawText(g, X, Y, Name);
+            DrawText(g, X, Y, Function);
           
         }
 
@@ -95,6 +100,5 @@ namespace Information_analysis_of_university.Objects
             return dragging;
         }
 
-       
     }
 }

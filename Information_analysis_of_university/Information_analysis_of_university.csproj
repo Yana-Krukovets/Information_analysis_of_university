@@ -55,12 +55,13 @@
     <Compile Include="Objects\BaseDocumentObject.cs" />
     <Compile Include="Objects\BaseTaskObject.cs" />
     <Compile Include="Objects\BaseWorkplaceObject.cs" />
+    <Compile Include="Objects\DocFuction.cs" />
+    <Compile Include="Objects\DocumentForStreams.cs" />
     <Compile Include="Objects\WorkplaceResponsibilityObject.cs" />
     <Compile Include="Objects\TaskResponsibilityObject.cs" />
     <Compile Include="Objects\CountTaks.cs" />
     <Compile Include="Objects\DocumentForWorker.cs" />
     <Compile Include="Objects\LittleMan.cs" />
-    <Compile Include="Objects\TaskForDataStreamModel.cs" />
     <Compile Include="Objects\TaskForWorker.cs" />
     <Compile Include="Objects\WorkingPlace.cs" />
     <Compile Include="PropertyForm.cs">

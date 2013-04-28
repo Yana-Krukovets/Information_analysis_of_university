@@ -147,6 +147,12 @@ namespace Information_analysis_of_university
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            model = new DataStreamsModel();
+            DrowModel(model);
         }	
     }
 }

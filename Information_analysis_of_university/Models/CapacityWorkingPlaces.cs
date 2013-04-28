@@ -18,13 +18,9 @@ namespace Information_analysis_of_university.Models
 
             departmentList = new List<Departments>();
             var departmentRepository = new BaseDocumentRepository<Department>();
-            var tasksRepository = new BaseDocumentRepository<Document>();
-
+  
             var departments = departmentRepository.ToList().Select(
                 x => new WorkingPlace(x));
-
-            var docs = tasksRepository.ToList().Select(
-                x => new DocumentForWorker(x));
 
             foreach (var item in departments)
             {
@@ -80,7 +76,6 @@ namespace Information_analysis_of_university.Models
             var taskDocumentRepository = new BaseDocumentRepository<Task>();
             var documentRepository = new BaseDocumentRepository<Document>();
             var documents = documentRepository.Query(x => x.FK_DepartmentIdDestination == WorkPlace.Id).ToList();
-           // var tasks = taskDocumentRepository.Query(x => x.TaskId == doc.TaskId).ToList();
             int col = documents.Count();
             documentCount = new CountTaks(col);
 
@@ -96,10 +91,6 @@ namespace Information_analysis_of_university.Models
             BaseObject curObj = null;
             if (WorkPlace.IsCurrentObject(x, y))
                 curObj = WorkPlace;
-            else
-            {
-               
-            }
             return curObj;
         }
 
