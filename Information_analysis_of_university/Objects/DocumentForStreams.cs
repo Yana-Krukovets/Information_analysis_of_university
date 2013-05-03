@@ -36,6 +36,9 @@ namespace Information_analysis_of_university.Objects
         [DisplayName("Количество полей")]
         public int CountFilds { get; set; }
 
+        [ReadOnly(true)]
+        public byte? IsExternal { get; set; }
+
         public DocumentForStreams(Document document)
         {
             Id = document.DocumentId;
@@ -44,6 +47,7 @@ namespace Information_analysis_of_university.Objects
             Frequence = document.Frequence;
             TaskId = document.FK_TaskId;
             Size = 150;
+            IsExternal = document.IsExternal;
         }
 
         //задаем значение координат
@@ -67,13 +71,12 @@ namespace Information_analysis_of_university.Objects
             Y = y ?? Y;
             var pen = new Pen(Color.Black);
             var x1 = X;
-            x1 = X + Size;
             DrawText(g, x1, Y, Name);
         }
 
         public override void DrawText(Graphics g, int x, int y, string text)
         {
-            g.DrawString(text, new Font("Calibri", 11), new SolidBrush(Color.Black), new RectangleF(x, y - 15, Size, 40));
+            g.DrawString(text, new Font("Calibri", 11), new SolidBrush(Color.Black), new RectangleF(x, y, Size, y));
         }
 
         private Point GetNewPoint(int angle, int x, int y)
@@ -84,7 +87,6 @@ namespace Information_analysis_of_university.Objects
         public bool IsCurrentObject(int x, int y)
         {
             var x1 = X;
-            x1 = X + Size;
             return x > x1 && x < x1 + Size && y > Y - 12 && y < Y + 28;
         }
 

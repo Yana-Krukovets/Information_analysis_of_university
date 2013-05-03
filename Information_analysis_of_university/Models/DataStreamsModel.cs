@@ -79,7 +79,8 @@ namespace Information_analysis_of_university.Models
             docFunction = new List<DocFuction>();
             foreach (var item in documents)
             {
-                documentStreams.Add(new DocumentForStreams(item));
+                if (item.FK_DepartmentIdDestination == WorkPlace.Id)
+                    documentStreams.Add(new DocumentForStreams(item));
             }
             foreach (var item in documents)
             {
@@ -91,11 +92,26 @@ namespace Information_analysis_of_university.Models
         {
             if (documentStreams != null)
             {
-                x -= 300;
+                x = WorkPlace.CoordX;
+                var pen = new Pen(Color.Black);
+                y = WorkPlace.CoordY;
+                int y1 = WorkPlace.CoordY ;
                 for (int j = 0; j < documentStreams.Count; j++)
                 {
-                    documentStreams[j].DrawObject(g, x, y); 
-                    y += 30;
+
+                    if (documentStreams[j].IsExternal == 1)
+                    {
+                        g.DrawLine(pen, x + 100, WorkPlace.CoordY + 50, x + 200, y);
+                        documentStreams[j].DrawObject(g, x + 200, y);
+                        y += 30;
+                    }
+                    if (documentStreams[j].IsExternal == 2)
+                    {
+                        g.DrawLine(pen, x, WorkPlace.CoordY + 50, x - 100, y1);
+                        documentStreams[j].DrawObject(g, x - 220, y1);
+                        y1 += 40;
+                    }  
+                                                    
                 }
               
             }
