@@ -108,7 +108,7 @@ namespace Information_analysis_of_university.Models
                     {
                         y = taskList[i].CoordY + 3*Documents.Count * (j * 10) / Documents.Count;
                         Documents[j].DrawObject(g, taskList[i].CoordX, y);
-                        g.DrawLine(pen, taskList[i].CoordX + 100, taskList[i].CoordY + 50, taskList[i].CoordX + 150, y);
+                        g.DrawLine(pen, taskList[i].CoordX + 100, taskList[i].CoordY + 50, taskList[i].CoordX + 220, y);
                     }
                 }
                 taskList[i].CoordY = taskList[i].CoordY + y; 

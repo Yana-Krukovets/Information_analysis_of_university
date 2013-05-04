@@ -46,7 +46,7 @@ namespace Information_analysis_of_university.Objects
             Function = document.DocFunction;
             Frequence = document.Frequence;
             TaskId = document.FK_TaskId;
-            Size = 150;
+            Size = 220;
             IsExternal = document.IsExternal;
         }
 
@@ -71,12 +71,15 @@ namespace Information_analysis_of_university.Objects
             Y = y ?? Y;
             var pen = new Pen(Color.Black);
             var x1 = X;
+            x1 = X + Size;
+            g.DrawLine(pen, x1, Y, x1 + Size, Y);
+            g.FillPolygon(new SolidBrush(Color.Black), new Point[] { new Point(x1 + Size, Y), GetNewPoint(155, x1 + Size, Y), GetNewPoint(205, x1 + Size, Y) });
             DrawText(g, x1, Y, Name);
         }
 
         public override void DrawText(Graphics g, int x, int y, string text)
         {
-            g.DrawString(text, new Font("Calibri", 11), new SolidBrush(Color.Black), new RectangleF(x, y, Size, y));
+            g.DrawString(text, new Font("Calibri", 11), new SolidBrush(Color.Black), new RectangleF(x, y - 15, Size, 40));
         }
 
         private Point GetNewPoint(int angle, int x, int y)

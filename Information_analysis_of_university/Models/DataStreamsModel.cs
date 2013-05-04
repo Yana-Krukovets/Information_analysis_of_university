@@ -31,7 +31,7 @@ namespace Information_analysis_of_university.Models
         public override void Draw(Graphics g)
         {
             var x = 50;
-            var y = 50;
+            var y = 100;
 
             var heignt = 100;
             var width = 150;
@@ -39,7 +39,7 @@ namespace Information_analysis_of_university.Models
             {
                 worker.WorkPlace.DrawObject(g, x, y);
                 worker.DrawDocument(g, x, y);
-                worker.DrawDocumentFunction(g, x, y);
+               // worker.DrawDocumentFunction(g, x, y);
                 if (x + 5 * width < g.VisibleClipBounds.Width)
                     x += 5 * width;
                 else
@@ -68,7 +68,11 @@ namespace Information_analysis_of_university.Models
     {
         public WorkingPlace WorkPlace { get; set; }
         public List<DocFuction> docFunction { get; set; }
+        public List<DocFuction> docFunction1 { get; set; }
+        public List<DocFuction> docFunction2 { get; set; }
         public List<DocumentForStreams> documentStreams { get; set; }
+        public List<DocumentForStreams> documentStreams1 { get; set; }
+        public List<DocumentForStreams> documentStreams2 { get; set; }
         
         public Departments1(WorkingPlace workPlace)
         {
@@ -76,7 +80,11 @@ namespace Information_analysis_of_university.Models
             var documentRepository = new BaseDocumentRepository<Document>();
             var documents = documentRepository.Query(x => x.FK_DepartmentIdDestination == WorkPlace.Id).ToList();
             documentStreams = new List<DocumentForStreams>();
+            documentStreams1 = new List<DocumentForStreams>();
+            documentStreams2 = new List<DocumentForStreams>();
             docFunction = new List<DocFuction>();
+            docFunction1 = new List<DocFuction>();
+            docFunction2 = new List<DocFuction>();
             foreach (var item in documents)
             {
                 if (item.FK_DepartmentIdDestination == WorkPlace.Id)
@@ -85,6 +93,20 @@ namespace Information_analysis_of_university.Models
             foreach (var item in documents)
             {
                 docFunction.Add(new DocFuction(item));
+            }
+            for (int j = 0; j < documentStreams.Count; j++)
+            {
+                if (documentStreams[j].IsExternal == 2)
+                {
+                    documentStreams2.Add(documentStreams[j]);
+                    docFunction2.Add(docFunction[j]);
+                }
+                if (documentStreams[j].IsExternal == 1)
+                {
+                    documentStreams1.Add(documentStreams[j]);
+                    docFunction1.Add(docFunction[j]);
+                }
+                
             }
         }
 
@@ -95,23 +117,24 @@ namespace Information_analysis_of_university.Models
                 x = WorkPlace.CoordX;
                 var pen = new Pen(Color.Black);
                 y = WorkPlace.CoordY;
-                int y1 = WorkPlace.CoordY ;
-                for (int j = 0; j < documentStreams.Count; j++)
+                int y2 = WorkPlace.CoordY; 
+                int Y = WorkPlace.CoordY + 50;
+                int X = WorkPlace.CoordX;
+                for (int j = 0; j < documentStreams1.Count; j++)
                 {
-
-                    if (documentStreams[j].IsExternal == 1)
-                    {
-                        g.DrawLine(pen, x + 100, WorkPlace.CoordY + 50, x + 200, y);
-                        documentStreams[j].DrawObject(g, x + 200, y);
-                        y += 30;
-                    }
-                    if (documentStreams[j].IsExternal == 2)
-                    {
-                        g.DrawLine(pen, x, WorkPlace.CoordY + 50, x - 100, y1);
-                        documentStreams[j].DrawObject(g, x - 220, y1);
-                        y1 += 40;
-                    }  
-                                                    
+                    y = WorkPlace.CoordY + 3 * documentStreams1.Count * (j * 10) / documentStreams1.Count;
+                    documentStreams1[j].DrawObject(g, WorkPlace.CoordX, y);
+                    g.DrawLine(pen, X + 100, Y, X + 220, y);                 
+                    y2 = documentStreams1[j].CoordY - 30 + 6 * docFunction1.Count * (j * 10) / docFunction1.Count;
+                    docFunction1[j].DrawObject(g, documentStreams1[j].CoordX + 500, y2 - 30);
+                    g.DrawLine(pen, documentStreams1[j].CoordX + 440, y, documentStreams1[j].CoordX + 500, y2);
+                }
+                for (int j = 0; j < documentStreams2.Count; j++)
+                {
+                    y = WorkPlace.CoordY + 3 * documentStreams2.Count * (j * 10) / documentStreams2.Count;
+                    documentStreams2[j].DrawObject(g, WorkPlace.CoordX - 540, y);
+                    g.DrawLine(pen, WorkPlace.CoordX, Y, WorkPlace.CoordX - 100, y);
+                                                       
                 }
               
             }

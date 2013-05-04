@@ -43,7 +43,7 @@ namespace Information_analysis_of_university.Objects
             Function = document.DocFunction;
             Frequence = document.Frequence;
             TaskId = document.FK_TaskId;
-            Size = 150;
+            Size = 220;
         }
 
         //задаем значение координат

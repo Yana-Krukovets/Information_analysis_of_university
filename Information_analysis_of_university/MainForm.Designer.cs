@@ -55,9 +55,9 @@
             this.удалитьМодельToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tcModelsFrame = new System.Windows.Forms.TabControl();
             this.newTabPage1 = new System.Windows.Forms.TabPage();
-            this.button10 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button10 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -315,15 +315,6 @@
             this.newTabPage1.Text = "new1";
             this.newTabPage1.UseVisualStyleBackColor = true;
             // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(956, 30);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 8;
-            this.button10.Text = "Справка";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
@@ -337,11 +328,20 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(14, 19);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1280, 872);
+            this.pictureBox1.Size = new System.Drawing.Size(1578, 856);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(956, 30);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 8;
+            this.button10.Text = "Справка";
+            this.button10.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
