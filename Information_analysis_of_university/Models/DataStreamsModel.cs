@@ -36,8 +36,7 @@ namespace Information_analysis_of_university.Models
             {
                 worker.WorkPlace.DrawObject(g, x, y);
                 worker.DrawDocument(g, x, y);
-                y += 300;
-              
+                y += 300;              
             }
         }
 
@@ -69,21 +68,29 @@ namespace Information_analysis_of_university.Models
             WorkPlace = workPlace;
             var documentRepository = new BaseDocumentRepository<Document>();
             var documents = documentRepository.Query(x => x.FK_DepartmentIdDestination == WorkPlace.Id).ToList();
+            var documents1 = documentRepository.Query(x => x.FK_DepartmentIdSource == WorkPlace.Id).ToList();
             documentStreams = new List<DocumentForStreams>();
             documentStreams1 = new List<DocumentForStreams>();
             documentStreams2 = new List<DocumentForStreams>();
             docFunction = new List<DocFuction>();
             docFunction1 = new List<DocFuction>();
             docFunction2 = new List<DocFuction>();
+            foreach (var item in documents1)
+            {
+                if (item.FK_DepartmentIdSource == WorkPlace.Id)
+                    documentStreams2.Add(new DocumentForStreams(item));                   
+            }
             foreach (var item in documents)
             {
                 if (item.FK_DepartmentIdDestination == WorkPlace.Id)
                     documentStreams.Add(new DocumentForStreams(item));
+                
             }
             foreach (var item in documents)
             {
                 docFunction.Add(new DocFuction(item));
             }
+           
             for (int j = 0; j < documentStreams.Count; j++)
             {
                 if (documentStreams[j].IsExternal == 2)
@@ -102,7 +109,7 @@ namespace Information_analysis_of_university.Models
 
         public void DrawDocument(Graphics g, int x, int y)
         {
-            if (documentStreams != null)
+            if (documentStreams != null || documentStreams2 != null)
             {
                 x = WorkPlace.CoordX;
                 var pen = new Pen(Color.Black);
@@ -124,9 +131,12 @@ namespace Information_analysis_of_university.Models
                     y = WorkPlace.CoordY + 3 * documentStreams2.Count * (j * 10) / documentStreams2.Count;
                     documentStreams2[j].DrawObject(g, WorkPlace.CoordX - 540, y);
                     g.DrawLine(pen, WorkPlace.CoordX, Y, WorkPlace.CoordX - 100, y);
-                    y2 = documentStreams1[j].CoordY - 30 + 6 * docFunction2.Count * (j * 10) / docFunction2.Count;
-                    docFunction2[j].DrawObject(g, documentStreams2[j].CoordX, y2 - 30);
-                    g.DrawLine(pen, documentStreams2[j].CoordX + 100, y2, documentStreams2[j].CoordX + 220, y);                                   
+                    if (docFunction2.Count != 0)
+                    {
+                        y2 = documentStreams2[j].CoordY - 30 + 6 * docFunction2.Count * (j * 10) / docFunction2.Count;
+                        docFunction2[j].DrawObject(g, documentStreams2[j].CoordX, y2 - 30);
+                        g.DrawLine(pen, documentStreams2[j].CoordX + 100, y2, documentStreams2[j].CoordX + 220, y);
+                    }         
                 }
               
             }
