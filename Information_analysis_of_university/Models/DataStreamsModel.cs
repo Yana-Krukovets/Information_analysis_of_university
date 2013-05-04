@@ -117,6 +117,7 @@ namespace Information_analysis_of_university.Models
                 int y2 = WorkPlace.CoordY; 
                 int Y = WorkPlace.CoordY + 50;
                 int X = WorkPlace.CoordX;
+                int x1 = 0;
                 for (int j = 0; j < documentStreams1.Count; j++)
                 {
                     y = WorkPlace.CoordY + 3 * documentStreams1.Count * (j * 10) / documentStreams1.Count;
@@ -125,6 +126,11 @@ namespace Information_analysis_of_university.Models
                     y2 = documentStreams1[j].CoordY - 30 + 6 * docFunction1.Count * (j * 10) / docFunction1.Count;
                     docFunction1[j].DrawObject(g, documentStreams1[j].CoordX + 500, y2 - 30);
                     g.DrawLine(pen, documentStreams1[j].CoordX + 440, y, documentStreams1[j].CoordX + 500, y2);
+                    if (documentStreams1[j].FK_DepartmentIdSource != null)
+                    {
+                        x1 = documentStreams1[j].CoordX + 900;
+                        g.DrawLine(pen, documentStreams1[j].CoordX + 600, y2, x1 - j*10, y2);                       
+                    }
                 }
                 for (int j = 0; j < documentStreams2.Count; j++)
                 {

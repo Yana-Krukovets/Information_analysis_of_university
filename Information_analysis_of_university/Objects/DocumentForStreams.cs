@@ -37,6 +37,9 @@ namespace Information_analysis_of_university.Objects
         public int CountFilds { get; set; }
 
         [ReadOnly(true)]
+        public int? FK_DepartmentIdSource { get; set; }
+
+        [ReadOnly(true)]
         public byte? IsExternal { get; set; }
 
         public DocumentForStreams(Document document)
@@ -48,6 +51,7 @@ namespace Information_analysis_of_university.Objects
             TaskId = document.FK_TaskId;
             Size = 220;
             IsExternal = document.IsExternal;
+            FK_DepartmentIdSource = document.FK_DepartmentIdSource;
         }
 
         //задаем значение координат
