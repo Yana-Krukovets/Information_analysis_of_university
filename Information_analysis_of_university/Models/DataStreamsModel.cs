@@ -30,23 +30,14 @@ namespace Information_analysis_of_university.Models
 
         public override void Draw(Graphics g)
         {
-            var x = 50;
+            var x = 700;
             var y = 100;
-
-            var heignt = 100;
-            var width = 150;
             foreach (var worker in departmentList)
             {
                 worker.WorkPlace.DrawObject(g, x, y);
                 worker.DrawDocument(g, x, y);
-               // worker.DrawDocumentFunction(g, x, y);
-                if (x + 5 * width < g.VisibleClipBounds.Width)
-                    x += 5 * width;
-                else
-                {
-                    x = 50;
-                    y = y + 3 * heignt/2;
-                }
+                y += 300;
+              
             }
         }
 
@@ -59,7 +50,6 @@ namespace Information_analysis_of_university.Models
                 if (obj != null)
                     break;
             }
-
             return obj;
         }
     }
@@ -142,20 +132,6 @@ namespace Information_analysis_of_university.Models
             }
         }
 
-        public void DrawDocumentFunction(Graphics g, int x, int y)
-        {
-            if (docFunction != null)
-            {
-                x -= 400;
-                for (int j = 0; j < docFunction.Count; j++)
-                {
-                    docFunction[j].DrawObject(g, x, y);
-                    y += 70;
-                }
-
-            }
-        }
-      
         public BaseObject GetObject(int x, int y)
         {
             BaseObject curObj = null;
