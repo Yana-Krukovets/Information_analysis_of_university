@@ -30,7 +30,7 @@ namespace Information_analysis_of_university.Models
 
         public override void Draw(Graphics g)
         {
-            var x = 100;
+            var x = 150;
             var y = 50;
 
             var heignt = 100;
@@ -72,8 +72,9 @@ namespace Information_analysis_of_university.Models
     class TaskWorkplace
     {
         public WorkplaceResponsibilityObject Workplace { get; set; }
-        public List<TaskResponsibilityObject> InernalTasks { get; set; }
-        public List<TaskResponsibilityObject> ExternalTasks { get; set; }
+        public List<TaskDocument> TaskDocuments { get; set; }
+        //public List<TaskResponsibilityObject> InernalTasks { get; set; }
+        //public List<TaskResponsibilityObject> ExternalTasks { get; set; }
 
         public TaskWorkplace(WorkplaceResponsibilityObject wp)
         {
@@ -82,29 +83,54 @@ namespace Information_analysis_of_university.Models
             var tasksRepository = new BaseDocumentRepository<Task>();
             var tasks = tasksRepository.Query(x => x.FK_PostId == Workplace.Id).ToList();
 
+            TaskDocuments = new List<TaskDocument>();
+            foreach (var task in tasks)
+            {
+                TaskDocuments.Add(new TaskDocument(new TaskObject(task)));
+            }
+
             // тут нет понятия вход и выход задач
 
             // IsExternal = 1 (входящие) ?
             // IsExternal = 2 (исходящие) ?
-            InernalTasks = tasks.Select(x => new TaskResponsibilityObject(x, true)).ToList();
+            //InernalTasks = tasks.Select(x => new TaskResponsibilityObject(x, true)).ToList();
             //ExternalDocuments = documents.Where(x => x.IsExternal != 2).Select(x => new DocumentObject(x, false)).ToList();
         }
 
         public void DrawTasks(Graphics g)
         {
-            //for (int i = 0; i < 2; i++)
-            //{
-            //var docList = i == 0 ? InernalTasks : ExternalTasks;
-            var docList = InernalTasks;
-            //расстояние между стрелочками(документами)
-            var increaseLength = Workplace.GetIncreaseLength(docList.Count);
+            var increaseLength = Workplace.GetIncreaseLength(TaskDocuments.Count - 1);
 
-            for (int j = 0; j < docList.Count; j++)
+            for (int i = 0; i < TaskDocuments.Count; i++)
             {
-                docList[j].DrawObject(g, Workplace.CoordX, Workplace.CoordY + increaseLength * (j + 1));
-            }
-            // }
+                if (i < TaskDocuments.Count - 1)
+                    g.DrawLine(new Pen(Color.Black), Workplace.CoordX, Workplace.CoordY + increaseLength * (i + 1), Workplace.CoordX + 150, Workplace.CoordY + increaseLength * (i + 1));
 
+
+                g.DrawString(TaskDocuments[i].Task.Name, new Font("Calibri", 10), new SolidBrush(Color.Black), new RectangleF(Workplace.CoordX, Workplace.CoordY + increaseLength * i, 150, increaseLength));
+            }
+
+            DrawDocuments(g);
+        }
+
+        public void DrawDocuments(Graphics g)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                var docList = new List<DocumentObject>();
+                foreach (var task in TaskDocuments)
+                {
+                    docList.AddRange(i == 0 ? task.InernalDocuments : task.ExternalDocuments);
+                }
+
+                //расстояние между стрелочками(документами)
+                var increaseLength = Workplace.GetIncreaseLength(docList.Count);
+
+                for (int j = 0; j < docList.Count; j++)
+                {
+                    docList[j].DrawObject(g, Workplace.CoordX, Workplace.CoordY + increaseLength * (j + 1));
+                }
+            }
         }
 
         public BaseObject GetObject(int x, int y)
@@ -115,8 +141,8 @@ namespace Information_analysis_of_university.Models
             else
             {
                 var newList = new List<TaskResponsibilityObject>();
-                newList.AddRange(InernalTasks);
-                newList.AddRange(ExternalTasks);
+                //newList.AddRange(InernalTasks);
+                //newList.AddRange(ExternalTasks);
                 foreach (var item in newList)
                 {
                     if (item.IsCurrentObject(x, y))

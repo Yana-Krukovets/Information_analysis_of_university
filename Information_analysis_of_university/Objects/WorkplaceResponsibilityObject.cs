@@ -29,7 +29,7 @@ namespace Information_analysis_of_university.Objects
 
         public override void DrawText(Graphics g, int x, int y, string text)
         {
-            g.DrawString(text, new Font("Calibri", 13, FontStyle.Bold), new SolidBrush(Color.Brown), new RectangleF(x, y, x + Size, y+Size+2/3));
+            g.DrawString(text, new Font("Calibri", 13, FontStyle.Bold), new SolidBrush(Color.Brown), new RectangleF(x, y - 20, x + Size, y + Size + 2 / 3));
         }
 
         public override void Drag(Point pt, System.Windows.Forms.Form wnd)
