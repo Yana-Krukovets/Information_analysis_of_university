@@ -134,7 +134,9 @@ namespace Information_analysis_of_university.Models
                     y = WorkPlace.CoordY + 3 * documentStreams2.Count * (j * 10) / documentStreams2.Count;
                     documentStreams2[j].DrawObject(g, WorkPlace.CoordX - 540, y);
                     g.DrawLine(pen, WorkPlace.CoordX, Y, WorkPlace.CoordX - 100, y);
-                                                       
+                    y2 = documentStreams1[j].CoordY - 30 + 6 * docFunction2.Count * (j * 10) / docFunction2.Count;
+                    docFunction2[j].DrawObject(g, documentStreams2[j].CoordX, y2 - 30);
+                    g.DrawLine(pen, documentStreams2[j].CoordX + 100, y2, documentStreams2[j].CoordX + 220, y);                                   
                 }
               
             }

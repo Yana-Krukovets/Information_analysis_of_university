@@ -74,6 +74,7 @@ namespace Information_analysis_of_university.Objects
             x1 = X + Size;
             g.DrawLine(pen, x1, Y, x1 + Size, Y);
             g.FillPolygon(new SolidBrush(Color.Black), new Point[] { new Point(x1 + Size, Y), GetNewPoint(155, x1 + Size, Y), GetNewPoint(205, x1 + Size, Y) });
+            g.FillPolygon(new SolidBrush(Color.Black), new Point[] { new Point(x1, Y), GetNewPoint(155, x1, Y), GetNewPoint(205, x1, Y) });
             DrawText(g, x1, Y, Name);
         }
 
