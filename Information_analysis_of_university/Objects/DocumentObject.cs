@@ -9,15 +9,23 @@ using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
+    public enum DocumentType
+    {
+        InputOutput = 1,
+        Input = 2,
+        Output = 3
+    }
+
     public class DocumentObject : BaseDocumentObject
     {
         //направление стрелочки
         [Browsable(false)]
-        public bool IsWayTo { get; set; }   //true - стрелка входит
+        public DocumentType IsWayTo { get; set; }   //true - стрелка входит
 
-        public DocumentObject(Document document, bool isWayTo) : base(document)
+        public DocumentObject(Document document)
+            : base(document)
         {
-            IsWayTo = isWayTo;
+            if (document.Type != null) IsWayTo = (DocumentType)document.Type;
         }
 
         public override void DrawObject(Graphics g, int? x, int? y)
@@ -25,29 +33,70 @@ namespace Information_analysis_of_university.Objects
             X = x ?? X;
             Y = y ?? Y;
 
-            var pen = new Pen(Color.Black);
-
             var x1 = X;
-            if (IsWayTo)
-                x1 = X - Size;
-            else
-                x1 = X + Size;
 
-            g.DrawLine(pen, x1, Y, x1 + Size, Y);
-            g.FillPolygon(new SolidBrush(Color.Black), new Point[] { new Point(x1 + Size, Y), GetNewPoint(155, x1 + Size, Y), GetNewPoint(205, x1 + Size, Y) });
-            DrawText(g, x1, Y, Name);
+            switch (IsWayTo)
+            {
+                case DocumentType.InputOutput:
+                    x1 = X - Size;
+                    DrawArrow(g, x1);
+                    x1 = X + Size;
+                    DrawArrow(g, x1);
+                    break;
+                case DocumentType.Input:
+                    x1 = X - Size;
+                    DrawArrow(g, x1);
+                    break;
+                case DocumentType.Output:
+                    x1 = X + Size;
+                    DrawArrow(g, x1);
+                    break;
+            }
+        }
+
+        //рисование стрелок
+        private void DrawArrow(Graphics g, int x)
+        {
+            var pen = new Pen(Color.Black);
+            g.DrawLine(pen, x, Y, x + Size, Y);
+            g.FillPolygon(new SolidBrush(Color.Black), new Point[] { new Point(x + Size, Y), GetNewPoint(155, x + Size, Y), GetNewPoint(205, x + Size, Y) });
+            DrawText(g, x, Y, Name);
         }
 
         public override bool IsCurrentObject(int x, int y)
         {
             var x1 = X;
-            if (IsWayTo)
-                x1 = X - Size;
-            else
-                x1 = X + Size;
+            var result = false;
+            switch (IsWayTo)
+            {
+                case DocumentType.InputOutput:
+                    x1 = X - Size;
+                    result = IsThisObject(x, y, x1);
+                    if (!result)
+                    {
+                        x1 = X + Size;
+                        result = IsThisObject(x, y, x1);
+                    }
+                    break;
+
+                case DocumentType.Input:
+                    x1 = X - Size;
+                    result = IsThisObject(x, y, x1);
+                    break;
+
+                case DocumentType.Output:
+                    x1 = X + Size;
+                    result = IsThisObject(x, y, x1);
+                    break;
+            }
+            return result;
+        }
+
+        private bool IsThisObject(int x, int y, int x1)
+        {
             return x > x1 && x < x1 + Size && y > Y - 12 && y < Y + 28;
         }
-       
+
     }
 
 }

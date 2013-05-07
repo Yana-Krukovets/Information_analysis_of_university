@@ -38,3 +38,4 @@ C:\Users\1\Documents\GitHub\Information_analysis_of_university\Information_analy
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.MainForm.resources
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.Properties.Resources.resources
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.csproj.GenerateResource.Cache
+C:\Users\1\Documents\GitHub\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.UserControl1.resources

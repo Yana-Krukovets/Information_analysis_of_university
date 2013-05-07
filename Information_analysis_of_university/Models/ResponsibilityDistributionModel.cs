@@ -120,7 +120,7 @@ namespace Information_analysis_of_university.Models
                 var docList = new List<DocumentObject>();
                 foreach (var task in TaskDocuments)
                 {
-                    docList.AddRange(i == 0 ? task.InernalDocuments : task.ExternalDocuments);
+                    docList.AddRange(task.Documents.Where(x => x.IsWayTo == DocumentType.InputOutput || x.IsWayTo == (DocumentType) (i + 2)));
                 }
 
                 //расстояние между стрелочками(документами)
@@ -128,7 +128,10 @@ namespace Information_analysis_of_university.Models
 
                 for (int j = 0; j < docList.Count; j++)
                 {
+                    var curType = docList[j].IsWayTo;
+                    docList[j].IsWayTo = (DocumentType)(i + 2);
                     docList[j].DrawObject(g, Workplace.CoordX, Workplace.CoordY + increaseLength * (j + 1));
+                    docList[j].IsWayTo = curType;
                 }
             }
         }

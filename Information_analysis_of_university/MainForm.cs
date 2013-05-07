@@ -29,8 +29,6 @@ namespace Information_analysis_of_university
 
         private void DrowModel(ModelBase model)
         {
-            //достаем задачи
-            //достаем документы для этих задач
             //отрисовка
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             var graphics = Graphics.FromImage(pictureBox1.Image);
@@ -39,6 +37,7 @@ namespace Information_analysis_of_university
 
         private void button1_Click(object sender, EventArgs e)
         {
+            CreateNewTab();
             model = new WorkProcessModel();
             DrowModel(model);
         }
@@ -93,7 +92,15 @@ namespace Information_analysis_of_university
             DrowModel(model);
         }
 
-    /*    private void pictureBox1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void CreateNewTab()
+        {
+            var number = tcModelsFrame.TabPages.Count;
+            tcModelsFrame.TabPages.Add(new TabPage() { Name = "newTabPage" + number, Text = "new" + number });
+            //panel1 = new System.Windows.Forms.Panel();
+            //pictureBox1 = new System.Windows.Forms.PictureBox();
+        }
+
+        /*    private void pictureBox1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             var drawObj = model.GetObject(e.X, e.Y);
             if (drawObj != null)
@@ -153,6 +160,12 @@ namespace Information_analysis_of_university
         {
             model = new DataStreamsModel();
             DrowModel(model);
-        }	
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

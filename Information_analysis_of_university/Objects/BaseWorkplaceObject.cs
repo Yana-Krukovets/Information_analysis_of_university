@@ -9,7 +9,7 @@ using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
-    class BaseWorkplaceObject : BaseObject
+    public class BaseWorkplaceObject : BaseObject
     {
         protected bool dragging = false;
         
