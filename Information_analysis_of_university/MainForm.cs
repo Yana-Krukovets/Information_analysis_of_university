@@ -164,7 +164,8 @@ namespace Information_analysis_of_university
 
         private void button7_Click(object sender, EventArgs e)
         {
-
+            model = new DocumentLifeCycleModel();
+            DrowModel(model);
         }
 
     }

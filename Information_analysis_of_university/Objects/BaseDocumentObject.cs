@@ -12,7 +12,7 @@ namespace Information_analysis_of_university.Objects
     public class BaseDocumentObject : BaseObject
     {
         protected bool dragging = false;
-        
+
         //поля из бд
         [ReadOnly(true)]
         public int Id { get; set; }
@@ -28,10 +28,22 @@ namespace Information_analysis_of_university.Objects
         [ReadOnly(true)]
         [DisplayName("Периодичность")]
         public string Frequence { get; set; }
-        
+
         [ReadOnly(true)]
         [DisplayName("Количество полей")]
         public int CountFilds { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("Тип документа")]
+        protected DocumentType DocType { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("Тип документа")]
+        public string DocTypeTitle { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("Внутренний")]
+        public bool IsInner { get; set; }
 
         ////направление стрелочки
         //[Browsable(false)]
@@ -43,7 +55,22 @@ namespace Information_analysis_of_university.Objects
             Name = document.Name;
             Function = document.DocFunction;
             Frequence = document.Frequence;
-           
+
+            if (document.Type != null) DocType = (DocumentType)document.Type;
+            switch (DocType)
+            {
+                case DocumentType.Output:
+                    DocTypeTitle = "Исходящий";
+                    break;
+                case DocumentType.Input:
+                    DocTypeTitle = "Входящий";
+                    break;
+                case DocumentType.InputOutput:
+                    DocTypeTitle = "Входящий-исходящий";
+                    break;
+            }
+
+            IsInner = document.IsExternal == 1;
             //var repo = new BaseDocumentRepository<Field>();
             //CountFilds = repo.ToList().Join(, x => x.Document, Id);
 
@@ -94,7 +121,7 @@ namespace Information_analysis_of_university.Objects
 
         protected Point GetNewPoint(int angle, int x, int y)
         {
-            return new Point((int)Math.Round(x+ 10*Math.Cos(angle * 3.14 / 180), 0), (int)Math.Round(y + 10* Math.Sin(angle * 3.14 / 180), 0));
+            return new Point((int)Math.Round(x + 10 * Math.Cos(angle * 3.14 / 180), 0), (int)Math.Round(y + 10 * Math.Sin(angle * 3.14 / 180), 0));
         }
 
         public virtual bool IsCurrentObject(int x, int y)

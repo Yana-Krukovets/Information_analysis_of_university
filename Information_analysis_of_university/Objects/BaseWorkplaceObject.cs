@@ -25,6 +25,10 @@ namespace Information_analysis_of_university.Objects
         public string DepartmentName { get; set; }
 
         [ReadOnly(true)]
+        [DisplayName("Ответственный за выполнение")]
+        public string ResponsibleWorker { get; set; }
+
+        [ReadOnly(true)]
         [DisplayName("Дата")]
         public DateTime Date { get; set; }
 
@@ -42,6 +46,13 @@ namespace Information_analysis_of_university.Objects
             set { Y = value; }
         }
 
+        [Browsable(false)]
+        public int _Size
+        {
+            get { return Size; }
+            set { Size = value; }
+        }
+
         public BaseWorkplaceObject(Post post)
         {
             Id = post.PostId;
@@ -49,7 +60,11 @@ namespace Information_analysis_of_university.Objects
             DepartmentName = post.Department.Name;
             Date = post.Date;
 
+            Size = 150;
+        }
 
+        protected BaseWorkplaceObject()
+        {
             Size = 150;
         }
 
