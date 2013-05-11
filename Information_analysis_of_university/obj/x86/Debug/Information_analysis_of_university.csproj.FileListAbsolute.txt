@@ -8,6 +8,10 @@ C:\Users\1\Documents\GitHub\Information_analysis_of_university\Information_analy
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.MainForm.resources
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.Properties.Resources.resources
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.UserControl1.resources
+<<<<<<< HEAD
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.csproj.GenerateResource.Cache
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.exe
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.pdb
+=======
+D:\Diplom\Information_analysis_of_university\Information_analysis_of_university\obj\x86\Debug\Information_analysis_of_university.UserControl1.resources
+>>>>>>> 81c31f136924fc174877e1849c78bfe1b1cf4e1e
