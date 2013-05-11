@@ -168,5 +168,11 @@ namespace Information_analysis_of_university
             DrowModel(model);
         }
 
+        private void buttonSQL_Click(object sender, EventArgs e)
+        {
+            var requestSQL = new RequestSQL();
+            requestSQL.Show();
+        }
+
     }
 }

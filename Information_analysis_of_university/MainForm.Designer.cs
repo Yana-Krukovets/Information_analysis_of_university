@@ -330,6 +330,7 @@
             this.buttonSQL.TabIndex = 0;
             this.buttonSQL.Text = "SQL-модифицированые";
             this.buttonSQL.UseVisualStyleBackColor = true;
+            this.buttonSQL.Click += new System.EventHandler(this.buttonSQL_Click);
             // 
             // label4
             // 
