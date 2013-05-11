@@ -22,6 +22,11 @@ namespace Information_analysis_of_university
             documentPropertyGrid.SelectedObject = document;
         }
 
+        private void documentPropertyGrid_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

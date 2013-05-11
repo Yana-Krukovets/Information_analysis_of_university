@@ -33,7 +33,15 @@ namespace Information_analysis_of_university
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             var graphics = Graphics.FromImage(pictureBox1.Image);
             model.Draw(graphics);
-        }    
+        }
+
+        public void DrowModelSQL(ModelBase model, string[] mas)
+        {
+            //отрисовка
+            pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            var graphics = Graphics.FromImage(pictureBox1.Image);
+            model.DrawSQL(graphics, mas);
+        } 
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -171,6 +179,46 @@ namespace Information_analysis_of_university
         {
             model = new DocumentLifeCycleModel();
             DrowModel(model);
+        }
+
+        private void buttonSQL_Click(object sender, EventArgs e)
+        {
+
+            if (model is CapacityWorkingPlaces)
+            {
+                var requestSQL = new RequestSQL<CapacityWorkingPlaces>(model as CapacityWorkingPlaces);
+                requestSQL.Show(this);
+            }
+            if (model is DataStreamsModel)
+            {
+                var requestSQL = new RequestSQL<DataStreamsModel>(model as DataStreamsModel);
+                requestSQL.Show(this);
+            }
+            if (model is DocumentLifeCycleModel)
+            {
+                var requestSQL = new RequestSQL<DocumentLifeCycleModel>(model as DocumentLifeCycleModel);
+                requestSQL.Show(this);
+            }
+            if (model is ResponsibilityDistributionModel)
+            {
+                var requestSQL = new RequestSQL<ResponsibilityDistributionModel>(model as ResponsibilityDistributionModel);
+                requestSQL.Show(this);
+            }
+            if (model is UseCaseModel)
+            {
+                var requestSQL = new RequestSQL<UseCaseModel>(model as UseCaseModel);
+                requestSQL.Show(this);
+            }
+            if (model is WorkProcessModel)
+            {
+                var requestSQL = new RequestSQL<WorkProcessModel>(model as WorkProcessModel);
+                requestSQL.Show(this);
+            }
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
         }
 
     }
