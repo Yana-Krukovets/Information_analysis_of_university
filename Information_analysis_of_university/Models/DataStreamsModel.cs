@@ -28,6 +28,10 @@ namespace Information_analysis_of_university.Models
             coordY2 = new List<int>();
         }
 
+        public override void DrawSQL(Graphics g)
+        {
+        }
+
         public override void Draw(Graphics g)
         {
             var x = 700;

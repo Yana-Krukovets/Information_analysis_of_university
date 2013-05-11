@@ -22,7 +22,11 @@ namespace Information_analysis_of_university
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            var t = SQL.Text;
+            var mas = t.Split('\n');
+            var select = mas[0].Split(',');
+            var from = mas[1].Split(',');
+            var where = mas[2].Split(',');
         }
     }
 }
