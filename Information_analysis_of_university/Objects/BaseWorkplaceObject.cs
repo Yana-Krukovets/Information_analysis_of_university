@@ -17,7 +17,7 @@ namespace Information_analysis_of_university.Objects
         public int Id { get; set; }
 
         [ReadOnly(true)]
-        [DisplayName("Наименование")]
+        [DisplayName("Должность")]
         public string Name { get; set; }
         
         [ReadOnly(true)]
@@ -85,7 +85,7 @@ namespace Information_analysis_of_university.Objects
             return Size*2/(3*(count + 1));
         }
 
-        public bool IsCurrentObject(int x, int y)
+        public virtual bool IsCurrentObject(int x, int y)
         {
             return x > X && x < X + Size && y > Y && y < Y + Size;
         }

@@ -77,6 +77,11 @@ namespace Information_analysis_of_university
                     var docPropertyForm = new PropertyForm<DocumentForWorker>(obj as DocumentForWorker);
                     docPropertyForm.Show(this);
                 }
+                if (obj is WorkplaceLifeElement)
+                {
+                    var docPropertyForm = new PropertyForm<WorkplaceLifeElement>(obj as WorkplaceLifeElement);
+                    docPropertyForm.Show(this);
+                }
             }
         }
 

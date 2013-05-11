@@ -120,7 +120,7 @@ namespace Information_analysis_of_university.Models
                 var docList = new List<DocumentObject>();
                 foreach (var task in TaskDocuments)
                 {
-                    docList.AddRange(task.Documents.Where(x => x.IsWayTo == DocumentType.InputOutput || x.IsWayTo == (DocumentType) (i + 2)));
+                    docList.AddRange(i == 0 ? task.InernalDocuments : task.ExternalDocuments);
                 }
 
                 //расстояние между стрелочками(документами)

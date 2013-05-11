@@ -10,7 +10,8 @@ namespace Information_analysis_of_university.Objects
 {
     public class WorkplaceLifeElement : BaseWorkplaceObject
     {
-        [Browsable(false)]
+        [Browsable(true)]
+        [DisplayName("Внешняя организация")]
         public bool IsExternalOrganization { get; set; }
 
         [Browsable(false)]
@@ -109,6 +110,16 @@ namespace Information_analysis_of_university.Objects
 
             g.DrawPolygon(pen,polygon);
 
+        }
+
+        public override bool IsCurrentObject(int x, int y)
+        {
+            bool result = false;
+            if(IsExternalOrganization)
+                result = x > X && x < X + Size / 2 && y > Y && y < Y + Size;
+            else
+                result = x > X && x < X + Size && y > Y && y < Y + Size / 3;
+            return result;
         }
     }
 }

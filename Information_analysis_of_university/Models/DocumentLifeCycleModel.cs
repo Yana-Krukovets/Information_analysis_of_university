@@ -52,7 +52,15 @@ namespace Information_analysis_of_university.Models
 
         public override BaseObject GetObject(int x, int y)
         {
-            throw new NotImplementedException();
+            BaseObject obj = null;
+            foreach (var cycle in LifeCycles)
+            {
+                obj = cycle.GetObject(x, y);
+                if (obj != null)
+                    break;
+            }
+
+            return obj;
         }
     }
 
@@ -76,8 +84,10 @@ namespace Information_analysis_of_university.Models
         {
             var taskRepository = new BaseDocumentRepository<Task>();
             var task = taskRepository.FirstOrDefault(x => x.TaskId == document.FK_TaskId);
+
+            var workerRepository = new BaseDocumentRepository<Worker>();
             var resposibleWorker =
-                new BaseDocumentRepository<Worker>().FirstOrDefault(x => x.WorkerId == document.FK_ResponsibleId);
+                workerRepository.FirstOrDefault(x => x.WorkerId == document.FK_ResponsibleId);
 
             if (document.Type != null)
             {
@@ -125,7 +135,7 @@ namespace Information_analysis_of_university.Models
 
                         var tempList = new List<Document>();
                         //nextDocuments.Clear();
-                        List<Document> list = documentList;
+                        var list = documentList;
                         tempList.AddRange(nextDocuments.Where(doc => taskList.Any(x => x.TaskId == doc.FK_TaskId) && list.All(x => x.DocumentId != doc.DocumentId)));
 
                         foreach (var doc in tempList)
@@ -159,6 +169,22 @@ namespace Information_analysis_of_university.Models
                 else
                     x += workplace._Size / 2 + 70;
             }
+        }
+
+        public BaseObject GetObject(int x, int y)
+        {
+            BaseObject curObj = null;
+
+            foreach (var item in Workplaces)
+            {
+                if (item.IsCurrentObject(x, y))
+                {
+                    curObj = item;
+                    break;
+                }
+            }
+
+            return curObj;
         }
     }
 }
