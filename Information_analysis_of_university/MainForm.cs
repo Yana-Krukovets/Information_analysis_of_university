@@ -33,7 +33,15 @@ namespace Information_analysis_of_university
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             var graphics = Graphics.FromImage(pictureBox1.Image);
             model.Draw(graphics);
-        }    
+        }
+
+        public void DrowModelSQL(ModelBase model, string[] mas)
+        {
+            //отрисовка
+            pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            var graphics = Graphics.FromImage(pictureBox1.Image);
+            model.DrawSQL(graphics, mas);
+        } 
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -201,6 +209,11 @@ namespace Information_analysis_of_university
                 var requestSQL = new RequestSQL<WorkProcessModel>(model as WorkProcessModel);
                 requestSQL.Show(this);
             }
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
         }
 
     }

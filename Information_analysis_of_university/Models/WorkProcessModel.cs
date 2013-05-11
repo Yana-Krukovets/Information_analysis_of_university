@@ -28,7 +28,7 @@ namespace Information_analysis_of_university.Models
             }
         }
 
-        public override void DrawSQL(Graphics g, string mas)
+        public override void DrawSQL(Graphics g, string[] mas)
         {
         }
 

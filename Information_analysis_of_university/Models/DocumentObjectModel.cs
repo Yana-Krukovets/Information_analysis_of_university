@@ -17,7 +17,7 @@ namespace Information_analysis_of_university.Models
             throw new NotImplementedException();
         }
 
-        public override void DrawSQL(System.Drawing.Graphics g, string mas)
+        public override void DrawSQL(System.Drawing.Graphics g, string[] mas)
         {
             throw new NotImplementedException();
         }
