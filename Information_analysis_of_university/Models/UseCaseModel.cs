@@ -29,6 +29,29 @@ namespace Information_analysis_of_university.Models
 
         public override void DrawSQL(Graphics g, List<string> mas)
         {
+            var x = 50;
+            var y = 100;
+
+            var heignt = 100;
+            var width = 100;
+            foreach (var worker in workerList)
+            {
+                foreach (var item in mas)
+                {
+                    if (item == worker.Worker.Name)
+                    {
+                        worker.Worker.DrawObject(g, x, y);
+                        worker.DrawDocuments(g);
+                        if (x + 5 * width < g.VisibleClipBounds.Width)
+                            x += 3 * width;
+                        else
+                        {
+                            x = 50;
+                            y = y + 3 * heignt / 2;
+                        }
+                    }
+                }
+            }
         }
 
         public override void Draw(Graphics g)
