@@ -52,6 +52,29 @@ namespace Information_analysis_of_university.Models
 
         public override void DrawSQL(Graphics g, List<string> mas)
         {
+            var x = 50;
+            var y = 50;
+
+            var heignt = 100;
+            var width = 150;
+            foreach (var worker in departmentList)
+            {
+                foreach (var item in mas)
+                {
+                    if (item == worker.WorkPlace.Name)
+                    {
+                        worker.WorkPlace.DrawObject(g, x, y);
+                        worker.DrawCount(g, x + 10, y + 10);
+                        if (x + 5 * width < g.VisibleClipBounds.Width)
+                            x += 3 * width;
+                        else
+                        {
+                            x = 50;
+                            y = y + 3 * heignt / 2;
+                        }
+                    }
+                }
+            }
         }
 
         public override BaseObject GetObject(int x, int y)

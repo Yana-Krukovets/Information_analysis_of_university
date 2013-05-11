@@ -38,8 +38,8 @@ namespace Information_analysis_of_university
         public void DrowModelSQL(ModelBase model, List<string> mas)
         {
             //отрисовка
-            pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            var graphics = Graphics.FromImage(pictureBox1.Image);
+            pictureBox2.Image = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+            var graphics = Graphics.FromImage(pictureBox2.Image);
             model.DrawSQL(graphics, mas);
         } 
 
