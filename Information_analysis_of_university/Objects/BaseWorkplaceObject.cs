@@ -24,6 +24,9 @@ namespace Information_analysis_of_university.Objects
         [DisplayName("Подразделение")]
         public string DepartmentName { get; set; }
 
+        [Browsable(false)]
+        public int DepartmentId { get; set; }
+
         [ReadOnly(true)]
         [DisplayName("Ответственный за выполнение")]
         public string ResponsibleWorker { get; set; }
@@ -57,6 +60,7 @@ namespace Information_analysis_of_university.Objects
         {
             Id = post.PostId;
             Name = post.Name;
+            DepartmentId = post.Department.DepartmentId;
             DepartmentName = post.Department.Name;
             Date = post.Date;
 

@@ -26,6 +26,7 @@ namespace Information_analysis_of_university.Objects
             : base(document)
         {
             if (document.Type != null) IsWayTo = (DocumentType)document.Type;
+            
         }
 
         public override void DrawObject(Graphics g, int? x, int? y)

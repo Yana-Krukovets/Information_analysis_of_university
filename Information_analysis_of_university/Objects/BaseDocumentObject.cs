@@ -45,6 +45,12 @@ namespace Information_analysis_of_university.Objects
         [DisplayName("Внутренний")]
         public bool IsInner { get; set; }
 
+        [Browsable(false)]
+        public bool IsAlreadyDrawing { get; set; }
+
+        [Browsable(false)]
+        public WorkplaceLifeElement Workplace { get; set; }   
+
         ////направление стрелочки
         //[Browsable(false)]
         //public bool IsWayTo { get; set; }   //true - стрелка входит
@@ -55,6 +61,9 @@ namespace Information_analysis_of_university.Objects
             Name = document.Name;
             Function = document.DocFunction;
             Frequence = document.Frequence;
+
+            if (document.Task != null)
+                Workplace = new WorkplaceLifeElement(document.Post);
 
             if (document.Type != null) DocType = (DocumentType)document.Type;
             switch (DocType)
@@ -75,6 +84,7 @@ namespace Information_analysis_of_university.Objects
             //CountFilds = repo.ToList().Join(, x => x.Document, Id);
 
             //IsWayTo = isWayTo;
+            IsAlreadyDrawing = false;
             Size = 150;
         }
 
@@ -116,7 +126,7 @@ namespace Information_analysis_of_university.Objects
 
         public override void DrawText(Graphics g, int x, int y, string text)
         {
-            g.DrawString(text, new Font("Calibri", 10), new SolidBrush(Color.Gray), new RectangleF(x, y - 15, Size, 40));
+            g.DrawString(text, new Font("Calibri", 10), new SolidBrush(Color.Gray), new RectangleF(x, y - 15, Size, 20));
         }
 
         protected Point GetNewPoint(int angle, int x, int y)

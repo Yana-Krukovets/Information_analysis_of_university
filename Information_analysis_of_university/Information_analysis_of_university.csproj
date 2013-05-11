@@ -91,11 +91,11 @@
     <Compile Include="RequestSQL.Designer.cs">
       <DependentUpon>RequestSQL.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl1.cs">
+    <Compile Include="NewTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <Compile Include="NewTabControl.Designer.cs">
+      <DependentUpon>NewTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilites\GraphicsExtension.cs" />
     <EmbeddedResource Include="PropertyForm.resx">
@@ -116,8 +116,8 @@
     <EmbeddedResource Include="RequestSQL.resx">
       <DependentUpon>RequestSQL.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl1.resx">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <EmbeddedResource Include="NewTabControl.resx">
+      <DependentUpon>NewTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.Config" />
     <None Include="ClassDiagram1.cd" />

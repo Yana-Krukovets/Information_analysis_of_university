@@ -27,13 +27,13 @@ namespace Information_analysis_of_university
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {}
 
-        private void DrowModel(ModelBase model)
-        {
-            //отрисовка
-            pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            var graphics = Graphics.FromImage(pictureBox1.Image);
-            model.Draw(graphics);
-        }
+        //private void DrowModel(ModelBase model)
+        //{
+        //    //отрисовка
+        //    pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+        //    var graphics = Graphics.FromImage(pictureBox1.Image);
+        //    model.Draw(graphics);
+        //}
 
         public void DrowModelSQL(ModelBase model, string[] mas)
         {
@@ -45,9 +45,9 @@ namespace Information_analysis_of_university
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CreateNewTab();
-            model = new WorkProcessModel();
-            DrowModel(model);
+            CreateNewTab(new WorkProcessModel());
+           // model = new WorkProcessModel();
+           // DrowModel(model);
         }
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -95,20 +95,33 @@ namespace Information_analysis_of_university
 
         private void button2_Click(object sender, EventArgs e)
         {
-            model = new UseCaseModel();
-            DrowModel(model);
+            CreateNewTab(new UseCaseModel());
+            //model = new UseCaseModel();
+            //DrowModel(model);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            model = new CapacityWorkingPlaces();
-            DrowModel(model);
+            CreateNewTab(new CapacityWorkingPlaces());
+            //model = new CapacityWorkingPlaces();
+            //DrowModel(model);
         }
 
-        private void CreateNewTab()
+        public void CreateNewTab(ModelBase m)
         {
-            var number = tcModelsFrame.TabPages.Count;
+            var number = tcModelsFrame.TabPages.Count + 1;
             tcModelsFrame.TabPages.Add(new TabPage() { Name = "newTabPage" + number, Text = "new" + number });
+            tcModelsFrame.TabPages[number - 1].Location = new System.Drawing.Point(4, 22);
+            //this.newTabPage1.Name = "newTabPage1";
+            tcModelsFrame.TabPages[number - 1].Padding = new System.Windows.Forms.Padding(3);
+            tcModelsFrame.TabPages[number - 1].Size = tcModelsFrame.Size;
+            tcModelsFrame.TabPages[number - 1].TabIndex = 0;
+            //this.newTabPage1.Text = "new1";
+            tcModelsFrame.TabPages[number - 1].UseVisualStyleBackColor = true;
+            var newTab = new NewTabControl(m);
+            tcModelsFrame.TabPages[number - 1].Controls.Add(newTab);
+            newTab.Size = new Size(tcModelsFrame.Size.Width - 8, tcModelsFrame.Size.Height - 26);
+            newTab.Anchor = ((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right;
             //panel1 = new System.Windows.Forms.Panel();
             //pictureBox1 = new System.Windows.Forms.PictureBox();
         }
@@ -160,8 +173,9 @@ namespace Information_analysis_of_university
 
         private void button5_Click(object sender, EventArgs e)
         {
-            model = new ResponsibilityDistributionModel();
-            DrowModel(model);
+            CreateNewTab(new ResponsibilityDistributionModel());
+            //model = new ResponsibilityDistributionModel();
+            //DrowModel(model);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -171,14 +185,16 @@ namespace Information_analysis_of_university
 
         private void button4_Click(object sender, EventArgs e)
         {
-            model = new DataStreamsModel();
-            DrowModel(model);
+            CreateNewTab(new DataStreamsModel());
+            //model = new DataStreamsModel();
+            //DrowModel(model);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            model = new DocumentLifeCycleModel();
-            DrowModel(model);
+            CreateNewTab(new DocumentLifeCycleModel());
+            //model = new DocumentLifeCycleModel();
+            //DrowModel(model);
         }
 
         private void buttonSQL_Click(object sender, EventArgs e)

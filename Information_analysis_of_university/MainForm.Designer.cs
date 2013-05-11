@@ -72,17 +72,16 @@
             this.добавитьМодельToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьМодельToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tcModelsFrame = new System.Windows.Forms.TabControl();
-            this.newTabPage1 = new System.Windows.Forms.TabPage();
+            this.button10 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button10 = new System.Windows.Forms.Button();
+            this.newTabPage1 = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tcModelsFrame.SuspendLayout();
-            this.newTabPage1.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.newTabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -451,22 +450,20 @@
             this.tcModelsFrame.Size = new System.Drawing.Size(804, 404);
             this.tcModelsFrame.TabIndex = 6;
             // 
-            // newTabPage1
+            // button10
             // 
-            this.newTabPage1.Controls.Add(this.panel1);
-            this.newTabPage1.Location = new System.Drawing.Point(4, 22);
-            this.newTabPage1.Name = "newTabPage1";
-            this.newTabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.newTabPage1.Size = new System.Drawing.Size(796, 378);
-            this.newTabPage1.TabIndex = 0;
-            this.newTabPage1.Text = "new1";
-            this.newTabPage1.UseVisualStyleBackColor = true;
+            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button10.Location = new System.Drawing.Point(956, 30);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 8;
+            this.button10.Text = "Справка";
+            this.button10.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
@@ -483,15 +480,16 @@
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
             // 
-            // button10
+            // newTabPage1
             // 
-            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button10.Location = new System.Drawing.Point(956, 30);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 8;
-            this.button10.Text = "Справка";
-            this.button10.UseVisualStyleBackColor = true;
+            this.newTabPage1.Controls.Add(this.panel1);
+            this.newTabPage1.Location = new System.Drawing.Point(4, 22);
+            this.newTabPage1.Name = "newTabPage1";
+            this.newTabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.newTabPage1.Size = new System.Drawing.Size(796, 378);
+            this.newTabPage1.TabIndex = 0;
+            this.newTabPage1.Text = "new1";
+            this.newTabPage1.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -513,9 +511,8 @@
             this.menuBox1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.tcModelsFrame.ResumeLayout(false);
-            this.newTabPage1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.newTabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -536,7 +533,6 @@
         private System.Windows.Forms.ToolStripMenuItem добавитьМодельToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem удалитьМодельToolStripMenuItem;
         private System.Windows.Forms.TabControl tcModelsFrame;
-        private System.Windows.Forms.TabPage newTabPage1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -549,8 +545,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem новыйToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
@@ -570,6 +564,9 @@
         private System.Windows.Forms.ToolStripMenuItem модельЖизненногоЦиклаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem объектнаяМодельToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem запросToolStripMenuItem;
+        private System.Windows.Forms.TabPage newTabPage1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

@@ -24,6 +24,13 @@ namespace Information_analysis_of_university.Objects
         [DisplayName("Должность исполнителя")]
         public string PostName { get; set; }
 
+        [ReadOnly(true)]
+        [DisplayName("Подразделение исполнителя")]
+        public string DepartmentName { get; set; }
+
+        [Browsable(false)]
+        public int DepartmentId { get; set; }
+
         [Browsable(false)]
         public int CoordX
         {
@@ -43,8 +50,12 @@ namespace Information_analysis_of_university.Objects
             Id = task.TaskId;
             Name = task.Name;
             PostName = task.Post.Name;
+            if (task.Post.FK_DepartmentId != null)
+            {
+                DepartmentId = (int) task.Post.FK_DepartmentId;
+                DepartmentName = task.Post.Department.Name;
+            }
 
-            
         }
 
         protected BaseTaskObject()

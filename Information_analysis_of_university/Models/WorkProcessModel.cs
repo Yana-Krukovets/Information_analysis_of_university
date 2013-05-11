@@ -56,6 +56,34 @@ namespace Information_analysis_of_university.Models
                 }
             }
 
+            //foreach (var task in taskList)
+            //{
+            //    var documentRepository = new BaseDocumentRepository<Document>();
+            //    foreach (var doc in task.ExternalDocuments)
+            //    {
+            //        if (doc.IsInner)
+            //        {
+            //            var nextDepartment = doc.Workplace.DepartmentId;
+
+            //            var nextDocuments =
+            //                documentRepository.Query(
+            //                    d => d.Name == doc.Name && d.FK_DepartmentIdSource == nextDepartment).ToList();
+
+            //            var nextTaskList = new List<TaskDocument>();
+            //            foreach (var item in taskList)
+            //            {
+            //                foreach (var document in item.InernalDocuments.Where(document => nextDocuments.Any(d => d.DocumentId == document.Id) && nextTaskList.All(t => t != item)))
+            //                {
+            //                    nextTaskList.Add(item);
+            //                }
+            //            }
+
+            //        }
+
+            //    }
+
+            //}
+
 
         }
 
@@ -65,7 +93,7 @@ namespace Information_analysis_of_university.Models
             foreach (var task in taskList)
             {
                 obj = task.GetObject(x, y);
-                if(obj != null)
+                if (obj != null)
                     break;
             }
 
@@ -86,17 +114,48 @@ namespace Information_analysis_of_university.Models
 
             var documentRepository = new BaseDocumentRepository<Document>();
             var documents = documentRepository.Query(x => x.Task.TaskId == Task.Id).ToList();
-           // Documents = documents.Select(x => new DocumentObject(x)).ToList();
+            // Documents = documents.Select(x => new DocumentObject(x)).ToList();
 
             InernalDocuments = documents.Where(x => x.Type == (int)DocumentType.Input || x.Type == (int)DocumentType.InputOutput).Select(x => new DocumentObject(x)).ToList();
             ExternalDocuments = documents.Where(x => x.Type == (int)DocumentType.Output || x.Type == (int)DocumentType.InputOutput).Select(x => new DocumentObject(x)).ToList();
         }
 
-        public void DrawDocuments(Graphics g)
+        //снимаем отметку об отрисовке
+        public void UnmarkingAlreadiDrawing()
         {
             for (int i = 0; i < 2; i++)
             {
-               var docList = i == 0 ? InernalDocuments : ExternalDocuments;
+                var docList = i == 0 ? InernalDocuments : ExternalDocuments;
+                foreach (var item in docList)
+                {
+                    item.IsAlreadyDrawing = false;
+                }
+            }
+        }
+
+        public void DrawDocuments(Graphics g)
+        {
+
+
+
+            //var documentRepository = new BaseDocumentRepository<Document>();
+            //foreach (var doc in ExternalDocuments)
+            //{
+            //    if (doc.IsInner)
+            //    {
+            //        var nextDepartment = doc.Workplace.DepartmentId;
+
+            //        var nextDocuments = documentRepository.Query(
+            //            x => x.Name == doc.Name && x.FK_DepartmentIdSource == nextDepartment).ToList();
+
+
+            //    }
+
+            //}
+
+            for (int i = 0; i < 2; i++)
+            {
+                var docList = i == 0 ? InernalDocuments : ExternalDocuments;
                 //var docList =
                 //    Documents.Where(x => x.IsWayTo == DocumentType.InputOutput || x.IsWayTo == (DocumentType) (i + 2)).
                 //        ToList();
@@ -108,7 +167,7 @@ namespace Information_analysis_of_university.Models
                 for (int j = 0; j < docList.Count; j++)
                 {
                     var curType = docList[j].IsWayTo;
-                    docList[j].IsWayTo = (DocumentType) (i + 2);
+                    docList[j].IsWayTo = (DocumentType)(i + 2);
                     docList[j].DrawObject(g, Task.CoordX, Task.CoordY + increaseLength * (j + 1));
                     docList[j].IsWayTo = curType;
                 }
@@ -129,7 +188,7 @@ namespace Information_analysis_of_university.Models
                 newList.AddRange(ExternalDocuments);
                 foreach (var item in newList)
                 {
-                    if(item.IsCurrentObject(x, y))
+                    if (item.IsCurrentObject(x, y))
                     {
                         curObj = item;
                         break;
