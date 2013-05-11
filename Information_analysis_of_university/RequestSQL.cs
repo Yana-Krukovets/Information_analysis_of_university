@@ -68,6 +68,7 @@ namespace Information_analysis_of_university
                 }
                 if (item == "Модель потоков данных")
                 {
+                    m = new DataStreamsModel();
                     MainForm form = new MainForm();
                     form.Show();
                     form.DrowModelSQL(m, select);

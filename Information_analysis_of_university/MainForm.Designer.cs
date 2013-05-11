@@ -501,7 +501,7 @@
             // 
             this.pictureBox2.Location = new System.Drawing.Point(3, 9);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(475, 258);
+            this.pictureBox2.Size = new System.Drawing.Size(854, 258);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
