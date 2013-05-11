@@ -63,7 +63,6 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -272,7 +271,6 @@
             this.menuBox1.Controls.Add(this.button5);
             this.menuBox1.Controls.Add(this.label3);
             this.menuBox1.Controls.Add(this.button1);
-            this.menuBox1.Controls.Add(this.button6);
             this.menuBox1.Controls.Add(this.label2);
             this.menuBox1.Controls.Add(this.button4);
             this.menuBox1.Controls.Add(this.label1);
@@ -371,15 +369,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(6, 137);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(222, 23);
-            this.button6.TabIndex = 1;
-            this.button6.Text = "Объектная модель";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -391,7 +380,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(6, 108);
+            this.button4.Location = new System.Drawing.Point(6, 137);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(222, 23);
             this.button4.TabIndex = 3;
@@ -411,7 +400,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(6, 79);
+            this.button3.Location = new System.Drawing.Point(6, 96);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(222, 23);
             this.button3.TabIndex = 2;
@@ -556,7 +545,6 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Panel panel1;
