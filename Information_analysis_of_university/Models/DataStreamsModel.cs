@@ -28,7 +28,7 @@ namespace Information_analysis_of_university.Models
             coordY2 = new List<int>();
         }
 
-        public override void DrawSQL(Graphics g, string[] mas)
+        public override void DrawSQL(Graphics g, List<string> mas)
         {
         }
 

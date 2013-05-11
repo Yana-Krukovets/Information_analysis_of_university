@@ -30,7 +30,7 @@ namespace Information_analysis_of_university
             model.Draw(graphics);
         }
 
-        public void DrowModelSQL(ModelBase model, string[] mas)
+        public void DrowModelSQL(ModelBase model, List<string> mas)
         {
             //отрисовка
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);

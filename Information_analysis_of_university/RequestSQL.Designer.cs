@@ -70,6 +70,7 @@
             this.Controls.Add(this.button1);
             this.Name = "RequestSQL";
             this.Text = "RequestSQL";
+         //   this.Load += new System.EventHandler(this.RequestSQL_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
