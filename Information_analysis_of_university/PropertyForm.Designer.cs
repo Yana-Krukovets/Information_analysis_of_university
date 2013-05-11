@@ -40,6 +40,7 @@
             this.documentPropertyGrid.Name = "documentPropertyGrid";
             this.documentPropertyGrid.Size = new System.Drawing.Size(282, 262);
             this.documentPropertyGrid.TabIndex = 0;
+            this.documentPropertyGrid.Click += new System.EventHandler(this.documentPropertyGrid_Click);
             // 
             // PropertyForm
             // 

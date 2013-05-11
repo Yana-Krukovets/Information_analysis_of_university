@@ -1,6 +1,6 @@
 ﻿namespace Information_analysis_of_university
 {
-    partial class RequestSQL
+    partial class RequestSQL<T>
     {
         /// <summary>
         /// Required designer variable.
@@ -41,6 +41,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Построить модель";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
