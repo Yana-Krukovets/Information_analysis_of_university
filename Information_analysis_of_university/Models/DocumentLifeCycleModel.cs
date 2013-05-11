@@ -22,13 +22,18 @@ namespace Information_analysis_of_university.Models
             //для того, чтобы найти их начало жизненного цикла
             var documentsList = documentRepository.ToList().Where(
                 x =>
-                ((x.Type == (byte)DocumentType.Input || x.Type == (byte)DocumentType.InputOutput) && x.IsExternal == 2) ||
+                ((x.Type == (byte)DocumentType.Input || x.Type == (byte)DocumentType.InputOutput)/* && x.IsExternal == 2*/) ||
                 x.Type == (byte)DocumentType.Output);
 
             LifeCycles = new List<LifeCycle>();
+            var usingDocuments = new List<Document>();
             foreach (var document in documentsList)
             {
-                LifeCycles.Add(new LifeCycle(document));
+                if (usingDocuments.All(x => x.DocumentId != document.DocumentId))
+                {
+                    usingDocuments.Add(document);
+                    LifeCycles.Add(new LifeCycle(document, ref usingDocuments));
+                }
             }
         }
 
@@ -56,7 +61,7 @@ namespace Information_analysis_of_university.Models
         public DocumentObject Document { get; set; }
         public List<WorkplaceLifeElement> Workplaces { get; set; }
 
-        public LifeCycle(Document document)
+        public LifeCycle(Document document, ref List<Document> usingDocuments)
         {
             Document = new DocumentObject(document);
 
@@ -64,11 +69,10 @@ namespace Information_analysis_of_university.Models
             //var task = taskRepository.FirstOrDefault(x => x.TaskId == document.FK_TaskId);
             Workplaces = new List<WorkplaceLifeElement>();
             //находим стадии жизненного цикла
-            var usingDocuments = new List<Document> { document };
-            NextPost(document, usingDocuments);
+            NextPost(document, ref usingDocuments);
         }
 
-        private void NextPost(Document document, List<Document> documentList)
+        private void NextPost(Document document, ref List<Document> documentList)
         {
             var taskRepository = new BaseDocumentRepository<Task>();
             var task = taskRepository.FirstOrDefault(x => x.TaskId == document.FK_TaskId);
@@ -97,7 +101,7 @@ namespace Information_analysis_of_university.Models
                     (DocumentType)document.Type == DocumentType.Output)
                 {
                     //для внешних документов запоминаем 
-                    if (document.IsExternal == 2 && document.Destination != null)
+                    if (document.IsExternal == 2 && document.Destination != "")
                         Workplaces.Add(new WorkplaceLifeElement { DepartmentName = document.Destination, IsExternalOrganization = true });
                     else
                     {
@@ -119,21 +123,15 @@ namespace Information_analysis_of_university.Models
                             (x.Type == (int)DocumentType.Input || x.Type == (int)DocumentType.InputOutput) &&
                             x.Name == document.Name).ToList();
 
-                        var tempList = nextDocuments;
-                        nextDocuments.Clear();
-                        nextDocuments.AddRange(tempList.Where(doc => taskList.Any(x => x == doc.Task) && documentList.All(x => x != doc)));
+                        var tempList = new List<Document>();
+                        //nextDocuments.Clear();
+                        List<Document> list = documentList;
+                        tempList.AddRange(nextDocuments.Where(doc => taskList.Any(x => x.TaskId == doc.FK_TaskId) && list.All(x => x.DocumentId != doc.DocumentId)));
 
-                        //                        nextDocuments = (from d in nextDocuments
-                        //                                        join t in taskList on d.FK_TaskId equals t.TaskId
-                        //                                        select d).ToList();
-
-                        //documentList.All(z => z != x) && x.Name == document.Name).
-                        //                            ToList();
-
-                        foreach (var doc in nextDocuments)
+                        foreach (var doc in tempList)
                         {
                             documentList.Add(doc);
-                            NextPost(doc, documentList);
+                            NextPost(doc, ref documentList);
                         }
                     }
                 }
@@ -145,6 +143,9 @@ namespace Information_analysis_of_university.Models
             g.DrawString(Document.Name, new Font("Calibri", 18, FontStyle.Bold), new SolidBrush(Color.Brown), x, y);
 
             y += 25;
+
+            Workplaces[0].IsFirstItem = true;
+            Workplaces[Workplaces.Count - 1].IsFirstItem = false;
             foreach (var workplace in Workplaces)
             {
                 var y1 = y;
@@ -156,7 +157,7 @@ namespace Information_analysis_of_university.Models
                 if (!workplace.IsExternalOrganization)
                     x += 4 * workplace._Size / 3;
                 else
-                    x += workplace._Size/2 + 70; 
+                    x += workplace._Size / 2 + 70;
             }
         }
     }

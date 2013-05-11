@@ -13,7 +13,8 @@ namespace Information_analysis_of_university.Objects
         [Browsable(false)]
         public bool IsExternalOrganization { get; set; }
 
-
+        [Browsable(false)]
+        public bool? IsFirstItem { get; set; }
 
         public WorkplaceLifeElement(Post post)
             : base(post)
@@ -39,29 +40,61 @@ namespace Information_analysis_of_university.Objects
             {
                 //внешняя организация
                 g.DrawRectangle(pen, new Rectangle(X, Y, Size / 2, Size));
-                DrawTextExternal(g, X, Y, DepartmentName);
+                DrawTextExternal(g, X, Y, GetTitle());
             }
             else
             {
                 DrawModelElement(g, X, Y, pen);
-                DrawText(g, X, Y, Name);
+                DrawText(g, X, Y, GetTitle());
             }
+        }
+
+        private string GetTitle()
+        {
+            return String.Format("{0}\n{1} {2}", DepartmentName, Name, ResponsibleWorker);
         }
 
         public void DrawTextExternal(Graphics g, int x, int y, string text)
         {
-            g.DrawString(text, new Font("Calibri", 12, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(x + 10, y + 10, Size / 2 - 20, Size - 20), new StringFormat(StringFormatFlags.DirectionVertical));
+            g.DrawString(text, new Font("Calibri", 12), new SolidBrush(Color.Black), new Rectangle(x + 10, y + 10, Size / 2 - 20, Size - 20), new StringFormat(StringFormatFlags.DirectionVertical));
         }
 
         public override void DrawText(Graphics g, int x, int y, string text)
         {
-            g.DrawString(text, new Font("Calibri", 10, FontStyle.Bold), new SolidBrush(Color.Black), new Rectangle(x, y, Size, Size / 3));
+            g.DrawString(text, new Font("Calibri", 10), new SolidBrush(Color.Black), new Rectangle(x, y, Size, Size / 3));
         }
 
         private void DrawModelElement(Graphics g, int x, int y, Pen pen)
         {
-            g.DrawPolygon(pen,
-                          new PointF[]
+            PointF[] polygon;
+            switch (IsFirstItem)
+            {
+                case true:
+                    polygon = new PointF[]
+                              {
+                                  new PointF(x - Size/3, y), 
+                                  new PointF(x + Size, y),
+                                  new PointF(x + Size + Size/3, y + Size/6), 
+                                  new PointF(x + Size, y + Size/3),
+                                  new PointF(x - Size/3, y + Size/3), 
+                                 // new PointF(x, y + Size/6), 
+                                  new PointF(x - Size/3, y)
+                              };
+                    break;
+                case false:
+                    polygon = new PointF[]
+                              {
+                                  new PointF(x - Size/3, y), 
+                                  new PointF(x + Size, y),
+                                 // new PointF(x + Size + Size/3, y + Size/6), 
+                                  new PointF(x + Size, y + Size/3),
+                                  new PointF(x - Size/3, y + Size/3), 
+                                  new PointF(x, y + Size/6), 
+                                  new PointF(x - Size/3, y)
+                              };
+                    break;
+                default:
+                    polygon = new PointF[]
                               {
                                   new PointF(x - Size/3, y), 
                                   new PointF(x + Size, y),
@@ -70,7 +103,11 @@ namespace Information_analysis_of_university.Objects
                                   new PointF(x - Size/3, y + Size/3), 
                                   new PointF(x, y + Size/6), 
                                   new PointF(x - Size/3, y)
-                              });
+                              };
+                    break;
+            }
+
+            g.DrawPolygon(pen,polygon);
 
         }
     }
