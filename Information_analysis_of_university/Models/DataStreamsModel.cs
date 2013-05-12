@@ -60,7 +60,6 @@ namespace Information_analysis_of_university.Models
                         {
                             if (item.FK_DepartmentIdDestination == WorkPlace.Id)
                                 documentStreams.Add(new DocumentForStreams(item));
-
                         }
                         foreach (var item in documents)
                         {
@@ -91,38 +90,69 @@ namespace Information_analysis_of_university.Models
                             int x1 = 0;
                             for (int j = 0; j < documentStreamsRepeat.Count; j++)
                             {
-                                y = WorkPlace.CoordY + 3 * documentStreamsRepeat.Count * (j * 10) / documentStreamsRepeat.Count;
-                                documentStreamsRepeat[j].DrawObject(g, WorkPlace.CoordX - 540, y);
-                                g.DrawLine(pen, WorkPlace.CoordX, Y, WorkPlace.CoordX - 100, y);
-                                coordX2.Add(WorkPlace.CoordX - 320);
-                                coordY2.Add(y);
+                                foreach (var a in mas)
+                                {
+                                    if (a == documentStreamsRepeat[j].Name)
+                                    {
+                                        y = WorkPlace.CoordY + 3 * documentStreamsRepeat.Count * (j * 10) / documentStreamsRepeat.Count;
+                                        documentStreamsRepeat[j].DrawObject(g, WorkPlace.CoordX - 540, y);
+                                        g.DrawLine(pen, WorkPlace.CoordX, Y, WorkPlace.CoordX - 100, y);
+                                        coordX2.Add(WorkPlace.CoordX - 320);
+                                        coordY2.Add(y);
+                                    }
+                                }
                             }
                             for (int j = 0; j < documentStreams1.Count; j++)
                             {
-                                y = WorkPlace.CoordY + 3 * documentStreams1.Count * (j * 10) / documentStreams1.Count;
-                                documentStreams1[j].DrawObject(g, WorkPlace.CoordX, y);
-                                g.DrawLine(pen, X + 100, Y, X + 220, y);
-                                y2 = documentStreams1[j].CoordY - 30 + 6 * docFunction1.Count * (j * 10) / docFunction1.Count;
-                                docFunction1[j].DrawObject(g, documentStreams1[j].CoordX + 500, y2 - 30);
-                                g.DrawLine(pen, documentStreams1[j].CoordX + 440, y, documentStreams1[j].CoordX + 500, y2);
-                                if (documentStreams1[j].FK_DepartmentIdSource != null)
+                                foreach (var b in mas)
                                 {
-                                    x1 = documentStreams1[j].CoordX + 900;
-                                    g.DrawLine(pen, documentStreams1[j].CoordX + 600, y2, x1 - j * 10, y2);
-                                    coordX1.Add(x1 - j * 10);
-                                    coordY1.Add(y2);
+                                    if (b == documentStreams1[j].Name)
+                                    {
+                                        y = WorkPlace.CoordY + 3 * documentStreams1.Count * (j * 10) / documentStreams1.Count;
+                                        documentStreams1[j].DrawObject(g, WorkPlace.CoordX, y);
+                                        g.DrawLine(pen, X + 100, Y, X + 220, y);
+                                        y2 = documentStreams1[j].CoordY - 30 + 6 * docFunction1.Count * (j * 10) / docFunction1.Count;
+
+                                        foreach (var b1 in mas)
+                                        {
+                                            if (b1 == docFunction1[j].Function)
+                                            {
+                                                docFunction1[j].DrawObject(g, documentStreams1[j].CoordX + 500, y2 - 30);
+                                                g.DrawLine(pen, documentStreams1[j].CoordX + 440, y, documentStreams1[j].CoordX + 500, y2);
+                                                if (documentStreams1[j].FK_DepartmentIdSource != null)
+                                                {
+                                                    x1 = documentStreams1[j].CoordX + 900;
+                                                    g.DrawLine(pen, documentStreams1[j].CoordX + 600, y2, x1 - j * 10, y2);
+                                                    coordX1.Add(x1 - j * 10);
+                                                    coordY1.Add(y2);
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                             for (int j = 0; j < documentStreams2.Count; j++)
                             {
-                                y = WorkPlace.CoordY + 3 * documentStreams2.Count * (j * 10) / documentStreams2.Count;
-                                documentStreams2[j].DrawObject(g, WorkPlace.CoordX - 540, y);
-                                g.DrawLine(pen, WorkPlace.CoordX, Y, WorkPlace.CoordX - 100, y);
-                                if (docFunction2.Count != 0)
+                                foreach (var b2 in mas)
                                 {
-                                    y2 = documentStreams2[j].CoordY - 30 + 6 * docFunction2.Count * (j * 10) / docFunction2.Count;
-                                    docFunction2[j].DrawObject(g, documentStreams2[j].CoordX, y2 - 30);
-                                    g.DrawLine(pen, documentStreams2[j].CoordX + 100, y2, documentStreams2[j].CoordX + 220, y);
+                                    if (b2 == documentStreams2[j].Name)
+                                    {
+                                        y = WorkPlace.CoordY + 3 * documentStreams2.Count * (j * 10) / documentStreams2.Count;
+                                        documentStreams2[j].DrawObject(g, WorkPlace.CoordX - 540, y);
+                                        g.DrawLine(pen, WorkPlace.CoordX, Y, WorkPlace.CoordX - 100, y);
+                                        if (docFunction2.Count != 0)
+                                        {
+                                            foreach (var b3 in mas)
+                                            {
+                                                if (b3 == docFunction2[j].Function)
+                                                {
+                                                    y2 = documentStreams2[j].CoordY - 30 + 6 * docFunction2.Count * (j * 10) / docFunction2.Count;
+                                                    docFunction2[j].DrawObject(g, documentStreams2[j].CoordX, y2 - 30);
+                                                    g.DrawLine(pen, documentStreams2[j].CoordX + 100, y2, documentStreams2[j].CoordX + 220, y);
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                             var i = 0;
