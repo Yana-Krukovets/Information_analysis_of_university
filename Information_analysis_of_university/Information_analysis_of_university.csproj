@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MasterQueryBuilding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterQueryBuilding.Designer.cs">
+      <DependentUpon>MasterQueryBuilding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CapacityWorkingPlaces.cs" />
     <Compile Include="Models\DocumentLifeCycleModel.cs" />
     <Compile Include="Models\DocumentObjectModel.cs" />
@@ -98,6 +104,9 @@
       <DependentUpon>NewTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilites\GraphicsExtension.cs" />
+    <EmbeddedResource Include="MasterQueryBuilding.resx">
+      <DependentUpon>MasterQueryBuilding.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PropertyForm.resx">
       <DependentUpon>PropertyForm.cs</DependentUpon>
     </EmbeddedResource>

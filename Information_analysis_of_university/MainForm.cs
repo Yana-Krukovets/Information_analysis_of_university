@@ -247,5 +247,11 @@ namespace Information_analysis_of_university
 
         }
 
+        private void buttonMaster_Click(object sender, EventArgs e)
+        {
+            var requestMaster = new MasterQueryBuilding();
+            requestMaster.Show(this);
+        }
+
     }
 }

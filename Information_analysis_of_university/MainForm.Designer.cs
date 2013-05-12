@@ -296,6 +296,7 @@
             this.buttonMaster.TabIndex = 2;
             this.buttonMaster.Text = "Матер построения запросов";
             this.buttonMaster.UseVisualStyleBackColor = true;
+            this.buttonMaster.Click += new System.EventHandler(this.buttonMaster_Click);
             // 
             // button8
             // 
