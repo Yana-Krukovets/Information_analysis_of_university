@@ -253,5 +253,11 @@ namespace Information_analysis_of_university
             requestMaster.Show(this);
         }
 
+        private void buttonQBE_Click(object sender, EventArgs e)
+        {
+            var childForm = new QbeQueryForm();// { MdiParent = this };
+            childForm.Show();
+        }
+
     }
 }

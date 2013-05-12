@@ -35,7 +35,6 @@
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.модельToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,7 +42,6 @@
             this.модельПотоковДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.модельНагруженностиРабочихМестToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.модельВариантовИспользованияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.объектнаяМодельToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.документыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.модельРабочихПроцессовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.модельРаспреденленияОбязательствToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,6 +75,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button10 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -139,12 +138,6 @@
             this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.сохранитьКакToolStripMenuItem.Text = "Сохранить как...";
             // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(162, 22);
-            this.toolStripMenuItem2.Text = "_";
-            // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
@@ -171,8 +164,7 @@
             this.потокиДанныхToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.модельПотоковДанныхToolStripMenuItem,
             this.модельНагруженностиРабочихМестToolStripMenuItem,
-            this.модельВариантовИспользованияToolStripMenuItem,
-            this.объектнаяМодельToolStripMenuItem});
+            this.модельВариантовИспользованияToolStripMenuItem});
             this.потокиДанныхToolStripMenuItem.Name = "потокиДанныхToolStripMenuItem";
             this.потокиДанныхToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.потокиДанныхToolStripMenuItem.Text = "Потоки данных";
@@ -194,12 +186,6 @@
             this.модельВариантовИспользованияToolStripMenuItem.Name = "модельВариантовИспользованияToolStripMenuItem";
             this.модельВариантовИспользованияToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
             this.модельВариантовИспользованияToolStripMenuItem.Text = "Модель вариантов использования";
-            // 
-            // объектнаяМодельToolStripMenuItem
-            // 
-            this.объектнаяМодельToolStripMenuItem.Name = "объектнаяМодельToolStripMenuItem";
-            this.объектнаяМодельToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
-            this.объектнаяМодельToolStripMenuItem.Text = "Объектная модель";
             // 
             // документыToolStripMenuItem
             // 
@@ -282,7 +268,7 @@
             this.menuBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.menuBox1.Location = new System.Drawing.Point(0, 24);
             this.menuBox1.Name = "menuBox1";
-            this.menuBox1.Size = new System.Drawing.Size(232, 426);
+            this.menuBox1.Size = new System.Drawing.Size(232, 425);
             this.menuBox1.TabIndex = 3;
             this.menuBox1.TabStop = false;
             this.menuBox1.Text = "Меню";
@@ -315,6 +301,7 @@
             this.buttonQBE.TabIndex = 1;
             this.buttonQBE.Text = "QBE";
             this.buttonQBE.UseVisualStyleBackColor = true;
+            this.buttonQBE.Click += new System.EventHandler(this.buttonQBE_Click);
             // 
             // button7
             // 
@@ -452,7 +439,7 @@
             this.tcModelsFrame.Location = new System.Drawing.Point(238, 40);
             this.tcModelsFrame.Name = "tcModelsFrame";
             this.tcModelsFrame.SelectedIndex = 0;
-            this.tcModelsFrame.Size = new System.Drawing.Size(804, 404);
+            this.tcModelsFrame.Size = new System.Drawing.Size(804, 403);
             this.tcModelsFrame.TabIndex = 6;
             // 
             // newTabPage1
@@ -461,7 +448,7 @@
             this.newTabPage1.Location = new System.Drawing.Point(4, 22);
             this.newTabPage1.Name = "newTabPage1";
             this.newTabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.newTabPage1.Size = new System.Drawing.Size(796, 378);
+            this.newTabPage1.Size = new System.Drawing.Size(796, 377);
             this.newTabPage1.TabIndex = 0;
             this.newTabPage1.Text = "new1";
             this.newTabPage1.UseVisualStyleBackColor = true;
@@ -474,7 +461,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(790, 372);
+            this.panel1.Size = new System.Drawing.Size(790, 371);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -506,13 +493,17 @@
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(159, 6);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1043, 450);
+            this.ClientSize = new System.Drawing.Size(1043, 449);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.tcModelsFrame);
             this.Controls.Add(this.menuBox1);
@@ -566,7 +557,6 @@
         private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьКакToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem видToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem модельToolStripMenuItem;
@@ -574,7 +564,6 @@
         private System.Windows.Forms.ToolStripMenuItem модельПотоковДанныхToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem модельНагруженностиРабочихМестToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem модельВариантовИспользованияToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem объектнаяМодельToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem документыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem модельРабочихПроцессовToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem модельРаспреденленияОбязательствToolStripMenuItem;
@@ -585,6 +574,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
     }
 }
 
