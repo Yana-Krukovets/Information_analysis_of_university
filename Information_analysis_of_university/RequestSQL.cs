@@ -51,20 +51,32 @@ namespace Information_analysis_of_university
             }
             else
             {
-                MessageBox.Show("Модель построить невозможно. Проверьте правильность запроса.");
+                MessageBox.Show("Модель построить невозможно. Проверьте правильность написания ключевых слов запроса(SELECT, FROM).");
             }
         }
 
         public void drawSQLModel(List<string> select, List<string> from)
         {
+            if (from.Count == 0)
+            {
+                MessageBox.Show("Не введено название модели.");
+                return;
+            }
+            if (select.Count == 0)
+            {
+                MessageBox.Show("Не введены элементы для отбражения.");
+                return;
+            }
             foreach (var item in from)
             {
+                int f = 0;
                 if (item == "Модель вариантов использования")
                 {
                     m = new UseCaseModel();
                     MainForm form = new MainForm();
                     form.Show();
                     form.DrowModelSQL(m, select);
+                    f = 1;
                 }
                 if (item == "Модель нагружености рабочих мест")
                 {
@@ -72,6 +84,7 @@ namespace Information_analysis_of_university
                     MainForm form = new MainForm();
                     form.Show();
                     form.DrowModelSQL(m, select);
+                    f = 1;
                 }
                 if (item == "Модель потоков данных")
                 {
@@ -79,15 +92,23 @@ namespace Information_analysis_of_university
                     MainForm form = new MainForm();
                     form.Show();
                     form.DrowModelSQL(m, select);
+                    f = 1;
                 }
-                if (item == "Модель_рабочих_процессов")
+                if (item == "Модель рабочих процессов")
                 {
+                    f = 1;
                 }
-                if (item == "Модель_распредиления_обязательств")
+                if (item == "Модель распредиления обязательств")
                 {
+                    f = 1;
                 }
-                if (item == "Модель_жизненного_цикла")
+                if (item == "Модель жизненного цикла")
                 {
+                    f = 1;
+                }
+                if (f == 0)
+                {
+                    MessageBox.Show("Не верное название модели. Проверьте правильность написания запроса");
                 }
             }
         }
