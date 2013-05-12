@@ -30,6 +30,33 @@ namespace Information_analysis_of_university.Models
 
         public override void DrawSQL(Graphics g, List<string> mas)
         {
+            var x = 150;
+            var y = 50;
+
+            var heignt = 100;
+            var width = 100;
+
+            foreach (var wp in workplaceList)
+            {
+                foreach (var item in mas)
+                {
+                    if (item == wp.Workplace.Name)
+                    {
+                        wp.Workplace.DrawObject(g, x, y);
+
+                        wp.DrawTasks(g);
+
+                        //расчет координат нового квадрата
+                        if (x + 5 * width < g.VisibleClipBounds.Width)
+                            x += 3 * width;
+                        else
+                        {
+                            x = 50;
+                            y = y + 3 * heignt / 2;
+                        }
+                    }
+                }
+            }
         }
 
         public override void Draw(Graphics g)
@@ -55,8 +82,6 @@ namespace Information_analysis_of_university.Models
                     y = y + 3 * heignt / 2;
                 }
             }
-
-
         }
 
         public override BaseObject GetObject(int x, int y)

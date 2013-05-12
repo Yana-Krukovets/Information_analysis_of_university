@@ -101,10 +101,13 @@ namespace Information_analysis_of_university
                     form.Show();
                     form.DrowModelSQL(m, select);
                     f = 1;
-                    f = 1;
                 }
                 if (item == "Модель распредиления обязательств")
                 {
+                    m = new ResponsibilityDistributionModel();
+                    MainForm form = new MainForm();
+                    form.Show();
+                    form.DrowModelSQL(m, select);
                     f = 1;
                 }
                 if (item == "Модель жизненного цикла")
