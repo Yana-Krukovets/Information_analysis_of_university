@@ -22,7 +22,22 @@ namespace Information_analysis_of_university
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            List<string> elem = new List<string>();
+            foreach (Control che in this.Controls)
+            {                
+                if (che.GetType().ToString().IndexOf("CheckBox") > -1)
+                {
+                    CheckBox che1 = (CheckBox)che;
+                    if (che1.Checked == true)
+                    {
+                        elem.Add(che1.Text);    
+                    }
+                }
+            }
+            MainForm form = new MainForm();
+            form.Show();
+            form.DrowModelSQL(model, elem);
+            
         }
 
         private void FormForObjects_Load(object sender, EventArgs e)

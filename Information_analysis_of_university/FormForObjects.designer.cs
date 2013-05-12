@@ -44,17 +44,17 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(420, 455);
+            this.button1.Location = new System.Drawing.Point(366, 455);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(129, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Далее";
+            this.button1.Text = "Построение модели";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(339, 455);
+            this.button2.Location = new System.Drawing.Point(285, 455);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
