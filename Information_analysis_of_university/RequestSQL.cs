@@ -96,6 +96,11 @@ namespace Information_analysis_of_university
                 }
                 if (item == "Модель рабочих процессов")
                 {
+                    m = new WorkProcessModel();
+                    MainForm form = new MainForm();
+                    form.Show();
+                    form.DrowModelSQL(m, select);
+                    f = 1;
                     f = 1;
                 }
                 if (item == "Модель распредиления обязательств")

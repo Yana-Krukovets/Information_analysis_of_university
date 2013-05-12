@@ -30,6 +30,33 @@ namespace Information_analysis_of_university.Models
 
         public override void DrawSQL(Graphics g, List<string> mas)
         {
+            var x = 150;
+            var y = 50;
+
+            var heignt = 150;
+            var width = 150;
+
+            foreach (var task in taskList)
+            {
+                foreach (var item in mas)
+                {
+                    if (item == task.Task.Name)
+                    {
+                        task.Task.DrawObject(g, x, y);
+
+                        task.DrawDocuments(g);
+
+                        //расчет координат нового квадрата
+                        if (x + 5 * width < g.VisibleClipBounds.Width)
+                            x += 3 * width;
+                        else
+                        {
+                            x = 150;
+                            y = y + 3 * heignt / 2;
+                        }
+                    }
+                }
+            }
         }
 
         public override void Draw(Graphics g)

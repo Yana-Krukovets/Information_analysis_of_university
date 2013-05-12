@@ -144,7 +144,7 @@ namespace Information_analysis_of_university.Models
                             }
                         }
                         y += 300;
-                    }
+                    }                    
                 }
             }
         }
