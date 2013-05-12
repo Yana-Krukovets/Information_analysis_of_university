@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormForObjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForObjects.designer.cs">
+      <DependentUpon>FormForObjects.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterQueryBuilding.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
       <DependentUpon>NewTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilites\GraphicsExtension.cs" />
+    <EmbeddedResource Include="FormForObjects.resx">
+      <DependentUpon>FormForObjects.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterQueryBuilding.resx">
       <DependentUpon>MasterQueryBuilding.cs</DependentUpon>
     </EmbeddedResource>
