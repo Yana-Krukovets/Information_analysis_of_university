@@ -13,12 +13,14 @@ namespace Information_analysis_of_university
 {
     public partial class MainForm : Form
     {
-        private ModelBase model;      
+        private ModelBase model;
+        private QbeQueryForm qbeForm;
 
         public MainForm()
         {
-            InitializeComponent(); 
-            model = new UseCaseModel();
+            InitializeComponent();
+            qbeForm = new QbeQueryForm(this);
+           // model = new UseCaseModel();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -118,7 +120,7 @@ namespace Information_analysis_of_university
             tcModelsFrame.TabPages[number - 1].TabIndex = 0;
             //this.newTabPage1.Text = "new1";
             tcModelsFrame.TabPages[number - 1].UseVisualStyleBackColor = true;
-            var newTab = new NewTabControl(m);
+            var newTab = new NewTabControl(m, qbeForm);
             tcModelsFrame.TabPages[number - 1].Controls.Add(newTab);
             newTab.Size = new Size(tcModelsFrame.Size.Width - 8, tcModelsFrame.Size.Height - 26);
             newTab.Anchor = ((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right;
@@ -255,8 +257,28 @@ namespace Information_analysis_of_university
 
         private void buttonQBE_Click(object sender, EventArgs e)
         {
-            var childForm = new QbeQueryForm();// { MdiParent = this };
-            childForm.Show();
+            // {/*MdiParent = this, */Location = new Point(232, groupBox1.Size.Height + groupBox1.Location.Y), StartPosition = FormStartPosition.CenterParent};
+
+            try
+            {
+                qbeForm.Show(this);
+            }
+            catch (Exception)
+            {
+                qbeForm = new QbeQueryForm(this);
+                qbeForm.Show(this);
+            }
+            
+        }
+
+        public void ExecuteQbeOery(QbeQueryConteiner query)
+        {
+            pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            var graphics = Graphics.FromImage(pictureBox1.Image);
+            var currentTab = tcModelsFrame.SelectedTab;
+            var control = currentTab.Controls[0] as NewTabControl;//Find("NewTabControl", true);
+            //control.model.DrawQbe();
+            if (control != null) control.model.DrawQbe(graphics, query);
         }
 
     }

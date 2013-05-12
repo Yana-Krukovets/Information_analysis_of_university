@@ -21,5 +21,8 @@ namespace Information_analysis_of_university.Models
         }
 
         public abstract BaseObject GetObject(int x, int y);
+
+        public abstract void DrawQbe(Graphics graphics, QbeQueryConteiner query);
+
     }
 }

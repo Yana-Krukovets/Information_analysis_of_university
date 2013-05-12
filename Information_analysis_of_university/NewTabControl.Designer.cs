@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToQbeQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -54,7 +58,23 @@
             this.pictureBox1.Size = new System.Drawing.Size(1785, 1834);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
             this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToQbeQueryToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(204, 48);
+            // 
+            // addToQbeQueryToolStripMenuItem
+            // 
+            this.addToQbeQueryToolStripMenuItem.Name = "addToQbeQueryToolStripMenuItem";
+            this.addToQbeQueryToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.addToQbeQueryToolStripMenuItem.Text = "Добавить в QBE-запрос";
+            this.addToQbeQueryToolStripMenuItem.Click += new System.EventHandler(this.addToQbeQueryToolStripMenuItem_Click);
             // 
             // NewTabControl
             // 
@@ -65,6 +85,7 @@
             this.Size = new System.Drawing.Size(796, 378);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -73,6 +94,8 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem addToQbeQueryToolStripMenuItem;
        // private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

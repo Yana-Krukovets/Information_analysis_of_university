@@ -81,6 +81,11 @@ namespace Information_analysis_of_university.Models
 
             return obj;
         }
+
+        public override void DrawQbe(Graphics graphics, QbeQueryConteiner query)
+        {
+            //throw new NotImplementedException();
+        }
     }
 
     public class LifeCycle

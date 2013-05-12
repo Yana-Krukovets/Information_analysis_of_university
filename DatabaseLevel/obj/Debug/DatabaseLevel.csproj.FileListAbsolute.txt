@@ -11,3 +11,4 @@ C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\bin
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\bin\Debug\DatabaseLevel.pdb
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\obj\Debug\DatabaseLevel.dll
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\obj\Debug\DatabaseLevel.pdb
+C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\obj\Debug\DatabaseLevel.csprojResolveAssemblyReference.cache

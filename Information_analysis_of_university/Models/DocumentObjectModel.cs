@@ -21,5 +21,10 @@ namespace Information_analysis_of_university.Models
         {
             throw new NotImplementedException();
         }
+
+        public override void DrawQbe(System.Drawing.Graphics graphics, QbeQueryConteiner query)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

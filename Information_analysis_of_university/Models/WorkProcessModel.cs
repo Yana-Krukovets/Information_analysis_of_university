@@ -126,6 +126,21 @@ namespace Information_analysis_of_university.Models
 
             return obj;
         }
+
+        public override void DrawQbe(Graphics graphics, QbeQueryConteiner query)
+        {
+            var taskQuery = query.Where(x => x.TaskId != 0 || x.TaskName != null).ToList();
+            var resultList = new List<TaskDocument>();
+            if(taskQuery.Count != 0)
+            {
+                foreach (var queryItem in taskQuery)
+                {
+                    resultList = taskList.Where(x => (queryItem.Id != 0 && x.Task.Id == queryItem.Id) || (x.Task.Name == queryItem.TaskName)).ToList();
+                }
+            }
+            taskList = resultList;
+            Draw(graphics);
+        }
     }
 
     class TaskDocument

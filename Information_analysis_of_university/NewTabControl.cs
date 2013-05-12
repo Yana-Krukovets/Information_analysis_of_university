@@ -13,11 +13,14 @@ namespace Information_analysis_of_university
 {
     public partial class NewTabControl : UserControl
     {
-        private ModelBase model;
+        public ModelBase model;
+        private BaseObject currentObject;
+        public QbeQueryForm qbeForm;
 
-        public NewTabControl(ModelBase newModel)
+        public NewTabControl(ModelBase newModel, QbeQueryForm form)
         {
             model = newModel;
+            qbeForm = form;
             InitializeComponent();
             DrowModel();
         }
@@ -78,6 +81,31 @@ namespace Information_analysis_of_university
                     var docPropertyForm = new PropertyForm<WorkplaceLifeElement>(obj as WorkplaceLifeElement);
                     docPropertyForm.Show(this);
                 }
+            }
+        }
+
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button != MouseButtons.Right) return;
+            currentObject = model.GetObject(e.X, e.Y);
+            contextMenuStrip1.Show(this, e.X, e.Y);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addToQbeQueryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(currentObject is DocumentObject)
+            {
+                var documentObject = currentObject as DocumentObject;
+                qbeForm.AddDocument(documentObject);
+            }
+            if(currentObject is TaskObject)
+            {
+                qbeForm.AddTask(currentObject as TaskObject);
             }
         }
     }

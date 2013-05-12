@@ -32,32 +32,41 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QbeQueryForm));
             this.dGridQbeQuery = new System.Windows.Forms.DataGridView();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSplitExecute = new System.Windows.Forms.ToolStripSplitButton();
             this.выполнильToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выполнитьДляВсехМоделейToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.documentTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.frequency = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.isElectronic = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isInner = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isExternal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.documentType = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.responsible = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.department = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.post = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.programName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.departmentIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.taskIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.taskNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isProgramDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.qbeQueryItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dGridQbeQuery)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.qbeQueryItemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dGridQbeQuery
@@ -65,17 +74,25 @@
             this.dGridQbeQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.dGridQbeQuery.AutoGenerateColumns = false;
             this.dGridQbeQuery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGridQbeQuery.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.documentTitle,
             this.frequency,
             this.isElectronic,
-            this.isInner,
+            this.isExternal,
             this.documentType,
             this.responsible,
+            this.departmentIdDataGridViewTextBoxColumn,
             this.department,
+            this.postIdDataGridViewTextBoxColumn,
             this.post,
+            this.taskIdDataGridViewTextBoxColumn,
+            this.taskNameDataGridViewTextBoxColumn,
+            this.isProgramDataGridViewCheckBoxColumn,
             this.programName});
+            this.dGridQbeQuery.DataSource = this.qbeQueryItemBindingSource;
             this.dGridQbeQuery.Location = new System.Drawing.Point(0, 28);
             this.dGridQbeQuery.Name = "dGridQbeQuery";
             this.dGridQbeQuery.Size = new System.Drawing.Size(799, 165);
@@ -111,6 +128,31 @@
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            // 
             // bindingNavigatorMoveFirstItem
             // 
             this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -143,16 +185,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorMoveNextItem
@@ -175,26 +210,8 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // toolStripSeparator1
             // 
@@ -204,7 +221,8 @@
             // toolStripSplitExecute
             // 
             this.toolStripSplitExecute.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.выполнильToolStripMenuItem});
+            this.выполнильToolStripMenuItem,
+            this.выполнитьДляВсехМоделейToolStripMenuItem});
             this.toolStripSplitExecute.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitExecute.Image")));
             this.toolStripSplitExecute.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitExecute.Name = "toolStripSplitExecute";
@@ -215,16 +233,33 @@
             // выполнильToolStripMenuItem
             // 
             this.выполнильToolStripMenuItem.Name = "выполнильToolStripMenuItem";
-            this.выполнильToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.выполнильToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.выполнильToolStripMenuItem.Text = "Выполниль";
+            this.выполнильToolStripMenuItem.Click += new System.EventHandler(this.выполнильToolStripMenuItem_Click);
+            // 
+            // выполнитьДляВсехМоделейToolStripMenuItem
+            // 
+            this.выполнитьДляВсехМоделейToolStripMenuItem.Name = "выполнитьДляВсехМоделейToolStripMenuItem";
+            this.выполнитьДляВсехМоделейToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.выполнитьДляВсехМоделейToolStripMenuItem.Text = "Выполнить для всех моделей";
+            this.выполнитьДляВсехМоделейToolStripMenuItem.Click += new System.EventHandler(this.выполнитьДляВсехМоделейToolStripMenuItem_Click);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
             // 
             // documentTitle
             // 
+            this.documentTitle.DataPropertyName = "DocumentName";
             this.documentTitle.HeaderText = "Название документа";
             this.documentTitle.Name = "documentTitle";
             // 
             // frequency
             // 
+            this.frequency.DataPropertyName = "Frequency";
             this.frequency.HeaderText = "Частота заполнения";
             this.frequency.Name = "frequency";
             this.frequency.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -232,16 +267,19 @@
             // 
             // isElectronic
             // 
+            this.isElectronic.DataPropertyName = "IsElectronic";
             this.isElectronic.HeaderText = "Електронный";
             this.isElectronic.Name = "isElectronic";
             // 
-            // isInner
+            // isExternal
             // 
-            this.isInner.HeaderText = "Внешний";
-            this.isInner.Name = "isInner";
+            this.isExternal.DataPropertyName = "IsExternal";
+            this.isExternal.HeaderText = "Внешний";
+            this.isExternal.Name = "isExternal";
             // 
             // documentType
             // 
+            this.documentType.DataPropertyName = "DocumentType";
             this.documentType.HeaderText = "Тип документа";
             this.documentType.Items.AddRange(new object[] {
             "Входящий-исходящий",
@@ -251,23 +289,64 @@
             // 
             // responsible
             // 
+            this.responsible.DataPropertyName = "Responsible";
             this.responsible.HeaderText = "Ответстственный";
             this.responsible.Name = "responsible";
             // 
             // department
             // 
+            this.department.DataPropertyName = "DepartmentName";
             this.department.HeaderText = "Подразделение";
             this.department.Name = "department";
             // 
             // post
             // 
+            this.post.DataPropertyName = "PostName";
             this.post.HeaderText = "Должность";
             this.post.Name = "post";
             // 
             // programName
             // 
+            this.programName.DataPropertyName = "ProgramName";
             this.programName.HeaderText = "Название программы";
             this.programName.Name = "programName";
+            // 
+            // departmentIdDataGridViewTextBoxColumn
+            // 
+            this.departmentIdDataGridViewTextBoxColumn.DataPropertyName = "DepartmentId";
+            this.departmentIdDataGridViewTextBoxColumn.HeaderText = "DepartmentId";
+            this.departmentIdDataGridViewTextBoxColumn.Name = "departmentIdDataGridViewTextBoxColumn";
+            this.departmentIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // postIdDataGridViewTextBoxColumn
+            // 
+            this.postIdDataGridViewTextBoxColumn.DataPropertyName = "PostId";
+            this.postIdDataGridViewTextBoxColumn.HeaderText = "PostId";
+            this.postIdDataGridViewTextBoxColumn.Name = "postIdDataGridViewTextBoxColumn";
+            this.postIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // taskIdDataGridViewTextBoxColumn
+            // 
+            this.taskIdDataGridViewTextBoxColumn.DataPropertyName = "TaskId";
+            this.taskIdDataGridViewTextBoxColumn.HeaderText = "TaskId";
+            this.taskIdDataGridViewTextBoxColumn.Name = "taskIdDataGridViewTextBoxColumn";
+            this.taskIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // taskNameDataGridViewTextBoxColumn
+            // 
+            this.taskNameDataGridViewTextBoxColumn.DataPropertyName = "TaskName";
+            this.taskNameDataGridViewTextBoxColumn.HeaderText = "Задача";
+            this.taskNameDataGridViewTextBoxColumn.Name = "taskNameDataGridViewTextBoxColumn";
+            // 
+            // isProgramDataGridViewCheckBoxColumn
+            // 
+            this.isProgramDataGridViewCheckBoxColumn.DataPropertyName = "IsProgram";
+            this.isProgramDataGridViewCheckBoxColumn.HeaderText = "Заполняется программой";
+            this.isProgramDataGridViewCheckBoxColumn.Name = "isProgramDataGridViewCheckBoxColumn";
+            // 
+            // qbeQueryItemBindingSource
+            // 
+            this.qbeQueryItemBindingSource.DataSource = typeof(Information_analysis_of_university.QbeQueryItem);
             // 
             // QbeQueryForm
             // 
@@ -279,10 +358,12 @@
             this.HelpButton = true;
             this.Name = "QbeQueryForm";
             this.Text = "Панель построения QBE-запросов";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QbeQueryForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dGridQbeQuery)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.qbeQueryItemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,14 +387,22 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitExecute;
         private System.Windows.Forms.ToolStripMenuItem выполнильToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выполнитьДляВсехМоделейToolStripMenuItem;
+        private System.Windows.Forms.BindingSource qbeQueryItemBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn documentTitle;
         private System.Windows.Forms.DataGridViewComboBoxColumn frequency;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isElectronic;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isInner;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isExternal;
         private System.Windows.Forms.DataGridViewComboBoxColumn documentType;
         private System.Windows.Forms.DataGridViewTextBoxColumn responsible;
+        private System.Windows.Forms.DataGridViewTextBoxColumn departmentIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn department;
+        private System.Windows.Forms.DataGridViewTextBoxColumn postIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn post;
+        private System.Windows.Forms.DataGridViewTextBoxColumn taskIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn taskNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isProgramDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn programName;
     }
 }

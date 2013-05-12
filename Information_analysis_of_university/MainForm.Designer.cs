@@ -35,6 +35,7 @@
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.модельToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,21 +70,22 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.добавитьМодельToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьМодельToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tcModelsFrame = new System.Windows.Forms.TabControl();
             this.newTabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button10 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.tcModelsFrame.SuspendLayout();
             this.newTabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -96,7 +98,7 @@
             this.HelpItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1043, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(986, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -137,6 +139,11 @@
             this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
             this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.сохранитьКакToolStripMenuItem.Text = "Сохранить как...";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(159, 6);
             // 
             // выходToolStripMenuItem
             // 
@@ -251,6 +258,7 @@
             // 
             // menuBox1
             // 
+            this.menuBox1.Controls.Add(this.button10);
             this.menuBox1.Controls.Add(this.buttonMaster);
             this.menuBox1.Controls.Add(this.button8);
             this.menuBox1.Controls.Add(this.buttonQBE);
@@ -268,7 +276,7 @@
             this.menuBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.menuBox1.Location = new System.Drawing.Point(0, 24);
             this.menuBox1.Name = "menuBox1";
-            this.menuBox1.Size = new System.Drawing.Size(232, 425);
+            this.menuBox1.Size = new System.Drawing.Size(232, 454);
             this.menuBox1.TabIndex = 3;
             this.menuBox1.TabStop = false;
             this.menuBox1.Text = "Меню";
@@ -430,17 +438,39 @@
             this.удалитьМодельToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.удалитьМодельToolStripMenuItem.Text = "Удалить";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1785, 1834);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.tcModelsFrame);
+            this.groupBox1.Location = new System.Drawing.Point(232, 24);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(754, 454);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            // 
             // tcModelsFrame
             // 
             this.tcModelsFrame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tcModelsFrame.Controls.Add(this.newTabPage1);
-            this.tcModelsFrame.Location = new System.Drawing.Point(238, 40);
+            this.tcModelsFrame.Location = new System.Drawing.Point(6, 19);
             this.tcModelsFrame.Name = "tcModelsFrame";
             this.tcModelsFrame.SelectedIndex = 0;
-            this.tcModelsFrame.Size = new System.Drawing.Size(804, 403);
-            this.tcModelsFrame.TabIndex = 6;
+            this.tcModelsFrame.Size = new System.Drawing.Size(742, 429);
+            this.tcModelsFrame.TabIndex = 7;
             // 
             // newTabPage1
             // 
@@ -448,7 +478,7 @@
             this.newTabPage1.Location = new System.Drawing.Point(4, 22);
             this.newTabPage1.Name = "newTabPage1";
             this.newTabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.newTabPage1.Size = new System.Drawing.Size(796, 377);
+            this.newTabPage1.Size = new System.Drawing.Size(734, 403);
             this.newTabPage1.TabIndex = 0;
             this.newTabPage1.Text = "new1";
             this.newTabPage1.UseVisualStyleBackColor = true;
@@ -461,9 +491,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(790, 371);
+            this.panel1.Size = new System.Drawing.Size(728, 397);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // pictureBox2
             // 
@@ -476,38 +505,23 @@
             // button10
             // 
             this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button10.Location = new System.Drawing.Point(956, 30);
+            this.button10.Location = new System.Drawing.Point(151, 11);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 8;
+            this.button10.TabIndex = 9;
             this.button10.Text = "Справка";
             this.button10.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1785, 1834);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
-            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(159, 6);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1043, 449);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.tcModelsFrame);
+            this.ClientSize = new System.Drawing.Size(986, 478);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuBox1);
             this.Controls.Add(this.menuStrip1);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Анализ информационного обеспечения университета";
@@ -516,11 +530,12 @@
             this.menuBox1.ResumeLayout(false);
             this.menuBox1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.tcModelsFrame.ResumeLayout(false);
             this.newTabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -540,7 +555,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem добавитьМодельToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem удалитьМодельToolStripMenuItem;
-        private System.Windows.Forms.TabControl tcModelsFrame;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -552,7 +566,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.ToolStripMenuItem новыйToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
@@ -570,11 +583,14 @@
         private System.Windows.Forms.ToolStripMenuItem модельЖизненногоЦиклаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem объектнаяМодельToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem запросToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TabControl tcModelsFrame;
         private System.Windows.Forms.TabPage newTabPage1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
     }
 }
 

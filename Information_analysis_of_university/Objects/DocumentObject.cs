@@ -95,7 +95,7 @@ namespace Information_analysis_of_university.Objects
 
         private bool IsThisObject(int x, int y, int x1)
         {
-            return x > x1 && x < x1 + Size && y > Y - 12 && y < Y + 28;
+            return x > x1 && x < x1 + Size && y > Y - 12 && y < Y + 12;
         }
 
     }
