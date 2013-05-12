@@ -14,6 +14,8 @@ namespace Information_analysis_of_university
 {
     public partial class MasterQueryBuilding : Form
     {
+        private ModelBase model;
+        
         public MasterQueryBuilding()
         {
             InitializeComponent();
@@ -41,7 +43,8 @@ namespace Information_analysis_of_university
             if (capacityWorkingPlaces.Checked == true)
             {
                 int i = 10;
-                var obj = new FormForObjects();
+                model = new CapacityWorkingPlaces();
+                var obj = new FormForObjects<CapacityWorkingPlaces>(model as CapacityWorkingPlaces);
                 foreach (var item in departments)
                 {
                     CheckBox check = new CheckBox();
@@ -67,13 +70,14 @@ namespace Information_analysis_of_university
                 check2.Left = 20;
                 check2.Top = check1.Top + 20;
                 obj.Controls.Add(check2);
-                obj.Show();
+                obj.Show(this);
             }
             if (dataStreamsModel.Checked == true)
             {
                 var documentRepository = new BaseDocumentRepository<Document>();
                 int i = 10;
-                var obj = new FormForObjects();
+                model = new DataStreamsModel();
+                var obj = new FormForObjects<DataStreamsModel>(model as DataStreamsModel);
                 foreach (var item in departments)
                 {
                     CheckBox check = new CheckBox();
@@ -117,7 +121,8 @@ namespace Information_analysis_of_university
             if (useCaseModel.Checked == true)
             {
                 int i = 10;
-                var obj = new FormForObjects();
+                model = new UseCaseModel();
+                var obj = new FormForObjects<UseCaseModel>(model as UseCaseModel);
                 var workerRepository = new BaseDocumentRepository<Worker>();
                 var workers = workerRepository.ToList().Select(x => new LittleMan(x));
                 List<TaskForWorker> taskList;
