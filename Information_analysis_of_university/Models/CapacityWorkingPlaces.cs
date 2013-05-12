@@ -100,11 +100,21 @@ namespace Information_analysis_of_university.Models
         public Departments(WorkingPlace workPlace)
         {
             WorkPlace = workPlace;
+            int countTasks = 0, p = 0;
             var taskDocumentRepository = new BaseDocumentRepository<Task>();
             var documentRepository = new BaseDocumentRepository<Document>();
             var documents = documentRepository.Query(x => x.FK_DepartmentIdDestination == WorkPlace.Id).ToList();
             int col = documents.Count();
-            documentCount = new CountTaks(col);
+            foreach (var item in documents)
+            {
+                if (item.FK_TaskId != null && p != item.FK_TaskId)
+                {
+                    p = item.FK_TaskId;
+                    countTasks++;
+                }
+            }
+            documentCount = new CountTaks(col, countTasks);
+          //  tasksCount = new Tasks
 
         }     
       

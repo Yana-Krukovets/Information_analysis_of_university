@@ -16,11 +16,13 @@ namespace Information_analysis_of_university.Objects
         [ReadOnly(true)]
         public int Count { get; set; }
 
-        public CountTaks(int count)
+        [ReadOnly(true)]
+        public int CountTasks { get; set; }
+
+        public CountTaks(int count, int countTasks)
         {
             Count = count;
-       //     Size = 150;
-            
+            CountTasks = countTasks;            
         }
 
         //задаем значение координат
@@ -50,6 +52,7 @@ namespace Information_analysis_of_university.Objects
 
            // g.DrawLine(pen, x1, Y, x1 + Size, Y);
             DrawText(g, x1, Y, "Количество обрабатываемых документов - " + Count.ToString());
+            DrawText(g, x1, Y + 50, "Количество выполняемых задач - " + CountTasks.ToString());
         }
 
         public override void DrawText(Graphics g, int x, int y, string text)
