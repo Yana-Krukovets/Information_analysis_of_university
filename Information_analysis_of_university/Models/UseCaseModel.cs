@@ -14,13 +14,13 @@ namespace Information_analysis_of_university.Models
         private List<NameWorker> workerList;
 
         public UseCaseModel()
-        {           
+        {
             workerList = new List<NameWorker>();
             var workerRepository = new BaseDocumentRepository<Worker>();
 
             var workers = workerRepository.ToList().Select(
-                x => new LittleMan(x));            
-       
+                x => new LittleMan(x));
+
             foreach (var item in workers)
             {
                 workerList.Add(new NameWorker(item));
@@ -41,7 +41,7 @@ namespace Information_analysis_of_university.Models
                     if (item == worker.Worker.Name)
                     {
                         worker.Worker.DrawObject(g, x, y);
-                        worker.DrawDocuments(g);
+                        worker.DrawDocumentsRequest(g, mas);
                         if (x + 5 * width < g.VisibleClipBounds.Width)
                             x += 3 * width;
                         else
@@ -49,6 +49,7 @@ namespace Information_analysis_of_university.Models
                             x = 50;
                             y = y + 3 * heignt / 2;
                         }
+
                     }
                 }
             }
@@ -72,16 +73,16 @@ namespace Information_analysis_of_university.Models
                     x = 50;
                     y = y + 3 * heignt / 2;
                 }
-            } 
-        }      
+            }
+        }
 
         public override BaseObject GetObject(int x, int y)
-         {
+        {
             BaseObject obj = null;
             foreach (var name in workerList)
             {
                 obj = name.GetObject(x, y);
-                if(obj != null)
+                if (obj != null)
                     break;
             }
 
@@ -93,13 +94,13 @@ namespace Information_analysis_of_university.Models
     {
         public LittleMan Worker { get; set; }
         public TaskForWorker Task { get; set; }
-        public List<TaskForWorker> taskList { get; set; }  
+        public List<TaskForWorker> taskList { get; set; }
         public List<DocumentForWorker> Documents { get; set; }
 
         public NameWorker(LittleMan worker)
         {
             Worker = worker;
-            taskList = new List<TaskForWorker>();        
+            taskList = new List<TaskForWorker>();
             Documents = new List<DocumentForWorker>();
             var taskDocumentRepository = new BaseDocumentRepository<Task>();
             var tasks = taskDocumentRepository.Query(x => x.FK_PostId == Worker.PostId).ToList();
@@ -115,7 +116,7 @@ namespace Information_analysis_of_university.Models
                         Documents.Add(new DocumentForWorker(doc));
                     }
                 }
-            }        
+            }
         }
 
         public void DrawDocuments(Graphics g)
@@ -128,19 +129,55 @@ namespace Information_analysis_of_university.Models
                 taskList[i].CoordY = taskList[i].CoordY + y;
                 taskList[i].DrawObject(g, Worker.CoordX + 200, taskList[i].CoordY + increaseLengthTask * (i + 1));
                 var pen = new Pen(Color.Black);
-                g.DrawLine(pen, Worker.CoordX + 50, Worker.CoordY + 20, taskList[i].CoordX-10, taskList[i].CoordY + 30);
+                g.DrawLine(pen, Worker.CoordX + 50, Worker.CoordY + 20, taskList[i].CoordX - 10, taskList[i].CoordY + 30);
                 for (int j = 0; j < Documents.Count; j++)
                 {
                     if (taskList[i].Id == Documents[j].TaskId)
                     {
-                        y = taskList[i].CoordY + 3*Documents.Count * (j * 10) / Documents.Count;
+                        y = taskList[i].CoordY + 3 * Documents.Count * (j * 10) / Documents.Count;
                         Documents[j].DrawObject(g, taskList[i].CoordX, y);
                         g.DrawLine(pen, taskList[i].CoordX + 100, taskList[i].CoordY + 50, taskList[i].CoordX + 220, y);
                     }
                 }
-                taskList[i].CoordY = taskList[i].CoordY + y; 
-                
-            }          
+                taskList[i].CoordY = taskList[i].CoordY + y;
+
+            }
+        }
+
+        public void DrawDocumentsRequest(Graphics g, List<string> mas)
+        {
+            var increaseLengthTask = Worker.GetIncreaseLength(taskList.Count);
+            var y = 100;
+            taskList[0].CoordY = Worker.CoordY - 200;
+            for (int i = 0; i < taskList.Count; i++)
+            {
+                foreach (var item in mas)
+                {
+                    if (item == taskList[i].Name)
+                    {
+                        taskList[i].CoordY = taskList[i].CoordY + y;
+                        taskList[i].DrawObject(g, Worker.CoordX + 200, taskList[i].CoordY + increaseLengthTask * (i + 1));
+                        var pen = new Pen(Color.Black);
+                        g.DrawLine(pen, Worker.CoordX + 50, Worker.CoordY + 20, taskList[i].CoordX - 10, taskList[i].CoordY + 30);
+                        for (int j = 0; j < Documents.Count; j++)
+                        {
+                            if (taskList[i].Id == Documents[j].TaskId)
+                            {
+                                foreach (var item1 in mas)
+                                {
+                                    if (item1 == Documents[j].Name)
+                                    {
+                                        y = taskList[i].CoordY + 3 * Documents.Count * (j * 10) / Documents.Count;
+                                        Documents[j].DrawObject(g, taskList[i].CoordX, y);
+                                        g.DrawLine(pen, taskList[i].CoordX + 100, taskList[i].CoordY + 50, taskList[i].CoordX + 220, y);
+                                    }
+                                }
+                            }
+                        }
+                        taskList[i].CoordY = taskList[i].CoordY + y;
+                    }
+                }
+            }
         }
 
         public BaseObject GetObject(int x, int y)
@@ -152,7 +189,7 @@ namespace Information_analysis_of_university.Models
             {
                 var newList = new List<TaskForWorker>();
                 newList.AddRange(taskList);
-             
+
                 foreach (var item in newList)
                 {
                     if (item.IsCurrentObject(x, y))
@@ -177,7 +214,7 @@ namespace Information_analysis_of_university.Models
                 }
             }
             return curObj;
-        }        
+        }
     }
 }
 

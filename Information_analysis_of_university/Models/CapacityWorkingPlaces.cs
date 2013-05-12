@@ -18,7 +18,7 @@ namespace Information_analysis_of_university.Models
 
             departmentList = new List<Departments>();
             var departmentRepository = new BaseDocumentRepository<Department>();
-  
+
             var departments = departmentRepository.ToList().Select(
                 x => new WorkingPlace(x));
 
@@ -38,7 +38,7 @@ namespace Information_analysis_of_university.Models
             foreach (var worker in departmentList)
             {
                 worker.WorkPlace.DrawObject(g, x, y);
-                worker.DrawCount(g, x+10,y+10);
+                worker.DrawCount(g, x + 10, y + 10);
                 // worker.DrawDocuments(g);
                 if (x + 5 * width < g.VisibleClipBounds.Width)
                     x += 3 * width;
@@ -96,7 +96,7 @@ namespace Information_analysis_of_university.Models
         public WorkingPlace WorkPlace { get; set; }
         public CountTaks documentCount { get; set; }
         public DocumentForWorker doc { get; set; }
-        
+
         public Departments(WorkingPlace workPlace)
         {
             WorkPlace = workPlace;
@@ -114,10 +114,10 @@ namespace Information_analysis_of_university.Models
                 }
             }
             documentCount = new CountTaks(col, countTasks);
-          //  tasksCount = new Tasks
+            //  tasksCount = new Tasks
 
-        }     
-      
+        }
+
         public void DrawCount(Graphics g, int x, int y)
         {
             documentCount.DrawObject(g, x, y);
