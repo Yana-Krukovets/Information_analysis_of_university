@@ -28,24 +28,31 @@ namespace Information_analysis_of_university
             var mas = t.Split('\n');
             var select = mas[0].Split(' ');
             var from = mas[1].Split(' ');
-            Regex pattern = new Regex(@"\[([^\]]+)\]");
-            Regex pattern1 = new Regex(@"(?<=\[)(.*)(?=\])");
-            var select1 = pattern.Matches(mas[0]);
-            var from1 = pattern.Matches(mas[1]);
-            List<string> sel = new List<string>();
-            List<string> fr = new List<string>();
-            for (int i = 0; i < select1.Count; i++)
+            if (select[0] == "SELECT" && from[0] == "FROM")
             {
-                string p = select1[i].Value;
-                sel.Add(pattern1.Match(p).Value);
-            }
-            for (int i = 0; i < from1.Count; i++)
-            {
-                string p = from1[i].Value;
-                fr.Add(pattern1.Match(p).Value);
-            }
 
-            drawSQLModel(sel, fr);
+                Regex pattern = new Regex(@"\[([^\]]+)\]");
+                Regex pattern1 = new Regex(@"(?<=\[)(.*)(?=\])");
+                var select1 = pattern.Matches(mas[0]);
+                var from1 = pattern.Matches(mas[1]);
+                List<string> sel = new List<string>();
+                List<string> fr = new List<string>();
+                for (int i = 0; i < select1.Count; i++)
+                {
+                    string p = select1[i].Value;
+                    sel.Add(pattern1.Match(p).Value);
+                }
+                for (int i = 0; i < from1.Count; i++)
+                {
+                    string p = from1[i].Value;
+                    fr.Add(pattern1.Match(p).Value);
+                }
+                drawSQLModel(sel, fr);
+            }
+            else
+            {
+                MessageBox.Show("Модель построить невозможно. Проверьте правильность запроса.");
+            }
         }
 
         public void drawSQLModel(List<string> select, List<string> from)
