@@ -116,6 +116,56 @@ namespace Information_analysis_of_university
             }
             if (useCaseModel.Checked == true)
             {
+                int i = 10;
+                var obj = new FormForObjects();
+                var workerRepository = new BaseDocumentRepository<Worker>();
+                var workers = workerRepository.ToList().Select(x => new LittleMan(x));
+                List<TaskForWorker> taskList;
+                List<DocumentForWorker> Documents;
+                foreach (var item in workers)
+                {
+                    CheckBox check = new CheckBox();
+                    check.Name = item.Name;
+                    check.Text = item.Name;
+                    check.Width = 300;
+                    check.Left = 20;
+                    check.Top = 20 + i;
+                    i += 20;
+                    obj.Controls.Add(check);
+                    taskList = new List<TaskForWorker>();
+                    Documents = new List<DocumentForWorker>();
+                    var taskDocumentRepository = new BaseDocumentRepository<Task>();
+                    var tasks = taskDocumentRepository.Query(x => x.FK_PostId == item.PostId).ToList();
+                    taskList = tasks.Select(x => new TaskForWorker(x)).ToList();
+                    var documentRepository = new BaseDocumentRepository<Document>();
+                    var documents = documentRepository.ToList();
+                    for (int j = 0; j < tasks.Count; j++)
+                    {
+                        CheckBox check1 = new CheckBox();
+                        check1.Name = tasks[j].Name;
+                        check1.Text = tasks[j].Name;
+                        check1.Width = 300;
+                        check1.Left = 40;
+                        check1.Top = 20 + i;
+                        i += 20;
+                        obj.Controls.Add(check1);
+                        foreach (var doc in documents)
+                        {
+                            if (tasks[j].TaskId == doc.FK_TaskId)
+                            {
+                                CheckBox check2 = new CheckBox();
+                                check2.Name = doc.Name;
+                                check2.Text = doc.Name;
+                                check2.Width = 300;
+                                check2.Left = 60;
+                                check2.Top = 20 + i;
+                                i += 20;
+                                obj.Controls.Add(check2);    
+                            }
+                        }
+                    }        
+                }
+                obj.Show();
             }
             if (WorkProcassModel.Checked == true)
             {
