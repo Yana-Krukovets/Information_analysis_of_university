@@ -39,6 +39,21 @@ namespace Information_analysis_of_university.Models
 
         public override void DrawSQL(Graphics g, List<string> mas)
         {
+            var x = 50;
+            var y = 50;
+
+            foreach (var item in LifeCycles)
+            {
+                foreach (var item1 in mas)
+                {
+                    if (item1 == item.Document.Name)
+                    {
+                        item.Draw(g, x, y);
+                        x = 50;
+                        y += 200;
+                    }
+                }
+            }
         }
 
         public override void Draw(Graphics g)

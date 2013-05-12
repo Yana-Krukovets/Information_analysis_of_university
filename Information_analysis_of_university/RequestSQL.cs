@@ -102,7 +102,7 @@ namespace Information_analysis_of_university
                     form.DrowModelSQL(m, select);
                     f = 1;
                 }
-                if (item == "Модель распредиления обязательств")
+                if (item == "Модель распределения обязательств")
                 {
                     m = new ResponsibilityDistributionModel();
                     MainForm form = new MainForm();
@@ -112,6 +112,10 @@ namespace Information_analysis_of_university
                 }
                 if (item == "Модель жизненного цикла")
                 {
+                    m = new DocumentLifeCycleModel();
+                    MainForm form = new MainForm();
+                    form.Show();
+                    form.DrowModelSQL(m, select);
                     f = 1;
                 }
                 if (f == 0)
