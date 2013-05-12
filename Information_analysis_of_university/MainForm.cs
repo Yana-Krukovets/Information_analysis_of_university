@@ -201,7 +201,6 @@ namespace Information_analysis_of_university
 
         private void buttonSQL_Click(object sender, EventArgs e)
         {
-
             if (model is CapacityWorkingPlaces)
             {
                 var requestSQL = new RequestSQL<CapacityWorkingPlaces>(model as CapacityWorkingPlaces);
