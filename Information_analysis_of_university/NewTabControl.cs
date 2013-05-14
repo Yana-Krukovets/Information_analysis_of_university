@@ -88,7 +88,8 @@ namespace Information_analysis_of_university
         {
             if(e.Button != MouseButtons.Right) return;
             currentObject = model.GetObject(e.X, e.Y);
-            contextMenuStrip1.Show(this, e.X, e.Y);
+            //panel1.AutoScrollPosition.
+                contextMenuStrip1.Show(this, e.X + panel1.AutoScrollPosition.X, e.Y + panel1.AutoScrollPosition.Y);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -107,6 +108,12 @@ namespace Information_analysis_of_university
             {
                 qbeForm.AddTask(currentObject as TaskObject);
             }
+        }
+
+        public Graphics GetGraphics()
+        {
+            pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            return Graphics.FromImage(pictureBox1.Image);
         }
     }
 }

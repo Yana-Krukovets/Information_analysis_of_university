@@ -272,12 +272,21 @@ namespace Information_analysis_of_university
 
         public void ExecuteQbeOery(QbeQueryConteiner query)
         {
-            pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            var graphics = Graphics.FromImage(pictureBox1.Image);
+            //pictureBox2.Image = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+            //var graphics = Graphics.FromImage(pictureBox2.Image);
             var currentTab = tcModelsFrame.SelectedTab;
+            
             var control = currentTab.Controls[0] as NewTabControl;//Find("NewTabControl", true);
-            //control.model.DrawQbe();
-            if (control != null) control.model.DrawQbe(graphics, query);
+            if (control != null)
+            {
+                //не правильно, т.к. изменения происходят и основной можели
+                //нужно сделать глубокое копирование control.model
+                CreateNewTab(control.model);
+                control = tcModelsFrame.TabPages[tcModelsFrame.TabPages.Count - 1].Controls[0] as NewTabControl;
+                tcModelsFrame.TabPages[tcModelsFrame.TabPages.Count - 1].Text = "qbeResult";
+                //control.model.DrawQbe();
+                if (control != null) control.model.DrawQbe(control.GetGraphics(), query);
+            }
         }
 
     }
