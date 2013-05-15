@@ -13,7 +13,10 @@ namespace Information_analysis_of_university
         public string Frequency { get; set; }
         public bool IsElectronic { get; set; }
         public bool IsExternal { get; set; }
+        public string ExternalSource { get; set; }
+        public string ExternalDistination { get; set; }
         public string DocumentType { get; set; }
+        public string DocumentFunction { get; set; }
         public string Responsible { get; set; }
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
