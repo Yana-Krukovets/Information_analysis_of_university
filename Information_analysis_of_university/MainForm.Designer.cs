@@ -53,8 +53,8 @@
             this.Reference = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutProgram = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBox1 = new System.Windows.Forms.GroupBox();
+            this.button10 = new System.Windows.Forms.Button();
             this.buttonMaster = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.buttonQBE = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.buttonSQL = new System.Windows.Forms.Button();
@@ -68,15 +68,15 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.добавитьМодельToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.удалитьМодельToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RenameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tcModelsFrame = new System.Windows.Forms.TabControl();
             this.newTabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.button10 = new System.Windows.Forms.Button();
+            this.CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -260,7 +260,6 @@
             // 
             this.menuBox1.Controls.Add(this.button10);
             this.menuBox1.Controls.Add(this.buttonMaster);
-            this.menuBox1.Controls.Add(this.button8);
             this.menuBox1.Controls.Add(this.buttonQBE);
             this.menuBox1.Controls.Add(this.button7);
             this.menuBox1.Controls.Add(this.buttonSQL);
@@ -282,6 +281,16 @@
             this.menuBox1.Text = "Меню";
             this.menuBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // button10
+            // 
+            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button10.Location = new System.Drawing.Point(151, 11);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 9;
+            this.button10.Text = "Справка";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
             // buttonMaster
             // 
             this.buttonMaster.Location = new System.Drawing.Point(6, 372);
@@ -291,15 +300,6 @@
             this.buttonMaster.Text = "Матер построения запросов";
             this.buttonMaster.UseVisualStyleBackColor = true;
             this.buttonMaster.Click += new System.EventHandler(this.buttonMaster_Click);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(6, 269);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(220, 23);
-            this.button8.TabIndex = 1;
-            this.button8.Text = "Объектная модель";
-            this.button8.UseVisualStyleBackColor = true;
             // 
             // buttonQBE
             // 
@@ -380,7 +380,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(6, 137);
+            this.button4.Location = new System.Drawing.Point(6, 108);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(222, 23);
             this.button4.TabIndex = 3;
@@ -400,7 +400,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(6, 96);
+            this.button3.Location = new System.Drawing.Point(6, 79);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(222, 23);
             this.button3.TabIndex = 2;
@@ -421,22 +421,23 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьМодельToolStripMenuItem,
-            this.удалитьМодельToolStripMenuItem});
+            this.RenameToolStripMenuItem,
+            this.SaveToolStripMenuItem,
+            this.CloseToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(127, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 92);
             // 
-            // добавитьМодельToolStripMenuItem
+            // RenameToolStripMenuItem
             // 
-            this.добавитьМодельToolStripMenuItem.Name = "добавитьМодельToolStripMenuItem";
-            this.добавитьМодельToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.добавитьМодельToolStripMenuItem.Text = "Добавить";
+            this.RenameToolStripMenuItem.Name = "RenameToolStripMenuItem";
+            this.RenameToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.RenameToolStripMenuItem.Text = "Переименовать";
             // 
-            // удалитьМодельToolStripMenuItem
+            // SaveToolStripMenuItem
             // 
-            this.удалитьМодельToolStripMenuItem.Name = "удалитьМодельToolStripMenuItem";
-            this.удалитьМодельToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.удалитьМодельToolStripMenuItem.Text = "Удалить";
+            this.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem";
+            this.SaveToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.SaveToolStripMenuItem.Text = "Сохранить";
             // 
             // pictureBox1
             // 
@@ -466,11 +467,13 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tcModelsFrame.Controls.Add(this.newTabPage1);
+            this.tcModelsFrame.ItemSize = new System.Drawing.Size(42, 18);
             this.tcModelsFrame.Location = new System.Drawing.Point(6, 19);
             this.tcModelsFrame.Name = "tcModelsFrame";
             this.tcModelsFrame.SelectedIndex = 0;
             this.tcModelsFrame.Size = new System.Drawing.Size(742, 429);
             this.tcModelsFrame.TabIndex = 7;
+            this.tcModelsFrame.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tcModelsFrame_MouseClick);
             // 
             // newTabPage1
             // 
@@ -502,15 +505,12 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
-            // button10
+            // CloseToolStripMenuItem
             // 
-            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button10.Location = new System.Drawing.Point(151, 11);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 9;
-            this.button10.Text = "Справка";
-            this.button10.UseVisualStyleBackColor = true;
+            this.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem";
+            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.CloseToolStripMenuItem.Text = "Закрыть";
+            this.CloseToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -553,15 +553,14 @@
         private System.Windows.Forms.Button buttonQBE;
         private System.Windows.Forms.Button buttonSQL;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem добавитьМодельToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem удалитьМодельToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RenameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -591,6 +590,7 @@
         private System.Windows.Forms.TabPage newTabPage1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ToolStripMenuItem CloseToolStripMenuItem;
     }
 }
 

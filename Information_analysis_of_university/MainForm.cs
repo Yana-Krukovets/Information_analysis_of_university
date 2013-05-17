@@ -295,5 +295,28 @@ namespace Information_analysis_of_university
             }
         }
 
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tcModelsFrame_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(tcModelsFrame, e.X, e.Y);
+            }
+        }
+
+
+        //удаляет активную вкладку
+        //Нужно переписать, чтобы закрывалась та, по которой кликали
+        private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var currentPage = tcModelsFrame.SelectedTab;
+            if(MessageBox.Show("Вы действительно хотите закрыть активную вкладку?", "Звкрытие вкладки", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+                tcModelsFrame.TabPages.Remove(currentPage);
+        }
+
     }
 }

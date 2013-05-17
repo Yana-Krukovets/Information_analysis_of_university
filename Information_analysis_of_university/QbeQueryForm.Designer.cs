@@ -59,7 +59,6 @@
             this.btAddToSelect = new System.Windows.Forms.Button();
             this.listboxSelectedMetrics = new System.Windows.Forms.ListBox();
             this.listboxAllMetrics = new System.Windows.Forms.ListBox();
-            this.qbeQueryItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DocumentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.documentFrequency = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.isElectronic = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -71,16 +70,32 @@
             this.responsibleWorker = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.department = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.post = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.taskName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isProgram = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.programName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaskCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DocunentCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.qbeQueryItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.taskName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isProgram = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.запросToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.правкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выполнениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.закрытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.очиститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выполнитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выполнитьДляВсехМоделейToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dGridQbeQuery)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.gbMetrics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qbeQueryItemBindingSource)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dGridQbeQuery
@@ -108,9 +123,9 @@
             this.TaskCount,
             this.DocunentCount});
             this.dGridQbeQuery.DataSource = this.qbeQueryItemBindingSource;
-            this.dGridQbeQuery.Location = new System.Drawing.Point(0, 28);
+            this.dGridQbeQuery.Location = new System.Drawing.Point(0, 52);
             this.dGridQbeQuery.Name = "dGridQbeQuery";
-            this.dGridQbeQuery.Size = new System.Drawing.Size(844, 182);
+            this.dGridQbeQuery.Size = new System.Drawing.Size(844, 181);
             this.dGridQbeQuery.TabIndex = 0;
             // 
             // bindingNavigator1
@@ -132,7 +147,7 @@
             this.bindingNavigatorDeleteItem,
             this.toolStripSeparator1,
             this.toolStripSplitExecute});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 24);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -262,15 +277,17 @@
             // gbMetrics
             // 
             this.gbMetrics.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.gbMetrics.Controls.Add(this.label2);
+            this.gbMetrics.Controls.Add(this.label1);
             this.gbMetrics.Controls.Add(this.btRemoveAllFromSelect);
             this.gbMetrics.Controls.Add(this.btAddAllToSelect);
             this.gbMetrics.Controls.Add(this.btRemoveFromSelect);
             this.gbMetrics.Controls.Add(this.btAddToSelect);
             this.gbMetrics.Controls.Add(this.listboxSelectedMetrics);
             this.gbMetrics.Controls.Add(this.listboxAllMetrics);
-            this.gbMetrics.Location = new System.Drawing.Point(1, 212);
+            this.gbMetrics.Location = new System.Drawing.Point(2, 239);
             this.gbMetrics.Name = "gbMetrics";
-            this.gbMetrics.Size = new System.Drawing.Size(842, 201);
+            this.gbMetrics.Size = new System.Drawing.Size(842, 186);
             this.gbMetrics.TabIndex = 2;
             this.gbMetrics.TabStop = false;
             this.gbMetrics.Text = "Критерии отбора";
@@ -278,7 +295,7 @@
             // btRemoveAllFromSelect
             // 
             this.btRemoveAllFromSelect.Image = ((System.Drawing.Image)(resources.GetObject("btRemoveAllFromSelect.Image")));
-            this.btRemoveAllFromSelect.Location = new System.Drawing.Point(370, 152);
+            this.btRemoveAllFromSelect.Location = new System.Drawing.Point(370, 146);
             this.btRemoveAllFromSelect.Name = "btRemoveAllFromSelect";
             this.btRemoveAllFromSelect.Size = new System.Drawing.Size(57, 32);
             this.btRemoveAllFromSelect.TabIndex = 5;
@@ -288,7 +305,7 @@
             // btAddAllToSelect
             // 
             this.btAddAllToSelect.Image = ((System.Drawing.Image)(resources.GetObject("btAddAllToSelect.Image")));
-            this.btAddAllToSelect.Location = new System.Drawing.Point(370, 115);
+            this.btAddAllToSelect.Location = new System.Drawing.Point(370, 108);
             this.btAddAllToSelect.Name = "btAddAllToSelect";
             this.btAddAllToSelect.Size = new System.Drawing.Size(57, 32);
             this.btAddAllToSelect.TabIndex = 4;
@@ -298,7 +315,7 @@
             // btRemoveFromSelect
             // 
             this.btRemoveFromSelect.Image = ((System.Drawing.Image)(resources.GetObject("btRemoveFromSelect.Image")));
-            this.btRemoveFromSelect.Location = new System.Drawing.Point(370, 78);
+            this.btRemoveFromSelect.Location = new System.Drawing.Point(370, 70);
             this.btRemoveFromSelect.Name = "btRemoveFromSelect";
             this.btRemoveFromSelect.Size = new System.Drawing.Size(57, 32);
             this.btRemoveFromSelect.TabIndex = 3;
@@ -308,7 +325,7 @@
             // btAddToSelect
             // 
             this.btAddToSelect.Image = ((System.Drawing.Image)(resources.GetObject("btAddToSelect.Image")));
-            this.btAddToSelect.Location = new System.Drawing.Point(370, 41);
+            this.btAddToSelect.Location = new System.Drawing.Point(370, 32);
             this.btAddToSelect.Name = "btAddToSelect";
             this.btAddToSelect.Size = new System.Drawing.Size(57, 32);
             this.btAddToSelect.TabIndex = 2;
@@ -323,7 +340,7 @@
             this.listboxSelectedMetrics.FormattingEnabled = true;
             this.listboxSelectedMetrics.Location = new System.Drawing.Point(439, 32);
             this.listboxSelectedMetrics.Name = "listboxSelectedMetrics";
-            this.listboxSelectedMetrics.Size = new System.Drawing.Size(188, 160);
+            this.listboxSelectedMetrics.Size = new System.Drawing.Size(188, 147);
             this.listboxSelectedMetrics.TabIndex = 1;
             // 
             // listboxAllMetrics
@@ -335,12 +352,8 @@
             this.listboxAllMetrics.FormattingEnabled = true;
             this.listboxAllMetrics.Location = new System.Drawing.Point(167, 32);
             this.listboxAllMetrics.Name = "listboxAllMetrics";
-            this.listboxAllMetrics.Size = new System.Drawing.Size(188, 160);
+            this.listboxAllMetrics.Size = new System.Drawing.Size(188, 147);
             this.listboxAllMetrics.TabIndex = 0;
-            // 
-            // qbeQueryItemBindingSource
-            // 
-            this.qbeQueryItemBindingSource.DataSource = typeof(Information_analysis_of_university.QbeQueryItem);
             // 
             // DocumentName
             // 
@@ -423,18 +436,6 @@
             this.post.HeaderText = "Должность";
             this.post.Name = "post";
             // 
-            // taskName
-            // 
-            this.taskName.DataPropertyName = "TaskName";
-            this.taskName.HeaderText = "Задача";
-            this.taskName.Name = "taskName";
-            // 
-            // isProgram
-            // 
-            this.isProgram.DataPropertyName = "IsProgram";
-            this.isProgram.HeaderText = "Заполняется программой";
-            this.isProgram.Name = "isProgram";
-            // 
             // programName
             // 
             this.programName.DataPropertyName = "ProgramName";
@@ -455,15 +456,144 @@
             this.DocunentCount.Name = "DocunentCount";
             this.DocunentCount.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(178, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(168, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Не учитывать при выборке";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(463, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(140, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Включенные критерии";
+            // 
+            // qbeQueryItemBindingSource
+            // 
+            this.qbeQueryItemBindingSource.DataSource = typeof(Information_analysis_of_university.QbeQueryItem);
+            // 
+            // taskName
+            // 
+            this.taskName.DataPropertyName = "TaskName";
+            this.taskName.HeaderText = "Задача";
+            this.taskName.Name = "taskName";
+            // 
+            // isProgram
+            // 
+            this.isProgram.DataPropertyName = "IsProgram";
+            this.isProgram.HeaderText = "Заполняется программой";
+            this.isProgram.Name = "isProgram";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.запросToolStripMenuItem,
+            this.правкаToolStripMenuItem,
+            this.выполнениеToolStripMenuItem,
+            this.помощьToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(844, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // запросToolStripMenuItem
+            // 
+            this.запросToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.открытьToolStripMenuItem,
+            this.сохранитьToolStripMenuItem,
+            this.закрытьToolStripMenuItem});
+            this.запросToolStripMenuItem.Name = "запросToolStripMenuItem";
+            this.запросToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.запросToolStripMenuItem.Text = "Запрос";
+            // 
+            // открытьToolStripMenuItem
+            // 
+            this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.открытьToolStripMenuItem.Text = "Открыть";
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            // 
+            // правкаToolStripMenuItem
+            // 
+            this.правкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.очиститьToolStripMenuItem});
+            this.правкаToolStripMenuItem.Name = "правкаToolStripMenuItem";
+            this.правкаToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.правкаToolStripMenuItem.Text = "Правка";
+            // 
+            // выполнениеToolStripMenuItem
+            // 
+            this.выполнениеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.выполнитьToolStripMenuItem,
+            this.выполнитьДляВсехМоделейToolStripMenuItem1});
+            this.выполнениеToolStripMenuItem.Name = "выполнениеToolStripMenuItem";
+            this.выполнениеToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+            this.выполнениеToolStripMenuItem.Text = "Выполнение";
+            // 
+            // помощьToolStripMenuItem
+            // 
+            this.помощьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.справкаToolStripMenuItem});
+            this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
+            this.помощьToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.помощьToolStripMenuItem.Text = "Помощь";
+            // 
+            // справкаToolStripMenuItem
+            // 
+            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.справкаToolStripMenuItem.Text = "Справка";
+            // 
+            // закрытьToolStripMenuItem
+            // 
+            this.закрытьToolStripMenuItem.Name = "закрытьToolStripMenuItem";
+            this.закрытьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.закрытьToolStripMenuItem.Text = "Закрыть";
+            // 
+            // очиститьToolStripMenuItem
+            // 
+            this.очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
+            this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.очиститьToolStripMenuItem.Text = "Очистить";
+            // 
+            // выполнитьToolStripMenuItem
+            // 
+            this.выполнитьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("выполнитьToolStripMenuItem.Image")));
+            this.выполнитьToolStripMenuItem.Name = "выполнитьToolStripMenuItem";
+            this.выполнитьToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.выполнитьToolStripMenuItem.Text = "Выполнить";
+            // 
+            // выполнитьДляВсехМоделейToolStripMenuItem1
+            // 
+            this.выполнитьДляВсехМоделейToolStripMenuItem1.Name = "выполнитьДляВсехМоделейToolStripMenuItem1";
+            this.выполнитьДляВсехМоделейToolStripMenuItem1.Size = new System.Drawing.Size(235, 22);
+            this.выполнитьДляВсехМоделейToolStripMenuItem1.Text = "Выполнить для всех моделей";
+            // 
             // QbeQueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 414);
+            this.ClientSize = new System.Drawing.Size(844, 424);
             this.Controls.Add(this.gbMetrics);
             this.Controls.Add(this.bindingNavigator1);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.dGridQbeQuery);
             this.HelpButton = true;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "QbeQueryForm";
             this.Text = "Панель построения QBE-запросов";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QbeQueryForm_FormClosing);
@@ -472,7 +602,10 @@
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
             this.gbMetrics.ResumeLayout(false);
+            this.gbMetrics.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qbeQueryItemBindingSource)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -521,5 +654,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn programName;
         private System.Windows.Forms.DataGridViewTextBoxColumn TaskCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn DocunentCount;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem запросToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem закрытьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem правкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem очиститьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выполнениеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выполнитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выполнитьДляВсехМоделейToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
     }
 }
