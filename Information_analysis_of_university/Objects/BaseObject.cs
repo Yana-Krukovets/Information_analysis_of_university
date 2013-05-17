@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Information_analysis_of_university.Objects
@@ -28,6 +29,54 @@ namespace Information_analysis_of_university.Objects
         public abstract void BeginDrag(Point pt);
         public abstract void EndDrag();
         public abstract bool IsDragging();
-      }
 
+        public static string GetDescription(Enum en)
+        {
+            Type type = en.GetType();
+
+            MemberInfo[] memInfo = type.GetMember(en.ToString());
+
+            if (memInfo != null && memInfo.Length > 0)
+            {
+
+                object[] attrs = memInfo[0].GetCustomAttributes(typeof(Description),
+                                                                false);
+
+                if (attrs != null && attrs.Length > 0)
+
+                    return ((Description)attrs[0]).Text;
+
+            }
+
+            return en.ToString();
+        }
+
+        public abstract bool QbeSelect(QbeQueryConteiner query);
+    }
+
+
+    public enum DocumentType
+    {
+        [Description("Входящий-исходящий")]
+        InputOutput = 1,
+        [Description("Входящий")]
+        Input = 2,
+        [Description("Исходящий")]
+        Output = 3
+
+    }
+
+    class Description : Attribute
+    {
+
+        public string Text;
+
+        public Description(string text)
+        {
+
+            Text = text;
+
+        }
+
+    }
 }

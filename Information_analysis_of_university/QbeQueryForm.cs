@@ -19,6 +19,7 @@ namespace Information_analysis_of_university
 
         class QbeMetric
         {
+            public int ColumnNumber { get; set; }
             public string Title { get; set; }
             public string ColumnName { get; set; }
             public bool IsVisible { get; set; }
@@ -33,7 +34,7 @@ namespace Information_analysis_of_university
             dGridQbeQuery.DataSource = QbeItems;
 
             DefaultMetrics();
-            UpdateListBox();
+            
 
             //bindingNavigator1.DataBindings = dGridQbeQuery.DataBindings;
         }
@@ -58,38 +59,76 @@ namespace Information_analysis_of_university
         private void DefaultMetrics()
         {
             Metrics = new List<QbeMetric>();
-            Metrics.Add(new QbeMetric() { Title = "Название документа", IsVisible = true, ColumnName = "DocumentName"});
-            Metrics.Add(new QbeMetric() { Title = "Частота заполнения", IsVisible = true, ColumnName = "Frequency" });
-            Metrics.Add(new QbeMetric() { Title = "Электронный", IsVisible = true, ColumnName = "isElectronic" });
-            Metrics.Add(new QbeMetric() { Title = "Внешний", IsVisible = true, ColumnName = "IsExternal" });
-            Metrics.Add(new QbeMetric() { Title = "Внешний источник", IsVisible = false, ColumnName = "ExternalSource" });
-            Metrics.Add(new QbeMetric() { Title = "Внешний приемник", IsVisible = false, ColumnName = "ExternalDestination" });
-            Metrics.Add(new QbeMetric() { Title = "Тип документа", IsVisible = true, ColumnName = "documentType" });
-            Metrics.Add(new QbeMetric() { Title = "Назначение документа", IsVisible = false, ColumnName = "DocumentFunction" });
-            Metrics.Add(new QbeMetric() { Title = "Ответственный", IsVisible = true, ColumnName = "responsible" });
-            Metrics.Add(new QbeMetric() { Title = "Подразделение", IsVisible = true, ColumnName = "department" });
-            Metrics.Add(new QbeMetric() { Title = "Должность", IsVisible = true, ColumnName = "post" });
-            Metrics.Add(new QbeMetric() { Title = "Задача", IsVisible = true, ColumnName = "taskName" });
-            Metrics.Add(new QbeMetric() { Title = "Заполняется программой", IsVisible = true, ColumnName = "isProgram" });
-            Metrics.Add(new QbeMetric() { Title = "Название программы", IsVisible = true, ColumnName = "programName" });
 
-            //Metrics = new List<Dictionary<string, bool>> { , };
+            var col = dGridQbeQuery.Columns.GetEnumerator();
+            int index = 0;
+            while (col.MoveNext())
+            {
+                var item = col.Current;
+                var colItem = item as DataGridViewColumn;
+                if (colItem != null)
+                    Metrics.Add(new QbeMetric() { Title = colItem.HeaderText, ColumnName = colItem.Name, IsVisible = colItem.Visible, ColumnNumber = index++ });
+            }
+            UpdateListBox();
         }
 
         private void toolStripSplitExecute_ButtonClick(object sender, EventArgs e)
         {
             //null :(
             //var mform = new MainForm();// this.Parent;
-            mForm.ExecuteQbeOery(QbeItems);
+            QbeItems.CurrentItemNumbers = Metrics.Where(x => x.IsVisible).ToDictionary(x => x.ColumnNumber,y => y.ColumnName);
+            mForm.ExecuteQbeQuery(QbeItems);
         }
 
-        public void AddDocument(DocumentObject document)
+       public void AddObjectInQbeQuery(BaseObject currentObject)
         {
-            QbeItems.Add(new QbeQueryItem() { Id = document.Id, DocumentName = document.Name, DocumentType = document.DocTypeTitle });
-            //var index = dGridQbeQuery.NewRowIndex;
-            //dGridQbeQuery.Rows.Add();
-            //dGridQbeQuery.Rows[index].Cells["Id"].Value = document.Id;
-            //dGridQbeQuery.Rows[index].Cells["documentTitle"].Value = document.Name;
+            if (currentObject is BaseDocumentObject)
+            {
+                var documentObject = currentObject as BaseDocumentObject;
+                AddDocument(documentObject);
+            }
+            if (currentObject is TaskObject)
+            {
+                AddTask(currentObject as TaskObject);
+            }
+            if (currentObject is BaseWorkplaceObject)
+            {
+                AddWorkplace(currentObject as BaseWorkplaceObject);
+            }
+        }
+
+       private void AddDocument(BaseDocumentObject document)
+       {
+           QbeItems.Add(new QbeQueryItem()
+           {
+               DocumentName = document.Name,
+               DocumentType = document.DocTypeTitle,
+               DocumentFunction = document.Function,
+               //IsElectronic = document.IsElectronic,
+               Frequency = document.Frequence,
+               IsExternal = !document.IsInner,
+               IsProgram = document.IsProgram,
+               ProgramName = document.ProgramName
+               //ExternalSource = 
+               //ExternalDistination = 
+           });
+       }
+
+        private void AddTask(TaskObject taskObject)
+        {
+            QbeItems.Add(new QbeQueryItem() { TaskName = taskObject.Name });
+        }
+
+        private void AddWorkplace(BaseWorkplaceObject workplaceObject)
+        {
+            QbeItems.Add(new QbeQueryItem()
+                             {
+                                 PostName = workplaceObject.Name,
+                                 DepartmentName = workplaceObject.DepartmentName,
+                                 ResponsibleWorker = workplaceObject.ResponsibleWorker
+                             });
+            
+            
         }
 
         private void QbeQueryForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -109,11 +148,6 @@ namespace Information_analysis_of_university
         private void выполнильToolStripMenuItem_Click(object sender, EventArgs e)
         {
             toolStripSplitExecute.Text = выполнильToolStripMenuItem.Text;
-        }
-
-        internal void AddTask(TaskObject taskObject)
-        {
-            QbeItems.Add(new QbeQueryItem() { TaskId = taskObject.Id, TaskName = taskObject.Name });
         }
 
         private void btAddToSelect_Click(object sender, EventArgs e)
@@ -162,6 +196,6 @@ namespace Information_analysis_of_university
             }
         }
 
-        
+
     }
 }

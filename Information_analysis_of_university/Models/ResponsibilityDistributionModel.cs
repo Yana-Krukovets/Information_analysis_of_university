@@ -87,19 +87,21 @@ namespace Information_analysis_of_university.Models
         public override BaseObject GetObject(int x, int y)
         {
             BaseObject obj = null;
-            //foreach (var task in taskList)
-            //{
-            //    obj = task.GetObject(x, y);
-            //    if (obj != null)
-            //        break;
-            //}
+            foreach (var workplace in workplaceList)
+            {
+                obj = workplace.GetObject(x, y);
+                if (obj != null)
+                    break;
+            }
 
             return obj;
         }
 
         public override void DrawQbe(Graphics graphics, QbeQueryConteiner query)
         {
-            //throw new NotImplementedException();
+            workplaceList = workplaceList.Where(task => task.QbeSelect(query)).ToList();
+
+            Draw(graphics);
         }
     }
 
@@ -122,13 +124,6 @@ namespace Information_analysis_of_university.Models
             {
                 TaskDocuments.Add(new TaskDocument(new TaskObject(task)));
             }
-
-            // тут нет понятия вход и выход задач
-
-            // IsExternal = 1 (входящие) ?
-            // IsExternal = 2 (исходящие) ?
-            //InernalTasks = tasks.Select(x => new TaskResponsibilityObject(x, true)).ToList();
-            //ExternalDocuments = documents.Where(x => x.IsExternal != 2).Select(x => new DocumentObject(x, false)).ToList();
         }
 
         public void DrawTasks(Graphics g)
@@ -138,10 +133,14 @@ namespace Information_analysis_of_university.Models
             for (int i = 0; i < TaskDocuments.Count; i++)
             {
                 if (i < TaskDocuments.Count - 1)
-                    g.DrawLine(new Pen(Color.Black), Workplace.CoordX, Workplace.CoordY + increaseLength * (i + 1), Workplace.CoordX + 150, Workplace.CoordY + increaseLength * (i + 1));
+                {
+                    TaskDocuments[i].Task.CoordX = Workplace.CoordX;
+                    TaskDocuments[i].Task.CoordY = Workplace.CoordY + increaseLength * i;
+                    g.DrawLine(new Pen(Color.Black), Workplace.CoordX, Workplace.CoordY + increaseLength * (i + 1), Workplace.CoordX + Workplace._Size, Workplace.CoordY + increaseLength * (i + 1));
+                }
 
 
-                g.DrawString(TaskDocuments[i].Task.Name, new Font("Calibri", 10), new SolidBrush(Color.Black), new RectangleF(Workplace.CoordX, Workplace.CoordY + increaseLength * i, 150, increaseLength));
+                g.DrawString(TaskDocuments[i].Task.Name, new Font("Calibri", 10), new SolidBrush(Color.Black), new RectangleF(Workplace.CoordX, Workplace.CoordY + increaseLength * i, Workplace._Size, increaseLength));
             }
 
             DrawDocuments(g);
@@ -174,23 +173,53 @@ namespace Information_analysis_of_university.Models
         {
             BaseObject curObj = null;
             if (Workplace.IsCurrentObject(x, y))
-                curObj = Workplace;
+            {
+                if (y <= Workplace.CoordY && y >= Workplace.CoordY - 20)
+                    curObj = Workplace;
+                else
+                {
+                    var increaseLength = Workplace.GetIncreaseLength(TaskDocuments.Count - 1);
+                    for (int i = 0; i < TaskDocuments.Count; i++)
+                    {
+                        if (x >= Workplace.CoordX && x <= Workplace.CoordX + Workplace._Size && y >= Workplace.CoordY + increaseLength * i && y <= Workplace.CoordY + increaseLength * (i + 1))
+                        {
+                            curObj = TaskDocuments[i].Task;
+                            break;
+                        }
+                    }
+                }
+            }
             else
             {
-                var newList = new List<TaskResponsibilityObject>();
-                //newList.AddRange(InernalTasks);
-                //newList.AddRange(ExternalTasks);
+                var newList = TaskDocuments;
+
                 foreach (var item in newList)
                 {
-                    if (item.IsCurrentObject(x, y))
-                    {
-                        curObj = item;
+                    curObj = item.GetObject(x, y);
+                    if(curObj != null)
                         break;
-                    }
                 }
             }
 
             return curObj;
+        }
+
+        public bool QbeSelect(QbeQueryConteiner query)
+        {
+            //для того, чтобы знать удалять ли данную задачу
+            bool isCorrectWorkplace = Workplace.QbeSelect(query);
+            //var isConteinsTaskMetric = query.IsConteinsTaskMetric();
+
+            if (isCorrectWorkplace && query.IsContainsDocumentMetric())
+            {
+                TaskDocuments = TaskDocuments.Where(document => document.QbeSelect(query)).ToList();
+                //ExternalDocuments = ExternalDocuments.Where(document => document.QbeSelect(query)).ToList();
+
+                if (TaskDocuments.Count == 0)
+                    isCorrectWorkplace = false;
+            }
+
+            return isCorrectWorkplace;
         }
 
     }

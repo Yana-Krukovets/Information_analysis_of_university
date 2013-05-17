@@ -4,17 +4,13 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
-    public enum DocumentType
-    {
-        InputOutput = 1,
-        Input = 2,
-        Output = 3
-    }
+    
 
     public class DocumentObject : BaseDocumentObject
     {
@@ -28,6 +24,8 @@ namespace Information_analysis_of_university.Objects
             if (document.Type != null) IsWayTo = (DocumentType)document.Type;
             
         }
+
+        
 
         public override void DrawObject(Graphics g, int? x, int? y)
         {

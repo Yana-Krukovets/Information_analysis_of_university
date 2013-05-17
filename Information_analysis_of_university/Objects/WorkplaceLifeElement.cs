@@ -10,7 +10,7 @@ namespace Information_analysis_of_university.Objects
 {
     public class WorkplaceLifeElement : BaseWorkplaceObject
     {
-        [Browsable(true)]
+        [ReadOnly(true)]
         [DisplayName("Внешняя организация")]
         public bool IsExternalOrganization { get; set; }
 

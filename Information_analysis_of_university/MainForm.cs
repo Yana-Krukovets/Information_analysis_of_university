@@ -20,14 +20,14 @@ namespace Information_analysis_of_university
         {
             InitializeComponent();
             qbeForm = new QbeQueryForm(this);
-           // model = new UseCaseModel();
+            // model = new UseCaseModel();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
-        {      }
+        { }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {}
+        { }
 
         //private void DrowModel(ModelBase model)
         //{
@@ -43,56 +43,62 @@ namespace Information_analysis_of_university
             pictureBox2.Image = new Bitmap(pictureBox2.Width, pictureBox2.Height);
             var graphics = Graphics.FromImage(pictureBox2.Image);
             model.DrawSQL(graphics, mas);
-        } 
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             CreateNewTab(new WorkProcessModel());
-           // model = new WorkProcessModel();
-           // DrowModel(model);
+            // model = new WorkProcessModel();
+            // DrowModel(model);
         }
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             var obj = model.GetObject(e.X, e.Y);
-            if(obj is TaskObject)
+            if (obj is TaskObject)
             {
                 var taskPropertyForm = new PropertyForm<TaskObject>(obj as TaskObject);
                 taskPropertyForm.Show(this);
             }
-            else
+            //else
+            //{
+            if (obj is DocumentObject)
             {
-                if(obj is DocumentObject)
-                {
-                    var docPropertyForm = new PropertyForm<DocumentObject>(obj as DocumentObject);
-                    docPropertyForm.Show(this);
-                }
-                if (obj is TaskForWorker)
-                {
-                    var docPropertyForm = new PropertyForm<TaskForWorker>(obj as TaskForWorker);
-                    docPropertyForm.Show(this);
-                }
-                if (obj is LittleMan)
-                {
-                    var docPropertyForm = new PropertyForm<LittleMan>(obj as LittleMan);
-                    docPropertyForm.Show(this);
-                }
-                if (obj is WorkingPlace)
-                {
-                    var docPropertyForm = new PropertyForm<WorkingPlace>(obj as WorkingPlace);
-                    docPropertyForm.Show(this);
-                }
-                if (obj is DocumentForWorker)
-                {
-                    var docPropertyForm = new PropertyForm<DocumentForWorker>(obj as DocumentForWorker);
-                    docPropertyForm.Show(this);
-                }
-                if (obj is WorkplaceLifeElement)
-                {
-                    var docPropertyForm = new PropertyForm<WorkplaceLifeElement>(obj as WorkplaceLifeElement);
-                    docPropertyForm.Show(this);
-                }
+                var docPropertyForm = new PropertyForm<DocumentObject>(obj as DocumentObject);
+                docPropertyForm.Show(this);
             }
+            if (obj is TaskForWorker)
+            {
+                var docPropertyForm = new PropertyForm<TaskForWorker>(obj as TaskForWorker);
+                docPropertyForm.Show(this);
+            }
+            if (obj is LittleMan)
+            {
+                var docPropertyForm = new PropertyForm<LittleMan>(obj as LittleMan);
+                docPropertyForm.Show(this);
+            }
+            if (obj is WorkingPlace)
+            {
+                var docPropertyForm = new PropertyForm<WorkingPlace>(obj as WorkingPlace);
+                docPropertyForm.Show(this);
+            }
+            if (obj is DocumentForWorker)
+            {
+                var docPropertyForm = new PropertyForm<DocumentForWorker>(obj as DocumentForWorker);
+                docPropertyForm.Show(this);
+            }
+            if (obj is WorkplaceLifeElement)
+            {
+                var docPropertyForm = new PropertyForm<WorkplaceLifeElement>(obj as WorkplaceLifeElement);
+                docPropertyForm.Show(this);
+            }
+            if (obj is WorkplaceResponsibilityObject)
+            {
+                var docPropertyForm = new PropertyForm<WorkplaceLifeElement>(obj as WorkplaceLifeElement);
+                docPropertyForm.Show(this);
+            }
+            //WorkplaceResponsibilityObject
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -267,15 +273,15 @@ namespace Information_analysis_of_university
                 qbeForm = new QbeQueryForm(this);
                 qbeForm.Show(this);
             }
-            
+
         }
 
-        public void ExecuteQbeOery(QbeQueryConteiner query)
+        public void ExecuteQbeQuery(QbeQueryConteiner query)
         {
             //pictureBox2.Image = new Bitmap(pictureBox2.Width, pictureBox2.Height);
             //var graphics = Graphics.FromImage(pictureBox2.Image);
             var currentTab = tcModelsFrame.SelectedTab;
-            
+
             var control = currentTab.Controls[0] as NewTabControl;//Find("NewTabControl", true);
             if (control != null)
             {

@@ -84,7 +84,9 @@ namespace Information_analysis_of_university.Models
 
         public override void DrawQbe(Graphics graphics, QbeQueryConteiner query)
         {
-            //throw new NotImplementedException();
+            LifeCycles = LifeCycles.Where(document => document.QbeSelect(query)).ToList();
+
+            Draw(graphics);
         }
     }
 
@@ -174,6 +176,8 @@ namespace Information_analysis_of_university.Models
 
         public void Draw(Graphics g, int x, int y)
         {
+            Document.CoordX = x;
+            Document.CoordY = y;
             g.DrawString(Document.Name, new Font("Calibri", 18, FontStyle.Bold), new SolidBrush(Color.Brown), x, y);
 
             y += 25;
@@ -198,17 +202,39 @@ namespace Information_analysis_of_university.Models
         public BaseObject GetObject(int x, int y)
         {
             BaseObject curObj = null;
-
-            foreach (var item in Workplaces)
+            if (x >= Document.CoordX && x <= Document.CoordX + 100 && y >=Document.CoordY && y <= Document.CoordY + 25 )
+                curObj = Document;
+            else
             {
-                if (item.IsCurrentObject(x, y))
+                foreach (var item in Workplaces)
                 {
-                    curObj = item;
-                    break;
+                    if (item.IsCurrentObject(x, y))
+                    {
+                        curObj = item;
+                        break;
+                    }
                 }
             }
-
             return curObj;
+        }
+
+        public bool QbeSelect(QbeQueryConteiner query)
+        {
+            //для того, чтобы знать удалять ли данную задачу
+            bool isCorrectDocument = Document.QbeSelect(query);
+            //var isConteinsTaskMetric = query.IsConteinsTaskMetric();
+
+            if (isCorrectDocument && query.IsContainsDocumentMetric())
+            {
+                if (Workplaces.Count(document => document.QbeSelect(query)) == 0)
+                    Workplaces.Clear();
+                //ExternalDocuments = ExternalDocuments.Where(document => document.QbeSelect(query)).ToList();
+
+                if (Workplaces.Count == 0)
+                    isCorrectDocument = false;
+            }
+
+            return isCorrectDocument;
         }
     }
 }

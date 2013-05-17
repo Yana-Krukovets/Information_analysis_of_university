@@ -45,11 +45,23 @@ namespace Information_analysis_of_university.Objects
         [DisplayName("Внутренний")]
         public bool IsInner { get; set; }
 
+        [ReadOnly(true)]
+        [DisplayName("Электронный")]
+        public bool IsElectronic { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("Заполняется программой")]
+        public bool IsProgram { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("Название программы")]
+        public string ProgramName { get; set; }
+
         [Browsable(false)]
         public bool IsAlreadyDrawing { get; set; }
 
         [Browsable(false)]
-        public WorkplaceLifeElement Workplace { get; set; }   
+        public WorkplaceLifeElement Workplace { get; set; }
 
         ////направление стрелочки
         //[Browsable(false)]
@@ -66,20 +78,24 @@ namespace Information_analysis_of_university.Objects
                 Workplace = new WorkplaceLifeElement(document.Post);
 
             if (document.Type != null) DocType = (DocumentType)document.Type;
-            switch (DocType)
-            {
-                case DocumentType.Output:
-                    DocTypeTitle = "Исходящий";
-                    break;
-                case DocumentType.Input:
-                    DocTypeTitle = "Входящий";
-                    break;
-                case DocumentType.InputOutput:
-                    DocTypeTitle = "Входящий-исходящий";
-                    break;
-            }
+            DocTypeTitle = GetDescription(DocType);
+            //switch (DocType)
+            //{
+            //    case DocumentType.Output:
+            //        DocTypeTitle = "Исходящий";
+            //        break;
+            //    case DocumentType.Input:
+            //        DocTypeTitle = "Входящий";
+            //        break;
+            //    case DocumentType.InputOutput:
+            //        DocTypeTitle = "Входящий-исходящий";
+            //        break;
+            //}
 
             IsInner = document.IsExternal == 1;
+            IsProgram = (bool)document.IsProgramme;
+            ProgramName = document.ProgrammeName;
+
             //var repo = new BaseDocumentRepository<Field>();
             //CountFilds = repo.ToList().Join(, x => x.Document, Id);
 
@@ -167,6 +183,73 @@ namespace Information_analysis_of_university.Objects
         public override bool IsDragging()
         {
             return dragging;
+        }
+
+        public override bool QbeSelect(QbeQueryConteiner query)
+        {
+            //var isCorrectDocument = true;
+            var isConteinsDocumentMetric = query.IsContainsDocumentMetric();
+            var result = new List<bool>();
+            if (isConteinsDocumentMetric)
+            {
+                foreach (var queryRow in query)
+                {
+                    result.Clear();
+                    if (query.IsConteinsDocumentName() && queryRow.DocumentName != null)
+                    {
+                        result.Add(queryRow.DocumentName == Name);
+                    }
+
+                    if (query.IsConteinsDocumentFunction() && queryRow.DocumentFunction != null)
+                    {
+                        result.Add(queryRow.DocumentFunction == Function);
+                    }
+
+                    if (query.IsConteinsDocumentType() && queryRow.DocumentType != null)
+                    {
+                        result.Add(queryRow.DocumentType == DocTypeTitle);
+                    }
+
+                    if (query.IsConteinsFrequency() && queryRow.Frequency != null)
+                    {
+                        result.Add(queryRow.Frequency == Frequence);
+                    }
+
+                    //if (query.IsConteinsExternalDistination() && queryRow.ExternalDistination != null)
+                    //{
+                    //    result.Add(queryRow.ExternalDistination == );
+                    //}
+
+                    //if (query.IsConteinsExternalSource() && queryRow.ExternalSource != null)
+                    //{
+                    //    result.Add(queryRow.ExternalSource == ));
+                    //}
+
+                    if (query.IsConteinsIsElectronic())
+                    {
+                        result.Add(queryRow.IsElectronic == IsElectronic);
+                    }
+
+                    if (query.IsConteinsIsExternal())
+                    {
+                        result.Add(queryRow.IsExternal != IsInner);
+                    }
+
+                    if (query.IsConteinsIsProgram())
+                    {
+                        result.Add(queryRow.IsProgram == IsProgram);
+                    }
+
+                    if (query.IsConteinsProgramName() && queryRow.ProgramName != null)
+                    {
+                        result.Add(query.Where(x => x.ProgramName != null).Any(x => x.ProgramName == ProgramName));
+                    }
+
+                    if (result.Count == 0 || result.All(x => x))
+                        break;
+                }
+            }
+            return result.Count == 0 || result.All(x => x);
         }
     }
 

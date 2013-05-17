@@ -91,7 +91,7 @@ namespace Information_analysis_of_university.Objects
 
         public virtual bool IsCurrentObject(int x, int y)
         {
-            return x > X && x < X + Size && y > Y && y < Y + Size;
+            return x > X && x < X + Size && y > Y - 20 && y < Y + Size;
         }
 
         public override void Drag(Point pt, System.Windows.Forms.Form wnd)
@@ -121,6 +121,35 @@ namespace Information_analysis_of_university.Objects
             return dragging;
         }
 
+        public override bool QbeSelect(QbeQueryConteiner query)
+        {
+            var isConteinsWorkplaceMetric = query.IsContainsWorkplaceMetric();
+            var result = new List<bool>();
+            if (isConteinsWorkplaceMetric)
+            {
+                foreach (var queryRow in query)
+                {
+                    result.Clear();
+                    if (query.IsConteinsPostName() && queryRow.PostName != null)
+                    {
+                        result.Add(queryRow.PostName == Name);
+                    }
 
+                    if (query.IsConteinsDepartmentName() && queryRow.DepartmentName != null)
+                    {
+                        result.Add(queryRow.DepartmentName == DepartmentName);
+                    }
+
+                    if (query.IsConteinsResponsibleWorker() && queryRow.ResponsibleWorker != null)
+                    {
+                        result.Add(queryRow.ResponsibleWorker == ResponsibleWorker);
+                    }
+
+                    if (result.Count == 0 || result.All(x => x))
+                        break;
+                }
+            }
+            return result.Count == 0 || result.All(x => x);
+        }
     }
 }

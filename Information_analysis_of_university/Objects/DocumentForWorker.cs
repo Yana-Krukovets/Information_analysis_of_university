@@ -118,6 +118,11 @@ namespace Information_analysis_of_university.Objects
         {
             return dragging;
         }
+
+        public override bool QbeSelect(QbeQueryConteiner query)
+        {
+            throw new NotImplementedException();
+        }
     }
  }
 

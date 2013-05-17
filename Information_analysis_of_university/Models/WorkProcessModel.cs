@@ -129,65 +129,12 @@ namespace Information_analysis_of_university.Models
 
         public override void DrawQbe(Graphics graphics, QbeQueryConteiner query)
         {
-            //отбираем задачи
-            var taskQuery = query.Where(x => x.TaskId != 0 || x.TaskName != null).ToList();
-            var resultList = taskList;
-            if (taskQuery.Count != 0)
-            {
-                foreach (var queryItem in taskQuery)
-                {
-                    resultList = taskList.Where(x => (queryItem.Id != 0 && x.Task.Id == queryItem.Id) || (x.Task.Name == queryItem.TaskName)).ToList();
-                }
-            }
-            taskList = resultList;
+            taskList = taskList.Where(task => task.QbeSelect(query)).ToList();
 
-            //отбираем документы
-            var documentQuery = query.Where(x => x.Id != 0 || x.DocumentName != null || x.DocumentType != null || x.Frequency != null).ToList();
-            if (documentQuery.Count != 0)
-            {
-                foreach (var task in taskList)
-                {
-                    task.ExternalDocuments = SelectDocuments(task.ExternalDocuments, documentQuery);
-                    task.InernalDocuments = SelectDocuments(task.InernalDocuments, documentQuery);
-                }
-            }
             Draw(graphics);
         }
 
-        private List<DocumentObject> SelectDocuments(List<DocumentObject> fromList, List<QbeQueryItem> documentQuery)
-        {
-            var result = new List<DocumentObject>();
-            var list = fromList;
-            
-            foreach (var queryItem in documentQuery)
-            {
-                var tempList = fromList;
-                if (queryItem.Id != 0)
-                {
-                    list = tempList.Where(x => x.Id == queryItem.Id).ToList();
-                    tempList = list;
-                }
-                if (queryItem.DocumentName != "")
-                {
-                    list = tempList.Where(x => x.Name == queryItem.DocumentName).ToList();
-                    tempList = list;
-                }
-                if (queryItem.DocumentType != null)
-                {
-                    list = tempList.Where(x => x.DocTypeTitle == queryItem.DocumentType).ToList();
-                    tempList = list;
-                }
-                if (queryItem.Frequency != null)
-                {
-                    list = tempList.Where(x => x.Frequence == queryItem.Frequency).ToList();
-                    //tempList = list;
-                }
-
-                result.AddRange(list);
-            }
-
-            return result;
-        }
+        
     }
 
     class TaskDocument
@@ -288,5 +235,23 @@ namespace Information_analysis_of_university.Models
             return curObj;
         }
 
+        public bool QbeSelect(QbeQueryConteiner query)
+        {
+            //для того, чтобы знать удалять ли данную задачу
+            bool isCorrectTask = Task.QbeSelect(query);
+            //var isConteinsTaskMetric = query.IsConteinsTaskMetric();
+
+            if(isCorrectTask && query.IsContainsDocumentMetric())
+            {
+                InernalDocuments = InernalDocuments.Where(document => document.QbeSelect(query)).ToList();
+                ExternalDocuments = ExternalDocuments.Where(document => document.QbeSelect(query)).ToList();
+
+                if (InernalDocuments.Count == 0 && ExternalDocuments.Count == 0)
+                    isCorrectTask = false;
+            }
+
+            return isCorrectTask;
+        }
     }
 }
+
