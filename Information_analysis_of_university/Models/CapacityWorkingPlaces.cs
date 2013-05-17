@@ -92,7 +92,9 @@ namespace Information_analysis_of_university.Models
 
         public override void DrawQbe(Graphics graphics, QbeQueryConteiner query)
         {
-            //throw new NotImplementedException();
+            departmentList = departmentList.Where(task => task.QbeSelect(query)).ToList();
+
+            Draw(graphics);
         }
     }
 
@@ -134,6 +136,26 @@ namespace Information_analysis_of_university.Models
             if (WorkPlace.IsCurrentObject(x, y))
                 curObj = WorkPlace;
             return curObj;
+        }
+
+        public bool QbeSelect(QbeQueryConteiner query)
+        {
+            //для того, чтобы знать удалять ли данную задачу
+            bool isCorrectWorkplace = WorkPlace.QbeSelect(query);
+            bool isCorrectTaskCount = documentCount.QbeSelect(query);
+            bool isCorrectDocCount = doc.QbeSelect(query);
+            //var isConteinsTaskMetric = query.IsConteinsTaskMetric();
+
+            //if (isCorrectTask && query.IsContainsDocumentMetric())
+            //{
+            //    InernalDocuments = InernalDocuments.Where(document => document.QbeSelect(query)).ToList();
+            //    ExternalDocuments = ExternalDocuments.Where(document => document.QbeSelect(query)).ToList();
+
+            //    if (InernalDocuments.Count == 0 && ExternalDocuments.Count == 0)
+            //        isCorrectTask = false;
+            //}
+
+            return isCorrectWorkplace && isCorrectTaskCount && isCorrectDocCount;
         }
 
     }

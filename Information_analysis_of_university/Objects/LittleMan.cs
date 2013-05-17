@@ -107,7 +107,28 @@ namespace Information_analysis_of_university.Objects
 
         public override bool QbeSelect(QbeQueryConteiner query)
         {
-            throw new NotImplementedException();
+            var isConteinsLittleManMetric = query.IsContainsLittleManMetric();
+            var result = new List<bool>();
+            if (isConteinsLittleManMetric)
+            {
+                foreach (var queryRow in query)
+                {
+                    result.Clear();
+                    if (query.IsConteinsResponsibleWorker() && queryRow.ResponsibleWorker != null)
+                    {
+                        result.Add(queryRow.ResponsibleWorker == Name);
+                    }
+
+                    if (query.IsConteinsPostName() && queryRow.PostName != null)
+                    {
+                        result.Add(queryRow.PostName == Post);
+                    }
+
+                    if (result.Count == 0 || result.All(x => x))
+                        break;
+                }
+            }
+            return result.Count == 0 || result.All(x => x);
         }
     }
 }

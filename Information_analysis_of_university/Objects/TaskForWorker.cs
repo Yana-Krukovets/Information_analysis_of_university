@@ -99,7 +99,13 @@ namespace Information_analysis_of_university.Objects
 
         public override bool QbeSelect(QbeQueryConteiner query)
         {
-            throw new NotImplementedException();
+            var isCorrectTask = true;
+            var isConteinsTaskMetric = query.IsConteinsTaskMetric();
+            if (isConteinsTaskMetric && query.Count(x => x.TaskName != null) != 0)
+            {
+                isCorrectTask = query.Any(x => x.TaskName == Name);
+            }
+            return isCorrectTask;
         }
     }
 }

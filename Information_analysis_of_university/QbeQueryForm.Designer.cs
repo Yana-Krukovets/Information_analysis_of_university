@@ -74,6 +74,8 @@
             this.taskName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isProgram = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.programName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaskCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DocunentCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dGridQbeQuery)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -102,7 +104,9 @@
             this.post,
             this.taskName,
             this.isProgram,
-            this.programName});
+            this.programName,
+            this.TaskCount,
+            this.DocunentCount});
             this.dGridQbeQuery.DataSource = this.qbeQueryItemBindingSource;
             this.dGridQbeQuery.Location = new System.Drawing.Point(0, 28);
             this.dGridQbeQuery.Name = "dGridQbeQuery";
@@ -437,6 +441,20 @@
             this.programName.HeaderText = "Название программы";
             this.programName.Name = "programName";
             // 
+            // TaskCount
+            // 
+            this.TaskCount.DataPropertyName = "TaskCount";
+            this.TaskCount.HeaderText = "Кол-во задач";
+            this.TaskCount.Name = "TaskCount";
+            this.TaskCount.Visible = false;
+            // 
+            // DocunentCount
+            // 
+            this.DocunentCount.DataPropertyName = "DocunentCount";
+            this.DocunentCount.HeaderText = "Кол-во документов";
+            this.DocunentCount.Name = "DocunentCount";
+            this.DocunentCount.Visible = false;
+            // 
             // QbeQueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -501,5 +519,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn taskName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isProgram;
         private System.Windows.Forms.DataGridViewTextBoxColumn programName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaskCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DocunentCount;
     }
 }

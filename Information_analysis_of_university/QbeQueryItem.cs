@@ -28,5 +28,9 @@ namespace Information_analysis_of_university
         public string TaskName { get; set; }
         public bool IsProgram { get; set; }
         public string ProgramName { get; set; }
+
+        //для CapacityWorkingPlaces
+        public int TaskCount { get; set; }
+        public int DocunentCount { get; set; }
     }
 }

@@ -36,6 +36,16 @@ namespace Information_analysis_of_university
             return IsConteinsPostName() || IsConteinsDepartmentName() || IsConteinsResponsibleWorker();
         }
 
+        public bool IsContainsCapacityItems()
+        {
+            return IsConteinsTaskCount() || IsConteinsDocumentCount();
+        }
+
+        public bool IsContainsLittleManMetric()
+        {
+            return IsConteinsResponsibleWorker() || IsConteinsPostName();
+        }
+
         public bool IsConteinsDocumentName()
         {
             return CurrentItemNumbers.Values.Any(x => x == "DocumentName");
@@ -106,6 +116,14 @@ namespace Information_analysis_of_university
             return CurrentItemNumbers.Values.Any(x => x == "programName");
         }
 
-        
+        public bool IsConteinsTaskCount()
+        {
+            return CurrentItemNumbers.Values.Any(x => x == "TaskCount");
+        }
+
+        public bool IsConteinsDocumentCount()
+        {
+            return CurrentItemNumbers.Values.Any(x => x == "DocumentCount");
+        }
     }
 }

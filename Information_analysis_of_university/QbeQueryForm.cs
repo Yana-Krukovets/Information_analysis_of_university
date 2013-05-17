@@ -130,6 +130,7 @@ namespace Information_analysis_of_university
             
             
         }
+        
 
         private void QbeQueryForm_FormClosing(object sender, FormClosingEventArgs e)
         {

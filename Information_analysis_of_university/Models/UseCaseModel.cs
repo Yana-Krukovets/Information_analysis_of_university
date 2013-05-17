@@ -91,7 +91,8 @@ namespace Information_analysis_of_university.Models
 
         public override void DrawQbe(Graphics graphics, QbeQueryConteiner query)
         {
-            //throw new NotImplementedException();
+            workerList = workerList.Where(x => x.QbeSelect(query)).ToList();
+            Draw(graphics);
         }
     }
 
@@ -219,6 +220,35 @@ namespace Information_analysis_of_university.Models
                 }
             }
             return curObj;
+        }
+
+        public bool QbeSelect(QbeQueryConteiner query)
+        {
+            //для того, чтобы знать удалять ли данную задачу
+            bool isCorrectLittleMan = Worker.QbeSelect(query);
+            bool isCorrectTask = Task.QbeSelect(query);
+
+            //var isConteinsTaskMetric = query.IsConteinsTaskMetric();
+
+            if (isCorrectLittleMan && isCorrectTask)
+            {
+                if (query.IsContainsDocumentMetric())
+                {
+                    Documents = Documents.Where(document => document.QbeSelect(query)).ToList();
+                    //ExternalDocuments = ExternalDocuments.Where(document => document.QbeSelect(query)).ToList();
+
+                    //if (Documents.Count == 0)
+                    //    isCorrectTask = false;
+                }
+
+                if (query.IsConteinsTaskMetric())
+                {
+                    taskList = taskList.Where(task => task.QbeSelect(query)).ToList();
+                }
+
+            }
+
+            return isCorrectLittleMan && isCorrectTask;
         }
     }
 }
