@@ -207,36 +207,8 @@ namespace Information_analysis_of_university
 
         private void buttonSQL_Click(object sender, EventArgs e)
         {
-            if (model is CapacityWorkingPlaces)
-            {
-                var requestSQL = new RequestSQL<CapacityWorkingPlaces>(model as CapacityWorkingPlaces);
-                requestSQL.Show(this);
-            }
-            if (model is DataStreamsModel)
-            {
-                var requestSQL = new RequestSQL<DataStreamsModel>(model as DataStreamsModel);
-                requestSQL.Show(this);
-            }
-            if (model is DocumentLifeCycleModel)
-            {
-                var requestSQL = new RequestSQL<DocumentLifeCycleModel>(model as DocumentLifeCycleModel);
-                requestSQL.Show(this);
-            }
-            if (model is ResponsibilityDistributionModel)
-            {
-                var requestSQL = new RequestSQL<ResponsibilityDistributionModel>(model as ResponsibilityDistributionModel);
-                requestSQL.Show(this);
-            }
-            if (model is UseCaseModel)
-            {
-                var requestSQL = new RequestSQL<UseCaseModel>(model as UseCaseModel);
-                requestSQL.Show(this);
-            }
-            if (model is WorkProcessModel)
-            {
-                var requestSQL = new RequestSQL<WorkProcessModel>(model as WorkProcessModel);
-                requestSQL.Show(this);
-            }
+            var requestSQL = new RequestSQL<CapacityWorkingPlaces>(model as CapacityWorkingPlaces);
+            requestSQL.Show(this);
         }
 
         private void pictureBox1_Click_1(object sender, EventArgs e)

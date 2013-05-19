@@ -70,13 +70,13 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RenameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tcModelsFrame = new System.Windows.Forms.TabControl();
             this.newTabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -295,7 +295,7 @@
             // 
             this.buttonMaster.Location = new System.Drawing.Point(6, 372);
             this.buttonMaster.Name = "buttonMaster";
-            this.buttonMaster.Size = new System.Drawing.Size(220, 22);
+            this.buttonMaster.Size = new System.Drawing.Size(220, 26);
             this.buttonMaster.TabIndex = 2;
             this.buttonMaster.Text = "Матер построения запросов";
             this.buttonMaster.UseVisualStyleBackColor = true;
@@ -439,6 +439,13 @@
             this.SaveToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.SaveToolStripMenuItem.Text = "Сохранить";
             // 
+            // CloseToolStripMenuItem
+            // 
+            this.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem";
+            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.CloseToolStripMenuItem.Text = "Закрыть";
+            this.CloseToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
@@ -504,13 +511,6 @@
             this.pictureBox2.Size = new System.Drawing.Size(1455, 734);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
-            // 
-            // CloseToolStripMenuItem
-            // 
-            this.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem";
-            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.CloseToolStripMenuItem.Text = "Закрыть";
-            this.CloseToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
             // 
             // MainForm
             // 
