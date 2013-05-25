@@ -79,25 +79,12 @@ namespace Information_analysis_of_university.Objects
 
             if (document.Type != null) DocType = (DocumentType)document.Type;
             DocTypeTitle = GetDescription(DocType);
-            //switch (DocType)
-            //{
-            //    case DocumentType.Output:
-            //        DocTypeTitle = "Исходящий";
-            //        break;
-            //    case DocumentType.Input:
-            //        DocTypeTitle = "Входящий";
-            //        break;
-            //    case DocumentType.InputOutput:
-            //        DocTypeTitle = "Входящий-исходящий";
-            //        break;
-            //}
 
             IsInner = document.IsExternal == 1;
             IsProgram = (bool)document.IsProgramme;
             ProgramName = document.ProgrammeName;
 
-            //var repo = new BaseDocumentRepository<Field>();
-            //CountFilds = repo.ToList().Join(, x => x.Document, Id);
+            CountFilds = document.Field.Count;
 
             //IsWayTo = isWayTo;
             IsAlreadyDrawing = false;

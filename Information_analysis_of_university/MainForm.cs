@@ -274,8 +274,27 @@ namespace Information_analysis_of_university
 
         private void tcModelsFrame_MouseClick(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Right)
+
+
+            if (e.Button == MouseButtons.Right)
             {
+                Point location = new Point(0,0);
+                Size itemSize = tcModelsFrame.ItemSize;
+                int curTabNumber;
+
+                for (curTabNumber = 0;
+                     e.X < location.X || e.X > location.X + itemSize.Width || e.Y < location.Y || e.Y > location.Y + itemSize.Height;
+                     curTabNumber++, location.X += itemSize.Width)
+                {
+                    if (tcModelsFrame.TabPages.Count <= curTabNumber)
+                    {
+                        curTabNumber = 0;
+                        break;
+                    }
+
+                }
+
+                tcModelsFrame.SelectedTab = tcModelsFrame.TabPages[curTabNumber];
                 contextMenuStrip1.Show(tcModelsFrame, e.X, e.Y);
             }
         }
@@ -286,8 +305,16 @@ namespace Information_analysis_of_university
         private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var currentPage = tcModelsFrame.SelectedTab;
-            if(MessageBox.Show("Вы действительно хотите закрыть активную вкладку?", "Звкрытие вкладки", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+
+            if (MessageBox.Show("Вы действительно хотите закрыть активную вкладку?", "Звкрытие вкладки", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
                 tcModelsFrame.TabPages.Remove(currentPage);
+        }
+
+        private void RenameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var newNameForm = new ChangeNameForm();
+            newNameForm.ShowDialog(this);
+            tcModelsFrame.SelectedTab.Text = newNameForm.NewName ?? tcModelsFrame.SelectedTab.Text;
         }
 
     }

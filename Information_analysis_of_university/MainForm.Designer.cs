@@ -432,6 +432,7 @@
             this.RenameToolStripMenuItem.Name = "RenameToolStripMenuItem";
             this.RenameToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.RenameToolStripMenuItem.Text = "Переименовать";
+            this.RenameToolStripMenuItem.Click += new System.EventHandler(this.RenameToolStripMenuItem_Click);
             // 
             // SaveToolStripMenuItem
             // 

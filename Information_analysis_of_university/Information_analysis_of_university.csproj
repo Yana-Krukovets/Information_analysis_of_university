@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangeNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeNameForm.Designer.cs">
+      <DependentUpon>ChangeNameForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormForObjects.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
       <DependentUpon>NewTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilites\GraphicsExtension.cs" />
+    <EmbeddedResource Include="ChangeNameForm.resx">
+      <DependentUpon>ChangeNameForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormForObjects.resx">
       <DependentUpon>FormForObjects.cs</DependentUpon>
     </EmbeddedResource>
