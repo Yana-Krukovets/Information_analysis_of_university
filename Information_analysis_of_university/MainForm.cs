@@ -230,6 +230,16 @@ namespace Information_analysis_of_university
             requestMaster.Show(this);
         }
 
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var result = MessageBox.Show(
+                "После закрытия формы информация будет утеряна. Вы уверены, что хотите закрыть данную форму?",
+                "Закрытие формы", MessageBoxButtons.YesNo);
+            if (result != DialogResult.Yes)
+                e.Cancel = true;
+        }
+
         private void buttonQBE_Click(object sender, EventArgs e)
         {
             // {/*MdiParent = this, */Location = new Point(232, groupBox1.Size.Height + groupBox1.Location.Y), StartPosition = FormStartPosition.CenterParent};

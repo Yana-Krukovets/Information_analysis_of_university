@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.новыйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();

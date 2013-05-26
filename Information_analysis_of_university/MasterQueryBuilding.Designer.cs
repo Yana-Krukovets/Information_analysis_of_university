@@ -78,6 +78,8 @@
             this.capacityWorkingPlaces.Text = "Модель нагружености рабочих мест";
             this.capacityWorkingPlaces.UseVisualStyleBackColor = true;
             this.capacityWorkingPlaces.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MasterQueryBuilding_FormClosing);
+            
             // 
             // useCaseModel
             // 
@@ -135,6 +137,7 @@
             this.Controls.Add(this.button1);
             this.Name = "MasterQueryBuilding";
             this.Text = "MasterQueryBuilding";
+            this.Load += new System.EventHandler(this.MasterQueryBuilding_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

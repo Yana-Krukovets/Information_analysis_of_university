@@ -176,5 +176,19 @@ namespace Information_analysis_of_university
             {
             }
         }
+
+        private void MasterQueryBuilding_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var result = MessageBox.Show(
+                "После закрытия формы информация будет утеряна. Вы уверены, что хотите закрыть данную форму?",
+                "Закрытие формы", MessageBoxButtons.YesNo);
+            if (result != DialogResult.Yes)
+                e.Cancel = true;
+        }
+
+        private void MasterQueryBuilding_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
