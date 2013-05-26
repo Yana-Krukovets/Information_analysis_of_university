@@ -48,8 +48,6 @@ namespace Information_analysis_of_university
         private void button1_Click(object sender, EventArgs e)
         {
             CreateNewTab(new WorkProcessModel());
-            // model = new WorkProcessModel();
-            // DrowModel(model);
         }
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -118,7 +116,7 @@ namespace Information_analysis_of_university
         public void CreateNewTab(ModelBase m)
         {
             var number = tcModelsFrame.TabPages.Count + 1;
-            tcModelsFrame.TabPages.Add(new TabPage() { Name = "newTabPage" + number, Text = "new" + number });
+            tcModelsFrame.TabPages.Add(new TabPage() { Name = "newTabPage" + number, Text = "Модель" + number });
             tcModelsFrame.TabPages[number - 1].Location = new System.Drawing.Point(4, 22);
             //this.newTabPage1.Name = "newTabPage1";
             tcModelsFrame.TabPages[number - 1].Padding = new System.Windows.Forms.Padding(3);
@@ -274,8 +272,6 @@ namespace Information_analysis_of_university
 
         private void tcModelsFrame_MouseClick(object sender, MouseEventArgs e)
         {
-
-
             if (e.Button == MouseButtons.Right)
             {
                 Point location = new Point(0,0);
@@ -291,7 +287,6 @@ namespace Information_analysis_of_university
                         curTabNumber = 0;
                         break;
                     }
-
                 }
 
                 tcModelsFrame.SelectedTab = tcModelsFrame.TabPages[curTabNumber];
@@ -315,6 +310,11 @@ namespace Information_analysis_of_university
             var newNameForm = new ChangeNameForm();
             newNameForm.ShowDialog(this);
             tcModelsFrame.SelectedTab.Text = newNameForm.NewName ?? tcModelsFrame.SelectedTab.Text;
+        }
+
+        private void groupBox1_Enter_1(object sender, EventArgs e)
+        {
+
         }
 
     }
