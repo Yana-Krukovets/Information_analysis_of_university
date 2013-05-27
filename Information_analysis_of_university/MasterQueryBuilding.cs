@@ -200,9 +200,9 @@ namespace Information_analysis_of_university
                         check2.Name = item1.Name;
                         check2.Text = item1.Name;
                         check2.Width = 300;
-                        check2.Left = 40;
+                        check2.Left = 60;
                         check2.Top = 30 + i;
-                        i += 20;
+                        i += 30;
                         obj.Controls.Add(check2);
                     }
  

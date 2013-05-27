@@ -20,7 +20,6 @@ namespace Information_analysis_of_university
         {
             InitializeComponent();
             qbeForm = new QbeQueryForm(this);
-            // model = new UseCaseModel();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -28,14 +27,6 @@ namespace Information_analysis_of_university
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         { }
-
-        //private void DrowModel(ModelBase model)
-        //{
-        //    //отрисовка
-        //    pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-        //    var graphics = Graphics.FromImage(pictureBox1.Image);
-        //    model.Draw(graphics);
-        //}
 
         public void DrowModelSQL(ModelBase model, List<string> mas)
         {
@@ -95,22 +86,16 @@ namespace Information_analysis_of_university
                 var docPropertyForm = new PropertyForm<WorkplaceLifeElement>(obj as WorkplaceLifeElement);
                 docPropertyForm.Show(this);
             }
-            //WorkplaceResponsibilityObject
-            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             CreateNewTab(new UseCaseModel());
-            //model = new UseCaseModel();
-            //DrowModel(model);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             CreateNewTab(new CapacityWorkingPlaces());
-            //model = new CapacityWorkingPlaces();
-            //DrowModel(model);
         }
 
         public void CreateNewTab(ModelBase m)
@@ -132,75 +117,26 @@ namespace Information_analysis_of_university
             //pictureBox1 = new System.Windows.Forms.PictureBox();
         }
 
-        /*    private void pictureBox1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            var drawObj = model.GetObject(e.X, e.Y);
-            if (drawObj != null)
-            {
-                if (e.Button == MouseButtons.Left)
-                {
-                    this.Capture = true;
-                    drawObj.BeginDrag(new Point(e.X, e.Y));
-                }
-            }
-        }
-
-        private void pictureBox1_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            var drawObj = model.GetObject(e.X, e.Y);
-            if (drawObj != null)
-            {
-                if (drawObj.IsDragging())
-                    drawObj.Drag(new Point(e.X, e.Y), this);
-                //DrowModel(model);
-              /*  pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                var graphics = Graphics.FromImage(pictureBox1.Image);
-                drawObj.DrawObject(graphics, e.X, e.Y);
-               
-            }
-
-        }
-
-        private void pictureBox1_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            var drawObj = model.GetObject(e.X, e.Y);
-            if (drawObj != null)
-            {
-                if (drawObj.IsDragging())
-                    drawObj.EndDrag();
-            }
-
-        }
-*/
+       
         private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
+        {        }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new ResponsibilityDistributionModel());
-            //model = new ResponsibilityDistributionModel();
-            //DrowModel(model);
+            CreateNewTab(new ResponsibilityDistributionModel());           
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+        {     }
 
         private void button4_Click(object sender, EventArgs e)
         {
             CreateNewTab(new DataStreamsModel());
-            //model = new DataStreamsModel();
-            //DrowModel(model);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             CreateNewTab(new DocumentLifeCycleModel());
-            //model = new DocumentLifeCycleModel();
-            //DrowModel(model);
         }
 
         private void buttonSQL_Click(object sender, EventArgs e)
@@ -210,19 +146,13 @@ namespace Information_analysis_of_university
         }
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-
-        }
+        {        }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+        {        }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        {        }
 
         private void buttonMaster_Click(object sender, EventArgs e)
         {
@@ -323,8 +253,52 @@ namespace Information_analysis_of_university
         }
 
         private void groupBox1_Enter_1(object sender, EventArgs e)
-        {
+        {        }
 
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog savedialog = new SaveFileDialog();
+            savedialog.Title = "Сохранить картинку как ...";
+            savedialog.OverwritePrompt = true;
+            savedialog.CheckPathExists = true;
+            savedialog.Filter =
+                "Bitmap File(*.bmp)|*.bmp|" +
+                "GIF File(*.gif)|*.gif|" +
+                "JPEG File(*.jpg)|*.jpg|" +
+                "TIF File(*.tif)|*.tif|" +
+                "PNG File(*.png)|*.png";
+            savedialog.ShowHelp = true;
+            var bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            // If selected, save
+            if (savedialog.ShowDialog() == DialogResult.OK)
+            {
+                // Get the user-selected file name
+                string fileName = savedialog.FileName;
+                // Get the extension
+                string strFilExtn =
+                    fileName.Remove(0, fileName.Length - 3);
+                // Save file
+                switch (strFilExtn)
+                {
+                    case "bmp":
+                        bmp.Save(fileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                        break;
+                    case "jpg":
+                        bmp.Save(fileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        break;
+                    case "gif":
+                        bmp.Save(fileName, System.Drawing.Imaging.ImageFormat.Gif);
+                        break;
+                    case "tif":
+                        bmp.Save(fileName, System.Drawing.Imaging.ImageFormat.Tiff);
+                        break;
+                    case "png":
+                        bmp.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
     }

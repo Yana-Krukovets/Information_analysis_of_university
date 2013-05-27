@@ -112,5 +112,10 @@ namespace Information_analysis_of_university
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             return Graphics.FromImage(pictureBox1.Image);
         }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
     }
 }
