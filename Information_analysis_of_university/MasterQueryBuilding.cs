@@ -40,6 +40,7 @@ namespace Information_analysis_of_university
         {
             var departmentRepository = new BaseDocumentRepository<Department>();
             var departments = departmentRepository.ToList().Select(t => new WorkingPlace(t));
+            // если выбрана модель нагружености рабочих мест
             if (capacityWorkingPlaces.Checked == true)
             {
                 int i = 10;
@@ -72,6 +73,7 @@ namespace Information_analysis_of_university
                 obj.Controls.Add(check2);
                 obj.Show(this);
             }
+           // если выбрана модель потоков данных
             if (dataStreamsModel.Checked == true)
             {
                 var documentRepository = new BaseDocumentRepository<Document>();
@@ -172,8 +174,40 @@ namespace Information_analysis_of_university
                 }
                 obj.Show();
             }
+            // если выбран модель рабочих процессов
             if (WorkProcassModel.Checked == true)
             {
+                int i = 10;
+                var taskDocumentRepository = new BaseDocumentRepository<Task>();
+                var tasks = taskDocumentRepository.ToList().Select(x => new TaskObject(x));
+                var obj = new FormForObjects<WorkProcessModel>(model as WorkProcessModel);
+                // отображение всех возможных элементов модели в мастере запросов
+                foreach (var item in tasks)
+                {
+                    CheckBox check1 = new CheckBox();
+                    check1.Name = item.Name;
+                    check1.Text = item.Name;
+                    check1.Width = 300;
+                    check1.Left = 40;
+                    check1.Top = 20 + i;
+                    i += 20;
+                    obj.Controls.Add(check1);
+                    var documentRepository = new BaseDocumentRepository<Document>();
+                    var documents = documentRepository.Query(x => x.Task.TaskId == item.Id).ToList();
+                    foreach (var item1 in documents)
+                    {
+                        CheckBox check2 = new CheckBox();
+                        check2.Name = item1.Name;
+                        check2.Text = item1.Name;
+                        check2.Width = 300;
+                        check2.Left = 40;
+                        check2.Top = 30 + i;
+                        i += 20;
+                        obj.Controls.Add(check2);
+                    }
+ 
+                }
+                obj.Show();
             }
         }
 
