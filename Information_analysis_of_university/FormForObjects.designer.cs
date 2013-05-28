@@ -60,6 +60,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Назад";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FormForObjects
             // 
@@ -72,6 +73,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormForObjects";
             this.Text = "FormForObjects";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormForObjects_FormClosing);
             this.Load += new System.EventHandler(this.FormForObjects_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

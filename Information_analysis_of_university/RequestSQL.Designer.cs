@@ -59,6 +59,9 @@
             this.SQL.Size = new System.Drawing.Size(318, 212);
             this.SQL.TabIndex = 2;
             this.SQL.Text = "";
+
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RequestSQL_FormClosing);
+
             // 
             // RequestSQL
             // 
@@ -70,7 +73,7 @@
             this.Controls.Add(this.button1);
             this.Name = "RequestSQL";
             this.Text = "RequestSQL";
-         //   this.Load += new System.EventHandler(this.RequestSQL_Load);
+            this.Load += new System.EventHandler(this.RequestSQL_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

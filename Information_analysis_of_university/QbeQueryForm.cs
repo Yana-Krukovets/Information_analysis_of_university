@@ -197,6 +197,11 @@ namespace Information_analysis_of_university
             }
         }
 
+        private void QbeQueryForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }
