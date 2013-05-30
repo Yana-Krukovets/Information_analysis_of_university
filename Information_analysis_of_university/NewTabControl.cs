@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+
 using Information_analysis_of_university.Models;
 using Information_analysis_of_university.Objects;
 
@@ -31,6 +32,8 @@ namespace Information_analysis_of_university
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             var graphics = Graphics.FromImage(pictureBox1.Image);
             model.Draw(graphics);
+  
+  //          pictureBox1.Image.Save("c:\\New.bmp");
         }
 
         public void DrowModelSQL(ModelBase model, List<string> mas)
