@@ -206,9 +206,7 @@ namespace Information_analysis_of_university
         }
 
         private void button8_Click(object sender, EventArgs e)
-        {
-
-        }
+        {        }
 
         private void tcModelsFrame_MouseClick(object sender, MouseEventArgs e)
         {
@@ -240,7 +238,8 @@ namespace Information_analysis_of_university
         private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var currentPage = tcModelsFrame.SelectedTab;
-
+            var control = currentPage.Controls[0] as NewTabControl;
+        
             if (MessageBox.Show("Вы действительно хотите закрыть активную вкладку?", "Звкрытие вкладки", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
                 tcModelsFrame.TabPages.Remove(currentPage);
         }
@@ -257,6 +256,8 @@ namespace Information_analysis_of_university
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+             var currentPage = tcModelsFrame.SelectedTab;
+                var control = currentPage.Controls[0] as NewTabControl;
             SaveFileDialog savedialog = new SaveFileDialog();
             savedialog.Title = "Сохранить картинку как ...";
             savedialog.OverwritePrompt = true;
@@ -268,11 +269,14 @@ namespace Information_analysis_of_university
                 "TIF File(*.tif)|*.tif|" +
                 "PNG File(*.png)|*.png";
             savedialog.ShowHelp = true;
-            var bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+        //    var bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             // If selected, save
             if (savedialog.ShowDialog() == DialogResult.OK)
             {
                 // Get the user-selected file name
+              
+               
+               // control.Pictu
                 string fileName = savedialog.FileName;
                 // Get the extension
                 string strFilExtn =
@@ -281,24 +285,45 @@ namespace Information_analysis_of_university
                 switch (strFilExtn)
                 {
                     case "bmp":
-                        bmp.Save(fileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                          pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                          var graphics1 = Graphics.FromImage(pictureBox1.Image);
+                          control.model.Draw(graphics1);
+                          pictureBox1.Image.Save(fileName);
                         break;
                     case "jpg":
-                        bmp.Save(fileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                         pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                          var graphics = Graphics.FromImage(pictureBox1.Image);
+                          control.model.Draw(graphics);
+                          pictureBox1.Image.Save(fileName);
+                    
                         break;
                     case "gif":
-                        bmp.Save(fileName, System.Drawing.Imaging.ImageFormat.Gif);
+                       pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                          var graphics2 = Graphics.FromImage(pictureBox1.Image);
+                          control.model.Draw(graphics2);
+                          pictureBox1.Image.Save(fileName);
                         break;
                     case "tif":
-                        bmp.Save(fileName, System.Drawing.Imaging.ImageFormat.Tiff);
+                        pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                          var graphics3 = Graphics.FromImage(pictureBox1.Image);
+                          control.model.Draw(graphics3);
+                          pictureBox1.Image.Save(fileName);
                         break;
                     case "png":
-                        bmp.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+                        pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                          var graphics4 = Graphics.FromImage(pictureBox1.Image);
+                          control.model.Draw(graphics4);
+                          pictureBox1.Image.Save(fileName);
                         break;
                     default:
                         break;
                 }
             }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
         }
 
     }
