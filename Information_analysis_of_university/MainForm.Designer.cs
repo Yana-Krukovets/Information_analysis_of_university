@@ -77,6 +77,9 @@
             this.newTabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.sQLмодифицырованныйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.qBEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.мастерПостроенияЗапросовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -181,6 +184,7 @@
             this.модельПотоковДанныхToolStripMenuItem.Name = "модельПотоковДанныхToolStripMenuItem";
             this.модельПотоковДанныхToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
             this.модельПотоковДанныхToolStripMenuItem.Text = "Модель потоков данных";
+            this.модельПотоковДанныхToolStripMenuItem.Click += new System.EventHandler(this.модельПотоковДанныхToolStripMenuItem_Click);
             // 
             // модельНагруженностиРабочихМестToolStripMenuItem
             // 
@@ -231,6 +235,10 @@
             // 
             // запросToolStripMenuItem
             // 
+            this.запросToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sQLмодифицырованныйToolStripMenuItem,
+            this.qBEToolStripMenuItem,
+            this.мастерПостроенияЗапросовToolStripMenuItem});
             this.запросToolStripMenuItem.Name = "запросToolStripMenuItem";
             this.запросToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.запросToolStripMenuItem.Text = "Запрос";
@@ -253,8 +261,9 @@
             // aboutProgram
             // 
             this.aboutProgram.Name = "aboutProgram";
-            this.aboutProgram.Size = new System.Drawing.Size(149, 22);
+            this.aboutProgram.Size = new System.Drawing.Size(152, 22);
             this.aboutProgram.Text = "О программе";
+            this.aboutProgram.Click += new System.EventHandler(this.aboutProgram_Click);
             // 
             // menuBox1
             // 
@@ -425,7 +434,7 @@
             this.SaveToolStripMenuItem,
             this.CloseToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 70);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // RenameToolStripMenuItem
@@ -516,6 +525,27 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
+            // sQLмодифицырованныйToolStripMenuItem
+            // 
+            this.sQLмодифицырованныйToolStripMenuItem.Name = "sQLмодифицырованныйToolStripMenuItem";
+            this.sQLмодифицырованныйToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.sQLмодифицырованныйToolStripMenuItem.Text = "SQL-модифицированный";
+            this.sQLмодифицырованныйToolStripMenuItem.Click += new System.EventHandler(this.sQLмодифицырованныйToolStripMenuItem_Click);
+            // 
+            // qBEToolStripMenuItem
+            // 
+            this.qBEToolStripMenuItem.Name = "qBEToolStripMenuItem";
+            this.qBEToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.qBEToolStripMenuItem.Text = "QBE";
+            this.qBEToolStripMenuItem.Click += new System.EventHandler(this.qBEToolStripMenuItem_Click);
+            // 
+            // мастерПостроенияЗапросовToolStripMenuItem
+            // 
+            this.мастерПостроенияЗапросовToolStripMenuItem.Name = "мастерПостроенияЗапросовToolStripMenuItem";
+            this.мастерПостроенияЗапросовToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.мастерПостроенияЗапросовToolStripMenuItem.Text = "Мастер построения запросов";
+            this.мастерПостроенияЗапросовToolStripMenuItem.Click += new System.EventHandler(this.мастерПостроенияЗапросовToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -596,6 +626,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ToolStripMenuItem CloseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sQLмодифицырованныйToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem qBEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem мастерПостроенияЗапросовToolStripMenuItem;
     }
 }
 

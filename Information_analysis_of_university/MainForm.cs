@@ -131,6 +131,7 @@ namespace Information_analysis_of_university
 
         private void button4_Click(object sender, EventArgs e)
         {
+            //модельПотоковДанныхToolStripMenuItem данных
             CreateNewTab(new DataStreamsModel());
         }
 
@@ -141,6 +142,7 @@ namespace Information_analysis_of_university
 
         private void buttonSQL_Click(object sender, EventArgs e)
         {
+            //SQL-модифицированный запрос
             var requestSQL = new RequestSQL<CapacityWorkingPlaces>(model as CapacityWorkingPlaces);
             requestSQL.Show(this);
         }
@@ -156,6 +158,7 @@ namespace Information_analysis_of_university
 
         private void buttonMaster_Click(object sender, EventArgs e)
         {
+            //Мастер запросов
             var requestMaster = new MasterQueryBuilding();
             requestMaster.Show(this);
         }
@@ -173,7 +176,7 @@ namespace Information_analysis_of_university
         private void buttonQBE_Click(object sender, EventArgs e)
         {
             // {/*MdiParent = this, */Location = new Point(232, groupBox1.Size.Height + groupBox1.Location.Y), StartPosition = FormStartPosition.CenterParent};
-
+            //QBE
             try
             {
                 qbeForm.Show(this);
@@ -324,6 +327,41 @@ namespace Information_analysis_of_university
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
 
+        }
+
+        private void aboutProgram_Click(object sender, EventArgs e)
+        {
+             MessageBox.Show("Аналіз стану інформаційного забезпечення університету.Розробники: Круковець Я.М., Карпенко А.Д.кафедра КІТ, ДНУЗТ, 2013. Версія 1.0");
+        }
+
+        private void sQLмодифицырованныйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var requestSQL = new RequestSQL<CapacityWorkingPlaces>(model as CapacityWorkingPlaces);
+            requestSQL.Show(this);
+        }
+
+        private void qBEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                qbeForm.Show(this);
+            }
+            catch (Exception)
+            {
+                qbeForm = new QbeQueryForm(this);
+                qbeForm.Show(this);
+            }
+        }
+
+        private void мастерПостроенияЗапросовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var requestMaster = new MasterQueryBuilding();
+            requestMaster.Show(this);
+        }
+
+        private void модельПотоковДанныхToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateNewTab(new DataStreamsModel());
         }
 
     }
