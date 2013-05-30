@@ -215,6 +215,8 @@ namespace Information_analysis_of_university
             if (e.Button == MouseButtons.Right)
             {
                 Point location = new Point(0,0);
+
+                //берется размер не текущей вкладки, а тот который указан для всех... но вкладки в зависимости от названия меняют свой размер
                 Size itemSize = tcModelsFrame.ItemSize;
                 int curTabNumber;
 
@@ -299,6 +301,12 @@ namespace Information_analysis_of_university
                         break;
                 }
             }
+        }
+
+        private void analisButton_Click(object sender, EventArgs e)
+        {
+            var AnalisForm = new AnalisResultForm();
+            AnalisForm.Show(this);
         }
 
     }

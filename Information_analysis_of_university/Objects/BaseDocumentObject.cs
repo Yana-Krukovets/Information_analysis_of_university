@@ -78,10 +78,10 @@ namespace Information_analysis_of_university.Objects
                 Workplace = new WorkplaceLifeElement(document.Post);
 
             if (document.Type != null) DocType = (DocumentType)document.Type;
-            DocTypeTitle = GetDescription(DocType);
+            DocTypeTitle = Description.GetDescription(DocType);
 
             IsInner = document.IsExternal == 1;
-            IsProgram = (bool)document.IsProgramme;
+            if (document.IsProgramme != null) IsProgram = (bool)document.IsProgramme;
             ProgramName = document.ProgrammeName;
 
             CountFilds = document.Field.Count;

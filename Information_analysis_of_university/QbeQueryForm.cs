@@ -31,7 +31,11 @@ namespace Information_analysis_of_university
             mForm = form;
             InitializeComponent();
             QbeItems = new QbeQueryConteiner();
-            dGridQbeQuery.DataSource = QbeItems;
+
+            var bSource = new BindingSource();
+            bSource.DataSource = QbeItems;
+            bindingNavigator1.BindingSource = bSource;
+            dGridQbeQuery.DataSource = bSource;
 
             DefaultMetrics();
             

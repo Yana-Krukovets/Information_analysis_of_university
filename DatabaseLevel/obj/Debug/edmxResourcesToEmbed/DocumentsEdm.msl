@@ -13,6 +13,7 @@
     <EntitySetMapping Name="Document">
       <EntityTypeMapping TypeName="UniversitySystemModel.Document">
         <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="DocumentNameId" ColumnName="DocumentNameId" />
           <ScalarProperty Name="Source" ColumnName="Source" />
           <ScalarProperty Name="Destination" ColumnName="Destination" />
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
@@ -35,12 +36,40 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DocumentName">
+      <EntityTypeMapping TypeName="UniversitySystemModel.DocumentName">
+        <MappingFragment StoreEntitySet="DocumentName">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Field">
       <EntityTypeMapping TypeName="UniversitySystemModel.Field">
         <MappingFragment StoreEntitySet="Field">
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
           <ScalarProperty Name="IsRepeat" ColumnName="IsRepeat" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FieldType">
+      <EntityTypeMapping TypeName="UniversitySystemModel.FieldType">
+        <MappingFragment StoreEntitySet="FieldType">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FildsDocumentSource">
+      <EntityTypeMapping TypeName="UniversitySystemModel.FildsDocumentSource">
+        <MappingFragment StoreEntitySet="FildsDocumentSource">
+          <ScalarProperty Name="DatabaseSource" ColumnName="DatabaseSource" />
+          <ScalarProperty Name="DocumentDataSource" ColumnName="DocumentDataSource" />
+          <ScalarProperty Name="FildId" ColumnName="FildId" />
+          <ScalarProperty Name="DocumentNameId" ColumnName="DocumentNameId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

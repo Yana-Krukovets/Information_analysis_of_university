@@ -23,9 +23,14 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_Document_Department", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DatabaseLevel.Department), "Document", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.Document), true)]
 [assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_Document_DepartmentSource", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DatabaseLevel.Department), "Document", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.Document), true)]
 [assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_Post_Department", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DatabaseLevel.Department), "Post", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.Post), true)]
+[assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_Document_DocumentName", "DocumentName", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DatabaseLevel.DocumentName), "Document", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.Document), true)]
 [assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_Document_Post", "Post", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DatabaseLevel.Post), "Document", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.Document), true)]
 [assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_Document_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DatabaseLevel.Task), "Document", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.Document), true)]
+[assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_FildsDocumentSource_Document", "Document", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DatabaseLevel.Document), "FildsDocumentSource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.FildsDocumentSource), true)]
 [assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_Period_Document", "Document", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DatabaseLevel.Document), "Period", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.Period), true)]
+[assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_FildsDocumentSource_DocumentName", "DocumentName", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DatabaseLevel.DocumentName), "FildsDocumentSource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.FildsDocumentSource), true)]
+[assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_Field_FieldType", "FieldType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DatabaseLevel.FieldType), "Field", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.Field), true)]
+[assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_FildsDocumentSource_Field", "Field", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DatabaseLevel.Field), "FildsDocumentSource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.FildsDocumentSource), true)]
 [assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_Task_Post", "Post", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DatabaseLevel.Post), "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.Task), true)]
 [assembly: EdmRelationshipAttribute("UniversitySystemModel", "FK_Worker_Post", "Post", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DatabaseLevel.Post), "Worker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.Worker), true)]
 [assembly: EdmRelationshipAttribute("UniversitySystemModel", "Document_Fields", "Document", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.Document), "Field", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseLevel.Field))]
@@ -115,6 +120,22 @@ namespace DatabaseLevel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<DocumentName> DocumentName
+        {
+            get
+            {
+                if ((_DocumentName == null))
+                {
+                    _DocumentName = base.CreateObjectSet<DocumentName>("DocumentName");
+                }
+                return _DocumentName;
+            }
+        }
+        private ObjectSet<DocumentName> _DocumentName;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Field> Field
         {
             get
@@ -127,6 +148,38 @@ namespace DatabaseLevel
             }
         }
         private ObjectSet<Field> _Field;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<FieldType> FieldType
+        {
+            get
+            {
+                if ((_FieldType == null))
+                {
+                    _FieldType = base.CreateObjectSet<FieldType>("FieldType");
+                }
+                return _FieldType;
+            }
+        }
+        private ObjectSet<FieldType> _FieldType;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<FildsDocumentSource> FildsDocumentSource
+        {
+            get
+            {
+                if ((_FildsDocumentSource == null))
+                {
+                    _FildsDocumentSource = base.CreateObjectSet<FildsDocumentSource>("FildsDocumentSource");
+                }
+                return _FildsDocumentSource;
+            }
+        }
+        private ObjectSet<FildsDocumentSource> _FildsDocumentSource;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -213,11 +266,35 @@ namespace DatabaseLevel
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the DocumentName EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDocumentName(DocumentName documentName)
+        {
+            base.AddObject("DocumentName", documentName);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Field EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToField(Field field)
         {
             base.AddObject("Field", field);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the FieldType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFieldType(FieldType fieldType)
+        {
+            base.AddObject("FieldType", fieldType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the FildsDocumentSource EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFildsDocumentSource(FildsDocumentSource fildsDocumentSource)
+        {
+            base.AddObject("FildsDocumentSource", fildsDocumentSource);
         }
     
         /// <summary>
@@ -984,6 +1061,30 @@ namespace DatabaseLevel
         private global::System.String _Source;
         partial void OnSourceChanging(global::System.String value);
         partial void OnSourceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DocumentNameId
+        {
+            get
+            {
+                return _DocumentNameId;
+            }
+            set
+            {
+                OnDocumentNameIdChanging(value);
+                ReportPropertyChanging("DocumentNameId");
+                _DocumentNameId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DocumentNameId");
+                OnDocumentNameIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DocumentNameId;
+        partial void OnDocumentNameIdChanging(Nullable<global::System.Int32> value);
+        partial void OnDocumentNameIdChanged();
 
         #endregion
 
@@ -1072,6 +1173,44 @@ namespace DatabaseLevel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("UniversitySystemModel", "FK_Document_DocumentName", "DocumentName")]
+        public DocumentName DocumentName
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DocumentName>("UniversitySystemModel.FK_Document_DocumentName", "DocumentName").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DocumentName>("UniversitySystemModel.FK_Document_DocumentName", "DocumentName").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<DocumentName> DocumentNameReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DocumentName>("UniversitySystemModel.FK_Document_DocumentName", "DocumentName");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DocumentName>("UniversitySystemModel.FK_Document_DocumentName", "DocumentName", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("UniversitySystemModel", "FK_Document_Post", "Post")]
         public Post Post
         {
@@ -1148,6 +1287,28 @@ namespace DatabaseLevel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("UniversitySystemModel", "FK_FildsDocumentSource_Document", "FildsDocumentSource")]
+        public EntityCollection<FildsDocumentSource> FildsDocumentSource
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FildsDocumentSource>("UniversitySystemModel.FK_FildsDocumentSource_Document", "FildsDocumentSource");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FildsDocumentSource>("UniversitySystemModel.FK_FildsDocumentSource_Document", "FildsDocumentSource", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("UniversitySystemModel", "FK_Period_Document", "Period")]
         public EntityCollection<Period> Period
         {
@@ -1182,6 +1343,137 @@ namespace DatabaseLevel
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Field>("UniversitySystemModel.Document_Fields", "Field", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="UniversitySystemModel", Name="DocumentName")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class DocumentName : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new DocumentName object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static DocumentName CreateDocumentName(global::System.Int32 id, global::System.String name)
+        {
+            DocumentName documentName = new DocumentName();
+            documentName.Id = id;
+            documentName.Name = name;
+            return documentName;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("UniversitySystemModel", "FK_Document_DocumentName", "Document")]
+        public EntityCollection<Document> Document
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Document>("UniversitySystemModel.FK_Document_DocumentName", "Document");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Document>("UniversitySystemModel.FK_Document_DocumentName", "Document", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("UniversitySystemModel", "FK_FildsDocumentSource_DocumentName", "FildsDocumentSource")]
+        public EntityCollection<FildsDocumentSource> FildsDocumentSource
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FildsDocumentSource>("UniversitySystemModel.FK_FildsDocumentSource_DocumentName", "FildsDocumentSource");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FildsDocumentSource>("UniversitySystemModel.FK_FildsDocumentSource_DocumentName", "FildsDocumentSource", value);
                 }
             }
         }
@@ -1291,11 +1583,95 @@ namespace DatabaseLevel
         private Nullable<global::System.Boolean> _IsRepeat;
         partial void OnIsRepeatChanging(Nullable<global::System.Boolean> value);
         partial void OnIsRepeatChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> TypeId
+        {
+            get
+            {
+                return _TypeId;
+            }
+            set
+            {
+                OnTypeIdChanging(value);
+                ReportPropertyChanging("TypeId");
+                _TypeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TypeId");
+                OnTypeIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _TypeId;
+        partial void OnTypeIdChanging(Nullable<global::System.Int32> value);
+        partial void OnTypeIdChanged();
 
         #endregion
 
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("UniversitySystemModel", "FK_Field_FieldType", "FieldType")]
+        public FieldType FieldType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FieldType>("UniversitySystemModel.FK_Field_FieldType", "FieldType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FieldType>("UniversitySystemModel.FK_Field_FieldType", "FieldType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<FieldType> FieldTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FieldType>("UniversitySystemModel.FK_Field_FieldType", "FieldType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FieldType>("UniversitySystemModel.FK_Field_FieldType", "FieldType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("UniversitySystemModel", "FK_FildsDocumentSource_Field", "FildsDocumentSource")]
+        public EntityCollection<FildsDocumentSource> FildsDocumentSource
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FildsDocumentSource>("UniversitySystemModel.FK_FildsDocumentSource_Field", "FildsDocumentSource");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FildsDocumentSource>("UniversitySystemModel.FK_FildsDocumentSource_Field", "FildsDocumentSource", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1315,6 +1691,390 @@ namespace DatabaseLevel
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Document>("UniversitySystemModel.Document_Fields", "Document", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="UniversitySystemModel", Name="FieldType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class FieldType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new FieldType object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="title">Initial value of the Title property.</param>
+        public static FieldType CreateFieldType(global::System.Int32 id, global::System.String title)
+        {
+            FieldType fieldType = new FieldType();
+            fieldType.Id = id;
+            fieldType.Title = title;
+            return fieldType;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("UniversitySystemModel", "FK_Field_FieldType", "Field")]
+        public EntityCollection<Field> Field
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Field>("UniversitySystemModel.FK_Field_FieldType", "Field");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Field>("UniversitySystemModel.FK_Field_FieldType", "Field", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="UniversitySystemModel", Name="FildsDocumentSource")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class FildsDocumentSource : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new FildsDocumentSource object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="documentNameId">Initial value of the DocumentNameId property.</param>
+        /// <param name="fildId">Initial value of the FildId property.</param>
+        public static FildsDocumentSource CreateFildsDocumentSource(global::System.Int32 id, global::System.Int32 documentNameId, global::System.Int32 fildId)
+        {
+            FildsDocumentSource fildsDocumentSource = new FildsDocumentSource();
+            fildsDocumentSource.Id = id;
+            fildsDocumentSource.DocumentNameId = documentNameId;
+            fildsDocumentSource.FildId = fildId;
+            return fildsDocumentSource;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 DocumentNameId
+        {
+            get
+            {
+                return _DocumentNameId;
+            }
+            set
+            {
+                OnDocumentNameIdChanging(value);
+                ReportPropertyChanging("DocumentNameId");
+                _DocumentNameId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DocumentNameId");
+                OnDocumentNameIdChanged();
+            }
+        }
+        private global::System.Int32 _DocumentNameId;
+        partial void OnDocumentNameIdChanging(global::System.Int32 value);
+        partial void OnDocumentNameIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 FildId
+        {
+            get
+            {
+                return _FildId;
+            }
+            set
+            {
+                OnFildIdChanging(value);
+                ReportPropertyChanging("FildId");
+                _FildId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FildId");
+                OnFildIdChanged();
+            }
+        }
+        private global::System.Int32 _FildId;
+        partial void OnFildIdChanging(global::System.Int32 value);
+        partial void OnFildIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DocumentDataSource
+        {
+            get
+            {
+                return _DocumentDataSource;
+            }
+            set
+            {
+                OnDocumentDataSourceChanging(value);
+                ReportPropertyChanging("DocumentDataSource");
+                _DocumentDataSource = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DocumentDataSource");
+                OnDocumentDataSourceChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DocumentDataSource;
+        partial void OnDocumentDataSourceChanging(Nullable<global::System.Int32> value);
+        partial void OnDocumentDataSourceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DatabaseSource
+        {
+            get
+            {
+                return _DatabaseSource;
+            }
+            set
+            {
+                OnDatabaseSourceChanging(value);
+                ReportPropertyChanging("DatabaseSource");
+                _DatabaseSource = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DatabaseSource");
+                OnDatabaseSourceChanged();
+            }
+        }
+        private global::System.String _DatabaseSource;
+        partial void OnDatabaseSourceChanging(global::System.String value);
+        partial void OnDatabaseSourceChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("UniversitySystemModel", "FK_FildsDocumentSource_Document", "Document")]
+        public Document Document
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Document>("UniversitySystemModel.FK_FildsDocumentSource_Document", "Document").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Document>("UniversitySystemModel.FK_FildsDocumentSource_Document", "Document").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Document> DocumentReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Document>("UniversitySystemModel.FK_FildsDocumentSource_Document", "Document");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Document>("UniversitySystemModel.FK_FildsDocumentSource_Document", "Document", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("UniversitySystemModel", "FK_FildsDocumentSource_DocumentName", "DocumentName")]
+        public DocumentName DocumentName
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DocumentName>("UniversitySystemModel.FK_FildsDocumentSource_DocumentName", "DocumentName").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DocumentName>("UniversitySystemModel.FK_FildsDocumentSource_DocumentName", "DocumentName").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<DocumentName> DocumentNameReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DocumentName>("UniversitySystemModel.FK_FildsDocumentSource_DocumentName", "DocumentName");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DocumentName>("UniversitySystemModel.FK_FildsDocumentSource_DocumentName", "DocumentName", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("UniversitySystemModel", "FK_FildsDocumentSource_Field", "Field")]
+        public Field Field
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Field>("UniversitySystemModel.FK_FildsDocumentSource_Field", "Field").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Field>("UniversitySystemModel.FK_FildsDocumentSource_Field", "Field").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Field> FieldReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Field>("UniversitySystemModel.FK_FildsDocumentSource_Field", "Field");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Field>("UniversitySystemModel.FK_FildsDocumentSource_Field", "Field", value);
                 }
             }
         }

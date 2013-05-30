@@ -47,6 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analisator.cs" />
+    <Compile Include="AnalisResultConteiner.cs" />
+    <Compile Include="AnalisResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnalisResultForm.Designer.cs">
+      <DependentUpon>AnalisResultForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnalisResultItem.cs" />
     <Compile Include="ChangeNameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +133,9 @@
       <DependentUpon>NewTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilites\GraphicsExtension.cs" />
+    <EmbeddedResource Include="AnalisResultForm.resx">
+      <DependentUpon>AnalisResultForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChangeNameForm.resx">
       <DependentUpon>ChangeNameForm.cs</DependentUpon>
     </EmbeddedResource>

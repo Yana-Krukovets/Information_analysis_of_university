@@ -30,26 +30,26 @@ namespace Information_analysis_of_university.Objects
         public abstract void EndDrag();
         public abstract bool IsDragging();
 
-        public static string GetDescription(Enum en)
-        {
-            Type type = en.GetType();
+        //public static string GetDescription(Enum en)
+        //{
+        //    Type type = en.GetType();
 
-            MemberInfo[] memInfo = type.GetMember(en.ToString());
+        //    MemberInfo[] memInfo = type.GetMember(en.ToString());
 
-            if (memInfo != null && memInfo.Length > 0)
-            {
+        //    if (memInfo != null && memInfo.Length > 0)
+        //    {
 
-                object[] attrs = memInfo[0].GetCustomAttributes(typeof(Description),
-                                                                false);
+        //        object[] attrs = memInfo[0].GetCustomAttributes(typeof(Description),
+        //                                                        false);
 
-                if (attrs != null && attrs.Length > 0)
+        //        if (attrs != null && attrs.Length > 0)
 
-                    return ((Description)attrs[0]).Text;
+        //            return ((Description)attrs[0]).Text;
 
-            }
+        //    }
 
-            return en.ToString();
-        }
+        //    return en.ToString();
+        //}
 
         public abstract bool QbeSelect(QbeQueryConteiner query);
     }
@@ -78,5 +78,25 @@ namespace Information_analysis_of_university.Objects
 
         }
 
+        public static string GetDescription(Enum en)
+        {
+            Type type = en.GetType();
+
+            MemberInfo[] memInfo = type.GetMember(en.ToString());
+
+            if (memInfo != null && memInfo.Length > 0)
+            {
+
+                object[] attrs = memInfo[0].GetCustomAttributes(typeof(Description),
+                                                                false);
+
+                if (attrs != null && attrs.Length > 0)
+
+                    return ((Description)attrs[0]).Text;
+
+            }
+
+            return en.ToString();
+        }
     }
 }

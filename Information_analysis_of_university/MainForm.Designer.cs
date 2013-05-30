@@ -77,6 +77,8 @@
             this.newTabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.analisButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -258,6 +260,8 @@
             // 
             // menuBox1
             // 
+            this.menuBox1.Controls.Add(this.label5);
+            this.menuBox1.Controls.Add(this.analisButton);
             this.menuBox1.Controls.Add(this.button10);
             this.menuBox1.Controls.Add(this.buttonMaster);
             this.menuBox1.Controls.Add(this.buttonQBE);
@@ -293,7 +297,7 @@
             // 
             // buttonMaster
             // 
-            this.buttonMaster.Location = new System.Drawing.Point(6, 372);
+            this.buttonMaster.Location = new System.Drawing.Point(6, 327);
             this.buttonMaster.Name = "buttonMaster";
             this.buttonMaster.Size = new System.Drawing.Size(220, 26);
             this.buttonMaster.TabIndex = 2;
@@ -303,7 +307,7 @@
             // 
             // buttonQBE
             // 
-            this.buttonQBE.Location = new System.Drawing.Point(6, 343);
+            this.buttonQBE.Location = new System.Drawing.Point(6, 298);
             this.buttonQBE.Name = "buttonQBE";
             this.buttonQBE.Size = new System.Drawing.Size(220, 23);
             this.buttonQBE.TabIndex = 1;
@@ -313,7 +317,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(6, 240);
+            this.button7.Location = new System.Drawing.Point(6, 215);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(220, 23);
             this.button7.TabIndex = 1;
@@ -323,7 +327,7 @@
             // 
             // buttonSQL
             // 
-            this.buttonSQL.Location = new System.Drawing.Point(6, 311);
+            this.buttonSQL.Location = new System.Drawing.Point(6, 266);
             this.buttonSQL.Name = "buttonSQL";
             this.buttonSQL.Size = new System.Drawing.Size(220, 27);
             this.buttonSQL.TabIndex = 0;
@@ -334,7 +338,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 295);
+            this.label4.Location = new System.Drawing.Point(6, 250);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 1;
@@ -342,7 +346,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(6, 210);
+            this.button5.Location = new System.Drawing.Point(6, 185);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(220, 24);
             this.button5.TabIndex = 4;
@@ -353,7 +357,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 163);
+            this.label3.Location = new System.Drawing.Point(6, 138);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 13);
             this.label3.TabIndex = 1;
@@ -361,7 +365,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 179);
+            this.button1.Location = new System.Drawing.Point(6, 154);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(220, 25);
             this.button1.TabIndex = 0;
@@ -425,7 +429,7 @@
             this.SaveToolStripMenuItem,
             this.CloseToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 70);
             // 
             // RenameToolStripMenuItem
             // 
@@ -515,6 +519,25 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
+            // analisButton
+            // 
+            this.analisButton.Location = new System.Drawing.Point(6, 395);
+            this.analisButton.Name = "analisButton";
+            this.analisButton.Size = new System.Drawing.Size(220, 23);
+            this.analisButton.TabIndex = 10;
+            this.analisButton.Text = "Анализ";
+            this.analisButton.UseVisualStyleBackColor = true;
+            this.analisButton.Click += new System.EventHandler(this.analisButton_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 379);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(136, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Анализ доументооборота";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -595,6 +618,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ToolStripMenuItem CloseToolStripMenuItem;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button analisButton;
     }
 }
 

@@ -22,8 +22,8 @@ namespace Information_analysis_of_university.Models
             //для того, чтобы найти их начало жизненного цикла
             var documentsList = documentRepository.ToList().Where(
                 x =>
-                ((x.Type == (byte)DocumentType.Input || x.Type == (byte)DocumentType.InputOutput)/* && x.IsExternal == 2*/) ||
-                x.Type == (byte)DocumentType.Output);
+                (((x.Type == (byte)DocumentType.Input || x.Type == (byte)DocumentType.InputOutput) /*&& x.IsExternal == 2*/) ||
+                x.Type == (byte)DocumentType.Output) && x.DocumentId > 1000);
 
             LifeCycles = new List<LifeCycle>();
             var usingDocuments = new List<Document>();
@@ -97,6 +97,7 @@ namespace Information_analysis_of_university.Models
 
         public LifeCycle(Document document, ref List<Document> usingDocuments)
         {
+
             Document = new DocumentObject(document);
 
             //var taskRepository = new BaseDocumentRepository<Task>();
@@ -115,6 +116,8 @@ namespace Information_analysis_of_university.Models
             var resposibleWorker =
                 workerRepository.FirstOrDefault(x => x.WorkerId == document.FK_ResponsibleId);
 
+            var documentRepository = new BaseDocumentRepository<Document>();
+
             if (document.Type != null)
             {
                 if ((DocumentType)document.Type == DocumentType.InputOutput ||
@@ -124,52 +127,89 @@ namespace Information_analysis_of_university.Models
 
                     //если есть ид департамента-источника и еще не было занесено в список никаких элементов
                     if (document.FK_DepartmentIdSource != null && Workplaces.Count == 0)
-                        Workplaces.Add(new WorkplaceLifeElement { DepartmentName = document.Department1.Name });
+                    {
+                        var firstDocument = documentRepository.FirstOrDefault(
+                            x => x.Name == document.Name && x.Type == (int)DocumentType.Output &&
+                                 x.FK_DepartmentIdDestination == document.FK_DepartmentIdSource);
+                        if (firstDocument != null)
+                        {
+                            documentList.Remove(document);
+                            documentList.Add(firstDocument);
+                            NextPost(firstDocument, ref documentList);
+                        }
+                        else
+                            Workplaces.Add(new WorkplaceLifeElement { DepartmentName = document.Department1.Name });
+                    }
+
 
                     //для внешних документов нужно запомнить имя поставщика
                     if (document.IsExternal == 2)
                         Workplaces.Add(new WorkplaceLifeElement { DepartmentName = document.Source, IsExternalOrganization = true });
                 }
 
-                Workplaces.Add(new WorkplaceLifeElement(task.Post) { ResponsibleWorker = resposibleWorker != null ? resposibleWorker.Name : null });
+                if (documentList.LastOrDefault() == document)
+                    Workplaces.Add(new WorkplaceLifeElement(document.Post) { ResponsibleWorker = resposibleWorker != null ? resposibleWorker.Name : null });
 
                 if ((DocumentType)document.Type == DocumentType.InputOutput ||
                     (DocumentType)document.Type == DocumentType.Output)
                 {
-                    //для внешних документов запоминаем 
-                    if (document.IsExternal == 2 && document.Destination != "")
-                        Workplaces.Add(new WorkplaceLifeElement { DepartmentName = document.Destination, IsExternalOrganization = true });
-                    else
+
+
+                    ////если сначала найден док вх-вых, а не выходящий
+                    //if ((DocumentType)document.Type == DocumentType.InputOutput && Workplaces.Count == 0)
+                    //{
+                    //    var firstDocument = documentRepository.FirstOrDefault(
+                    //        x => x.Name == document.Name && x.Type == (int)DocumentType.Output);
+                    //    if (firstDocument != null)
+                    //    {
+                    //        documentList.Remove(document);
+                    //        documentList.Add(firstDocument);
+                    //        NextPost(firstDocument, ref documentList);
+                    //    }
+                    //}
+                    //else
                     {
-                        //департамент, куда направится документ
-                        var nextDepartment = document.Department;
-
-                        var documentRepository = new BaseDocumentRepository<Document>();
-                        //выбираем все задачи, которые относятся к данному департаменту
-                        var taskList = (from t in taskRepository.ToList()
-                                        join p in new BaseDocumentRepository<Post>().ToList() on t.FK_PostId equals p.PostId
-                                        where p.FK_DepartmentId == nextDepartment.DepartmentId
-                                        select t).ToList();
-
-                        //выбираем вход или вход/выход документы
-                        //которые относятся к задачам из taskList
-                        //и этого док-та нет в списке выбранных ранее (documentList)
-                        var nextDocuments = documentRepository.Query(
-                            x =>
-                            (x.Type == (int)DocumentType.Input || x.Type == (int)DocumentType.InputOutput) &&
-                            x.Name == document.Name).ToList();
-
-                        var tempList = new List<Document>();
-                        //nextDocuments.Clear();
-                        var list = documentList;
-                        tempList.AddRange(nextDocuments.Where(doc => taskList.Any(x => x.TaskId == doc.FK_TaskId) && list.All(x => x.DocumentId != doc.DocumentId)));
-
-                        foreach (var doc in tempList)
+                        //для внешних документов запоминаем 
+                        if (document.IsExternal == 2 && document.Destination != "")
+                            Workplaces.Add(new WorkplaceLifeElement { DepartmentName = document.Destination, IsExternalOrganization = true });
+                        else
                         {
-                            documentList.Add(doc);
-                            NextPost(doc, ref documentList);
+                            //департамент, куда направится документ
+                            var nextDepartment = document.Department;
+
+                            //выбираем документ с таким же именени и DepartmentSource = nextDepartment
+
+                            ////выбираем все задачи, которые относятся к данному департаменту
+                            //var taskList = (from t in taskRepository.ToList()
+                            //                join p in new BaseDocumentRepository<Post>().ToList() on t.FK_PostId equals p.PostId
+                            //                where p.FK_DepartmentId == nextDepartment.DepartmentId
+                            //                select t).ToList();
+
+                            //выбираем вход или вход/выход документы
+                            //которые относятся к задачам из taskList
+                            //и этого док-та нет в списке выбранных ранее (documentList)
+                            var nextDocuments = documentRepository.Query(
+                                x =>
+                                (x.Type == (int)DocumentType.Input || x.Type == (int)DocumentType.InputOutput) &&
+                                x.Name == document.Name && x.FK_DepartmentIdSource == nextDepartment.DepartmentId).ToList();
+
+                            var tempList = new List<Document>();
+                            //nextDocuments.Clear();
+                            var list = documentList;
+                            tempList.AddRange(nextDocuments.Where(doc => /*taskList.Any(x => x.TaskId == doc.FK_TaskId) && */list.All(x => x.DocumentId != doc.DocumentId)));
+
+                            //нужно отсортировать: сначала вх-вых, а потом входящие
+                            foreach (var doc in tempList)
+                            {
+                                if (documentList.All(x => x.DocumentId != doc.DocumentId))
+                                {
+                                    documentList.Add(doc);
+                                    NextPost(doc, ref documentList);
+                                }
+                            }
                         }
                     }
+
                 }
             }
         }
@@ -202,7 +242,7 @@ namespace Information_analysis_of_university.Models
         public BaseObject GetObject(int x, int y)
         {
             BaseObject curObj = null;
-            if (x >= Document.CoordX && x <= Document.CoordX + 100 && y >=Document.CoordY && y <= Document.CoordY + 25 )
+            if (x >= Document.CoordX && x <= Document.CoordX + 100 && y >= Document.CoordY && y <= Document.CoordY + 25)
                 curObj = Document;
             else
             {

@@ -128,21 +128,26 @@ namespace Information_analysis_of_university.Models
 
         public void DrawTasks(Graphics g)
         {
-            var increaseLength = Workplace.GetIncreaseLength(TaskDocuments.Count - 1);
-
-            for (int i = 0; i < TaskDocuments.Count; i++)
+            if (TaskDocuments.Count > 0)
             {
-                if (i < TaskDocuments.Count - 1)
+                var increaseLength = Workplace.GetIncreaseLength(TaskDocuments.Count - 1);
+
+                for (int i = 0; i < TaskDocuments.Count; i++)
                 {
-                    TaskDocuments[i].Task.CoordX = Workplace.CoordX;
-                    TaskDocuments[i].Task.CoordY = Workplace.CoordY + increaseLength * i;
-                    g.DrawLine(new Pen(Color.Black), Workplace.CoordX, Workplace.CoordY + increaseLength * (i + 1), Workplace.CoordX + Workplace._Size, Workplace.CoordY + increaseLength * (i + 1));
+                    if (i < TaskDocuments.Count - 1)
+                    {
+                        TaskDocuments[i].Task.CoordX = Workplace.CoordX;
+                        TaskDocuments[i].Task.CoordY = Workplace.CoordY + increaseLength*i;
+                        g.DrawLine(new Pen(Color.Black), Workplace.CoordX, Workplace.CoordY + increaseLength*(i + 1),
+                                   Workplace.CoordX + Workplace._Size, Workplace.CoordY + increaseLength*(i + 1));
+                    }
+
+
+                    g.DrawString(TaskDocuments[i].Task.Name, new Font("Calibri", 10), new SolidBrush(Color.Black),
+                                 new RectangleF(Workplace.CoordX, Workplace.CoordY + increaseLength*i, Workplace._Size,
+                                                increaseLength));
                 }
-
-
-                g.DrawString(TaskDocuments[i].Task.Name, new Font("Calibri", 10), new SolidBrush(Color.Black), new RectangleF(Workplace.CoordX, Workplace.CoordY + increaseLength * i, Workplace._Size, increaseLength));
             }
-
             DrawDocuments(g);
         }
 

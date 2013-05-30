@@ -36,23 +36,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QbeQueryForm));
             this.dGridQbeQuery = new System.Windows.Forms.DataGridView();
-            this.DocumentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.documentFrequency = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.isElectronic = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isExternal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ExternalSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExternalDestination = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.documentType = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.DocumentFunction = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.responsibleWorker = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.department = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.post = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.taskName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isProgram = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.programName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaskCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DocunentCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qbeQueryItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -90,12 +73,29 @@
             this.выполнитьДляВсехМоделейToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.qbeQueryItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.qbeQueryConteinerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DocumentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documentFrequency = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.isElectronic = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isExternal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ExternalSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExternalDestination = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documentType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.DocumentFunction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.responsibleWorker = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.department = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.post = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.programName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaskCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DocunentCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dGridQbeQuery)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qbeQueryItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.gbMetrics.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.qbeQueryItemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qbeQueryConteinerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dGridQbeQuery
@@ -117,137 +117,19 @@
             this.responsibleWorker,
             this.department,
             this.post,
-            this.taskName,
-            this.isProgram,
             this.programName,
             this.TaskCount,
             this.DocunentCount});
-            this.dGridQbeQuery.DataSource = this.qbeQueryItemBindingSource;
-            this.dGridQbeQuery.Location = new System.Drawing.Point(0, 52);
+            this.dGridQbeQuery.DataSource = this.qbeQueryConteinerBindingSource;
+            this.dGridQbeQuery.Location = new System.Drawing.Point(2, 52);
             this.dGridQbeQuery.Name = "dGridQbeQuery";
             this.dGridQbeQuery.Size = new System.Drawing.Size(844, 181);
             this.dGridQbeQuery.TabIndex = 0;
             // 
-            // DocumentName
-            // 
-            this.DocumentName.DataPropertyName = "DocumentName";
-            this.DocumentName.HeaderText = "Название документа";
-            this.DocumentName.Name = "DocumentName";
-            // 
-            // documentFrequency
-            // 
-            this.documentFrequency.DataPropertyName = "Frequency";
-            this.documentFrequency.HeaderText = "Частота заполнения";
-            this.documentFrequency.Items.AddRange(new object[] {
-            "ежедневно",
-            "1 раз в неделю",
-            "1 раз в месяц",
-            "1 раз в квартал",
-            "1 раз в год"});
-            this.documentFrequency.Name = "documentFrequency";
-            this.documentFrequency.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.documentFrequency.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // isElectronic
-            // 
-            this.isElectronic.DataPropertyName = "IsElectronic";
-            this.isElectronic.HeaderText = "Электронный";
-            this.isElectronic.Name = "isElectronic";
-            // 
-            // isExternal
-            // 
-            this.isExternal.DataPropertyName = "IsExternal";
-            this.isExternal.HeaderText = "Внешний";
-            this.isExternal.Name = "isExternal";
-            // 
-            // ExternalSource
-            // 
-            this.ExternalSource.DataPropertyName = "ExternalSource";
-            this.ExternalSource.HeaderText = "Внешний источник";
-            this.ExternalSource.Name = "ExternalSource";
-            this.ExternalSource.Visible = false;
-            // 
-            // ExternalDestination
-            // 
-            this.ExternalDestination.DataPropertyName = "ExternalDistination";
-            this.ExternalDestination.HeaderText = "Внешний приемник";
-            this.ExternalDestination.Name = "ExternalDestination";
-            this.ExternalDestination.Visible = false;
-            // 
-            // documentType
-            // 
-            this.documentType.DataPropertyName = "DocumentType";
-            this.documentType.HeaderText = "Тип документа";
-            this.documentType.Items.AddRange(new object[] {
-            "Входящий-исходящий",
-            "Входящий",
-            "Исходящий"});
-            this.documentType.Name = "documentType";
-            // 
-            // DocumentFunction
-            // 
-            this.DocumentFunction.DataPropertyName = "DocumentFunction";
-            this.DocumentFunction.HeaderText = "Назначение документа";
-            this.DocumentFunction.Name = "DocumentFunction";
-            this.DocumentFunction.Visible = false;
-            // 
-            // responsibleWorker
-            // 
-            this.responsibleWorker.DataPropertyName = "ResponsibleWorker";
-            this.responsibleWorker.HeaderText = "Работник-исполнитель";
-            this.responsibleWorker.Name = "responsibleWorker";
-            // 
-            // department
-            // 
-            this.department.DataPropertyName = "DepartmentName";
-            this.department.HeaderText = "Подразделение";
-            this.department.Name = "department";
-            // 
-            // post
-            // 
-            this.post.DataPropertyName = "PostName";
-            this.post.HeaderText = "Должность";
-            this.post.Name = "post";
-            // 
-            // taskName
-            // 
-            this.taskName.DataPropertyName = "TaskName";
-            this.taskName.HeaderText = "Задача";
-            this.taskName.Name = "taskName";
-            // 
-            // isProgram
-            // 
-            this.isProgram.DataPropertyName = "IsProgram";
-            this.isProgram.HeaderText = "Заполняется программой";
-            this.isProgram.Name = "isProgram";
-            // 
-            // programName
-            // 
-            this.programName.DataPropertyName = "ProgramName";
-            this.programName.HeaderText = "Название программы";
-            this.programName.Name = "programName";
-            // 
-            // TaskCount
-            // 
-            this.TaskCount.DataPropertyName = "TaskCount";
-            this.TaskCount.HeaderText = "Кол-во задач";
-            this.TaskCount.Name = "TaskCount";
-            this.TaskCount.Visible = false;
-            // 
-            // DocunentCount
-            // 
-            this.DocunentCount.DataPropertyName = "DocunentCount";
-            this.DocunentCount.HeaderText = "Кол-во документов";
-            this.DocunentCount.Name = "DocunentCount";
-            this.DocunentCount.Visible = false;
-            // 
-            // qbeQueryItemBindingSource
-            // 
-            this.qbeQueryItemBindingSource.DataSource = typeof(Information_analysis_of_university.QbeQueryItem);
-            // 
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.bindingNavigator1.BindingSource = this.qbeQueryConteinerBindingSource;
             this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
             this.bindingNavigator1.DeleteItem = this.bindingNavigatorDeleteItem;
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -583,6 +465,115 @@
             this.справкаToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.справкаToolStripMenuItem.Text = "Справка";
             // 
+            // qbeQueryItemBindingSource
+            // 
+            this.qbeQueryItemBindingSource.DataSource = typeof(Information_analysis_of_university.QbeQueryItem);
+            // 
+            // qbeQueryConteinerBindingSource
+            // 
+            this.qbeQueryConteinerBindingSource.DataSource = typeof(Information_analysis_of_university.QbeQueryConteiner);
+            // 
+            // DocumentName
+            // 
+            this.DocumentName.DataPropertyName = "DocumentName";
+            this.DocumentName.HeaderText = "Название документа";
+            this.DocumentName.Name = "DocumentName";
+            // 
+            // documentFrequency
+            // 
+            this.documentFrequency.DataPropertyName = "Frequency";
+            this.documentFrequency.HeaderText = "Частота заполнения";
+            this.documentFrequency.Items.AddRange(new object[] {
+            "ежедневно",
+            "1 раз в неделю",
+            "1 раз в месяц",
+            "1 раз в квартал",
+            "1 раз в год"});
+            this.documentFrequency.Name = "documentFrequency";
+            this.documentFrequency.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.documentFrequency.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // isElectronic
+            // 
+            this.isElectronic.DataPropertyName = "IsElectronic";
+            this.isElectronic.HeaderText = "Электронный";
+            this.isElectronic.Name = "isElectronic";
+            // 
+            // isExternal
+            // 
+            this.isExternal.DataPropertyName = "IsExternal";
+            this.isExternal.HeaderText = "Внешний";
+            this.isExternal.Name = "isExternal";
+            // 
+            // ExternalSource
+            // 
+            this.ExternalSource.DataPropertyName = "ExternalSource";
+            this.ExternalSource.HeaderText = "Внешний источник";
+            this.ExternalSource.Name = "ExternalSource";
+            this.ExternalSource.Visible = false;
+            // 
+            // ExternalDestination
+            // 
+            this.ExternalDestination.DataPropertyName = "ExternalDistination";
+            this.ExternalDestination.HeaderText = "Внешний приемник";
+            this.ExternalDestination.Name = "ExternalDestination";
+            this.ExternalDestination.Visible = false;
+            // 
+            // documentType
+            // 
+            this.documentType.DataPropertyName = "DocumentType";
+            this.documentType.HeaderText = "Тип документа";
+            this.documentType.Items.AddRange(new object[] {
+            "Входящий-исходящий",
+            "Входящий",
+            "Исходящий"});
+            this.documentType.Name = "documentType";
+            // 
+            // DocumentFunction
+            // 
+            this.DocumentFunction.DataPropertyName = "DocumentFunction";
+            this.DocumentFunction.HeaderText = "Назначение документа";
+            this.DocumentFunction.Name = "DocumentFunction";
+            this.DocumentFunction.Visible = false;
+            // 
+            // responsibleWorker
+            // 
+            this.responsibleWorker.DataPropertyName = "ResponsibleWorker";
+            this.responsibleWorker.HeaderText = "Работник-исполнитель";
+            this.responsibleWorker.Name = "responsibleWorker";
+            // 
+            // department
+            // 
+            this.department.DataPropertyName = "DepartmentName";
+            this.department.HeaderText = "Подразделение";
+            this.department.Name = "department";
+            // 
+            // post
+            // 
+            this.post.DataPropertyName = "PostName";
+            this.post.HeaderText = "Должность";
+            this.post.Name = "post";
+            // 
+            // programName
+            // 
+            this.programName.DataPropertyName = "ProgramName";
+            this.programName.HeaderText = "Название программы";
+            this.programName.Name = "programName";
+            // 
+            // TaskCount
+            // 
+            this.TaskCount.DataPropertyName = "TaskCount";
+            this.TaskCount.HeaderText = "Кол-во задач";
+            this.TaskCount.Name = "TaskCount";
+            this.TaskCount.Visible = false;
+            // 
+            // DocunentCount
+            // 
+            this.DocunentCount.DataPropertyName = "DocunentCount";
+            this.DocunentCount.HeaderText = "Кол-во документов";
+            this.DocunentCount.Name = "DocunentCount";
+            this.DocunentCount.Visible = false;
+            // 
             // QbeQueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -599,7 +590,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QbeQueryForm_FormClosing);
             this.Load += new System.EventHandler(this.QbeQueryForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGridQbeQuery)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qbeQueryItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
@@ -607,6 +597,8 @@
             this.gbMetrics.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.qbeQueryItemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qbeQueryConteinerBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -639,22 +631,6 @@
         private System.Windows.Forms.Button btAddToSelect;
         private System.Windows.Forms.ListBox listboxSelectedMetrics;
         private System.Windows.Forms.ListBox listboxAllMetrics;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DocumentName;
-        private System.Windows.Forms.DataGridViewComboBoxColumn documentFrequency;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isElectronic;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isExternal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ExternalSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ExternalDestination;
-        private System.Windows.Forms.DataGridViewComboBoxColumn documentType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DocumentFunction;
-        private System.Windows.Forms.DataGridViewTextBoxColumn responsibleWorker;
-        private System.Windows.Forms.DataGridViewTextBoxColumn department;
-        private System.Windows.Forms.DataGridViewTextBoxColumn post;
-        private System.Windows.Forms.DataGridViewTextBoxColumn taskName;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isProgram;
-        private System.Windows.Forms.DataGridViewTextBoxColumn programName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TaskCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DocunentCount;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -669,5 +645,20 @@
         private System.Windows.Forms.ToolStripMenuItem выполнитьДляВсехМоделейToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DocumentName;
+        private System.Windows.Forms.DataGridViewComboBoxColumn documentFrequency;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isElectronic;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isExternal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExternalSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExternalDestination;
+        private System.Windows.Forms.DataGridViewComboBoxColumn documentType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DocumentFunction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn responsibleWorker;
+        private System.Windows.Forms.DataGridViewTextBoxColumn department;
+        private System.Windows.Forms.DataGridViewTextBoxColumn post;
+        private System.Windows.Forms.DataGridViewTextBoxColumn programName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaskCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DocunentCount;
+        private System.Windows.Forms.BindingSource qbeQueryConteinerBindingSource;
     }
 }

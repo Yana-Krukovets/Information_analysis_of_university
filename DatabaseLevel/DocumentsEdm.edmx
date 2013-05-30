@@ -9,7 +9,10 @@
           <EntitySet Name="Department" EntityType="UniversitySystemModel.Store.Department" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Document" EntityType="UniversitySystemModel.Store.Document" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Document_Fields" EntityType="UniversitySystemModel.Store.Document_Fields" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DocumentName" EntityType="UniversitySystemModel.Store.DocumentName" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Field" EntityType="UniversitySystemModel.Store.Field" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FieldType" EntityType="UniversitySystemModel.Store.FieldType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FildsDocumentSource" EntityType="UniversitySystemModel.Store.FildsDocumentSource" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Period" EntityType="UniversitySystemModel.Store.Period" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Post" EntityType="UniversitySystemModel.Store.Post" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Task" EntityType="UniversitySystemModel.Store.Task" store:Type="Tables" Schema="dbo" />
@@ -24,6 +27,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Document_DepartmentSource" Association="UniversitySystemModel.Store.FK_Document_DepartmentSource">
             <End Role="Department" EntitySet="Department" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_DocumentName" Association="UniversitySystemModel.Store.FK_Document_DocumentName">
+            <End Role="DocumentName" EntitySet="DocumentName" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
           <AssociationSet Name="FK_Document_Fields_Document" Association="UniversitySystemModel.Store.FK_Document_Fields_Document">
@@ -41,6 +48,22 @@
           <AssociationSet Name="FK_Document_Task" Association="UniversitySystemModel.Store.FK_Document_Task">
             <End Role="Task" EntitySet="Task" />
             <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Field_FieldType" Association="UniversitySystemModel.Store.FK_Field_FieldType">
+            <End Role="FieldType" EntitySet="FieldType" />
+            <End Role="Field" EntitySet="Field" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FildsDocumentSource_Document" Association="UniversitySystemModel.Store.FK_FildsDocumentSource_Document">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="FildsDocumentSource" EntitySet="FildsDocumentSource" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FildsDocumentSource_DocumentName" Association="UniversitySystemModel.Store.FK_FildsDocumentSource_DocumentName">
+            <End Role="DocumentName" EntitySet="DocumentName" />
+            <End Role="FildsDocumentSource" EntitySet="FildsDocumentSource" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FildsDocumentSource_Field" Association="UniversitySystemModel.Store.FK_FildsDocumentSource_Field">
+            <End Role="Field" EntitySet="Field" />
+            <End Role="FildsDocumentSource" EntitySet="FildsDocumentSource" />
           </AssociationSet>
           <AssociationSet Name="FK_Period_Document" Association="UniversitySystemModel.Store.FK_Period_Document">
             <End Role="Document" EntitySet="Document" />
@@ -90,6 +113,7 @@
           <Property Name="EndDate" Type="date" />
           <Property Name="Destination" Type="nvarchar(max)" />
           <Property Name="Source" Type="nvarchar(max)" />
+          <Property Name="DocumentNameId" Type="int" />
         </EntityType>
         <EntityType Name="Document_Fields">
           <Key>
@@ -99,6 +123,13 @@
           <Property Name="DocumentId" Type="int" Nullable="false" />
           <Property Name="FieldId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="DocumentName">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Field">
           <Key>
             <PropertyRef Name="FieldId" />
@@ -106,6 +137,24 @@
           <Property Name="FieldId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsRepeat" Type="bit" />
+          <Property Name="TypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="FieldType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FildsDocumentSource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentNameId" Type="int" Nullable="false" />
+          <Property Name="FildId" Type="int" Nullable="false" />
+          <Property Name="DocumentDataSource" Type="int" />
+          <Property Name="DatabaseSource" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Period">
           <Key>
@@ -180,6 +229,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Document_DocumentName">
+          <End Role="DocumentName" Type="UniversitySystemModel.Store.DocumentName" Multiplicity="0..1" />
+          <End Role="Document" Type="UniversitySystemModel.Store.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="DocumentNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Document_Fields_Document">
           <End Role="Document" Type="UniversitySystemModel.Store.Document" Multiplicity="1" />
           <End Role="Document_Fields" Type="UniversitySystemModel.Store.Document_Fields" Multiplicity="*" />
@@ -225,6 +286,54 @@
             </Principal>
             <Dependent Role="Document">
               <PropertyRef Name="FK_TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Field_FieldType">
+          <End Role="FieldType" Type="UniversitySystemModel.Store.FieldType" Multiplicity="0..1" />
+          <End Role="Field" Type="UniversitySystemModel.Store.Field" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FieldType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Field">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FildsDocumentSource_Document">
+          <End Role="Document" Type="UniversitySystemModel.Store.Document" Multiplicity="0..1" />
+          <End Role="FildsDocumentSource" Type="UniversitySystemModel.Store.FildsDocumentSource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="DocumentId" />
+            </Principal>
+            <Dependent Role="FildsDocumentSource">
+              <PropertyRef Name="DocumentDataSource" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FildsDocumentSource_DocumentName">
+          <End Role="DocumentName" Type="UniversitySystemModel.Store.DocumentName" Multiplicity="1" />
+          <End Role="FildsDocumentSource" Type="UniversitySystemModel.Store.FildsDocumentSource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FildsDocumentSource">
+              <PropertyRef Name="DocumentNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FildsDocumentSource_Field">
+          <End Role="Field" Type="UniversitySystemModel.Store.Field" Multiplicity="1" />
+          <End Role="FildsDocumentSource" Type="UniversitySystemModel.Store.FildsDocumentSource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Field">
+              <PropertyRef Name="FieldId" />
+            </Principal>
+            <Dependent Role="FildsDocumentSource">
+              <PropertyRef Name="FildId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -283,7 +392,10 @@
         <EntityContainer Name="UniversitySystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Department" EntityType="UniversitySystemModel.Department" />
           <EntitySet Name="Document" EntityType="UniversitySystemModel.Document" />
+          <EntitySet Name="DocumentName" EntityType="UniversitySystemModel.DocumentName" />
           <EntitySet Name="Field" EntityType="UniversitySystemModel.Field" />
+          <EntitySet Name="FieldType" EntityType="UniversitySystemModel.FieldType" />
+          <EntitySet Name="FildsDocumentSource" EntityType="UniversitySystemModel.FildsDocumentSource" />
           <EntitySet Name="Period" EntityType="UniversitySystemModel.Period" />
           <EntitySet Name="Post" EntityType="UniversitySystemModel.Post" />
           <EntitySet Name="Task" EntityType="UniversitySystemModel.Task" />
@@ -304,6 +416,10 @@
             <End Role="Department" EntitySet="Department" />
             <End Role="Post" EntitySet="Post" />
           </AssociationSet>
+          <AssociationSet Name="FK_Document_DocumentName" Association="UniversitySystemModel.FK_Document_DocumentName">
+            <End Role="DocumentName" EntitySet="DocumentName" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
           <AssociationSet Name="FK_Document_Post" Association="UniversitySystemModel.FK_Document_Post">
             <End Role="Post" EntitySet="Post" />
             <End Role="Document" EntitySet="Document" />
@@ -312,9 +428,25 @@
             <End Role="Task" EntitySet="Task" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
+          <AssociationSet Name="FK_FildsDocumentSource_Document" Association="UniversitySystemModel.FK_FildsDocumentSource_Document">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="FildsDocumentSource" EntitySet="FildsDocumentSource" />
+          </AssociationSet>
           <AssociationSet Name="FK_Period_Document" Association="UniversitySystemModel.FK_Period_Document">
             <End Role="Document" EntitySet="Document" />
             <End Role="Period" EntitySet="Period" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FildsDocumentSource_DocumentName" Association="UniversitySystemModel.FK_FildsDocumentSource_DocumentName">
+            <End Role="DocumentName" EntitySet="DocumentName" />
+            <End Role="FildsDocumentSource" EntitySet="FildsDocumentSource" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Field_FieldType" Association="UniversitySystemModel.FK_Field_FieldType">
+            <End Role="FieldType" EntitySet="FieldType" />
+            <End Role="Field" EntitySet="Field" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FildsDocumentSource_Field" Association="UniversitySystemModel.FK_FildsDocumentSource_Field">
+            <End Role="Field" EntitySet="Field" />
+            <End Role="FildsDocumentSource" EntitySet="FildsDocumentSource" />
           </AssociationSet>
           <AssociationSet Name="FK_Task_Post" Association="UniversitySystemModel.FK_Task_Post">
             <End Role="Post" EntitySet="Post" />
@@ -365,12 +497,24 @@
           <Property Type="DateTime" Name="EndDate" />
           <Property Type="String" Name="Destination" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Source" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DocumentNameId" />
           <NavigationProperty Name="Department" Relationship="UniversitySystemModel.FK_Document_Department" FromRole="Document" ToRole="Department" />
           <NavigationProperty Name="Department1" Relationship="UniversitySystemModel.FK_Document_DepartmentSource" FromRole="Document" ToRole="Department" />
+          <NavigationProperty Name="DocumentName" Relationship="UniversitySystemModel.FK_Document_DocumentName" FromRole="Document" ToRole="DocumentName" />
           <NavigationProperty Name="Post" Relationship="UniversitySystemModel.FK_Document_Post" FromRole="Document" ToRole="Post" />
           <NavigationProperty Name="Task" Relationship="UniversitySystemModel.FK_Document_Task" FromRole="Document" ToRole="Task" />
+          <NavigationProperty Name="FildsDocumentSource" Relationship="UniversitySystemModel.FK_FildsDocumentSource_Document" FromRole="Document" ToRole="FildsDocumentSource" />
           <NavigationProperty Name="Period" Relationship="UniversitySystemModel.FK_Period_Document" FromRole="Document" ToRole="Period" />
           <NavigationProperty Name="Field" Relationship="UniversitySystemModel.Document_Fields" FromRole="Document" ToRole="Field" />
+        </EntityType>
+        <EntityType Name="DocumentName">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Document" Relationship="UniversitySystemModel.FK_Document_DocumentName" FromRole="DocumentName" ToRole="Document" />
+          <NavigationProperty Name="FildsDocumentSource" Relationship="UniversitySystemModel.FK_FildsDocumentSource_DocumentName" FromRole="DocumentName" ToRole="FildsDocumentSource" />
         </EntityType>
         <EntityType Name="Field">
           <Key>
@@ -379,7 +523,31 @@
           <Property Type="Int32" Name="FieldId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsRepeat" />
+          <Property Type="Int32" Name="TypeId" />
+          <NavigationProperty Name="FieldType" Relationship="UniversitySystemModel.FK_Field_FieldType" FromRole="Field" ToRole="FieldType" />
+          <NavigationProperty Name="FildsDocumentSource" Relationship="UniversitySystemModel.FK_FildsDocumentSource_Field" FromRole="Field" ToRole="FildsDocumentSource" />
           <NavigationProperty Name="Document" Relationship="UniversitySystemModel.Document_Fields" FromRole="Field" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="FieldType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Field" Relationship="UniversitySystemModel.FK_Field_FieldType" FromRole="FieldType" ToRole="Field" />
+        </EntityType>
+        <EntityType Name="FildsDocumentSource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="DocumentNameId" Nullable="false" />
+          <Property Type="Int32" Name="FildId" Nullable="false" />
+          <Property Type="Int32" Name="DocumentDataSource" />
+          <Property Type="String" Name="DatabaseSource" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Document" Relationship="UniversitySystemModel.FK_FildsDocumentSource_Document" FromRole="FildsDocumentSource" ToRole="Document" />
+          <NavigationProperty Name="DocumentName" Relationship="UniversitySystemModel.FK_FildsDocumentSource_DocumentName" FromRole="FildsDocumentSource" ToRole="DocumentName" />
+          <NavigationProperty Name="Field" Relationship="UniversitySystemModel.FK_FildsDocumentSource_Field" FromRole="FildsDocumentSource" ToRole="Field" />
         </EntityType>
         <EntityType Name="Period">
           <Key>
@@ -474,6 +642,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Document_DocumentName">
+          <End Type="UniversitySystemModel.DocumentName" Role="DocumentName" Multiplicity="0..1" />
+          <End Type="UniversitySystemModel.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="DocumentNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Document_Post">
           <End Type="UniversitySystemModel.Post" Role="Post" Multiplicity="0..1" />
           <End Type="UniversitySystemModel.Document" Role="Document" Multiplicity="*" />
@@ -498,6 +678,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FildsDocumentSource_Document">
+          <End Type="UniversitySystemModel.Document" Role="Document" Multiplicity="0..1" />
+          <End Type="UniversitySystemModel.FildsDocumentSource" Role="FildsDocumentSource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="DocumentId" />
+            </Principal>
+            <Dependent Role="FildsDocumentSource">
+              <PropertyRef Name="DocumentDataSource" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Period_Document">
           <End Type="UniversitySystemModel.Document" Role="Document" Multiplicity="1" />
           <End Type="UniversitySystemModel.Period" Role="Period" Multiplicity="*" />
@@ -507,6 +699,42 @@
             </Principal>
             <Dependent Role="Period">
               <PropertyRef Name="FK_DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FildsDocumentSource_DocumentName">
+          <End Type="UniversitySystemModel.DocumentName" Role="DocumentName" Multiplicity="1" />
+          <End Type="UniversitySystemModel.FildsDocumentSource" Role="FildsDocumentSource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FildsDocumentSource">
+              <PropertyRef Name="DocumentNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Field_FieldType">
+          <End Type="UniversitySystemModel.FieldType" Role="FieldType" Multiplicity="0..1" />
+          <End Type="UniversitySystemModel.Field" Role="Field" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FieldType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Field">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FildsDocumentSource_Field">
+          <End Type="UniversitySystemModel.Field" Role="Field" Multiplicity="1" />
+          <End Type="UniversitySystemModel.FildsDocumentSource" Role="FildsDocumentSource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Field">
+              <PropertyRef Name="FieldId" />
+            </Principal>
+            <Dependent Role="FildsDocumentSource">
+              <PropertyRef Name="FildId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -556,6 +784,7 @@
           <EntitySetMapping Name="Document">
             <EntityTypeMapping TypeName="UniversitySystemModel.Document">
               <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="DocumentNameId" ColumnName="DocumentNameId" />
                 <ScalarProperty Name="Source" ColumnName="Source" />
                 <ScalarProperty Name="Destination" ColumnName="Destination" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
@@ -578,12 +807,40 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DocumentName">
+            <EntityTypeMapping TypeName="UniversitySystemModel.DocumentName">
+              <MappingFragment StoreEntitySet="DocumentName">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Field">
             <EntityTypeMapping TypeName="UniversitySystemModel.Field">
               <MappingFragment StoreEntitySet="Field">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
                 <ScalarProperty Name="IsRepeat" ColumnName="IsRepeat" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FieldType">
+            <EntityTypeMapping TypeName="UniversitySystemModel.FieldType">
+              <MappingFragment StoreEntitySet="FieldType">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FildsDocumentSource">
+            <EntityTypeMapping TypeName="UniversitySystemModel.FildsDocumentSource">
+              <MappingFragment StoreEntitySet="FildsDocumentSource">
+                <ScalarProperty Name="DatabaseSource" ColumnName="DatabaseSource" />
+                <ScalarProperty Name="DocumentDataSource" ColumnName="DocumentDataSource" />
+                <ScalarProperty Name="FildId" ColumnName="FildId" />
+                <ScalarProperty Name="DocumentNameId" ColumnName="DocumentNameId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -657,56 +914,103 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="DocumentsEdm" ZoomLevel="74">
-        <EntityTypeShape EntityType="UniversitySystemModel.Department" Width="1.5" PointX="0.875" PointY="0.5" Height="2.5571907552083317" />
-        <EntityTypeShape EntityType="UniversitySystemModel.Document" Width="1.5" PointX="7.625" PointY="2.25" Height="5.8263151041666674" />
-        <EntityTypeShape EntityType="UniversitySystemModel.Field" Width="1.5" PointX="9.875" PointY="2.875" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="UniversitySystemModel.Period" Width="1.5" PointX="9.875" PointY="5.375" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="UniversitySystemModel.Post" Width="1.5" PointX="3.125" PointY="6.875" Height="2.9417936197916745" />
-        <EntityTypeShape EntityType="UniversitySystemModel.Task" Width="1.5" PointX="5.375" PointY="6.125" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="UniversitySystemModel.Worker" Width="1.5" PointX="5.375" PointY="8.875" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="UniversitySystemModel.Department" Width="1.5" PointX="0.75" PointY="2" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="UniversitySystemModel.Document" Width="1.5" PointX="3" PointY="3.375" Height="6.4032194010416683" />
+        <EntityTypeShape EntityType="UniversitySystemModel.DocumentName" Width="1.5" PointX="0.75" PointY="5.625" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="UniversitySystemModel.Field" Width="1.5" PointX="5.25" PointY="5.375" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="UniversitySystemModel.FieldType" Width="1.5" PointX="3" PointY="0.75" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="UniversitySystemModel.FildsDocumentSource" Width="1.5" PointX="7.5" PointY="5.25" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="UniversitySystemModel.Period" Width="1.5" PointX="5.25" PointY="11.875" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="UniversitySystemModel.Post" Width="1.5" PointX="0.75" PointY="8.375" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="UniversitySystemModel.Task" Width="1.5" PointX="0.75" PointY="12" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="UniversitySystemModel.Worker" Width="1.5" PointX="3" PointY="11" Height="1.7879850260416674" />
         <AssociationConnector Association="UniversitySystemModel.FK_Department_Department" >
-          <ConnectorPoint PointX="1.4069230769230767" PointY="3.0571907552083317" />
-          <ConnectorPoint PointX="1.4069230769230767" PointY="3.3071907552083317" />
-          <ConnectorPoint PointX="1.8534615384615383" PointY="3.3071907552083317" />
-          <ConnectorPoint PointX="1.8534615384615383" PointY="3.0571907552083317" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="4.5571907552083317" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="4.8071907552083317" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="4.8071907552083317" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="4.5571907552083317" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_Document_Department" >
-          <ConnectorPoint PointX="2.375" PointY="2.6535953776041659" />
-          <ConnectorPoint PointX="7.625" PointY="2.6535953776041659" />
+          <ConnectorPoint PointX="2.25" PointY="3.9660953776041659" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="3.9660953776041654" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="3.9660953776041659" />
+          <ConnectorPoint PointX="3" PointY="3.9660953776041659" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_Document_DepartmentSource" >
-          <ConnectorPoint PointX="2.375" PointY="2.3892976888020829" />
-          <ConnectorPoint PointX="7.625" PointY="2.3892976888020829" />
+          <ConnectorPoint PointX="2.25" PointY="3.6080476888020829" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="3.6080476888020825" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="3.6080476888020829" />
+          <ConnectorPoint PointX="3" PointY="3.6080476888020829" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_Post_Department" >
-          <ConnectorPoint PointX="1.1097090384615385" PointY="3.0571907552083317" />
-          <ConnectorPoint PointX="1.1097090384615385" PointY="8.3458968098958373" />
-          <ConnectorPoint PointX="3.125" PointY="8.3458968098958373" />
+          <ConnectorPoint PointX="2.25" PointY="4.5571907552083317" />
+          <ConnectorPoint PointX="2.625" PointY="4.9321907552083317" />
+          <ConnectorPoint PointX="2.625" PointY="8.0011528461538468" />
+          <ConnectorPoint PointX="2.25" PointY="8.3761528461538468" />
+        </AssociationConnector>
+        <AssociationConnector Association="UniversitySystemModel.FK_Document_DocumentName" >
+          <ConnectorPoint PointX="2.25" PointY="6.5189925130208337" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="6.5189925130208328" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="6.5189925130208337" />
+          <ConnectorPoint PointX="3" PointY="6.5189925130208337" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_Document_Post" >
-          <ConnectorPoint PointX="4.625" PointY="8.49014322916667" />
-          <ConnectorPoint PointX="8.375" PointY="8.49014322916667" />
-          <ConnectorPoint PointX="8.375" PointY="8.0763151041666674" />
+          <ConnectorPoint PointX="2.25" PointY="9.10843862359775" />
+          <ConnectorPoint PointX="2.7291666666666665" PointY="9.10843862359775" />
+          <ConnectorPoint PointX="2.8958333333333335" PointY="9.10843862359775" />
+          <ConnectorPoint PointX="3" PointY="9.10843862359775" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_Document_Task" >
-          <ConnectorPoint PointX="6.875" PointY="7.1006575520833337" />
-          <ConnectorPoint PointX="7.625" PointY="7.1006575520833337" />
+          <ConnectorPoint PointX="2.25" PointY="12.063460538461539" />
+          <ConnectorPoint PointX="2.8125" PointY="11.500960538461539" />
+          <ConnectorPoint PointX="2.8125" PointY="7.8137155683092923" />
+          <ConnectorPoint PointX="3" PointY="7.8137155683092923" />
+        </AssociationConnector>
+        <AssociationConnector Association="UniversitySystemModel.FK_FildsDocumentSource_Document" >
+          <ConnectorPoint PointX="4.5" PointY="5.28125" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="5.2812499999999991" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="5.28125" />
+          <ConnectorPoint PointX="7.5" PointY="5.28125" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_Period_Document" >
-          <ConnectorPoint PointX="9.125" PointY="6.4612939453125016" />
-          <ConnectorPoint PointX="9.875" PointY="6.4612939453125016" />
+          <ConnectorPoint PointX="4.5000000000000009" PointY="9.7782194010416674" />
+          <ConnectorPoint PointX="4.875" PointY="10.153219401041667" />
+          <ConnectorPoint PointX="4.875" PointY="12.961293945312502" />
+          <ConnectorPoint PointX="5.25" PointY="12.961293945312502" />
+        </AssociationConnector>
+        <AssociationConnector Association="UniversitySystemModel.FK_FildsDocumentSource_DocumentName" >
+          <ConnectorPoint PointX="2.25" PointY="6.0407442565104166" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="6.0407442565104157" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="6.0407442565104166" />
+          <ConnectorPoint PointX="2.75" PointY="6.0407442565104166" />
+          <ConnectorPoint PointX="2.75" PointY="3.125" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="3.1249999999999996" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="3.125" />
+          <ConnectorPoint PointX="8.25" PointY="3.125" />
+          <ConnectorPoint PointX="8.25" PointY="5.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="UniversitySystemModel.FK_Field_FieldType" >
+          <ConnectorPoint PointX="4.5" PointY="1.5478417968750016" />
+          <ConnectorPoint PointX="6" PointY="1.5478417968750016" />
+          <ConnectorPoint PointX="6" PointY="5.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="UniversitySystemModel.FK_FildsDocumentSource_Field" >
+          <ConnectorPoint PointX="6.75" PointY="6.5574446614583337" />
+          <ConnectorPoint PointX="7.5" PointY="6.5574446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_Task_Post" >
-          <ConnectorPoint PointX="4.625" PointY="7.4901432291666694" />
-          <ConnectorPoint PointX="5.375" PointY="7.4901432291666694" />
+          <ConnectorPoint PointX="1.5" PointY="11.316793619791667" />
+          <ConnectorPoint PointX="1.5" PointY="12" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_Worker_Post" >
-          <ConnectorPoint PointX="4.625" PointY="9.3458968098958373" />
-          <ConnectorPoint PointX="5.375" PointY="9.3458968098958373" />
+          <ConnectorPoint PointX="2.25" PointY="11.158396809895834" />
+          <ConnectorPoint PointX="2.7291666666666665" PointY="11.158396809895834" />
+          <ConnectorPoint PointX="2.8958333333333335" PointY="11.158396809895834" />
+          <ConnectorPoint PointX="3" PointY="11.158396809895834" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.Document_Fields" >
-          <ConnectorPoint PointX="9.125" PointY="3.7689925130208337" />
-          <ConnectorPoint PointX="9.875" PointY="3.7689925130208337" />
+          <ConnectorPoint PointX="4.5" PointY="6.5574446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="6.5574446614583337" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
