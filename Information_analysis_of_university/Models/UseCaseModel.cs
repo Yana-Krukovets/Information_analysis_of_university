@@ -60,19 +60,11 @@ namespace Information_analysis_of_university.Models
             var x = 50;
             var y = 100;
 
-            var heignt = 100;
-            var width = 100;
             foreach (var worker in workerList)
             {
                 worker.Worker.DrawObject(g, x, y);
                 worker.DrawDocuments(g);
-                if (x + 4 * width < g.VisibleClipBounds.Width)
-                    x += 2 * width;
-                else
-                {
-                    x = 50;
-                    y = y + 3 * heignt / 2;
-                }
+                y += 200;
             }
         }
 
@@ -129,24 +121,30 @@ namespace Information_analysis_of_university.Models
         {
             var increaseLengthTask = Worker.GetIncreaseLength(taskList.Count);
             var y = 100;
-            taskList[0].CoordY = Worker.CoordY - 200;
-            for (int i = 0; i < taskList.Count; i++)
+            if (taskList.Count != 0)
             {
-                taskList[i].CoordY = taskList[i].CoordY + y;
-                taskList[i].DrawObject(g, Worker.CoordX + 200, taskList[i].CoordY + increaseLengthTask * (i + 1));
-                var pen = new Pen(Color.Black);
-                g.DrawLine(pen, Worker.CoordX + 50, Worker.CoordY + 20, taskList[i].CoordX - 10, taskList[i].CoordY + 30);
-                for (int j = 0; j < Documents.Count; j++)
+               //отрисовка заданий работника
+                taskList[0].CoordY = Worker.CoordY - 200;
+                for (int i = 0; i < taskList.Count; i++)
                 {
-                    if (taskList[i].Id == Documents[j].TaskId)
+                   //нахождение координат
+                    taskList[i].CoordY = taskList[i].CoordY + y;
+                    taskList[i].DrawObject(g, Worker.CoordX + 200, taskList[i].CoordY + increaseLengthTask * (i + 1));
+                    var pen = new Pen(Color.Black);
+                    g.DrawLine(pen, Worker.CoordX + 50, Worker.CoordY + 20, taskList[i].CoordX - 10, taskList[i].CoordY + 30);
+                   // отрисовка доументов
+                    for (int j = 0; j < Documents.Count; j++)
                     {
-                        y = taskList[i].CoordY + 3 * Documents.Count * (j * 10) / Documents.Count;
-                        Documents[j].DrawObject(g, taskList[i].CoordX, y);
-                        g.DrawLine(pen, taskList[i].CoordX + 100, taskList[i].CoordY + 50, taskList[i].CoordX + 220, y);
+                        if (taskList[i].Id == Documents[j].TaskId)
+                        {
+                            y = taskList[i].CoordY + 3 * Documents.Count * (j * 10) / Documents.Count;
+                            Documents[j].DrawObject(g, taskList[i].CoordX, y);
+                            g.DrawLine(pen, taskList[i].CoordX + 100, taskList[i].CoordY + 50, taskList[i].CoordX + 220, y);
+                        }
                     }
-                }
-                taskList[i].CoordY = taskList[i].CoordY + y;
+                    taskList[i].CoordY = taskList[i].CoordY + y;
 
+                }
             }
         }
 
