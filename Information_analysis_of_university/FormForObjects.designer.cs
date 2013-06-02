@@ -44,9 +44,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(366, 455);
+            this.button1.AutoSize = true;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button1.Location = new System.Drawing.Point(0, 467);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 23);
+            this.button1.Size = new System.Drawing.Size(507, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Построение модели";
             this.button1.UseVisualStyleBackColor = true;
@@ -54,9 +56,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(285, 455);
+            this.button2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button2.Location = new System.Drawing.Point(0, 444);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(507, 23);
             this.button2.TabIndex = 2;
             this.button2.Text = "Назад";
             this.button2.UseVisualStyleBackColor = true;
