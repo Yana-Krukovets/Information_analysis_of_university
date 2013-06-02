@@ -18,10 +18,10 @@ namespace Information_analysis_of_university.Models
 
             departmentList = new List<Departments>();
             var departmentRepository = new BaseDocumentRepository<Department>();
-
+            //выбор всех рабочих мест
             var departments = departmentRepository.ToList().Select(
                 x => new WorkingPlace(x));
-
+            //добавление в список объектов для отображения
             foreach (var item in departments)
             {
                 departmentList.Add(new Departments(item));
@@ -39,7 +39,6 @@ namespace Information_analysis_of_university.Models
             {
                 worker.WorkPlace.DrawObject(g, x, y);
                 worker.DrawCount(g, x + 10, y + 10);
-                // worker.DrawDocuments(g);
                 if (x + 5 * width < g.VisibleClipBounds.Width)
                     x += 3 * width;
                 else
@@ -50,6 +49,7 @@ namespace Information_analysis_of_university.Models
             }
         }
 
+        // функция для отрисовки с помощью sql-запроса
         public override void DrawSQL(Graphics g, List<string> mas)
         {
             var x = 50;
@@ -108,23 +108,27 @@ namespace Information_analysis_of_university.Models
         {
             WorkPlace = workPlace;
             int countTasks = 0, p = 0;
+            //список для заданий на данном рабочем месте
             var taskDocumentRepository = new BaseDocumentRepository<Task>();
+           // список документов
             var documentRepository = new BaseDocumentRepository<Document>();
             var documents = documentRepository.Query(x => x.FK_DepartmentIdDestination == WorkPlace.Id).ToList();
+          //  количество документов
             int col = documents.Count();
+
             foreach (var item in documents)
             {
                 if (item.FK_TaskId != null && p != item.FK_TaskId)
                 {
                     p = item.FK_TaskId;
+                    //количество заданий
                     countTasks++;
                 }
             }
             documentCount = new CountTaks(col, countTasks);
-            //  tasksCount = new Tasks
-
         }
 
+     //функция для отрисовки
         public void DrawCount(Graphics g, int x, int y)
         {
             documentCount.DrawObject(g, x, y);
