@@ -261,12 +261,16 @@ namespace Information_analysis_of_university
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-             var currentPage = tcModelsFrame.SelectedTab;
-                var control = currentPage.Controls[0] as NewTabControl;
+            //функция для сохранения модели
+            //выбераем текущую вкладку
+            var currentPage = tcModelsFrame.SelectedTab;
+            var control = currentPage.Controls[0] as NewTabControl;
+           // вызов диалога сохранения
             SaveFileDialog savedialog = new SaveFileDialog();
             savedialog.Title = "Сохранить картинку как ...";
             savedialog.OverwritePrompt = true;
             savedialog.CheckPathExists = true;
+            //форматы для сохранения
             savedialog.Filter =
                 "Bitmap File(*.bmp)|*.bmp|" +
                 "GIF File(*.gif)|*.gif|" +
@@ -274,47 +278,40 @@ namespace Information_analysis_of_university
                 "TIF File(*.tif)|*.tif|" +
                 "PNG File(*.png)|*.png";
             savedialog.ShowHelp = true;
-        //    var bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            // If selected, save
+          //  если нажали ок
             if (savedialog.ShowDialog() == DialogResult.OK)
             {
-                // Get the user-selected file name
-              
-               
-               // control.Pictu
+                //сохраняем введенное имя файла
                 string fileName = savedialog.FileName;
-                // Get the extension
                 string strFilExtn =
                     fileName.Remove(0, fileName.Length - 3);
-                // Save file
+                //выбор формата для сохранения
                 switch (strFilExtn)
                 {
                     case "bmp":
+                       // сохранение в формате bmp
                           pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                           var graphics1 = Graphics.FromImage(pictureBox1.Image);
                           control.model.Draw(graphics1);
                           pictureBox1.Image.Save(fileName);
                         break;
                     case "jpg":
+                        // сохранение в формате jpg
                          pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                           var graphics = Graphics.FromImage(pictureBox1.Image);
                           control.model.Draw(graphics);
-                          pictureBox1.Image.Save(fileName);
-                    
+                          pictureBox1.Image.Save(fileName);                    
                         break;
                     case "gif":
-                       pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                        // сохранение в формате gif
+                          pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                           var graphics2 = Graphics.FromImage(pictureBox1.Image);
                           control.model.Draw(graphics2);
                           pictureBox1.Image.Save(fileName);
                         break;
-                    case "tif":
-                        pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                          var graphics3 = Graphics.FromImage(pictureBox1.Image);
-                          control.model.Draw(graphics3);
-                          pictureBox1.Image.Save(fileName);
-                        break;
+                   
                     case "png":
+                        // сохранение в формате png
                         pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                           var graphics4 = Graphics.FromImage(pictureBox1.Image);
                           control.model.Draw(graphics4);
