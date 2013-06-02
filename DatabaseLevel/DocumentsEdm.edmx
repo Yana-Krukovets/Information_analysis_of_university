@@ -15,6 +15,7 @@
           <EntitySet Name="FildsDocumentSource" EntityType="UniversitySystemModel.Store.FildsDocumentSource" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Period" EntityType="UniversitySystemModel.Store.Period" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Post" EntityType="UniversitySystemModel.Store.Post" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="UniversitySystemModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Task" EntityType="UniversitySystemModel.Store.Task" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Worker" EntityType="UniversitySystemModel.Store.Worker" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Department_Department" Association="UniversitySystemModel.Store.FK_Department_Department">
@@ -176,6 +177,16 @@
           <Property Name="WayToDocs" Type="nvarchar(max)" />
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -460,6 +471,7 @@
             <End Role="Document" EntitySet="Document" />
             <End Role="Field" EntitySet="Field" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="UniversitySystemModel.sysdiagrams" />
         </EntityContainer>
         <EntityType Name="Department">
           <Key>
@@ -766,6 +778,16 @@
           <End Type="UniversitySystemModel.Document" Role="Document" Multiplicity="*" />
           <End Type="UniversitySystemModel.Field" Role="Field" Multiplicity="*" />
         </Association>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="version" />
+          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -893,6 +915,17 @@
               <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="UniversitySystemModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -968,8 +1001,8 @@
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_FildsDocumentSource_Document" >
           <ConnectorPoint PointX="4.5" PointY="5.28125" />
-          <ConnectorPoint PointX="5.916666666666667" PointY="5.2812499999999991" />
-          <ConnectorPoint PointX="6.083333333333333" PointY="5.28125" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="5.2812499999999991" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="5.28125" />
           <ConnectorPoint PointX="7.5" PointY="5.28125" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_Period_Document" >
@@ -979,20 +1012,21 @@
           <ConnectorPoint PointX="5.25" PointY="12.961293945312502" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_FildsDocumentSource_DocumentName" >
-          <ConnectorPoint PointX="2.25" PointY="6.0407442565104166" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="6.0407442565104157" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="6.0407442565104166" />
-          <ConnectorPoint PointX="2.75" PointY="6.0407442565104166" />
-          <ConnectorPoint PointX="2.75" PointY="3.125" />
-          <ConnectorPoint PointX="5.916666666666667" PointY="3.1249999999999996" />
-          <ConnectorPoint PointX="6.083333333333333" PointY="3.125" />
-          <ConnectorPoint PointX="8.25" PointY="3.125" />
+          <ConnectorPoint PointX="2.25" PointY="6.5189925130208337" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="6.5189925130208328" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="6.5189925130208337" />
+          <ConnectorPoint PointX="2.75" PointY="6.5189925130208337" />
+          <ConnectorPoint PointX="2.75" PointY="3.1249999999999991" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="3.1249999999999987" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="3.1249999999999991" />
+          <ConnectorPoint PointX="8.25" PointY="3.1249999999999991" />
           <ConnectorPoint PointX="8.25" PointY="5.25" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_Field_FieldType" >
-          <ConnectorPoint PointX="4.5" PointY="1.5478417968750016" />
-          <ConnectorPoint PointX="6" PointY="1.5478417968750016" />
-          <ConnectorPoint PointX="6" PointY="5.375" />
+          <ConnectorPoint PointX="4.5" PointY="2.3456835937500031" />
+          <ConnectorPoint PointX="4.875" PointY="2.7206835937500031" />
+          <ConnectorPoint PointX="4.875" PointY="6.5574446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="6.5574446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="UniversitySystemModel.FK_FildsDocumentSource_Field" >
           <ConnectorPoint PointX="6.75" PointY="6.5574446614583337" />
@@ -1012,6 +1046,7 @@
           <ConnectorPoint PointX="4.5" PointY="6.5574446614583337" />
           <ConnectorPoint PointX="5.25" PointY="6.5574446614583337" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="UniversitySystemModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="0.75" Height="1.9802864583333353" />
       </Diagram>
     </Diagrams>
   </Designer>

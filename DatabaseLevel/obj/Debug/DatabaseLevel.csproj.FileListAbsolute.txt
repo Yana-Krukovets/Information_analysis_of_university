@@ -12,3 +12,10 @@ C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\bin
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\obj\Debug\DatabaseLevel.dll
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\obj\Debug\DatabaseLevel.pdb
 C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\obj\Debug\DatabaseLevel.csprojResolveAssemblyReference.cache
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\bin\Debug\DB.sdf
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\bin\Debug\DatabaseLevel.dll.config
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\bin\Debug\DatabaseLevel.dll
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\bin\Debug\DatabaseLevel.pdb
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\obj\Debug\ResolveAssemblyReference.cache
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\obj\Debug\DatabaseLevel.dll
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\obj\Debug\DatabaseLevel.pdb

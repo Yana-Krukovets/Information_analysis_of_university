@@ -173,7 +173,7 @@ namespace Information_analysis_of_university.Models
 
                             }
                         }
-                        y += 300;
+                        y += 500;
                     }                    
                 }
             }
@@ -191,6 +191,7 @@ namespace Information_analysis_of_university.Models
                  var documentRepository = new BaseDocumentRepository<Document>();
                 var documents = documentRepository.Query(t => t.FK_DepartmentIdDestination == WorkPlace.Id).ToList();
                 var documents1 = documentRepository.Query(t => t.FK_DepartmentIdSource == WorkPlace.Id).ToList();
+               
                 documentStreams = new List<DocumentForStreams>();
                 documentStreams1 = new List<DocumentForStreams>();
                 documentStreams2 = new List<DocumentForStreams>();
@@ -290,7 +291,7 @@ namespace Information_analysis_of_university.Models
                         
                     }
                 }
-                y += 300;
+                y += 500;
             }
         }
 

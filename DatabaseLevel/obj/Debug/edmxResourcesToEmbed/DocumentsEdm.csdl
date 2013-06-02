@@ -71,6 +71,7 @@
       <End Role="Document" EntitySet="Document" />
       <End Role="Field" EntitySet="Field" />
     </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="UniversitySystemModel.sysdiagrams" />
   </EntityContainer>
   <EntityType Name="Department">
     <Key>
@@ -377,4 +378,14 @@
     <End Type="UniversitySystemModel.Document" Role="Document" Multiplicity="*" />
     <End Type="UniversitySystemModel.Field" Role="Field" Multiplicity="*" />
   </Association>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="principal_id" Nullable="false" />
+    <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="version" />
+    <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+  </EntityType>
 </Schema>

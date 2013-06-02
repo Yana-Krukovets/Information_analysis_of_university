@@ -10,6 +10,7 @@
     <EntitySet Name="FildsDocumentSource" EntityType="UniversitySystemModel.Store.FildsDocumentSource" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Period" EntityType="UniversitySystemModel.Store.Period" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Post" EntityType="UniversitySystemModel.Store.Post" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="UniversitySystemModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Task" EntityType="UniversitySystemModel.Store.Task" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Worker" EntityType="UniversitySystemModel.Store.Worker" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Department_Department" Association="UniversitySystemModel.Store.FK_Department_Department">
@@ -171,6 +172,16 @@
     <Property Name="WayToDocs" Type="nvarchar(max)" />
     <Property Name="Date" Type="date" Nullable="false" />
     <Property Name="Comment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Task">
     <Key>
