@@ -61,12 +61,14 @@ namespace Information_analysis_of_university
             for (int i = 0; i < fields.Count; i++)
             {
                 var lastList = fields.Where(x => fields.IndexOf(x) > i);
-                var item = lastList.Where(x => x.Name == fields[i].Name /*&& x.Name == fields[i].Name*/ && alreadyFixFields.All(y => y != x.FieldId)).ToList();
+                var item = lastList.Where(x => x.Name == fields[i].Name && x.FieldType != fields[i].FieldType && alreadyFixFields.All(y => y != x.FieldId)).ToList();
                 if (item.Count != 0)
                 {
-                    var newItemList = fieldSourceRepository.Query(x => x.FildId == fields[i].FieldId).ToList();
+                   int i1 = i;
+                    var newItemList = new List<FildsDocumentSource>{fieldSourceRepository.FirstOrDefault(x => x.FildId == fields[i1].FieldId)};
+                    newItemList.AddRange(item.Select(el => fieldSourceRepository.FirstOrDefault(x => x.FildId == el.FieldId)));
                     //???
-                    //newItemList.AddRange(fieldSourceRepository.Query(x => x.FildId == item.Fi));
+                    //newItemList.AddRange(item.Select(x => x.));
                     cloneDocumentList.Add(newItemList);
 
                     alreadyFixFields.Add(fields[i].FieldId);

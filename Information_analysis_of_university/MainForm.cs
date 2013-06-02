@@ -101,7 +101,7 @@ namespace Information_analysis_of_university
         public void CreateNewTab(ModelBase m)
         {
             var number = tcModelsFrame.TabPages.Count + 1;
-            tcModelsFrame.TabPages.Add(new TabPage() { Name = "newTabPage" + number, Text = "Модель" + number });
+            tcModelsFrame.TabPages.Add(new TabPage() { Name = "newTabPage" + number, Text = tabName() ?? "Модель" + number });
             tcModelsFrame.TabPages[number - 1].Location = new System.Drawing.Point(4, 22);
             //this.newTabPage1.Name = "newTabPage1";
             tcModelsFrame.TabPages[number - 1].Padding = new System.Windows.Forms.Padding(3);
@@ -113,6 +113,7 @@ namespace Information_analysis_of_university
             tcModelsFrame.TabPages[number - 1].Controls.Add(newTab);
             newTab.Size = new Size(tcModelsFrame.Size.Width - 8, tcModelsFrame.Size.Height - 26);
             newTab.Anchor = ((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right;
+            tcModelsFrame.SelectedTab = tcModelsFrame.TabPages[number - 1];
             //panel1 = new System.Windows.Forms.Panel();
             //pictureBox1 = new System.Windows.Forms.PictureBox();
         }
@@ -251,9 +252,14 @@ namespace Information_analysis_of_university
 
         private void RenameToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tcModelsFrame.SelectedTab.Text = tabName() ?? tcModelsFrame.SelectedTab.Text;
+        }
+
+        private string tabName()
+        {
             var newNameForm = new ChangeNameForm();
             newNameForm.ShowDialog(this);
-            tcModelsFrame.SelectedTab.Text = newNameForm.NewName ?? tcModelsFrame.SelectedTab.Text;
+            return newNameForm.NewName;
         }
 
         private void groupBox1_Enter_1(object sender, EventArgs e)

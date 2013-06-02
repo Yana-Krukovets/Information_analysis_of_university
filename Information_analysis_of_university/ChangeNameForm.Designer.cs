@@ -46,9 +46,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(5, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 13);
+            this.label1.Size = new System.Drawing.Size(117, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Введите новое имя активной вкладки";
+            this.label1.Text = "Введите имя вкладки";
             // 
             // brOk
             // 
@@ -83,7 +83,7 @@
             this.MinimumSize = new System.Drawing.Size(300, 125);
             this.Name = "ChangeNameForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Переименование вкладки";
+            this.Text = "Название вкладки";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChangeNameForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
