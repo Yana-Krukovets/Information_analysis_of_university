@@ -43,9 +43,10 @@ namespace Information_analysis_of_university
             // если выбрана модель нагружености рабочих мест
             if (capacityWorkingPlaces.Checked == true)
             {
-                int i = 10;
+                int i = 40;
                 model = new CapacityWorkingPlaces();
                 var obj = new FormForObjects<CapacityWorkingPlaces>(model as CapacityWorkingPlaces);
+                //добавление чекбоксов
                 foreach (var item in departments)
                 {
                     CheckBox check = new CheckBox();
@@ -77,11 +78,13 @@ namespace Information_analysis_of_university
             if (dataStreamsModel.Checked == true)
             {
                 var documentRepository = new BaseDocumentRepository<Document>();
-                int i = 10;
+                int i = 40;
                 model = new DataStreamsModel();
                 var obj = new FormForObjects<DataStreamsModel>(model as DataStreamsModel);
+                //выбор чекбоксов
                 foreach (var item in departments)
                 {
+                    //создание и опеределение координат чекбоксов
                     CheckBox check = new CheckBox();
                     check.Name = item.Name;
                     check.Text = item.Name;
@@ -112,7 +115,9 @@ namespace Information_analysis_of_university
                     }
                     
                 }
+                
                 obj.Show();
+                
             }
             if (lifeCycleModel.Checked == true)
             {
@@ -122,7 +127,7 @@ namespace Information_analysis_of_university
             }
             if (useCaseModel.Checked == true)
             {
-                int i = 10;
+                int i = 40;
                 model = new UseCaseModel();
                 var obj = new FormForObjects<UseCaseModel>(model as UseCaseModel);
                 var workerRepository = new BaseDocumentRepository<Worker>();
@@ -177,7 +182,7 @@ namespace Information_analysis_of_university
             // если выбран модель рабочих процессов
             if (WorkProcassModel.Checked == true)
             {
-                int i = 10;
+                int i = 40;
                 var taskDocumentRepository = new BaseDocumentRepository<Task>();
                 var tasks = taskDocumentRepository.ToList().Select(x => new TaskObject(x));
                 var obj = new FormForObjects<WorkProcessModel>(model as WorkProcessModel);
@@ -207,12 +212,14 @@ namespace Information_analysis_of_university
                     }
  
                 }
+                // открытие нового окна
                 obj.Show();
             }
         }
 
         private void MasterQueryBuilding_FormClosing(object sender, FormClosingEventArgs e)
         {
+           // сообщение закрытия окна
             var result = MessageBox.Show(
                 "После закрытия формы информация будет утеряна. Вы уверены, что хотите закрыть данную форму?",
                 "Закрытие формы", MessageBoxButtons.YesNo);
@@ -221,8 +228,6 @@ namespace Information_analysis_of_university
         }
 
         private void MasterQueryBuilding_Load(object sender, EventArgs e)
-        {
-
-        }
+        {        }
     }
 }
