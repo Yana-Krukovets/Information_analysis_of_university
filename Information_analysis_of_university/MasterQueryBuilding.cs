@@ -119,12 +119,41 @@ namespace Information_analysis_of_university
                 obj.Show();
                 
             }
+            //модель жизненного цикла документа
             if (lifeCycleModel.Checked == true)
             {
+                int i = 40;
+                model = new DocumentLifeCycleModel();
+                var obj = new FormForObjects<DocumentLifeCycleModel>(model as DocumentLifeCycleModel);
+                var documentRepository = new BaseDocumentRepository<Document>();
+
+                //ишем все документы:
+                //1) внешние, которые либо входяшие, либо входящие-исходяшие
+                //2) внутренные исходящие
+                //для того, чтобы найти их начало жизненного цикла
+                var documentsList = documentRepository.ToList().Where(
+                    x =>
+                    (((x.Type == (byte)DocumentType.Input || x.Type == (byte)DocumentType.InputOutput) /*&& x.IsExternal == 2*/) ||
+                    x.Type == (byte)DocumentType.Output) && x.DocumentId > 1000);
+                foreach (var item in documentsList)
+                {
+                    CheckBox check = new CheckBox();
+                    check.Name = item.Name;
+                    check.Text = item.Name;
+                    check.Width = 300;
+                    check.Left = 20;
+                    check.Top = 20 + i;
+                    i += 20;
+                    obj.Controls.Add(check);
+                }
+                // открытие нового окна
+                obj.Show();
+
             }
             if (responsibilityModel.Checked == true)
             {
             }
+            //модель вариантов использования
             if (useCaseModel.Checked == true)
             {
                 int i = 40;
