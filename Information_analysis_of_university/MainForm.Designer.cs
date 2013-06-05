@@ -49,10 +49,15 @@
             this.модельЖизненногоЦиклаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.объектнаяМодельToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.запросToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sQLмодифицырованныйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.qBEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.мастерПостроенияЗапросовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Reference = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutProgram = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.analisButton = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.buttonMaster = new System.Windows.Forms.Button();
             this.buttonQBE = new System.Windows.Forms.Button();
@@ -77,11 +82,6 @@
             this.newTabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.analisButton = new System.Windows.Forms.Button();
-            this.sQLмодифицырованныйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label5 = new System.Windows.Forms.Label();
-            this.qBEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.мастерПостроенияЗапросовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -245,6 +245,27 @@
             this.запросToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.запросToolStripMenuItem.Text = "Запрос";
             // 
+            // sQLмодифицырованныйToolStripMenuItem
+            // 
+            this.sQLмодифицырованныйToolStripMenuItem.Name = "sQLмодифицырованныйToolStripMenuItem";
+            this.sQLмодифицырованныйToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.sQLмодифицырованныйToolStripMenuItem.Text = "SQL-модифицированный";
+            this.sQLмодифицырованныйToolStripMenuItem.Click += new System.EventHandler(this.sQLмодифицырованныйToolStripMenuItem_Click);
+            // 
+            // qBEToolStripMenuItem
+            // 
+            this.qBEToolStripMenuItem.Name = "qBEToolStripMenuItem";
+            this.qBEToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.qBEToolStripMenuItem.Text = "QBE";
+            this.qBEToolStripMenuItem.Click += new System.EventHandler(this.qBEToolStripMenuItem_Click);
+            // 
+            // мастерПостроенияЗапросовToolStripMenuItem
+            // 
+            this.мастерПостроенияЗапросовToolStripMenuItem.Name = "мастерПостроенияЗапросовToolStripMenuItem";
+            this.мастерПостроенияЗапросовToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.мастерПостроенияЗапросовToolStripMenuItem.Text = "Мастер построения запросов";
+            this.мастерПостроенияЗапросовToolStripMenuItem.Click += new System.EventHandler(this.мастерПостроенияЗапросовToolStripMenuItem_Click);
+            // 
             // HelpItem
             // 
             this.HelpItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -263,7 +284,7 @@
             // aboutProgram
             // 
             this.aboutProgram.Name = "aboutProgram";
-            this.aboutProgram.Size = new System.Drawing.Size(152, 22);
+            this.aboutProgram.Size = new System.Drawing.Size(149, 22);
             this.aboutProgram.Text = "О программе";
             this.aboutProgram.Click += new System.EventHandler(this.aboutProgram_Click);
             // 
@@ -294,6 +315,25 @@
             this.menuBox1.Text = "Меню";
             this.menuBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 379);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(136, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Анализ доументооборота";
+            // 
+            // analisButton
+            // 
+            this.analisButton.Location = new System.Drawing.Point(6, 395);
+            this.analisButton.Name = "analisButton";
+            this.analisButton.Size = new System.Drawing.Size(220, 23);
+            this.analisButton.TabIndex = 10;
+            this.analisButton.Text = "Анализ";
+            this.analisButton.UseVisualStyleBackColor = true;
+            this.analisButton.Click += new System.EventHandler(this.analisButton_Click);
+            // 
             // button10
             // 
             this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -303,6 +343,7 @@
             this.button10.TabIndex = 9;
             this.button10.Text = "Справка";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // buttonMaster
             // 
@@ -528,46 +569,6 @@
             this.pictureBox2.Size = new System.Drawing.Size(1455, 734);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
-            // 
-            // analisButton
-            // 
-            this.analisButton.Location = new System.Drawing.Point(6, 395);
-            this.analisButton.Name = "analisButton";
-            this.analisButton.Size = new System.Drawing.Size(220, 23);
-            this.analisButton.TabIndex = 10;
-            this.analisButton.Text = "Анализ";
-            this.analisButton.UseVisualStyleBackColor = true;
-            this.analisButton.Click += new System.EventHandler(this.analisButton_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 379);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(136, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Анализ доументооборота";
-            // 
-            // sQLмодифицырованныйToolStripMenuItem
-            // 
-            this.sQLмодифицырованныйToolStripMenuItem.Name = "sQLмодифицырованныйToolStripMenuItem";
-            this.sQLмодифицырованныйToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
-            this.sQLмодифицырованныйToolStripMenuItem.Text = "SQL-модифицированный";
-            this.sQLмодифицырованныйToolStripMenuItem.Click += new System.EventHandler(this.sQLмодифицырованныйToolStripMenuItem_Click);
-            // 
-            // qBEToolStripMenuItem
-            // 
-            this.qBEToolStripMenuItem.Name = "qBEToolStripMenuItem";
-            this.qBEToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
-            this.qBEToolStripMenuItem.Text = "QBE";
-            this.qBEToolStripMenuItem.Click += new System.EventHandler(this.qBEToolStripMenuItem_Click);
-            // 
-            // мастерПостроенияЗапросовToolStripMenuItem
-            // 
-            this.мастерПостроенияЗапросовToolStripMenuItem.Name = "мастерПостроенияЗапросовToolStripMenuItem";
-            this.мастерПостроенияЗапросовToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
-            this.мастерПостроенияЗапросовToolStripMenuItem.Text = "Мастер построения запросов";
-            this.мастерПостроенияЗапросовToolStripMenuItem.Click += new System.EventHandler(this.мастерПостроенияЗапросовToolStripMenuItem_Click);
             // 
             // MainForm
             // 

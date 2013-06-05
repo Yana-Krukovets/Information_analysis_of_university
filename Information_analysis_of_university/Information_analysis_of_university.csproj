@@ -69,6 +69,12 @@
     <Compile Include="FormForObjects.designer.cs">
       <DependentUpon>FormForObjects.cs</DependentUpon>
     </Compile>
+    <Compile Include="HelpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpForm.Designer.cs">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterQueryBuilding.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormForObjects.resx">
       <DependentUpon>FormForObjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpForm.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterQueryBuilding.resx">
       <DependentUpon>MasterQueryBuilding.cs</DependentUpon>

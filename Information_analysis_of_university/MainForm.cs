@@ -375,5 +375,11 @@ namespace Information_analysis_of_university
             CreateNewTab(new DataStreamsModel());
         }
 
+        private void button10_Click(object sender, EventArgs e)
+        {
+            var help = new HelpForm();
+            help.Show(this);
+        }
+
     }
 }
