@@ -1,0 +1,7 @@
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\bin\Release\DB.sdf
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\bin\Release\DatabaseLevel.dll.config
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\bin\Release\DatabaseLevel.dll
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\bin\Release\DatabaseLevel.pdb
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\obj\Release\ResolveAssemblyReference.cache
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\obj\Release\DatabaseLevel.dll
+D:\Diplom\Information_analysis_of_university\DatabaseLevel\obj\Release\DatabaseLevel.pdb
