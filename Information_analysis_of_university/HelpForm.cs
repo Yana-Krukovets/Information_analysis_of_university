@@ -31,7 +31,8 @@ namespace Information_analysis_of_university
                "Вы уверены, что хотите закрыть данную форму?",
                "Закрытие формы", MessageBoxButtons.YesNo);
             if (result != DialogResult.Yes)
-                this.Close();
+                HelpForm.ActiveForm.Close();
+               
 
         }
     }
