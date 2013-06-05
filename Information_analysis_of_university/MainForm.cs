@@ -38,7 +38,8 @@ namespace Information_analysis_of_university
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new WorkProcessModel());
+            OpenFileDialog dlg = new OpenFileDialog();
+            CreateNewTab(new WorkProcessModel(), dlg);
         }
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -90,15 +91,17 @@ namespace Information_analysis_of_university
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new UseCaseModel());
+            OpenFileDialog dlg = new OpenFileDialog();
+            CreateNewTab(new UseCaseModel(), dlg);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new CapacityWorkingPlaces());
+            OpenFileDialog dlg = new OpenFileDialog();
+            CreateNewTab(new CapacityWorkingPlaces(), dlg);
         }
 
-        public void CreateNewTab(ModelBase m)
+        public void CreateNewTab(ModelBase m, OpenFileDialog dlg)
         {
             var number = tcModelsFrame.TabPages.Count + 1;
             tcModelsFrame.TabPages.Add(new TabPage() { Name = "newTabPage" + number, Text = tabName() ?? "Модель" + number });
@@ -109,7 +112,7 @@ namespace Information_analysis_of_university
             tcModelsFrame.TabPages[number - 1].TabIndex = 0;
             //this.newTabPage1.Text = "new1";
             tcModelsFrame.TabPages[number - 1].UseVisualStyleBackColor = true;
-            var newTab = new NewTabControl(m, qbeForm);
+            var newTab = new NewTabControl(m, qbeForm, dlg);
             tcModelsFrame.TabPages[number - 1].Controls.Add(newTab);
             newTab.Size = new Size(tcModelsFrame.Size.Width - 8, tcModelsFrame.Size.Height - 26);
             newTab.Anchor = ((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right;
@@ -124,7 +127,8 @@ namespace Information_analysis_of_university
 
         private void button5_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new ResponsibilityDistributionModel());           
+            OpenFileDialog dlg = new OpenFileDialog();
+            CreateNewTab(new ResponsibilityDistributionModel(), dlg);           
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -133,12 +137,14 @@ namespace Information_analysis_of_university
         private void button4_Click(object sender, EventArgs e)
         {
             //модельПотоковДанныхToolStripMenuItem данных
-            CreateNewTab(new DataStreamsModel());
+            OpenFileDialog dlg = new OpenFileDialog();
+            CreateNewTab(new DataStreamsModel(), dlg);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new DocumentLifeCycleModel());
+           OpenFileDialog dlg = new OpenFileDialog();
+            CreateNewTab(new DocumentLifeCycleModel(), dlg);
         }
 
         private void buttonSQL_Click(object sender, EventArgs e)
@@ -201,7 +207,8 @@ namespace Information_analysis_of_university
             {
                 //не правильно, т.к. изменения происходят и основной можели
                 //нужно сделать глубокое копирование control.model
-                CreateNewTab(control.model);
+                OpenFileDialog dlg = new OpenFileDialog();
+                CreateNewTab(control.model, dlg);
                 control = tcModelsFrame.TabPages[tcModelsFrame.TabPages.Count - 1].Controls[0] as NewTabControl;
                 tcModelsFrame.TabPages[tcModelsFrame.TabPages.Count - 1].Text = "qbeResult";
                 //control.model.DrawQbe();
@@ -291,36 +298,31 @@ namespace Information_analysis_of_university
                 string fileName = savedialog.FileName;
                 string strFilExtn =
                     fileName.Remove(0, fileName.Length - 3);
+                pictureBox1.Image = new Bitmap(pictureBox1.Width+1000, pictureBox1.Height+5000);
+                var graphics1 = Graphics.FromImage(pictureBox1.Image);
+                control.model.Draw(graphics1);
                 //выбор формата для сохранения
                 switch (strFilExtn)
                 {
                     case "bmp":
                        // сохранение в формате bmp
-                          pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                          var graphics1 = Graphics.FromImage(pictureBox1.Image);
-                          control.model.Draw(graphics1);
+                        
                           pictureBox1.Image.Save(fileName);
                         break;
                     case "jpg":
                         // сохранение в формате jpg
-                         pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                          var graphics = Graphics.FromImage(pictureBox1.Image);
-                          control.model.Draw(graphics);
+                        
                           pictureBox1.Image.Save(fileName);                    
                         break;
                     case "gif":
                         // сохранение в формате gif
-                          pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                          var graphics2 = Graphics.FromImage(pictureBox1.Image);
-                          control.model.Draw(graphics2);
+                          
                           pictureBox1.Image.Save(fileName);
                         break;
                    
                     case "png":
                         // сохранение в формате png
-                        pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                          var graphics4 = Graphics.FromImage(pictureBox1.Image);
-                          control.model.Draw(graphics4);
+                       
                           pictureBox1.Image.Save(fileName);
                         break;
                     default:
@@ -372,13 +374,31 @@ namespace Information_analysis_of_university
 
         private void модельПотоковДанныхToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new DataStreamsModel());
+           OpenFileDialog dlg = new OpenFileDialog();
+            CreateNewTab(new DataStreamsModel(), dlg);
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
+          // открытие справки
             var help = new HelpForm();
             help.Show(this);
+        }
+
+        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //открытие файла модели
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = "Open Image";
+            dlg.Filter = "bmp files (*.bmp)|*.bmp";
+           //выбор файла
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+               
+                // Create a new Bitmap object from the picture file on disk,
+                // and assign that to the PictureBox.Image property
+                CreateNewTab(new DataStreamsModel(), dlg);
+            }
         }
 
     }
