@@ -152,6 +152,26 @@ namespace Information_analysis_of_university
             }
             if (responsibilityModel.Checked == true)
             {
+                int i = 40;
+                model = new ResponsibilityDistributionModel();
+                var obj = new FormForObjects<ResponsibilityDistributionModel>(model as ResponsibilityDistributionModel);
+                var postDocumentRepository = new BaseDocumentRepository<Post>();
+
+                var posts = postDocumentRepository.ToList().Select(
+                    x => new WorkplaceResponsibilityObject(x));
+                foreach (var item in posts)
+                {
+                    CheckBox check = new CheckBox();
+                    check.Name = item.Name;
+                    check.Text = item.Name;
+                    check.Width = 300;
+                    check.Left = 20;
+                    check.Top = 20 + i;
+                    i += 20;
+                    obj.Controls.Add(check);
+                }
+                // открытие нового окна
+                obj.Show();
             }
             //модель вариантов использования
             if (useCaseModel.Checked == true)
