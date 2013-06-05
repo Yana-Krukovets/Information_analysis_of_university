@@ -134,6 +134,7 @@ namespace Information_analysis_of_university
                 var workers = workerRepository.ToList().Select(x => new LittleMan(x));
                 List<TaskForWorker> taskList;
                 List<DocumentForWorker> Documents;
+                // добавление чекбоксов
                 foreach (var item in workers)
                 {
                     CheckBox check = new CheckBox();
@@ -177,6 +178,7 @@ namespace Information_analysis_of_university
                         }
                     }        
                 }
+               // отрисовка модели
                 obj.Show();
             }
             // если выбран модель рабочих процессов
@@ -185,6 +187,7 @@ namespace Information_analysis_of_university
                 int i = 40;
                 var taskDocumentRepository = new BaseDocumentRepository<Task>();
                 var tasks = taskDocumentRepository.ToList().Select(x => new TaskObject(x));
+                model = new WorkProcessModel();
                 var obj = new FormForObjects<WorkProcessModel>(model as WorkProcessModel);
                 // отображение всех возможных элементов модели в мастере запросов
                 foreach (var item in tasks)
@@ -199,6 +202,7 @@ namespace Information_analysis_of_university
                     obj.Controls.Add(check1);
                     var documentRepository = new BaseDocumentRepository<Document>();
                     var documents = documentRepository.Query(x => x.Task.TaskId == item.Id).ToList();
+                    // добавление чекбоксов
                     foreach (var item1 in documents)
                     {
                         CheckBox check2 = new CheckBox();

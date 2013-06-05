@@ -25,7 +25,7 @@ namespace Information_analysis_of_university
             List<string> elem = new List<string>();
             foreach (Control che in this.Controls)
             {                
-               //оперделение выбраных элементов
+               //определение выбраных элементов
                 if (che.GetType().ToString().IndexOf("CheckBox") > -1)
                 {
                     CheckBox che1 = (CheckBox)che;

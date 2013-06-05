@@ -412,5 +412,69 @@ namespace Information_analysis_of_university
             }
         }
 
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //функция для сохранения модели
+            //выбераем текущую вкладку
+            var currentPage = tcModelsFrame.SelectedTab;
+            var control = currentPage.Controls[0] as NewTabControl;
+           // вызов диалога сохранения
+            SaveFileDialog savedialog = new SaveFileDialog();
+            savedialog.Title = "Сохранить картинку как ...";
+            savedialog.OverwritePrompt = true;
+            savedialog.CheckPathExists = true;
+            //форматы для сохранения
+            savedialog.Filter =
+                "Bitmap File(*.bmp)|*.bmp|" +
+                "GIF File(*.gif)|*.gif|" +
+                "JPEG File(*.jpg)|*.jpg|" +
+                "TIF File(*.tif)|*.tif|" +
+                "PNG File(*.png)|*.png";
+            savedialog.ShowHelp = true;
+          //  если нажали ок
+            if (savedialog.ShowDialog() == DialogResult.OK)
+            {
+                //сохраняем введенное имя файла
+                string fileName = savedialog.FileName;
+                string strFilExtn =
+                    fileName.Remove(0, fileName.Length - 3);
+                pictureBox1.Image = new Bitmap(pictureBox1.Width + 1000, pictureBox1.Height + 5000);
+                var graphics1 = Graphics.FromImage(pictureBox1.Image);
+                control.model.Draw(graphics1);
+                //выбор формата для сохранения
+                switch (strFilExtn)
+                {
+                    case "bmp":
+                        // сохранение в формате bmp
+
+                        pictureBox1.Image.Save(fileName);
+                        break;
+                    case "jpg":
+                        // сохранение в формате jpg
+
+                        pictureBox1.Image.Save(fileName);
+                        break;
+                    case "gif":
+                        // сохранение в формате gif
+
+                        pictureBox1.Image.Save(fileName);
+                        break;
+
+                    case "png":
+                        // сохранение в формате png
+
+                        pictureBox1.Image.Save(fileName);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

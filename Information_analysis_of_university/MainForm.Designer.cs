@@ -34,7 +34,6 @@
             this.новыйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,7 +113,6 @@
             this.новыйToolStripMenuItem,
             this.открытьToolStripMenuItem,
             this.сохранитьToolStripMenuItem,
-            this.сохранитьКакToolStripMenuItem,
             this.toolStripMenuItem2,
             this.выходToolStripMenuItem});
             this.MenuItem.Name = "MenuItem";
@@ -139,12 +137,7 @@
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
             this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
-            // 
-            // сохранитьКакToolStripMenuItem
-            // 
-            this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
-            this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.сохранитьКакToolStripMenuItem.Text = "Сохранить как...";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -154,8 +147,9 @@
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.выходToolStripMenuItem.Text = "Выход";
+            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
             // видToolStripMenuItem
             // 
@@ -628,7 +622,6 @@
         private System.Windows.Forms.ToolStripMenuItem новыйToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сохранитьКакToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem видToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem модельToolStripMenuItem;
