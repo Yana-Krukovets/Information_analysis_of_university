@@ -39,6 +39,7 @@ namespace Information_analysis_of_university
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
+            dlg = null;
             CreateNewTab(new WorkProcessModel(), dlg);
         }
 
@@ -91,18 +92,23 @@ namespace Information_analysis_of_university
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //построение модели вариантов использования
             OpenFileDialog dlg = new OpenFileDialog();
+            dlg = null;
             CreateNewTab(new UseCaseModel(), dlg);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+           // построение модели нагружености робочих мест
             OpenFileDialog dlg = new OpenFileDialog();
+            dlg = null;
             CreateNewTab(new CapacityWorkingPlaces(), dlg);
         }
 
         public void CreateNewTab(ModelBase m, OpenFileDialog dlg)
         {
+           // создание новой вкладки
             var number = tcModelsFrame.TabPages.Count + 1;
             tcModelsFrame.TabPages.Add(new TabPage() { Name = "newTabPage" + number, Text = tabName() ?? "Модель" + number });
             tcModelsFrame.TabPages[number - 1].Location = new System.Drawing.Point(4, 22);
@@ -128,6 +134,7 @@ namespace Information_analysis_of_university
         private void button5_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
+            dlg = null;
             CreateNewTab(new ResponsibilityDistributionModel(), dlg);           
         }
 
@@ -138,12 +145,14 @@ namespace Information_analysis_of_university
         {
             //модельПотоковДанныхToolStripMenuItem данных
             OpenFileDialog dlg = new OpenFileDialog();
+            dlg = null;
             CreateNewTab(new DataStreamsModel(), dlg);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
            OpenFileDialog dlg = new OpenFileDialog();
+           dlg = null;
             CreateNewTab(new DocumentLifeCycleModel(), dlg);
         }
 
@@ -208,6 +217,7 @@ namespace Information_analysis_of_university
                 //не правильно, т.к. изменения происходят и основной можели
                 //нужно сделать глубокое копирование control.model
                 OpenFileDialog dlg = new OpenFileDialog();
+                dlg = null;
                 CreateNewTab(control.model, dlg);
                 control = tcModelsFrame.TabPages[tcModelsFrame.TabPages.Count - 1].Controls[0] as NewTabControl;
                 tcModelsFrame.TabPages[tcModelsFrame.TabPages.Count - 1].Text = "qbeResult";
@@ -375,6 +385,7 @@ namespace Information_analysis_of_university
         private void модельПотоковДанныхToolStripMenuItem_Click(object sender, EventArgs e)
         {
            OpenFileDialog dlg = new OpenFileDialog();
+           dlg = null;
             CreateNewTab(new DataStreamsModel(), dlg);
         }
 
