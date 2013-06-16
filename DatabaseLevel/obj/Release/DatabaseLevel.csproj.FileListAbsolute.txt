@@ -1,0 +1,6 @@
+C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\bin\Release\DB.sdf
+C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\bin\Release\DatabaseLevel.dll.config
+C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\bin\Release\DatabaseLevel.dll
+C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\bin\Release\DatabaseLevel.pdb
+C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\obj\Release\DatabaseLevel.dll
+C:\Users\1\Documents\GitHub\Information_analysis_of_university\DatabaseLevel\obj\Release\DatabaseLevel.pdb
