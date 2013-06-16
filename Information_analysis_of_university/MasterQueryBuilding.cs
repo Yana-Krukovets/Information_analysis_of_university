@@ -43,9 +43,10 @@ namespace Information_analysis_of_university
             // если выбрана модель нагружености рабочих мест
             if (capacityWorkingPlaces.Checked == true)
             {
-                int i = 10;
+                int i = 40;
                 model = new CapacityWorkingPlaces();
                 var obj = new FormForObjects<CapacityWorkingPlaces>(model as CapacityWorkingPlaces);
+                //добавление чекбоксов
                 foreach (var item in departments)
                 {
                     CheckBox check = new CheckBox();
@@ -77,11 +78,13 @@ namespace Information_analysis_of_university
             if (dataStreamsModel.Checked == true)
             {
                 var documentRepository = new BaseDocumentRepository<Document>();
-                int i = 10;
+                int i = 40;
                 model = new DataStreamsModel();
                 var obj = new FormForObjects<DataStreamsModel>(model as DataStreamsModel);
+                //выбор чекбоксов
                 foreach (var item in departments)
                 {
+                    //создание и опеределение координат чекбоксов
                     CheckBox check = new CheckBox();
                     check.Name = item.Name;
                     check.Text = item.Name;
@@ -112,23 +115,75 @@ namespace Information_analysis_of_university
                     }
                     
                 }
+                
                 obj.Show();
+                
             }
+            //модель жизненного цикла документа
             if (lifeCycleModel.Checked == true)
             {
+                int i = 40;
+                model = new DocumentLifeCycleModel();
+                var obj = new FormForObjects<DocumentLifeCycleModel>(model as DocumentLifeCycleModel);
+                var documentRepository = new BaseDocumentRepository<Document>();
+
+                //ишем все документы:
+                //1) внешние, которые либо входяшие, либо входящие-исходяшие
+                //2) внутренные исходящие
+                //для того, чтобы найти их начало жизненного цикла
+                var documentsList = documentRepository.ToList().Where(
+                    x =>
+                    (((x.Type == (byte)DocumentType.Input || x.Type == (byte)DocumentType.InputOutput) /*&& x.IsExternal == 2*/) ||
+                    x.Type == (byte)DocumentType.Output) && x.DocumentId > 1000);
+                foreach (var item in documentsList)
+                {
+                    CheckBox check = new CheckBox();
+                    check.Name = item.Name;
+                    check.Text = item.Name;
+                    check.Width = 300;
+                    check.Left = 20;
+                    check.Top = 20 + i;
+                    i += 20;
+                    obj.Controls.Add(check);
+                }
+                // открытие нового окна
+                obj.Show();
+
             }
             if (responsibilityModel.Checked == true)
             {
+                int i = 40;
+                model = new ResponsibilityDistributionModel();
+                var obj = new FormForObjects<ResponsibilityDistributionModel>(model as ResponsibilityDistributionModel);
+                var postDocumentRepository = new BaseDocumentRepository<Post>();
+
+                var posts = postDocumentRepository.ToList().Select(
+                    x => new WorkplaceResponsibilityObject(x));
+                foreach (var item in posts)
+                {
+                    CheckBox check = new CheckBox();
+                    check.Name = item.Name;
+                    check.Text = item.Name;
+                    check.Width = 300;
+                    check.Left = 20;
+                    check.Top = 20 + i;
+                    i += 20;
+                    obj.Controls.Add(check);
+                }
+                // открытие нового окна
+                obj.Show();
             }
+            //модель вариантов использования
             if (useCaseModel.Checked == true)
             {
-                int i = 10;
+                int i = 40;
                 model = new UseCaseModel();
                 var obj = new FormForObjects<UseCaseModel>(model as UseCaseModel);
                 var workerRepository = new BaseDocumentRepository<Worker>();
                 var workers = workerRepository.ToList().Select(x => new LittleMan(x));
                 List<TaskForWorker> taskList;
                 List<DocumentForWorker> Documents;
+                // добавление чекбоксов
                 foreach (var item in workers)
                 {
                     CheckBox check = new CheckBox();
@@ -172,14 +227,16 @@ namespace Information_analysis_of_university
                         }
                     }        
                 }
+               // отрисовка модели
                 obj.Show();
             }
             // если выбран модель рабочих процессов
             if (WorkProcassModel.Checked == true)
             {
-                int i = 10;
+                int i = 40;
                 var taskDocumentRepository = new BaseDocumentRepository<Task>();
                 var tasks = taskDocumentRepository.ToList().Select(x => new TaskObject(x));
+                model = new WorkProcessModel();
                 var obj = new FormForObjects<WorkProcessModel>(model as WorkProcessModel);
                 // отображение всех возможных элементов модели в мастере запросов
                 foreach (var item in tasks)
@@ -194,6 +251,7 @@ namespace Information_analysis_of_university
                     obj.Controls.Add(check1);
                     var documentRepository = new BaseDocumentRepository<Document>();
                     var documents = documentRepository.Query(x => x.Task.TaskId == item.Id).ToList();
+                    // добавление чекбоксов
                     foreach (var item1 in documents)
                     {
                         CheckBox check2 = new CheckBox();
@@ -207,12 +265,14 @@ namespace Information_analysis_of_university
                     }
  
                 }
+                // открытие нового окна
                 obj.Show();
             }
         }
 
         private void MasterQueryBuilding_FormClosing(object sender, FormClosingEventArgs e)
         {
+           // сообщение закрытия окна
             var result = MessageBox.Show(
                 "После закрытия формы информация будет утеряна. Вы уверены, что хотите закрыть данную форму?",
                 "Закрытие формы", MessageBoxButtons.YesNo);
@@ -221,8 +281,6 @@ namespace Information_analysis_of_university
         }
 
         private void MasterQueryBuilding_Load(object sender, EventArgs e)
-        {
-
-        }
+        {        }
     }
 }

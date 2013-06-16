@@ -25,6 +25,7 @@ namespace Information_analysis_of_university
             List<string> elem = new List<string>();
             foreach (Control che in this.Controls)
             {                
+               //определение выбраных элементов
                 if (che.GetType().ToString().IndexOf("CheckBox") > -1)
                 {
                     CheckBox che1 = (CheckBox)che;
@@ -35,6 +36,7 @@ namespace Information_analysis_of_university
                 }
             }
             MainForm form = new MainForm();
+            //отрисовка модели
             form.Show();
             form.DrowModelSQL(model, elem);
             
@@ -42,6 +44,7 @@ namespace Information_analysis_of_university
 
         private void FormForObjects_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //закрытие формы
             var result = MessageBox.Show(
                 "После закрытия формы информация будет утеряна. Вы уверены, что хотите закрыть данную форму?",
                 "Закрытие формы", MessageBoxButtons.YesNo);
@@ -50,12 +53,11 @@ namespace Information_analysis_of_university
         }
 
         private void FormForObjects_Load(object sender, EventArgs e)
-        {
-
-        }
+        {        }
 
         private void button2_Click(object sender, EventArgs e)
         {
+           //закрытие формы
             this.Close();
         }
     }

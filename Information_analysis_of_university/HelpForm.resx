@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>1.  Побудова моделей для аналізу
+ Після запуску програми можна побудувати наступні моделі:
+         -	варіантів використання;
+         -	навантаження робочих місць;
+         -	потоків даних;
+         -	робочих процесів;
+         -	розподілу обов’язків;
+         -	життєвого циклу документу.
+
+  1.1 Побудова моделі варіантів використання
+Для побудови моделі варіантів використання натисніть кнопку «Модель вариантов использования». Після чого в головному вікні програми з’явиться нова вкладка з побудованою моделлю варіантів використання.
+  
+  1. 2 Побудова моделі навантаження робочих місць
+  Для того, щоб побудувати модель навантаження робочих місць, натисніть кнопку «Модель напруженості робочих мест». Після чого з’явиться нова вкладка з побудованою моделлю навантаження робочих місць.
+
+  1.3 Побудова моделі потоків даних
+Для того, щоб побудувати модель потоків даних, натисніть кнопку «Модель потоков данных». Після чого з’явиться нова вкладка з побудованою моделлю потоків даних.
+
+
+2 Побудова моделей за допомогою запитів
+Оскільки система документообігу та потоків даних університету достатньо розширена та складна для візуального аналізу, у рамках даного програмного комплексу розроблена система запитів до моделей з метою зменшити коло дослідження. Можна побудувати моделі за допомогою наступних запитів:
+-	SQL-модифіковані;
+-	QBE;
+-	майстер побудови запитів.
+
+    2.1 Побудова моделі за допомогою SQL-модифікованого запиту
+Для побудови моделі за допомогою SQL-модифікованого запиту натисніть кнопку «SQL-модифицированные». Після чого з’явиться вікно для вводу SQL-модифікованого запиту. В поле для побудови моделі введіть запит наступного вигляду:
+SELECT [об’єкт(и) для відображення]
+FROM [Назва моделі]
+       Потім натисніть кнопку «Построить модель».
+
+    2.2 Побудова моделі за допомогою майстра побудови
+Для побудови моделі за допомогою майстра натисніть кнопку «Мастер построени запросов». Після чого з’явиться вікно майстра побудови запитів1.
+Для вибору моделі, яку необхідно побудувати, поставте галочку навпроти відповідної назви моделі. Після вибору моделі для відображення натисніть кнопку «Далее», з’явиться вікно зі списком об’єктів вибраної моделі. 
+Далі можна виберіть необхідні обєкти для відображення. Для цього поставте галочку навпроти назви обєкту, який необхідно побудувати. Далі можна побудувати модель, для цього натисніть кнопку «Построение модели». Також можна повернутися назад на попередній крок для вибору іншої моделі, для цього натисніть кнопку «Назад».
+
+
+3 Аналіз системи
+Для аналізу існуючої системи натисніть кнопку «Аналіз». Зявиться вікно, яке показує результати аналізу.
+
+
+4 Виклик Довідки
+Для отримання інформації  щодо користування даним програмним продуктом натисніть кнопку «Справка». Після прочитання тексту вікна зачиніть вікно, натиснувши кнопку «Закрыть» або скориставшись хрестиком в правому верхньому куті вікна.
+
+
+
+5 Збереження моделі
+Також існує можливість забеження моделі у форматах: .bmp, .jpg, .pdf. Для збереження моделі натисніть правою кнопкою миші на вибраній вкладці. З’явиться меню, в якому натисніть кнопку «Сохранить». З’явиться діалог для  збереження моделі 
+
+6 Відкриття моделі
+Для того, щоб відрити модель в меню натисніть "Файл -&gt; Открыть". Потім виберіть файл, який ви бажаєте відкрити.
+
+
+7 Вихід із програми
+Для того, щоб вийти із програми натисніть чевоний хрестик правому верхньому кутку вікна. Або в меню "Файл -&gt; Выход"
+
+
+
+
+</value>
+  </data>
+</root>

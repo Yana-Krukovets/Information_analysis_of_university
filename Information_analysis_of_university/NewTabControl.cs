@@ -17,16 +17,32 @@ namespace Information_analysis_of_university
         public ModelBase model;
         private BaseObject currentObject;
         public QbeQueryForm qbeForm;
+        public OpenFileDialog DLG;
 
-        public NewTabControl(ModelBase newModel, QbeQueryForm form)
+        public NewTabControl(ModelBase newModel, QbeQueryForm form, OpenFileDialog dlg)
         {
             model = newModel;
             qbeForm = form;
+            DLG = dlg;
             InitializeComponent();
-            //DrowModel();
+            //if (model != null)
+               // DrowModel();
+            if (dlg != null)
+                OpenPicture(dlg);
+
         }
 
-        public void DrowModel()
+        private void OpenPicture(OpenFileDialog DLG)
+        {
+             PictureBox PictureBox1 = new PictureBox();
+
+                // Create a new Bitmap object from the picture file on disk,
+                // and assign that to the PictureBox.Image property
+
+                PictureBox1.Image = new Bitmap(DLG.FileName);
+        }
+
+        private void DrowModel()
         {
             //отрисовка
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
