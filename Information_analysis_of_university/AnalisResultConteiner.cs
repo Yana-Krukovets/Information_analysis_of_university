@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace Information_analysis_of_university
 {
+    //класс-контейнер результатов анализа
     public class AnalisResultConteiner : BindingList<AnalisResultItem>
     {
         public AnalisResultConteiner()

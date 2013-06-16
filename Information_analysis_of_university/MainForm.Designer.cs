@@ -59,12 +59,12 @@
             this.button10 = new System.Windows.Forms.Button();
             this.buttonMaster = new System.Windows.Forms.Button();
             this.buttonQBE = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btBuildLifeCycleModel = new System.Windows.Forms.Button();
             this.buttonSQL = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btBuildResponsibleModel = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btWorkProcessModel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -280,12 +280,12 @@
             this.menuBox1.Controls.Add(this.button10);
             this.menuBox1.Controls.Add(this.buttonMaster);
             this.menuBox1.Controls.Add(this.buttonQBE);
-            this.menuBox1.Controls.Add(this.button7);
+            this.menuBox1.Controls.Add(this.btBuildLifeCycleModel);
             this.menuBox1.Controls.Add(this.buttonSQL);
             this.menuBox1.Controls.Add(this.label4);
-            this.menuBox1.Controls.Add(this.button5);
+            this.menuBox1.Controls.Add(this.btBuildResponsibleModel);
             this.menuBox1.Controls.Add(this.label3);
-            this.menuBox1.Controls.Add(this.button1);
+            this.menuBox1.Controls.Add(this.btWorkProcessModel);
             this.menuBox1.Controls.Add(this.label2);
             this.menuBox1.Controls.Add(this.button4);
             this.menuBox1.Controls.Add(this.label1);
@@ -349,15 +349,16 @@
             this.buttonQBE.UseVisualStyleBackColor = true;
             this.buttonQBE.Click += new System.EventHandler(this.buttonQBE_Click);
             // 
-            // button7
+            // btBuildLifeCycleModel
             // 
-            this.button7.Location = new System.Drawing.Point(6, 215);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(220, 23);
-            this.button7.TabIndex = 1;
-            this.button7.Text = "Модель жизненного цикла";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.btBuildLifeCycleModel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btBuildLifeCycleModel.Location = new System.Drawing.Point(6, 215);
+            this.btBuildLifeCycleModel.Name = "btBuildLifeCycleModel";
+            this.btBuildLifeCycleModel.Size = new System.Drawing.Size(220, 23);
+            this.btBuildLifeCycleModel.TabIndex = 1;
+            this.btBuildLifeCycleModel.Text = "Модель жизненного цикла";
+            this.btBuildLifeCycleModel.UseVisualStyleBackColor = true;
+            this.btBuildLifeCycleModel.Click += new System.EventHandler(this.btBuildLifeCycleModel_Click);
             // 
             // buttonSQL
             // 
@@ -378,15 +379,15 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "Запросы";
             // 
-            // button5
+            // btBuildResponsibleModel
             // 
-            this.button5.Location = new System.Drawing.Point(6, 185);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(220, 24);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Модель распределения обязательств";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btBuildResponsibleModel.Location = new System.Drawing.Point(6, 185);
+            this.btBuildResponsibleModel.Name = "btBuildResponsibleModel";
+            this.btBuildResponsibleModel.Size = new System.Drawing.Size(220, 24);
+            this.btBuildResponsibleModel.TabIndex = 4;
+            this.btBuildResponsibleModel.Text = "Модель распределения обязательств";
+            this.btBuildResponsibleModel.UseVisualStyleBackColor = true;
+            this.btBuildResponsibleModel.Click += new System.EventHandler(this.btBuildResponsibleModel_Click);
             // 
             // label3
             // 
@@ -397,15 +398,15 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Документы";
             // 
-            // button1
+            // btWorkProcessModel
             // 
-            this.button1.Location = new System.Drawing.Point(6, 154);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(220, 25);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Модель рабочих процессов";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btWorkProcessModel.Location = new System.Drawing.Point(6, 154);
+            this.btWorkProcessModel.Name = "btWorkProcessModel";
+            this.btWorkProcessModel.Size = new System.Drawing.Size(220, 25);
+            this.btWorkProcessModel.TabIndex = 0;
+            this.btWorkProcessModel.Text = "Модель рабочих процессов";
+            this.btWorkProcessModel.UseVisualStyleBackColor = true;
+            this.btWorkProcessModel.Click += new System.EventHandler(this.btWorkProcessModel_Click);
             // 
             // label2
             // 
@@ -598,13 +599,13 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem RenameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SaveToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btWorkProcessModel;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btBuildResponsibleModel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btBuildLifeCycleModel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

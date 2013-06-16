@@ -1,40 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DatabaseLevel;
-using Information_analysis_of_university.Objects;
 
 namespace Information_analysis_of_university
 {
+    //форма отображения результатов анализа
     public partial class AnalisResultForm : Form
     {
+        //контейнер результатов
         public AnalisResultConteiner ResultConteiner;
+        //объект класса-анализатора
         public Analisator Analisator;
 
         public AnalisResultForm()
         {
             InitializeComponent();
 
+            //связываем компонент-навигатор с компонентом DataGridView
             ResultConteiner = new AnalisResultConteiner();
             var bSource = new BindingSource();
             bSource.DataSource = ResultConteiner;
             bindingNavigator1.BindingSource = bSource;
             dataGridView1.DataSource = bSource;
 
+            //запуск анализатора
             Analisator = new Analisator();
             
+            //отображение ошибок
             FillCloneInfo();
         }
 
+        //функция отображения ошибок
         private void FillCloneInfo()
         {
+            //получение ошибок
             var resultList = Analisator.IsCloneInformation();
-           // var repository = new BaseDocumentRepository<Document>();
             foreach (var item in resultList)
             {
                 if(item != null && item.Count != 0)

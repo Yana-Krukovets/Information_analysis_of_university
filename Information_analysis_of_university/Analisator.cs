@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DatabaseLevel;
 
 namespace Information_analysis_of_university
 {
+    //класс-анализатор системы документооброта
     public class Analisator
     {
-        private string error;
-
-        public Analisator()
-        {
-        }
-
         public void Analis()
         {
             IsCloneInformation();
@@ -26,8 +19,7 @@ namespace Information_analysis_of_university
 
             //находим те строки, которые заполняются вручную
             var handFillField = repository.Query(x => x.DocumentDataSource == null && x.DatabaseSource == null).ToList();
-            //if(handFillField.Count() != 0)
-            //{
+
             var cloneDocumentList = new List<List<FildsDocumentSource>>();
             var alreadyFixFields = new List<int>();
             for (int i = 0; i < handFillField.Count; i++)
@@ -45,7 +37,6 @@ namespace Information_analysis_of_university
 
             }
             return cloneDocumentList;
-            // }
         }
 
         //одинаковые названия полей, но разные типы
@@ -64,11 +55,9 @@ namespace Information_analysis_of_university
                 var item = lastList.Where(x => x.Name == fields[i].Name && x.FieldType != fields[i].FieldType && alreadyFixFields.All(y => y != x.FieldId)).ToList();
                 if (item.Count != 0)
                 {
-                   int i1 = i;
-                    var newItemList = new List<FildsDocumentSource>{fieldSourceRepository.FirstOrDefault(x => x.FildId == fields[i1].FieldId)};
+                    int i1 = i;
+                    var newItemList = new List<FildsDocumentSource> { fieldSourceRepository.FirstOrDefault(x => x.FildId == fields[i1].FieldId) };
                     newItemList.AddRange(item.Select(el => fieldSourceRepository.FirstOrDefault(x => x.FildId == el.FieldId)));
-                    //???
-                    //newItemList.AddRange(item.Select(x => x.));
                     cloneDocumentList.Add(newItemList);
 
                     alreadyFixFields.Add(fields[i].FieldId);

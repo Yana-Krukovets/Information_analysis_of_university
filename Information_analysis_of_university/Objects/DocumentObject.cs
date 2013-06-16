@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
+    //класс документа (отображение в виде стрелочки)
     public class DocumentObject : BaseDocumentObject
     {
         //направление стрелочки

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
 using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
@@ -63,10 +61,6 @@ namespace Information_analysis_of_university.Objects
         [Browsable(false)]
         public WorkplaceLifeElement Workplace { get; set; }
 
-        ////направление стрелочки
-        //[Browsable(false)]
-        //public bool IsWayTo { get; set; }   //true - стрелка входит
-
         public BaseDocumentObject(Document document)
         {
             Id = document.DocumentId;
@@ -106,7 +100,7 @@ namespace Information_analysis_of_university.Objects
             set { Y = value; }
         }
 
-
+        //отрисовка объекта
         public override void DrawObject(Graphics g, int? x, int? y)
         {
             X = x ?? X;
@@ -115,37 +109,32 @@ namespace Information_analysis_of_university.Objects
             var pen = new Pen(Color.Black);
 
             var x1 = X;
-            //if (IsWayTo)
-            //    x1 = X - Size;
-            //else
-            //    x1 = X + Size;
 
             g.DrawLine(pen, x1, Y, x1 + Size, Y);
             g.FillPolygon(new SolidBrush(Color.Black), new Point[] { new Point(x1 + Size, Y), GetNewPoint(155, x1 + Size, Y), GetNewPoint(205, x1 + Size, Y) });
-            //g.DrawLine(pen, new Point(x1 + Size, Y), GetNewPoint(150, x1 + Size, Y));
-            //g.DrawLine(pen, new Point(x1 + Size, Y), GetNewPoint(150, x1 + Size, Y));
             DrawText(g, x1, Y, Name);
         }
-
+        
+        //пререгруженная функция отривоки текста
         public override void DrawText(Graphics g, int x, int y, string text)
         {
             g.DrawString(text, new Font("Calibri", 10), new SolidBrush(Color.Gray), new RectangleF(x, y - 15, Size, 20));
         }
 
+        //получение координат следующей точки окружноти
+        //angle - угол, х и у - координаты начала окружности
         protected Point GetNewPoint(int angle, int x, int y)
         {
             return new Point((int)Math.Round(x + 10 * Math.Cos(angle * 3.14 / 180), 0), (int)Math.Round(y + 10 * Math.Sin(angle * 3.14 / 180), 0));
         }
 
+        //проверяет относится ли точка (х, у) к текущему объекту
         public virtual bool IsCurrentObject(int x, int y)
         {
             var x1 = X;
-            //if (IsWayTo)
-            //    x1 = X - Size;
-            //else
-            //    x1 = X + Size;
             return x > x1 && x < x1 + Size && y > Y - 12 && y < Y + 28;
         }
+
         public override void Drag(Point pt, System.Windows.Forms.Form wnd)
         {
             wnd.Invalidate(false);
@@ -172,6 +161,7 @@ namespace Information_analysis_of_university.Objects
             return dragging;
         }
 
+        //подходит ли текущий объект под критерии QBE-запроса
         public override bool QbeSelect(QbeQueryConteiner query)
         {
             //var isCorrectDocument = true;
@@ -201,16 +191,6 @@ namespace Information_analysis_of_university.Objects
                     {
                         result.Add(queryRow.Frequency == Frequence);
                     }
-
-                    //if (query.IsConteinsExternalDistination() && queryRow.ExternalDistination != null)
-                    //{
-                    //    result.Add(queryRow.ExternalDistination == );
-                    //}
-
-                    //if (query.IsConteinsExternalSource() && queryRow.ExternalSource != null)
-                    //{
-                    //    result.Add(queryRow.ExternalSource == ));
-                    //}
 
                     if (query.IsConteinsIsElectronic())
                     {

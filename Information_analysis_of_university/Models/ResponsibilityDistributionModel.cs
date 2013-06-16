@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Drawing2D;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Drawing;
 using DatabaseLevel;
 using Information_analysis_of_university.Objects;
 
-
 namespace Information_analysis_of_university.Models
 {
+    //модель распределения обязательств
     public class ResponsibilityDistributionModel : ModelBase
     {
+        //список элемнтов модели
         private List<TaskWorkplace> workplaceList;
 
         public ResponsibilityDistributionModel()
         {
+            //заполнение списка должностей
             workplaceList = new List<TaskWorkplace>();
             var postDocumentRepository = new BaseDocumentRepository<Post>();
 
@@ -114,17 +113,19 @@ namespace Information_analysis_of_university.Models
         }
     }
 
+    //класс элементов модели распределения обязательств
     class TaskWorkplace
     {
+        //рабочее место
         public WorkplaceResponsibilityObject Workplace { get; set; }
+        //задача + документы
         public List<TaskDocument> TaskDocuments { get; set; }
-        //public List<TaskResponsibilityObject> InernalTasks { get; set; }
-        //public List<TaskResponsibilityObject> ExternalTasks { get; set; }
-
+       
         public TaskWorkplace(WorkplaceResponsibilityObject wp)
         {
             Workplace = wp;
 
+            //достаем из бд задачи
             var tasksRepository = new BaseDocumentRepository<Task>();
             var tasks = tasksRepository.Query(x => x.FK_PostId == Workplace.Id).ToList();
 
@@ -135,6 +136,7 @@ namespace Information_analysis_of_university.Models
             }
         }
 
+        //отрисовка задач
         public void DrawTasks(Graphics g)
         {
             if (TaskDocuments.Count > 0)
@@ -160,6 +162,7 @@ namespace Information_analysis_of_university.Models
             DrawDocuments(g);
         }
 
+        //отрисовка документов
         public void DrawDocuments(Graphics g)
         {
             for (int i = 0; i < 2; i++)
@@ -186,12 +189,14 @@ namespace Information_analysis_of_university.Models
         public BaseObject GetObject(int x, int y)
         {
             BaseObject curObj = null;
+            //1) рабочее место
             if (Workplace.IsCurrentObject(x, y))
             {
                 if (y <= Workplace.CoordY && y >= Workplace.CoordY - 20)
                     curObj = Workplace;
                 else
                 {
+                    //2) задача
                     var increaseLength = Workplace.GetIncreaseLength(TaskDocuments.Count - 1);
                     for (int i = 0; i < TaskDocuments.Count; i++)
                     {
@@ -205,6 +210,7 @@ namespace Information_analysis_of_university.Models
             }
             else
             {
+                //документ
                 var newList = TaskDocuments;
 
                 foreach (var item in newList)
@@ -222,12 +228,10 @@ namespace Information_analysis_of_university.Models
         {
             //для того, чтобы знать удалять ли данную задачу
             bool isCorrectWorkplace = Workplace.QbeSelect(query);
-            //var isConteinsTaskMetric = query.IsConteinsTaskMetric();
 
             if (isCorrectWorkplace && query.IsContainsDocumentMetric())
             {
                 TaskDocuments = TaskDocuments.Where(document => document.QbeSelect(query)).ToList();
-                //ExternalDocuments = ExternalDocuments.Where(document => document.QbeSelect(query)).ToList();
 
                 if (TaskDocuments.Count == 0)
                     isCorrectWorkplace = false;

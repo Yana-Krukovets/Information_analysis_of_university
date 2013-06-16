@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
 using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
+    //базовый класс объекта "Задача"
     class BaseTaskObject : BaseObject
     {
         protected bool dragging = false;
@@ -74,6 +71,7 @@ namespace Information_analysis_of_university.Objects
             DrawText(g, X, Y, Name);
         }
 
+        //получить значение промежутка между задачами
         public int GetIncreaseLength(int count)
         {
             return Size/(count + 1);
@@ -110,8 +108,6 @@ namespace Information_analysis_of_university.Objects
         {
             return dragging;
         }
-
-
 
         public override bool QbeSelect(QbeQueryConteiner query)
         {

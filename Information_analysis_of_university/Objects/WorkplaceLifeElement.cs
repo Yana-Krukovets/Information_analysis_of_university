@@ -8,6 +8,7 @@ using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
+    //класс элемента жизненного цикла документа
     public class WorkplaceLifeElement : BaseWorkplaceObject
     {
         [ReadOnly(true)]
@@ -45,16 +46,19 @@ namespace Information_analysis_of_university.Objects
             }
             else
             {
+                //внутреннее подразделение
                 DrawModelElement(g, X, Y, pen);
                 DrawText(g, X, Y, GetTitle());
             }
         }
 
+        //наименование этапа ЖЦ
         private string GetTitle()
         {
             return String.Format("{0}\n{1} {2}", DepartmentName, Name, ResponsibleWorker);
         }
 
+        //тект для внешних организаций
         public void DrawTextExternal(Graphics g, int x, int y, string text)
         {
             g.DrawString(text, new Font("Calibri", 12), new SolidBrush(Color.Black), new Rectangle(x + 10, y + 10, Size / 2 - 20, Size - 20), new StringFormat(StringFormatFlags.DirectionVertical));
@@ -65,6 +69,7 @@ namespace Information_analysis_of_university.Objects
             g.DrawString(text, new Font("Calibri", 10), new SolidBrush(Color.Black), new Rectangle(x, y, Size, Size / 3));
         }
 
+        //отображение элемента ЖЦ
         private void DrawModelElement(Graphics g, int x, int y, Pen pen)
         {
             PointF[] polygon;
@@ -78,7 +83,6 @@ namespace Information_analysis_of_university.Objects
                                   new PointF(x + Size + Size/3, y + Size/6), 
                                   new PointF(x + Size, y + Size/3),
                                   new PointF(x - Size/3, y + Size/3), 
-                                 // new PointF(x, y + Size/6), 
                                   new PointF(x - Size/3, y)
                               };
                     break;
@@ -87,7 +91,6 @@ namespace Information_analysis_of_university.Objects
                               {
                                   new PointF(x - Size/3, y), 
                                   new PointF(x + Size, y),
-                                 // new PointF(x + Size + Size/3, y + Size/6), 
                                   new PointF(x + Size, y + Size/3),
                                   new PointF(x - Size/3, y + Size/3), 
                                   new PointF(x, y + Size/6), 

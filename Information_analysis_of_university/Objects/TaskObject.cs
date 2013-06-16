@@ -9,6 +9,7 @@ using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
+    //класс объекта "Задача" (отображение в виде квадрата)
     class TaskObject : BaseTaskObject
     {
         public TaskObject(Task task) : base(task)

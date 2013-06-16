@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
 using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
+    //базовый класс объекта "Рабочее место"
     public class BaseWorkplaceObject : BaseObject
     {
         protected bool dragging = false;
@@ -121,6 +120,7 @@ namespace Information_analysis_of_university.Objects
             return dragging;
         }
 
+        //проверка объекта на соответствие критериям QBE-запроса
         public override bool QbeSelect(QbeQueryConteiner query)
         {
             var isConteinsWorkplaceMetric = query.IsContainsWorkplaceMetric();

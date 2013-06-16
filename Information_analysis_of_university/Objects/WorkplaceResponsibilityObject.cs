@@ -10,6 +10,7 @@ using Information_analysis_of_university.Utilites;
 
 namespace Information_analysis_of_university.Objects
 {
+    //класс объекта подразделения университета (отобрадение в виде прямоугольника с закругленными краями)
     class WorkplaceResponsibilityObject : BaseWorkplaceObject
     {
         public WorkplaceResponsibilityObject(Post post) : base(post) { }
@@ -19,11 +20,8 @@ namespace Information_analysis_of_university.Objects
             X = x ?? X;
             Y = y ?? Y;
 
-
-
             var pen = new Pen(Color.Black);
             g.DrawRoundedRectangle(pen, X, Y, Size, (float)(Size * 2.0 / 3.0), 10);
-            //g.DrawRectangle(pen, new Rectangle(X, Y, Size, Size));
             DrawText(g, X, Y, Name);
         }
 

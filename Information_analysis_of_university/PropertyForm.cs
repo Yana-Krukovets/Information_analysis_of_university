@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Information_analysis_of_university.Objects;
 
 namespace Information_analysis_of_university
 {
+    //форма отображения свойств объекта модели
     public partial class PropertyForm<T> : Form where T: BaseObject 
     {
+        //объект, чьи свойства выводятся
         private T document;
 
         public PropertyForm(T doc)

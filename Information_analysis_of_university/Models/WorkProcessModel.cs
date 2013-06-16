@@ -7,15 +7,17 @@ using System.Drawing;
 using DatabaseLevel;
 using Information_analysis_of_university.Objects;
 
-
 namespace Information_analysis_of_university.Models
 {
+    //класс модели рабочих процессов
     public class WorkProcessModel : ModelBase
     {
+        //список элементов модели
         private List<TaskDocument> taskList;
 
         public WorkProcessModel()
         {
+            //запонение списка задач
             taskList = new List<TaskDocument>();
             var taskDocumentRepository = new BaseDocumentRepository<Task>();
 
@@ -28,6 +30,7 @@ namespace Information_analysis_of_university.Models
             }
         }
 
+        //отрисовка с учетом SQL-запроса
         public override void DrawSQL(Graphics g, List<string> mas)
         {
             var x = 150;
@@ -59,6 +62,7 @@ namespace Information_analysis_of_university.Models
             }
         }
 
+        //отрислвка модели
         public override void Draw(Graphics g)
         {
             var x = 150;
@@ -134,8 +138,6 @@ namespace Information_analysis_of_university.Models
             Draw(graphics);
         }
 
-
-
         public override void ViewErrors(Graphics g, AnalisResultConteiner documents)
         {
             foreach (var task in taskList)
@@ -146,20 +148,23 @@ namespace Information_analysis_of_university.Models
         }
     }
 
+    //класс элемента модели рабочих процессов
     class TaskDocument
     {
+        //задача
         public TaskObject Task { get; set; }
-        //public List<DocumentObject> Documents { get; set; }
+        //входящие элементы
         public List<DocumentObject> InernalDocuments { get; set; }
+        //исходящие элементы
         public List<DocumentObject> ExternalDocuments { get; set; }
 
         public TaskDocument(TaskObject task)
         {
             Task = task;
 
+            //заполнение из БД документов
             var documentRepository = new BaseDocumentRepository<Document>();
             var documents = documentRepository.Query(x => x.Task.TaskId == Task.Id).ToList();
-            // Documents = documents.Select(x => new DocumentObject(x)).ToList();
 
             InernalDocuments = documents.Where(x => x.Type == (int)DocumentType.Input || x.Type == (int)DocumentType.InputOutput).Select(x => new DocumentObject(x)).ToList();
             ExternalDocuments = documents.Where(x => x.Type == (int)DocumentType.Output || x.Type == (int)DocumentType.InputOutput).Select(x => new DocumentObject(x)).ToList();
@@ -178,6 +183,7 @@ namespace Information_analysis_of_university.Models
             }
         }
 
+        //отрисовка документов
         public void DrawDocuments(Graphics g)
         {
 
@@ -252,6 +258,7 @@ namespace Information_analysis_of_university.Models
 
             if(isCorrectTask && query.IsContainsDocumentMetric())
             {
+                //отбираем документы, которые соответствуют запросу
                 InernalDocuments = InernalDocuments.Where(document => document.QbeSelect(query)).ToList();
                 ExternalDocuments = ExternalDocuments.Where(document => document.QbeSelect(query)).ToList();
 
@@ -262,6 +269,7 @@ namespace Information_analysis_of_university.Models
             return isCorrectTask;
         }
 
+        //устанавливаем недостатки
         public void SetErrors(AnalisResultConteiner documents)
         {
             var newList = new List<DocumentObject>();

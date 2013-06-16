@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Information_analysis_of_university
 {
+    //форма диалога изменения имения/ввода имени вкладки
     public partial class ChangeNameForm : Form
     {
+        //имя вкладки
         private string newName;
 
         public string NewName
@@ -24,6 +20,8 @@ namespace Information_analysis_of_university
             InitializeComponent();
         }
 
+        //событие нажатия кнопки "Ок"
+        //принятие введенного имени
         private void brOk_Click(object sender, EventArgs e)
         {
             newName = tbNewName.Text;
@@ -31,6 +29,8 @@ namespace Information_analysis_of_university
             this.Close();
         }
 
+        //событие нажатия кнопки "Отмена"
+        //Отмена ввода/переименования
         private void btCancel_Click(object sender, EventArgs e)
         {
             newName = null;
@@ -38,11 +38,11 @@ namespace Information_analysis_of_university
             this.Close();
         }
 
+        //событие закрытия диалогового окна
         private void ChangeNameForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.DialogResult == DialogResult.Cancel)
                 newName = null;
         }
-
     }
 }

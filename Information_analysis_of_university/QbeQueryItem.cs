@@ -1,36 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Information_analysis_of_university.Objects;
+﻿using Information_analysis_of_university.Objects;
 
 namespace Information_analysis_of_university
 {
+    //класс элемента QBE-запроса
     public class QbeQueryItem
     {
-        //поля Id не будут учавствовать в выборке
-       // public int Id { get; set; }
-        public BaseDocumentObject Document { get; set; }
+        //наименование документа
         public string DocumentName { get; set; }
+        //частота заполнения
         public string Frequency { get; set; }
+        //элктронный (true) или бумажный (false)
         public bool IsElectronic { get; set; }
+        //внешний (true) или внутренний (false)
         public bool IsExternal { get; set; }
+        //организация-внешний источник
         public string ExternalSource { get; set; }
+        //организация-внешний приемник документа
         public string ExternalDistination { get; set; }
+        //тип документа
         public string DocumentType { get; set; }
+        //назначение документа
         public string DocumentFunction { get; set; }
+        //ответственный исполнитель
         public string ResponsibleWorker { get; set; }
-       // public int DepartmentId { get; set; }
+        //наименование подразделения
         public string DepartmentName { get; set; }
-       // public int PostId { get; set; }
+        //наименование должности-исполнителя
         public string PostName { get; set; }
-       // public int TaskId { get; set; }
+        //наименование задачи, в уоторую входит документ
         public string TaskName { get; set; }
+        //запоняется программой (true)
         public bool IsProgram { get; set; }
+        //наименованние программы
         public string ProgramName { get; set; }
-
-        //для CapacityWorkingPlaces
+        //количество задач
         public int TaskCount { get; set; }
+        //количество документов
         public int DocunentCount { get; set; }
     }
 }

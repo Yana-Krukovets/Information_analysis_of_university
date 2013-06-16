@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Information_analysis_of_university.Models;
 using Information_analysis_of_university.Objects;
 
 namespace Information_analysis_of_university
 {
+    //класс главного окна формы, реализация событий компонентов формы
     public partial class MainForm : Form
     {
+        //объект модели
         private ModelBase model;
+        //объект формы для построения QBE-запроса
         private QbeQueryForm qbeForm;
 
         public MainForm()
@@ -25,9 +25,6 @@ namespace Information_analysis_of_university
         private void groupBox1_Enter(object sender, EventArgs e)
         { }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        { }
-
         public void DrowModelSQL(ModelBase model, List<string> mas)
         {
             //отрисовка
@@ -36,22 +33,23 @@ namespace Information_analysis_of_university
             model.DrawSQL(graphics, mas);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        //событие нажатия кнопки "Модель рабочих процессов"
+        private void btWorkProcessModel_Click(object sender, EventArgs e)
         {
             var newTab = CreateNewTab(new WorkProcessModel());
             newTab.DrowModel();
         }
 
+        //событие двойного щелчка по изображению модели
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            //находим объект, по которому был сдела щелчек
             var obj = model.GetObject(e.X, e.Y);
             if (obj is TaskObject)
             {
                 var taskPropertyForm = new PropertyForm<TaskObject>(obj as TaskObject);
                 taskPropertyForm.Show(this);
             }
-            //else
-            //{
             if (obj is DocumentObject)
             {
                 var docPropertyForm = new PropertyForm<DocumentObject>(obj as DocumentObject);
@@ -89,44 +87,45 @@ namespace Information_analysis_of_university
             }
         }
 
+        //событие нажатия кнопки "Модель вариантов использования"
         private void button2_Click(object sender, EventArgs e)
         {
             var newTab = CreateNewTab(new UseCaseModel());
             newTab.DrowModel();
         }
 
+        //событие нажатия кнопки "Модель нагруженности рабочих мест"
         private void button3_Click(object sender, EventArgs e)
         {
             var newTab = CreateNewTab(new CapacityWorkingPlaces());
             newTab.DrowModel();
         }
 
-        public NewTabControl CreateNewTab(ModelBase m, int count = 1)
+        //создание новой вкладки
+        //m - модель, которая будет отображаться в новой вкладке
+        public NewTabControl CreateNewTab(ModelBase m)
         {
             var number = tcModelsFrame.TabPages.Count + 1;
             tcModelsFrame.TabPages.Add(new TabPage() { Name = "newTabPage" + number, Text = tabName() ?? "Модель" + number });
+
             tcModelsFrame.TabPages[number - 1].Location = new System.Drawing.Point(4, 22);
-            //this.newTabPage1.Name = "newTabPage1";
             tcModelsFrame.TabPages[number - 1].Padding = new System.Windows.Forms.Padding(3);
             tcModelsFrame.TabPages[number - 1].Size = tcModelsFrame.Size;
             tcModelsFrame.TabPages[number - 1].TabIndex = 0;
-            //this.newTabPage1.Text = "new1";
             tcModelsFrame.TabPages[number - 1].UseVisualStyleBackColor = true;
+
             var newTab = new NewTabControl(m, qbeForm);
             tcModelsFrame.TabPages[number - 1].Controls.Add(newTab);
+
             newTab.Size = new Size(tcModelsFrame.Size.Width - 8, tcModelsFrame.Size.Height - 26);
             newTab.Anchor = ((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right;
+
             tcModelsFrame.SelectedTab = tcModelsFrame.TabPages[number - 1];
-            //panel1 = new System.Windows.Forms.Panel();
-            //pictureBox1 = new System.Windows.Forms.PictureBox();
             return newTab;
         }
 
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        { }
-
-        private void button5_Click(object sender, EventArgs e)
+        //событие нажатия кнопки "Модель распределения обязательств"
+        private void btBuildResponsibleModel_Click(object sender, EventArgs e)
         {
             var newTab = CreateNewTab(new ResponsibilityDistributionModel());
             newTab.DrowModel();
@@ -135,14 +134,14 @@ namespace Information_analysis_of_university
         private void label1_Click(object sender, EventArgs e)
         { }
 
+        //событие нажатия кнопки "Модель потоков данных"
         private void button4_Click(object sender, EventArgs e)
         {
-            //модельПотоковДанныхToolStripMenuItem данных
             var newTab = CreateNewTab(new DataStreamsModel());
             newTab.DrowModel();
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void btBuildLifeCycleModel_Click(object sender, EventArgs e)
         {
             var newTab = CreateNewTab(new DocumentLifeCycleModel());
             newTab.DrowModel();
@@ -161,9 +160,6 @@ namespace Information_analysis_of_university
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         { }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        { }
-
         private void buttonMaster_Click(object sender, EventArgs e)
         {
             //Мастер запросов
@@ -171,7 +167,7 @@ namespace Information_analysis_of_university
             requestMaster.Show(this);
         }
 
-
+        //событие закрытия главной формы
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             var result = MessageBox.Show(
@@ -181,10 +177,10 @@ namespace Information_analysis_of_university
                 e.Cancel = true;
         }
 
+        //событие нажатия кнопки "QBE"
+        //отображение формы для построения QBE-запросов
         private void buttonQBE_Click(object sender, EventArgs e)
         {
-            // {/*MdiParent = this, */Location = new Point(232, groupBox1.Size.Height + groupBox1.Location.Y), StartPosition = FormStartPosition.CenterParent};
-            //QBE
             try
             {
                 qbeForm.Show(this);
@@ -197,39 +193,40 @@ namespace Information_analysis_of_university
 
         }
 
+        //выполнение QBE-запроса
+        //query - контейнер, содержащий составленные QBE-запросы
         public void ExecuteQbeQuery(QbeQueryConteiner query)
         {
             var currentTab = tcModelsFrame.SelectedTab;
 
-            var control = currentTab.Controls[0] as NewTabControl;//Find("NewTabControl", true);
+            var control = currentTab.Controls[0] as NewTabControl;
             if (control != null)
             {
-                //не правильно, т.к. изменения происходят и основной можели
-                //нужно сделать глубокое копирование control.model
+                //определяем модель, для которой нужно выполнить запрос
                 var newModel = GetNewModel(control.model);
 
                 CreateNewTab(newModel);
                 control = tcModelsFrame.TabPages[tcModelsFrame.TabPages.Count - 1].Controls[0] as NewTabControl;
-                //tcModelsFrame.TabPages[tcModelsFrame.TabPages.Count - 1].Text =  tabName() ?? "qbeResult";
-
+                
                 if (control != null) control.model.DrawQbe(control.GetGraphics(), query);
             }
         }
 
+        //выполнение QBE-запроса для всех моделей
         public void ExecuteQbeQueryForAll(QbeQueryConteiner query)
         {
+            //подготовка области вывода
             var number = tcModelsFrame.TabPages.Count + 1;
             tcModelsFrame.TabPages.Add(new TabPage() { Name = "newTabPage" + number, Text = tabName() ?? "Модель" + number });
             tcModelsFrame.TabPages[number - 1].Location = new System.Drawing.Point(4, 22);
-            //this.newTabPage1.Name = "newTabPage1";
             tcModelsFrame.TabPages[number - 1].Padding = new System.Windows.Forms.Padding(3);
             tcModelsFrame.TabPages[number - 1].Size = tcModelsFrame.Size;
             tcModelsFrame.TabPages[number - 1].TabIndex = 0;
-            //this.newTabPage1.Text = "new1";
             tcModelsFrame.TabPages[number - 1].UseVisualStyleBackColor = true;
 
             for (int i = 0; i < 3; i++)
             {
+                //создание моделей
                 ModelBase newModel = null;
                 switch (i)
                 {
@@ -244,14 +241,15 @@ namespace Information_analysis_of_university
                         break;
 
                 }
+
                 var newTab = new NewTabControl(newModel, qbeForm);
 
                 newTab.Size = new Size((tcModelsFrame.Size.Width - 8) / 2, (tcModelsFrame.Size.Height - 26) / 2);
                 newTab.Location = new Point(newTab.Size.Width * (i % 2), newTab.Size.Height * (i % 3 == 2 ? 1 : 0));
-                //newTab.Anchor = ((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right;
                 tcModelsFrame.TabPages[number - 1].Controls.Add(newTab);
 
                 var control = tcModelsFrame.TabPages[number - 1].Controls[i] as NewTabControl;
+                //выполние запроса
                 if (control != null) control.model.DrawQbe(control.GetGraphics(), query);
             }
             tcModelsFrame.SelectedTab = tcModelsFrame.TabPages[number - 1];
@@ -275,9 +273,6 @@ namespace Information_analysis_of_university
                 newModel = new CapacityWorkingPlaces();
             return newModel;
         }
-
-        private void button8_Click(object sender, EventArgs e)
-        { }
 
         private void tcModelsFrame_MouseClick(object sender, MouseEventArgs e)
         {
@@ -307,7 +302,6 @@ namespace Information_analysis_of_university
 
 
         //удаляет активную вкладку
-        //Нужно переписать, чтобы закрывалась та, по которой кликали
         private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var currentPage = tcModelsFrame.SelectedTab;
@@ -317,11 +311,13 @@ namespace Information_analysis_of_university
                 tcModelsFrame.TabPages.Remove(currentPage);
         }
 
+        //переименование вкладки
         private void RenameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tcModelsFrame.SelectedTab.Text = tabName() ?? tcModelsFrame.SelectedTab.Text;
         }
 
+        //запрашивает имя у пользователя
         private string tabName()
         {
             var newNameForm = new ChangeNameForm();
@@ -332,6 +328,7 @@ namespace Information_analysis_of_university
         private void groupBox1_Enter_1(object sender, EventArgs e)
         { }
 
+        //сохранение моделей
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //функция для сохранения модели
@@ -396,10 +393,14 @@ namespace Information_analysis_of_university
             }
         }
 
+        // событие нажатия кнопки "Анализ"
+        //вызывает функцию анализа документооборота
         private void analisButton_Click(object sender, EventArgs e)
         {
             var AnalisForm = new AnalisResultForm();
             AnalisForm.Show(this);
+
+            //отображение ошибок существующих на моделях
             for (int i = 0; i < tcModelsFrame.TabPages.Count; i++)
             {
                 var control = tcModelsFrame.TabPages[i].Controls[0] as NewTabControl;
@@ -412,6 +413,7 @@ namespace Information_analysis_of_university
 
         }
 
+        //вызов информации о программе
         private void aboutProgram_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Аналіз стану інформаційного забезпечення університету.Розробники: Круковець Я.М., Карпенко А.Д.кафедра КІТ, ДНУЗТ, 2013. Версія 1.0");

@@ -1,30 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Information_analysis_of_university.Objects;
 
 namespace Information_analysis_of_university
 {
+    //класс формы построения QBE-запросов
     public partial class QbeQueryForm : Form
     {
+        //объект модели модель 
         private MainForm mForm;
+        //контейнер запросов
         public QbeQueryConteiner QbeItems;
-
+        //список всех метрик, по которым возможен отбор
         private List<QbeMetric> Metrics;
 
+        //внутренний класс метрик отбора
         class QbeMetric
         {
+            //номер колонки в таблице
             public int ColumnNumber { get; set; }
+            //наименование метрики
             public string Title { get; set; }
+            //название колонки
             public string ColumnName { get; set; }
+            //принимает участие в выборе (true) или нет (false)
             public bool IsVisible { get; set; }
         }
-        //private List<string> SelectedMetrics;
 
         public QbeQueryForm(MainForm form)
         {
@@ -32,17 +35,17 @@ namespace Information_analysis_of_university
             InitializeComponent();
             QbeItems = new QbeQueryConteiner();
 
+            //привязка компонента-новигатора к компоненту DataGridView
             var bSource = new BindingSource();
             bSource.DataSource = QbeItems;
             bindingNavigator1.BindingSource = bSource;
             dGridQbeQuery.DataSource = bSource;
 
+            //заполнение метрик по умолчанию
             DefaultMetrics();
-
-
-            //bindingNavigator1.DataBindings = dGridQbeQuery.DataBindings;
         }
 
+        //обновление списка используемых и неиспользуемых метрик
         private void UpdateListBox()
         {
             listboxAllMetrics.Items.Clear();
@@ -60,6 +63,7 @@ namespace Information_analysis_of_university
             }
         }
 
+        //устанавливает набор используемых метррик по умолчанию
         private void DefaultMetrics()
         {
             Metrics = new List<QbeMetric>();
@@ -76,6 +80,8 @@ namespace Information_analysis_of_university
             UpdateListBox();
         }
 
+        //событие ажатия кнопки "Выполнить" или "Выполнить для всех моделей"
+        //вызов функции выполнения запроса
         private void toolStripSplitExecute_ButtonClick(object sender, EventArgs e)
         {
             QbeItems.CurrentItemNumbers = Metrics.Where(x => x.IsVisible).ToDictionary(x => x.ColumnNumber, y => y.ColumnName);
@@ -85,6 +91,7 @@ namespace Information_analysis_of_university
                 mForm.ExecuteQbeQuery(QbeItems);
         }
 
+        //добавление объектов моделей к запросу
         public void AddObjectInQbeQuery(BaseObject currentObject)
         {
             if (currentObject is BaseDocumentObject)
@@ -102,6 +109,7 @@ namespace Information_analysis_of_university
             }
         }
 
+        //добавление объекта "Документ"
         private void AddDocument(BaseDocumentObject document)
         {
             QbeItems.Add(new QbeQueryItem()
@@ -119,11 +127,13 @@ namespace Information_analysis_of_university
             });
         }
 
+        //добавление объекта "Задача"
         private void AddTask(TaskObject taskObject)
         {
             QbeItems.Add(new QbeQueryItem() { TaskName = taskObject.Name });
         }
 
+        //добавление объекта "Рабочее место"
         private void AddWorkplace(BaseWorkplaceObject workplaceObject)
         {
             QbeItems.Add(new QbeQueryItem()
@@ -136,7 +146,7 @@ namespace Information_analysis_of_university
 
         }
 
-
+        //событие закрытия формы
         private void QbeQueryForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             var result = MessageBox.Show(
@@ -156,22 +166,23 @@ namespace Information_analysis_of_university
             toolStripSplitExecute.Text = выполнильToolStripMenuItem.Text;
         }
 
+        //добавление метрики к списку выбранных
         private void btAddToSelect_Click(object sender, EventArgs e)
         {
             var selectedItem = listboxAllMetrics.SelectedItem;
             ChangeMetric(selectedItem, true);
-            //dGridQbeQuery.Columns
             UpdateListBox();
         }
 
+        //переход к метрики к списку не выбранных
         private void btRemoveFromSelect_Click(object sender, EventArgs e)
         {
             var selectedItem = listboxSelectedMetrics.SelectedItem;
             ChangeMetric(selectedItem, false);
-            //dGridQbeQuery.Columns
             UpdateListBox();
         }
 
+        //добавить все метрики к списку выбранных
         private void btAddAllToSelect_Click(object sender, EventArgs e)
         {
             foreach (var item in listboxAllMetrics.Items)
@@ -181,6 +192,7 @@ namespace Information_analysis_of_university
             UpdateListBox();
         }
 
+        //удаление всех ментирк из списка невыбранных
         private void btRemoveAllFromSelect_Click(object sender, EventArgs e)
         {
             foreach (var item in listboxSelectedMetrics.Items)
@@ -190,6 +202,7 @@ namespace Information_analysis_of_university
             UpdateListBox();
         }
 
+        //изменение списков метррик и таблицы QBE-запроса
         private void ChangeMetric(object item, bool IsVisible)
         {
             if (item != null)
@@ -207,6 +220,7 @@ namespace Information_analysis_of_university
 
         }
 
+        //очистка елементов QBE-запроса
         private void очиститьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             QbeItems.Clear();
