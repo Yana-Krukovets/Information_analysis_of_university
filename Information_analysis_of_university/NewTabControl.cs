@@ -42,7 +42,7 @@ namespace Information_analysis_of_university
                 PictureBox1.Image = new Bitmap(DLG.FileName);
         }
 
-        private void DrowModel()
+        public void DrowModel()
         {
             //отрисовка
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);

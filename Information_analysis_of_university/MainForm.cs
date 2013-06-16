@@ -115,7 +115,7 @@ namespace Information_analysis_of_university
 
         //создание новой вкладки
         //m - модель, которая будет отображаться в новой вкладке
-        public NewTabControl CreateNewTab(ModelBase m)
+        public NewTabControl CreateNewTab(ModelBase m, OpenFileDialog dlg)
         {
            // создание новой вкладки
             var number = tcModelsFrame.TabPages.Count + 1;
@@ -269,7 +269,7 @@ namespace Information_analysis_of_university
 
                 }
 
-                var newTab = new NewTabControl(newModel, qbeForm);
+                var newTab = new NewTabControl(newModel, qbeForm, null);
 
                 newTab.Size = new Size((tcModelsFrame.Size.Width - 8) / 2, (tcModelsFrame.Size.Height - 26) / 2);
                 newTab.Location = new Point(newTab.Size.Width * (i % 2), newTab.Size.Height * (i % 3 == 2 ? 1 : 0));
