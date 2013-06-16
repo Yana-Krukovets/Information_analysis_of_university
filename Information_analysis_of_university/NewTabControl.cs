@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using DatabaseLevel;
 using Information_analysis_of_university.Models;
 using Information_analysis_of_university.Objects;
 
@@ -23,10 +23,10 @@ namespace Information_analysis_of_university
             model = newModel;
             qbeForm = form;
             InitializeComponent();
-            DrowModel();
+            //DrowModel();
         }
 
-        private void DrowModel()
+        public void DrowModel()
         {
             //отрисовка
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -120,5 +120,7 @@ namespace Information_analysis_of_university
         {
 
         }
+
+
     }
 }

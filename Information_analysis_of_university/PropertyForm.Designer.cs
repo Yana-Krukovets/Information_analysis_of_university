@@ -49,7 +49,7 @@
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.documentPropertyGrid);
             this.Name = "PropertyForm";
-            this.Text = "Атрибуты документа";
+            this.Text = "Атрибуты объекта";
             this.ResumeLayout(false);
 
         }

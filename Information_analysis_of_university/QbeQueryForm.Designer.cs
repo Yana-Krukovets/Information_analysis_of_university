@@ -426,8 +426,9 @@
             // очиститьToolStripMenuItem
             // 
             this.очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
-            this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.очиститьToolStripMenuItem.Text = "Очистить";
+            this.очиститьToolStripMenuItem.Click += new System.EventHandler(this.очиститьToolStripMenuItem_Click);
             // 
             // выполнениеToolStripMenuItem
             // 
@@ -645,6 +646,7 @@
         private System.Windows.Forms.ToolStripMenuItem выполнитьДляВсехМоделейToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
+        private System.Windows.Forms.BindingSource qbeQueryConteinerBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn DocumentName;
         private System.Windows.Forms.DataGridViewComboBoxColumn documentFrequency;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isElectronic;
@@ -659,6 +661,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn programName;
         private System.Windows.Forms.DataGridViewTextBoxColumn TaskCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn DocunentCount;
-        private System.Windows.Forms.BindingSource qbeQueryConteinerBindingSource;
     }
 }

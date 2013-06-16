@@ -29,28 +29,6 @@ namespace Information_analysis_of_university.Objects
         public abstract void BeginDrag(Point pt);
         public abstract void EndDrag();
         public abstract bool IsDragging();
-
-        //public static string GetDescription(Enum en)
-        //{
-        //    Type type = en.GetType();
-
-        //    MemberInfo[] memInfo = type.GetMember(en.ToString());
-
-        //    if (memInfo != null && memInfo.Length > 0)
-        //    {
-
-        //        object[] attrs = memInfo[0].GetCustomAttributes(typeof(Description),
-        //                                                        false);
-
-        //        if (attrs != null && attrs.Length > 0)
-
-        //            return ((Description)attrs[0]).Text;
-
-        //    }
-
-        //    return en.ToString();
-        //}
-
         public abstract bool QbeSelect(QbeQueryConteiner query);
     }
 

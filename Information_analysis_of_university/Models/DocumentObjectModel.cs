@@ -26,5 +26,10 @@ namespace Information_analysis_of_university.Models
         {
             throw new NotImplementedException();
         }
+
+        public override void ViewErrors(System.Drawing.Graphics g, AnalisResultConteiner documents)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

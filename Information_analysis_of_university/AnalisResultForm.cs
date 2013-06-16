@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DatabaseLevel;
+using Information_analysis_of_university.Objects;
 
 namespace Information_analysis_of_university
 {
@@ -32,26 +34,42 @@ namespace Information_analysis_of_university
         private void FillCloneInfo()
         {
             var resultList = Analisator.IsCloneInformation();
+           // var repository = new BaseDocumentRepository<Document>();
             foreach (var item in resultList)
             {
                 if(item != null && item.Count != 0)
                 {
-                    var str = "В документах ";
+                    var DocList = new List<DocumentName>();
+                    var str_palce = "Документы: ";
                     foreach (var docInfo in item)
                     {
-                        str += docInfo.DocumentName.Name;
+                        str_palce += docInfo.DocumentName.Name;
                         if(item.Last() != docInfo)
-                            str += ", ";
+                            str_palce += ", ";
+                        DocList.Add(docInfo.DocumentName);
                     }
-                    str += " вручную заполняется поле " + item[0].Field.Name;
+
+                    var str_description = " вручную заполняется поле " + item[0].Field.Name;
                     ResultConteiner.Add(new AnalisResultItem()
                                             {
                                                 Error = ErrorType.CloneInformation,
-                                                Description = str,
-                                                Decision = "Ввести единый справочник для данного поля"
+                                                LocalisationPlace = str_palce,
+                                                Description = str_description,
+                                                Decision = "Ввести единый справочник для данного поля",
+                                                Documents = DocList
                                             });
                 }
             }
+        }
+
+        public List<DocumentName> GetDocuments()
+        {
+            var docs = new List<DocumentName>();
+            foreach (var item in ResultConteiner)
+            {
+                docs.AddRange(item.Documents);
+            }
+            return docs;
         }
     }
 }

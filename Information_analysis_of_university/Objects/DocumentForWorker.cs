@@ -36,6 +36,13 @@ namespace Information_analysis_of_university.Objects
         [DisplayName("Количество полей")]
         public int CountFilds { get; set; }
 
+        [Browsable(false)]
+        public bool IsError { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("Текст ошибки")]
+        public string ErrorText { get; set; }
+
         public DocumentForWorker(Document document)
         {
             Id = document.DocumentId;
@@ -44,6 +51,8 @@ namespace Information_analysis_of_university.Objects
             Frequence = document.Frequence;
             TaskId = document.FK_TaskId;
             Size = 220;
+            IsError = false;
+            ErrorText = "";
         }
 
         //задаем значение координат
@@ -66,7 +75,11 @@ namespace Information_analysis_of_university.Objects
             X = x ?? X;
             Y = y ?? Y;
 
-            var pen = new Pen(Color.Black);
+            var color = Color.Black;
+            if (IsError)
+                color = Color.Red;
+
+            var pen = new Pen(color);
 
             var x1 = X;
             x1 = X + Size;

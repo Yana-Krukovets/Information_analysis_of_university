@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DatabaseLevel;
 using Information_analysis_of_university.Objects;
 
 namespace Information_analysis_of_university
@@ -18,6 +19,7 @@ namespace Information_analysis_of_university
 
         public ErrorType Error { get; set; }
         public List<Models.ModelBase> ModelList { get; set; }
+        public List<DocumentName> Documents { get; set; }
     }
 
     public enum ErrorType

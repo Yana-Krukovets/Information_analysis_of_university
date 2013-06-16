@@ -42,6 +42,13 @@ namespace Information_analysis_of_university.Objects
         [ReadOnly(true)]
         public byte? IsExternal { get; set; }
 
+        [Browsable(false)]
+        public bool IsError { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("Текст ошибки")]
+        public string ErrorText { get; set; }
+
         public DocumentForStreams(Document document)
         {
             Id = document.DocumentId;
@@ -52,6 +59,8 @@ namespace Information_analysis_of_university.Objects
             Size = 220;
             IsExternal = document.IsExternal;
             FK_DepartmentIdSource = document.FK_DepartmentIdSource;
+            IsError = false;
+            ErrorText = "";
         }
 
         //задаем значение координат
@@ -73,12 +82,17 @@ namespace Information_analysis_of_university.Objects
         {
             X = x ?? X;
             Y = y ?? Y;
-            var pen = new Pen(Color.Black);
+
+            var color = Color.Black;
+            if (IsError)
+                color = Color.Red;
+
+            var pen = new Pen(color);
             var x1 = X;
             x1 = X + Size;
             g.DrawLine(pen, x1, Y, x1 + Size, Y);
-            g.FillPolygon(new SolidBrush(Color.Black), new Point[] { new Point(x1 + Size, Y), GetNewPoint(155, x1 + Size, Y), GetNewPoint(205, x1 + Size, Y) });
-            g.FillPolygon(new SolidBrush(Color.Black), new Point[] { new Point(x1, Y), GetNewPoint(155, x1, Y), GetNewPoint(205, x1, Y) });
+            g.FillPolygon(new SolidBrush(color), new Point[] { new Point(x1 + Size, Y), GetNewPoint(155, x1 + Size, Y), GetNewPoint(205, x1 + Size, Y) });
+            g.FillPolygon(new SolidBrush(color), new Point[] { new Point(x1, Y), GetNewPoint(155, x1, Y), GetNewPoint(205, x1, Y) });
             DrawText(g, x1, Y, Name);
         }
 

@@ -96,6 +96,15 @@ namespace Information_analysis_of_university.Models
 
             Draw(graphics);
         }
+
+        public override void ViewErrors(Graphics g, AnalisResultConteiner documents)
+        {
+            foreach (var department in departmentList)
+            {
+                department.SetErrors(documents);
+            }
+            Draw(g);
+        }
     }
 
     class Departments
@@ -110,10 +119,10 @@ namespace Information_analysis_of_university.Models
             int countTasks = 0, p = 0;
             //список для заданий на данном рабочем месте
             var taskDocumentRepository = new BaseDocumentRepository<Task>();
-           // список документов
+            // список документов
             var documentRepository = new BaseDocumentRepository<Document>();
             var documents = documentRepository.Query(x => x.FK_DepartmentIdDestination == WorkPlace.Id).ToList();
-          //  количество документов
+            //  количество документов
             int col = documents.Count();
 
             foreach (var item in documents)
@@ -128,7 +137,7 @@ namespace Information_analysis_of_university.Models
             documentCount = new CountTaks(col, countTasks);
         }
 
-     //функция для отрисовки
+        //функция для отрисовки
         public void DrawCount(Graphics g, int x, int y)
         {
             documentCount.DrawObject(g, x, y);
@@ -160,6 +169,20 @@ namespace Information_analysis_of_university.Models
             //}
 
             return isCorrectWorkplace && isCorrectTaskCount && isCorrectDocCount;
+        }
+
+        public void SetErrors(AnalisResultConteiner documents)
+        {
+
+            foreach (var docs in documents)
+            {
+                if (docs.Documents.Any(x => x.Name == doc.Name))
+                {
+                    doc.IsError = true;
+                    doc.ErrorText = Description.GetDescription(docs.Error);
+                }
+            }
+
         }
 
     }

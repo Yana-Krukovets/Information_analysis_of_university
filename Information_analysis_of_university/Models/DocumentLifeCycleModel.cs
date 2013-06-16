@@ -88,6 +88,23 @@ namespace Information_analysis_of_university.Models
 
             Draw(graphics);
         }
+
+        public override void ViewErrors(Graphics g, AnalisResultConteiner documents)
+        {
+            foreach (var item in LifeCycles)
+            {
+                foreach (var docs in documents)
+                {
+                    if (docs.Documents.Any(x => x.Name == item.Document.Name))
+                    {
+                        item.Document.IsError = true;
+                        item.Document.ErrorText = Description.GetDescription(docs.Error);
+                    }
+                }
+            }
+
+            Draw(g);
+        }
     }
 
     public class LifeCycle
@@ -97,7 +114,6 @@ namespace Information_analysis_of_university.Models
 
         public LifeCycle(Document document, ref List<Document> usingDocuments)
         {
-
             Document = new DocumentObject(document);
 
             //var taskRepository = new BaseDocumentRepository<Task>();
@@ -218,7 +234,12 @@ namespace Information_analysis_of_university.Models
         {
             Document.CoordX = x;
             Document.CoordY = y;
-            g.DrawString(Document.Name, new Font("Calibri", 18, FontStyle.Bold), new SolidBrush(Color.Brown), x, y);
+
+            var color = Color.Brown;
+            if(Document.IsError)
+                color = Color.Red;
+
+            g.DrawString(Document.Name, new Font("Calibri", 18, FontStyle.Bold), new SolidBrush(color), x, y);
 
             y += 25;
 

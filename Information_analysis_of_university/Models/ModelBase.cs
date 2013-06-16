@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using DatabaseLevel;
 using Information_analysis_of_university.Objects;
 
 namespace Information_analysis_of_university.Models
@@ -23,6 +24,8 @@ namespace Information_analysis_of_university.Models
         public abstract BaseObject GetObject(int x, int y);
 
         public abstract void DrawQbe(Graphics graphics, QbeQueryConteiner query);
+
+        public abstract void ViewErrors(Graphics g, AnalisResultConteiner documents);
 
     }
 }

@@ -38,7 +38,7 @@ namespace Information_analysis_of_university
             dGridQbeQuery.DataSource = bSource;
 
             DefaultMetrics();
-            
+
 
             //bindingNavigator1.DataBindings = dGridQbeQuery.DataBindings;
         }
@@ -78,13 +78,14 @@ namespace Information_analysis_of_university
 
         private void toolStripSplitExecute_ButtonClick(object sender, EventArgs e)
         {
-            //null :(
-            //var mform = new MainForm();// this.Parent;
-            QbeItems.CurrentItemNumbers = Metrics.Where(x => x.IsVisible).ToDictionary(x => x.ColumnNumber,y => y.ColumnName);
-            mForm.ExecuteQbeQuery(QbeItems);
+            QbeItems.CurrentItemNumbers = Metrics.Where(x => x.IsVisible).ToDictionary(x => x.ColumnNumber, y => y.ColumnName);
+            if (toolStripSplitExecute.Text == выполнитьДляВсехМоделейToolStripMenuItem.Text)
+                mForm.ExecuteQbeQueryForAll(QbeItems);
+            else
+                mForm.ExecuteQbeQuery(QbeItems);
         }
 
-       public void AddObjectInQbeQuery(BaseObject currentObject)
+        public void AddObjectInQbeQuery(BaseObject currentObject)
         {
             if (currentObject is BaseDocumentObject)
             {
@@ -101,22 +102,22 @@ namespace Information_analysis_of_university
             }
         }
 
-       private void AddDocument(BaseDocumentObject document)
-       {
-           QbeItems.Add(new QbeQueryItem()
-           {
-               DocumentName = document.Name,
-               DocumentType = document.DocTypeTitle,
-               DocumentFunction = document.Function,
-               //IsElectronic = document.IsElectronic,
-               Frequency = document.Frequence,
-               IsExternal = !document.IsInner,
-               IsProgram = document.IsProgram,
-               ProgramName = document.ProgramName
-               //ExternalSource = 
-               //ExternalDistination = 
-           });
-       }
+        private void AddDocument(BaseDocumentObject document)
+        {
+            QbeItems.Add(new QbeQueryItem()
+            {
+                DocumentName = document.Name,
+                DocumentType = document.DocTypeTitle,
+                DocumentFunction = document.Function,
+                //IsElectronic = document.IsElectronic,
+                Frequency = document.Frequence,
+                IsExternal = !document.IsInner,
+                IsProgram = document.IsProgram,
+                ProgramName = document.ProgramName
+                //ExternalSource = 
+                //ExternalDistination = 
+            });
+        }
 
         private void AddTask(TaskObject taskObject)
         {
@@ -131,10 +132,10 @@ namespace Information_analysis_of_university
                                  DepartmentName = workplaceObject.DepartmentName,
                                  ResponsibleWorker = workplaceObject.ResponsibleWorker
                              });
-            
-            
+
+
         }
-        
+
 
         private void QbeQueryForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -204,6 +205,11 @@ namespace Information_analysis_of_university
         private void QbeQueryForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void очиститьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QbeItems.Clear();
         }
 
 

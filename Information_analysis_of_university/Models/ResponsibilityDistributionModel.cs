@@ -34,7 +34,7 @@ namespace Information_analysis_of_university.Models
             var y = 50;
 
             var heignt = 100;
-            var width = 100;
+            var width = 200;
 
             foreach (var wp in workplaceList)
             {
@@ -65,7 +65,7 @@ namespace Information_analysis_of_university.Models
             var y = 50;
 
             var heignt = 100;
-            var width = 100;
+            var width = 200;
 
             foreach (var wp in workplaceList)
             {
@@ -102,6 +102,15 @@ namespace Information_analysis_of_university.Models
             workplaceList = workplaceList.Where(task => task.QbeSelect(query)).ToList();
 
             Draw(graphics);
+        }
+
+        public override void ViewErrors(Graphics g, AnalisResultConteiner documents)
+        {
+            foreach (var workplace in workplaceList)
+            {
+                workplace.SetErrors(documents);
+            }
+            Draw(g);
         }
     }
 
@@ -225,6 +234,14 @@ namespace Information_analysis_of_university.Models
             }
 
             return isCorrectWorkplace;
+        }
+
+        public void SetErrors(AnalisResultConteiner documents)
+        {
+            foreach (var task in TaskDocuments)
+            {
+                task.SetErrors(documents);
+            }
         }
 
     }

@@ -10,22 +10,26 @@ using DatabaseLevel;
 
 namespace Information_analysis_of_university.Objects
 {
-    
-
     public class DocumentObject : BaseDocumentObject
     {
         //направление стрелочки
         [Browsable(false)]
         public DocumentType IsWayTo { get; set; }   //true - стрелка входит
 
+        [Browsable(false)]
+        public bool IsError { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("Текст ошибки")]
+        public string ErrorText { get; set; }
+
         public DocumentObject(Document document)
             : base(document)
         {
             if (document.Type != null) IsWayTo = (DocumentType)document.Type;
-            
+            IsError = false;
+            ErrorText = "";
         }
-
-        
 
         public override void DrawObject(Graphics g, int? x, int? y)
         {
@@ -56,9 +60,12 @@ namespace Information_analysis_of_university.Objects
         //рисование стрелок
         private void DrawArrow(Graphics g, int x)
         {
-            var pen = new Pen(Color.Black);
+            var color = Color.Black;
+            if(IsError)
+                color = Color.Red;
+            var pen = new Pen(color);
             g.DrawLine(pen, x, Y, x + Size, Y);
-            g.FillPolygon(new SolidBrush(Color.Black), new Point[] { new Point(x + Size, Y), GetNewPoint(155, x + Size, Y), GetNewPoint(205, x + Size, Y) });
+            g.FillPolygon(new SolidBrush(color), new Point[] { new Point(x + Size, Y), GetNewPoint(155, x + Size, Y), GetNewPoint(205, x + Size, Y) });
             DrawText(g, x, Y, Name);
         }
 

@@ -174,7 +174,7 @@ namespace Information_analysis_of_university.Models
                             }
                         }
                         y += 500;
-                    }                    
+                    }
                 }
             }
         }
@@ -188,10 +188,10 @@ namespace Information_analysis_of_university.Models
             foreach (var WorkPlace in departments)
             {
                 WorkPlace.DrawObject(g, x, y);
-                 var documentRepository = new BaseDocumentRepository<Document>();
+                var documentRepository = new BaseDocumentRepository<Document>();
                 var documents = documentRepository.Query(t => t.FK_DepartmentIdDestination == WorkPlace.Id).ToList();
                 var documents1 = documentRepository.Query(t => t.FK_DepartmentIdSource == WorkPlace.Id).ToList();
-               
+
                 documentStreams = new List<DocumentForStreams>();
                 documentStreams1 = new List<DocumentForStreams>();
                 documentStreams2 = new List<DocumentForStreams>();
@@ -288,7 +288,7 @@ namespace Information_analysis_of_university.Models
                             coordY2.Remove(j);
                             coordX2.Remove(j);
                         }
-                        
+
                     }
                 }
                 y += 500;
@@ -309,8 +309,49 @@ namespace Information_analysis_of_university.Models
 
         public override void DrawQbe(Graphics graphics, QbeQueryConteiner query)
         {
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
+
+        public override void ViewErrors(Graphics g, AnalisResultConteiner documents)
+        {
+            List<DocumentForStreams> docList;
+            for (int i = 0; i < 4; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        docList = documentStreams;
+                        break;
+                    case 1:
+                        docList = documentStreams1;
+                        break;
+                    case 2:
+                        docList = documentStreams2;
+                        break;
+                    case 3:
+                        docList = documentStreamsRepeat;
+                        break;
+                    default:
+                        docList = new List<DocumentForStreams>();
+                        break;
+                }
+
+                foreach (var doc in docList)
+                {
+                    foreach (var item in documents)
+                    {
+                        if (item.Documents.Any(x => x.Name == doc.Name))
+                        {
+                            doc.IsError = true;
+                            doc.ErrorText = Description.GetDescription(item.Error);
+                        }
+                    }
+                }
+            }
+            Draw(g);
+        }
+
+
     }
 
 }

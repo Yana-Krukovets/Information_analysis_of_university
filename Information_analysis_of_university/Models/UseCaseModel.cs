@@ -86,6 +86,15 @@ namespace Information_analysis_of_university.Models
             workerList = workerList.Where(x => x.QbeSelect(query)).ToList();
             Draw(graphics);
         }
+
+        public override void ViewErrors(Graphics g, AnalisResultConteiner documents)
+        {
+            foreach (var woker in workerList)
+            {
+                woker.SetErrors(documents);
+            }
+            Draw(g);
+        }
     }
 
     class NameWorker
@@ -247,6 +256,23 @@ namespace Information_analysis_of_university.Models
             }
 
             return isCorrectLittleMan && isCorrectTask;
+        }
+
+        public void SetErrors(AnalisResultConteiner documents)
+        {
+            var newList = Documents;
+            
+            foreach (var item in newList)
+            {
+                foreach (var docs in documents)
+                {
+                    if (docs.Documents.Any(x => x.Name == item.Name))
+                    {
+                        item.IsError = true;
+                        item.ErrorText = Description.GetDescription(docs.Error);
+                    }
+                }
+            }
         }
     }
 }

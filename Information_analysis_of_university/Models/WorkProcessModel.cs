@@ -134,7 +134,16 @@ namespace Information_analysis_of_university.Models
             Draw(graphics);
         }
 
-        
+
+
+        public override void ViewErrors(Graphics g, AnalisResultConteiner documents)
+        {
+            foreach (var task in taskList)
+            {
+                task.SetErrors(documents);
+            }
+            Draw(g);
+        }
     }
 
     class TaskDocument
@@ -251,6 +260,25 @@ namespace Information_analysis_of_university.Models
             }
 
             return isCorrectTask;
+        }
+
+        public void SetErrors(AnalisResultConteiner documents)
+        {
+            var newList = new List<DocumentObject>();
+            //var newList = Documents;
+            newList.AddRange(InernalDocuments);
+            newList.AddRange(ExternalDocuments);
+            foreach (var item in newList)
+            {
+                foreach (var docs in documents)
+                {
+                    if (docs.Documents.Any(x => x.Name == item.Name))
+                    {
+                        item.IsError = true;
+                        item.ErrorText = Description.GetDescription(docs.Error);
+                    }
+                }
+            }
         }
     }
 }

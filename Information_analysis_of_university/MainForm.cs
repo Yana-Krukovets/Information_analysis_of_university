@@ -38,7 +38,8 @@ namespace Information_analysis_of_university
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new WorkProcessModel());
+            var newTab = CreateNewTab(new WorkProcessModel());
+            newTab.DrowModel();
         }
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -83,22 +84,24 @@ namespace Information_analysis_of_university
             }
             if (obj is WorkplaceResponsibilityObject)
             {
-                var docPropertyForm = new PropertyForm<WorkplaceLifeElement>(obj as WorkplaceLifeElement);
+                var docPropertyForm = new PropertyForm<WorkplaceResponsibilityObject>(obj as WorkplaceResponsibilityObject);
                 docPropertyForm.Show(this);
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new UseCaseModel());
+            var newTab = CreateNewTab(new UseCaseModel());
+            newTab.DrowModel();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new CapacityWorkingPlaces());
+            var newTab = CreateNewTab(new CapacityWorkingPlaces());
+            newTab.DrowModel();
         }
 
-        public void CreateNewTab(ModelBase m)
+        public NewTabControl CreateNewTab(ModelBase m, int count = 1)
         {
             var number = tcModelsFrame.TabPages.Count + 1;
             tcModelsFrame.TabPages.Add(new TabPage() { Name = "newTabPage" + number, Text = tabName() ?? "Модель" + number });
@@ -116,29 +119,33 @@ namespace Information_analysis_of_university
             tcModelsFrame.SelectedTab = tcModelsFrame.TabPages[number - 1];
             //panel1 = new System.Windows.Forms.Panel();
             //pictureBox1 = new System.Windows.Forms.PictureBox();
+            return newTab;
         }
 
-       
+
         private void pictureBox1_Click(object sender, EventArgs e)
-        {        }
+        { }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new ResponsibilityDistributionModel());           
+            var newTab = CreateNewTab(new ResponsibilityDistributionModel());
+            newTab.DrowModel();
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {     }
+        { }
 
         private void button4_Click(object sender, EventArgs e)
         {
             //модельПотоковДанныхToolStripMenuItem данных
-            CreateNewTab(new DataStreamsModel());
+            var newTab = CreateNewTab(new DataStreamsModel());
+            newTab.DrowModel();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new DocumentLifeCycleModel());
+            var newTab = CreateNewTab(new DocumentLifeCycleModel());
+            newTab.DrowModel();
         }
 
         private void buttonSQL_Click(object sender, EventArgs e)
@@ -149,13 +156,13 @@ namespace Information_analysis_of_university
         }
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
-        {        }
+        { }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {        }
+        { }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
-        {        }
+        { }
 
         private void buttonMaster_Click(object sender, EventArgs e)
         {
@@ -192,8 +199,6 @@ namespace Information_analysis_of_university
 
         public void ExecuteQbeQuery(QbeQueryConteiner query)
         {
-            //pictureBox2.Image = new Bitmap(pictureBox2.Width, pictureBox2.Height);
-            //var graphics = Graphics.FromImage(pictureBox2.Image);
             var currentTab = tcModelsFrame.SelectedTab;
 
             var control = currentTab.Controls[0] as NewTabControl;//Find("NewTabControl", true);
@@ -201,22 +206,84 @@ namespace Information_analysis_of_university
             {
                 //не правильно, т.к. изменения происходят и основной можели
                 //нужно сделать глубокое копирование control.model
-                CreateNewTab(control.model);
+                var newModel = GetNewModel(control.model);
+
+                CreateNewTab(newModel);
                 control = tcModelsFrame.TabPages[tcModelsFrame.TabPages.Count - 1].Controls[0] as NewTabControl;
-                tcModelsFrame.TabPages[tcModelsFrame.TabPages.Count - 1].Text = "qbeResult";
-                //control.model.DrawQbe();
+                //tcModelsFrame.TabPages[tcModelsFrame.TabPages.Count - 1].Text =  tabName() ?? "qbeResult";
+
                 if (control != null) control.model.DrawQbe(control.GetGraphics(), query);
             }
         }
 
+        public void ExecuteQbeQueryForAll(QbeQueryConteiner query)
+        {
+            var number = tcModelsFrame.TabPages.Count + 1;
+            tcModelsFrame.TabPages.Add(new TabPage() { Name = "newTabPage" + number, Text = tabName() ?? "Модель" + number });
+            tcModelsFrame.TabPages[number - 1].Location = new System.Drawing.Point(4, 22);
+            //this.newTabPage1.Name = "newTabPage1";
+            tcModelsFrame.TabPages[number - 1].Padding = new System.Windows.Forms.Padding(3);
+            tcModelsFrame.TabPages[number - 1].Size = tcModelsFrame.Size;
+            tcModelsFrame.TabPages[number - 1].TabIndex = 0;
+            //this.newTabPage1.Text = "new1";
+            tcModelsFrame.TabPages[number - 1].UseVisualStyleBackColor = true;
+
+            for (int i = 0; i < 3; i++)
+            {
+                ModelBase newModel = null;
+                switch (i)
+                {
+                    case 0:
+                        newModel = new WorkProcessModel();
+                        break;
+                    case 1:
+                        newModel = new ResponsibilityDistributionModel();
+                        break;
+                    case 2:
+                        newModel = new DocumentLifeCycleModel();
+                        break;
+
+                }
+                var newTab = new NewTabControl(newModel, qbeForm);
+
+                newTab.Size = new Size((tcModelsFrame.Size.Width - 8) / 2, (tcModelsFrame.Size.Height - 26) / 2);
+                newTab.Location = new Point(newTab.Size.Width * (i % 2), newTab.Size.Height * (i % 3 == 2 ? 1 : 0));
+                //newTab.Anchor = ((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right;
+                tcModelsFrame.TabPages[number - 1].Controls.Add(newTab);
+
+                var control = tcModelsFrame.TabPages[number - 1].Controls[i] as NewTabControl;
+                if (control != null) control.model.DrawQbe(control.GetGraphics(), query);
+            }
+            tcModelsFrame.SelectedTab = tcModelsFrame.TabPages[number - 1];
+
+        }
+
+        private ModelBase GetNewModel(ModelBase modelBase)
+        {
+            ModelBase newModel = null;
+            if (modelBase is WorkProcessModel)
+                newModel = new WorkProcessModel();
+            if (modelBase is ResponsibilityDistributionModel)
+                newModel = new ResponsibilityDistributionModel();
+            if (modelBase is DataStreamsModel)
+                newModel = new DataStreamsModel();
+            if (modelBase is DocumentLifeCycleModel)
+                newModel = new DocumentLifeCycleModel();
+            if (modelBase is UseCaseModel)
+                newModel = new UseCaseModel();
+            if (modelBase is CapacityWorkingPlaces)
+                newModel = new CapacityWorkingPlaces();
+            return newModel;
+        }
+
         private void button8_Click(object sender, EventArgs e)
-        {        }
+        { }
 
         private void tcModelsFrame_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                Point location = new Point(0,0);
+                Point location = new Point(0, 0);
 
                 //берется размер не текущей вкладки, а тот который указан для всех... но вкладки в зависимости от названия меняют свой размер
                 Size itemSize = tcModelsFrame.ItemSize;
@@ -245,7 +312,7 @@ namespace Information_analysis_of_university
         {
             var currentPage = tcModelsFrame.SelectedTab;
             var control = currentPage.Controls[0] as NewTabControl;
-        
+
             if (MessageBox.Show("Вы действительно хотите закрыть активную вкладку?", "Звкрытие вкладки", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
                 tcModelsFrame.TabPages.Remove(currentPage);
         }
@@ -263,7 +330,7 @@ namespace Information_analysis_of_university
         }
 
         private void groupBox1_Enter_1(object sender, EventArgs e)
-        {        }
+        { }
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -271,7 +338,7 @@ namespace Information_analysis_of_university
             //выбераем текущую вкладку
             var currentPage = tcModelsFrame.SelectedTab;
             var control = currentPage.Controls[0] as NewTabControl;
-           // вызов диалога сохранения
+            // вызов диалога сохранения
             SaveFileDialog savedialog = new SaveFileDialog();
             savedialog.Title = "Сохранить картинку как ...";
             savedialog.OverwritePrompt = true;
@@ -284,7 +351,7 @@ namespace Information_analysis_of_university
                 "TIF File(*.tif)|*.tif|" +
                 "PNG File(*.png)|*.png";
             savedialog.ShowHelp = true;
-          //  если нажали ок
+            //  если нажали ок
             if (savedialog.ShowDialog() == DialogResult.OK)
             {
                 //сохраняем введенное имя файла
@@ -295,33 +362,33 @@ namespace Information_analysis_of_university
                 switch (strFilExtn)
                 {
                     case "bmp":
-                       // сохранение в формате bmp
-                          pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                          var graphics1 = Graphics.FromImage(pictureBox1.Image);
-                          control.model.Draw(graphics1);
-                          pictureBox1.Image.Save(fileName);
+                        // сохранение в формате bmp
+                        pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                        var graphics1 = Graphics.FromImage(pictureBox1.Image);
+                        control.model.Draw(graphics1);
+                        pictureBox1.Image.Save(fileName);
                         break;
                     case "jpg":
                         // сохранение в формате jpg
-                         pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                          var graphics = Graphics.FromImage(pictureBox1.Image);
-                          control.model.Draw(graphics);
-                          pictureBox1.Image.Save(fileName);                    
+                        pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                        var graphics = Graphics.FromImage(pictureBox1.Image);
+                        control.model.Draw(graphics);
+                        pictureBox1.Image.Save(fileName);
                         break;
                     case "gif":
                         // сохранение в формате gif
-                          pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                          var graphics2 = Graphics.FromImage(pictureBox1.Image);
-                          control.model.Draw(graphics2);
-                          pictureBox1.Image.Save(fileName);
+                        pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                        var graphics2 = Graphics.FromImage(pictureBox1.Image);
+                        control.model.Draw(graphics2);
+                        pictureBox1.Image.Save(fileName);
                         break;
-                   
+
                     case "png":
                         // сохранение в формате png
                         pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                          var graphics4 = Graphics.FromImage(pictureBox1.Image);
-                          control.model.Draw(graphics4);
-                          pictureBox1.Image.Save(fileName);
+                        var graphics4 = Graphics.FromImage(pictureBox1.Image);
+                        control.model.Draw(graphics4);
+                        pictureBox1.Image.Save(fileName);
                         break;
                     default:
                         break;
@@ -333,6 +400,11 @@ namespace Information_analysis_of_university
         {
             var AnalisForm = new AnalisResultForm();
             AnalisForm.Show(this);
+            for (int i = 0; i < tcModelsFrame.TabPages.Count; i++)
+            {
+                var control = tcModelsFrame.TabPages[i].Controls[0] as NewTabControl;
+                if (control != null) control.model.ViewErrors(control.GetGraphics(), AnalisForm.ResultConteiner);
+            }
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -342,7 +414,7 @@ namespace Information_analysis_of_university
 
         private void aboutProgram_Click(object sender, EventArgs e)
         {
-             MessageBox.Show("Аналіз стану інформаційного забезпечення університету.Розробники: Круковець Я.М., Карпенко А.Д.кафедра КІТ, ДНУЗТ, 2013. Версія 1.0");
+            MessageBox.Show("Аналіз стану інформаційного забезпечення університету.Розробники: Круковець Я.М., Карпенко А.Д.кафедра КІТ, ДНУЗТ, 2013. Версія 1.0");
         }
 
         private void sQLмодифицырованныйToolStripMenuItem_Click(object sender, EventArgs e)
@@ -372,7 +444,14 @@ namespace Information_analysis_of_university
 
         private void модельПотоковДанныхToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateNewTab(new DataStreamsModel());
+            var newTab = CreateNewTab(new DataStreamsModel());
+            newTab.DrowModel();
+
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }
