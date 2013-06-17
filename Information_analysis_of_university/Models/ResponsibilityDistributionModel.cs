@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
 using DatabaseLevel;
@@ -32,7 +33,7 @@ namespace Information_analysis_of_university.Models
             var x = 150;
             var y = 50;
 
-            var heignt = 100;
+            var heignt = 200;
             var width = 200;
 
             foreach (var wp in workplaceList)
@@ -51,7 +52,7 @@ namespace Information_analysis_of_university.Models
                         else
                         {
                             x = 50;
-                            y = y + 3 * heignt / 2;
+                            y = y + /*3 **/ heignt /*/ 2*/;
                         }
                     }
                 }
@@ -63,7 +64,7 @@ namespace Information_analysis_of_university.Models
             var x = 150;
             var y = 50;
 
-            var heignt = 100;
+            var heignt = 200;
             var width = 200;
 
             foreach (var wp in workplaceList)
@@ -77,8 +78,8 @@ namespace Information_analysis_of_university.Models
                     x += 3 * width;
                 else
                 {
-                    x = 50;
-                    y = y + 3 * heignt / 2;
+                    x = 150;
+                    y = y + /*3 **/ heignt /*/ 2*/;
                 }
             }
         }
@@ -127,13 +128,24 @@ namespace Information_analysis_of_university.Models
 
             //достаем из бд задачи
             var tasksRepository = new BaseDocumentRepository<Task>();
-            var tasks = tasksRepository.Query(x => x.FK_PostId == Workplace.Id).ToList();
+            //var tasks = tasksRepository.Query(x => x.FK_PostId == Workplace.Id).ToList();
+
+            var documentRepository = new BaseDocumentRepository<Document>();
+            var documents =
+                documentRepository.Query(x => x.FK_ResponsibleId == Workplace.Id).Distinct(new DocumentComparer());
 
             TaskDocuments = new List<TaskDocument>();
-            foreach (var task in tasks)
+            foreach (var document in documents)
             {
-                TaskDocuments.Add(new TaskDocument(new TaskObject(task)));
+                var task = tasksRepository.FirstOrDefault(x => x.TaskId == document.FK_TaskId);
+                TaskDocuments.Add(new TaskDocument(new TaskObject(task), Workplace.Id));
             }
+
+            
+            //foreach (var task in tasks)
+            //{
+            //    TaskDocuments.Add(new TaskDocument(new TaskObject(task), Workplace.Id));
+            //}
         }
 
         //отрисовка задач
@@ -246,6 +258,43 @@ namespace Information_analysis_of_university.Models
             {
                 task.SetErrors(documents);
             }
+        }
+
+    }
+
+    // Custom comparer for the Product class
+    class DocumentComparer : IEqualityComparer<Document>
+    {
+        // Products are equal if their names and product numbers are equal.
+        public bool Equals(Document x, Document y)
+        {
+            //Check whether the compared objects reference the same data.
+            if (Object.ReferenceEquals(x, y)) return true;
+
+            //Check whether any of the compared objects is null.
+            if (Object.ReferenceEquals(x, null) || Object.ReferenceEquals(y, null))
+                return false;
+
+            //Check whether the products' properties are equal.
+            return x.FK_TaskId == y.FK_TaskId;
+        }
+
+        // If Equals() returns true for a pair of objects 
+        // then GetHashCode() must return the same value for these objects.
+
+        public int GetHashCode(Document document)
+        {
+            //Check whether the object is null
+            if (Object.ReferenceEquals(document, null)) return 0;
+
+            //Get hash code for the Name field if it is not null.
+            //int hashProductName = document.Name == null ? 0 : document.Name.GetHashCode();
+
+            //Get hash code for the Code field.
+            int hashProductCode = document.FK_TaskId.GetHashCode();
+
+            //Calculate the hash code for the product.
+            return /*hashProductName ^ */hashProductCode;
         }
 
     }

@@ -85,7 +85,8 @@ namespace Information_analysis_of_university.Objects
 
         public int GetIncreaseLength(int count)
         {
-            return Size*2/(3*(count + 1));
+           // return Size*2/(3*(count + 1));
+            return Size/(count + 1);
         }
 
         public virtual bool IsCurrentObject(int x, int y)

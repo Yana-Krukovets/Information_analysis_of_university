@@ -155,7 +155,7 @@ namespace Information_analysis_of_university.Models
         //исходящие элементы
         public List<DocumentObject> ExternalDocuments { get; set; }
 
-        public TaskDocument(TaskObject task)
+        public TaskDocument(TaskObject task, int responsiblePostId = 0)
         {
             Task = task;
 
@@ -163,8 +163,8 @@ namespace Information_analysis_of_university.Models
             var documentRepository = new BaseDocumentRepository<Document>();
             var documents = documentRepository.Query(x => x.Task.TaskId == Task.Id).ToList();
 
-            InernalDocuments = documents.Where(x => x.Type == (int)DocumentType.Input || x.Type == (int)DocumentType.InputOutput).Select(x => new DocumentObject(x)).ToList();
-            ExternalDocuments = documents.Where(x => x.Type == (int)DocumentType.Output || x.Type == (int)DocumentType.InputOutput).Select(x => new DocumentObject(x)).ToList();
+            InernalDocuments = documents.Where(x => (x.Type == (int)DocumentType.Input || x.Type == (int)DocumentType.InputOutput) && (responsiblePostId == 0 || x.FK_ResponsibleId == responsiblePostId)).Select(x => new DocumentObject(x)).ToList();
+            ExternalDocuments = documents.Where(x => (x.Type == (int)DocumentType.Output || x.Type == (int)DocumentType.InputOutput) && (responsiblePostId == 0 || x.FK_ResponsibleId == responsiblePostId)).Select(x => new DocumentObject(x)).ToList();
         }
 
         //снимаем отметку об отрисовке

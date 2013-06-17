@@ -39,6 +39,7 @@ namespace Information_analysis_of_university
             var bSource = new BindingSource();
             bSource.DataSource = QbeItems;
             bindingNavigator1.BindingSource = bSource;
+            dGridQbeQuery.AutoGenerateColumns = false;
             dGridQbeQuery.DataSource = bSource;
 
             //заполнение метрик по умолчанию
@@ -224,6 +225,11 @@ namespace Information_analysis_of_university
         private void очиститьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             QbeItems.Clear();
+        }
+
+        private void qbeQueryItemBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
 
 

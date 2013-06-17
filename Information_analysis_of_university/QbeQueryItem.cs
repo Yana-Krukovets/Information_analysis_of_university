@@ -1,4 +1,5 @@
-﻿using Information_analysis_of_university.Objects;
+﻿using System.ComponentModel;
+using Information_analysis_of_university.Objects;
 
 namespace Information_analysis_of_university
 {
